@@ -1,0 +1,14 @@
+<dependencies>
+  <packages>
+    <package>com.android.support:recyclerview-v7:26+</package>
+    <package>com.android.support:support-annotations:26.0.1</package>
+    <package>com.google.android.gms:play-services-ads:12.0.1</package>
+    <package>com.google.android.gms:play-services-basement:12.0.1</package>
+    <package>com.google.android.gms:play-services-clearcut:10+</package>
+    <package>com.google.android.gms:play-services-games:12.0.1</package>
+    <package>com.google.android.gms:play-services-gcm:12.0.1</package>
+    <package>com.google.android.gms:play-services-location:12.0.1</package>
+    <package>com.yumimobi.ads.mediation:applovin:3.3.6+</package>
+  </packages>
+  <files />
+</dependencies>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.zplayhtunitydemo"
+    android:versionCode="1"
+    android:versionName="1.0.0" >
+     <!--此权限受Android系统限制，若无此权限可能导致部分机型对下载类广告无法直接下载，国内渠道必须添加，Googleplay（一般为直接跳转型广告）可不加-->
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<!-- yumi sdk start -->
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+	<!--以下为富媒体广告需要的权限-->
+	<uses-permission android:name="android.permission.CALL_PHONE"/>
+	<uses-permission android:name="android.permission.SEND_SMS"/>
+	<uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+	<!-- yumi sdk end -->
+
+    <application>
+		
+      <activity android:configChanges="locale|mcc|mnc|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale" 
+                android:launchMode="singleTask" 
+                android:name="com.unity3d.player.UnityPlayerActivity" 
+                android:screenOrientation="fullSensor">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+        <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
+      </intent-filter>
+        <meta-data android:name="unityplayer.UnityActivity" android:value="true"/>
+      </activity>
+
+	  <!--Unity -->
+        <activity android:name="com.unity3d.ads.adunit.AdUnitActivity"
+	android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"    
+	android:hardwareAccelerated="true" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+<activity android:name="com.unity3d.ads.adunit.AdUnitSoftwareActivity"    
+	android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+	android:hardwareAccelerated="false"   
+	android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+	<!-- Vungle -->
+	<activity
+	android:name="com.vungle.warren.ui.VungleActivity"
+	android:configChanges="keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize"
+	android:launchMode="singleTop"
+	android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+<activity
+	android:name="com.vungle.warren.ui.VungleFlexViewActivity"
+	android:configChanges="keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize"
+	android:hardwareAccelerated="true"
+	android:launchMode="singleTop"
+	android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+	  
+    </application>
+
+</manifest>
