@@ -1,0 +1,24 @@
+<dependencies>
+  <androidPackages>
+    <androidPackage spec="com.google.android.gms:play-services-ads:15.0.1">
+      <repositories>
+        <repository>https://maven.google.com/</repository>
+      </repositories>
+    </androidPackage>
+  </androidPackages>
+
+  <iosPods>
+    <iosPod name="YumiMediationDebugCenter-iOS" version="3.3.9" minTargetSdk="8.0"/>
+    <iosPod name="YumiMediationAdapters" version="3.3.9" minTargetSdk="8.0"/>
+    <iosPod name="YumiMediationSDK" version="3.3.9" minTargetSdk="8.0"/>
+<!--    <iosPod name="YumiMediationAdapters/AppLovin" version="3.3.7"/>-->
+<!--    <iosPod name="YumiMediationAdapters/Facebook" version="3.3.7"/>-->
+<!--    <iosPod name="YumiMediationAdapters/InMobi" version="3.3.7"/>-->
+<!--    <iosPod name="YumiMediationAdapters/IronSource" version="3.3.7"/>-->
+<!--    <iosPod name="YumiMediationAdapters/Unity" version="3.3.7"/>-->
+<!--    <iosPod name="YumiMediationAdapters/Vungle" version="3.3.7"/>-->
+      <sources>
+        <source>https://github.com/CocoaPods/Specs</source>
+      </sources>
+  </iosPods>
+</dependencies>
