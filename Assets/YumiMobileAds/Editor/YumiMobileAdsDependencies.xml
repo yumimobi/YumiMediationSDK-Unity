@@ -9,14 +9,8 @@
 
   <iosPods>
     <iosPod name="YumiMediationDebugCenter-iOS" version="3.3.9" minTargetSdk="8.0"/>
-    <iosPod name="YumiMediationAdapters" version="3.3.9" minTargetSdk="8.0"/>
-    <iosPod name="YumiMediationSDK" version="3.3.9" minTargetSdk="8.0"/>
-<!--    <iosPod name="YumiMediationAdapters/AppLovin" version="3.3.7"/>-->
-<!--    <iosPod name="YumiMediationAdapters/Facebook" version="3.3.7"/>-->
-<!--    <iosPod name="YumiMediationAdapters/InMobi" version="3.3.7"/>-->
-<!--    <iosPod name="YumiMediationAdapters/IronSource" version="3.3.7"/>-->
-<!--    <iosPod name="YumiMediationAdapters/Unity" version="3.3.7"/>-->
-<!--    <iosPod name="YumiMediationAdapters/Vungle" version="3.3.7"/>-->
+    <iosPod name="YumiMediationAdapters" version="3.3.9" />
+    <iosPod name="YumiMediationSDK" version="3.3.9" />
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>
