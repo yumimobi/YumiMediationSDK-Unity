@@ -6,5 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/YumiMediationMobileAds/Scene/YumiScene.unity
+    path: Assets/YumiMediationSDK/Scene/YumiScene.unity
     guid: 0446d97ef00fb4faeae35c56b1aa4091
+  - enabled: 0
+    path: Assets/YumiMediationSDK/Scene/YumiAndroidScene.unity
+    guid: 33bf9e46cb9084cc7b411f302a305943

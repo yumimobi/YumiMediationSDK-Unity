@@ -1,0 +1,6 @@
+<dependencies>
+  <packages>
+    <package>com.yumimobi.ads:mediation:3.3.9.+</package>
+  </packages>
+  <files />
+</dependencies>
