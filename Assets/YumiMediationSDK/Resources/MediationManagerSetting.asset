@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: MediationManagerSetting
   m_EditorClassIdentifier: 
   DebugMode: 0
-  RewardedVideoRequestInterval: 1
+  RewardedVideoRequestInterval: 0
   ReadyRewardedVideoAds: 0
   ReadyInterstitialsAds: 0
   ReadyBannerAds: 0
@@ -22,9 +22,9 @@ MonoBehaviour:
   Android_InterstitialsSlotId: 
   Android_BannerSlotId: 
   IOS_ChannelId: 
-  IOS_RewardedVideoSlotId: 
-  IOS_InterstitialsSlotId: 
-  IOS_BannerSlotId: 
+  IOS_RewardedVideoSlotId: 5x11o7l3
+  IOS_InterstitialsSlotId: rz2wotpp
+  IOS_BannerSlotId: y6op8v69
   IOS_BannerPositionTop: 0
   IOS_BannerPositionBottom: 0
   AutomaticAdaptionBanner: 0
