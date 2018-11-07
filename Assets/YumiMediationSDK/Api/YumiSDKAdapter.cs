@@ -2,28 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Assets.YumiMediationSDK.Common;
 
 public class YumiSDKAdapter:MonoBehaviour {
 
+	private string BannerPlacementId = "";
+	private String RewardedVideoPlacementId = "";
+	private String InterstitialsPlacementId = "";
+	private string GameVersionID = "";
+	private String ChannelId = "";
+
 	public static YumiSDKAdapter Instance;
+
 // setup your app yumi ads placementid
-	#if UNITY_IPHONE && !UNITY_EDITOR
-	private string bannerPlacementID_iOS = "Your banner placementId for iOS";
-	private string interstitialPlacementID_iOS = "Your interstitial placementId for iOS";
-	private string videoPlacementID_iOS = "Your video placementId for iOS";
-	private string channelID_iOS = "Your channel id for iOS";
-	private string versionID_iOS = "Your version id for iOS";
+	#if UNITY_IOS
 	private YumiMediationSDK_Unity.YumiMediationBannerPosition position = YumiMediationSDK_Unity.YumiMediationBannerPosition.YumiMediationBannerPositionBottom;
 	/// default: iPhone and iPod Touch ad size. Typically 320x50.
 	/// default: iPad ad size. Typically 728x90.
 	// private YumiMediationSDK_Unity.YumiMediationAdViewBannerSize bannerSize = YumiMediationSDK_Unity.YumiMediationAdViewBannerSize.kYumiMediationAdViewBanner320x50;
 	#endif
 	#if UNITY_ANDROID
-	string bannerPlacementID_Android = "Your banner placementId for Android";
-	string interstitialPlacementID_Android = "Your interstitial placementId for Android";
-	string videoPlacementID_Android = "Your video placementId for Android";
-	private string channelID_Android = "Your channel id for Android";
-	private string versionID_Android = "Your version id for Android";
 	private YumiUnityAdUtils androidAdInstance;
 
 	private bool rotaIsMediaPrepared;
@@ -36,15 +34,37 @@ public class YumiSDKAdapter:MonoBehaviour {
 		Instance = this;
 		//Follow all the scenes
 		DontDestroyOnLoad(gameObject);
+		//get ad info
+		GameVersionID = MediationManagerSetting.GetGameVersion;
+		#if UNITY_IOS
+		ChannelId = MediationManagerSetting.GetIOSZChannelId;
+		RewardedVideoPlacementId = MediationManagerSetting.GetIOSZRewardedVideoSlotId;
+		InterstitialsPlacementId = MediationManagerSetting.GetIOSZInterstitialsSlotId;
+		BannerPlacementId = MediationManagerSetting.GetIOSZBannelSlotId;
+
+		#endif
+
 		#if UNITY_ANDROID
-		androidAdInstance = new YumiUnityAdUtils (bannerPlacementID_Android,interstitialPlacementID_Android, videoPlacementID_Android,channelID_Android,versionID_Android);
+
+		ChannelId = MediationManagerSetting.GetAndroidZChannelId;
+		RewardedVideoPlacementId = MediationManagerSetting.GetAndroidZRewardedVideoSlotId;
+		InterstitialsPlacementId = MediationManagerSetting.GetAndroidZInterstitialsSlotId;
+		BannerPlacementId = MediationManagerSetting.GetAndroidZBannelSlotId;
+
+		#endif
+
+		Logger.LogError("start yumi adapter");
+
+		#if UNITY_ANDROID
+		androidAdInstance = new YumiUnityAdUtils (BannerPlacementId,InterstitialsPlacementId, RewardedVideoPlacementId,ChannelId,GameVersionID);
+
 		#endif
 
 	}
 	void Start () {  
 
 		Logger.LogError("start yumi adapter");
-		//Remind users to get permission  
+
 		#if UNITY_ANDROID
 		androidAdInstance.CheckPermission();
 		#endif
@@ -70,8 +90,10 @@ public class YumiSDKAdapter:MonoBehaviour {
 	//banner 
 	public void ShowBanner(bool isSmartBanner){
 		Logger.LogError ("click init banner");
-		#if UNITY_IPHONE && !UNITY_EDITOR
-		YumiMediationSDK_Unity.initYumiMediationBanner(bannerPlacementID_iOS,channelID_iOS,versionID_iOS,position);
+
+		Logger.LogError ("banner id = "+ BannerPlacementId);
+		#if UNITY_IOS
+		YumiMediationSDK_Unity.initYumiMediationBanner(BannerPlacementId,ChannelId,GameVersionID,position);
 		// set banner custom size 
 //		YumiMediationSDK_Unity.setBannerAdSize(bannerSize);
 		YumiMediationSDK_Unity.loadAd(isSmartBanner);
@@ -87,7 +109,7 @@ public class YumiSDKAdapter:MonoBehaviour {
 
 	public void DismissBanner(){
 		Logger.LogError ("click reomve banner");
-		#if UNITY_IPHONE && !UNITY_EDITOR
+		#if UNITY_IOS
 
 		YumiMediationSDK_Unity.removeBanner();
 		#endif
@@ -100,8 +122,8 @@ public class YumiSDKAdapter:MonoBehaviour {
 	//interstitial
 	public void InitInterstitial(){
 		
-		#if UNITY_IPHONE && !UNITY_EDITOR
-		YumiMediationSDK_Unity.initYumiMediationInterstitial(interstitialPlacementID_iOS,channelID_iOS,versionID_iOS);
+		#if UNITY_IOS
+		YumiMediationSDK_Unity.initYumiMediationInterstitial(InterstitialsPlacementId,ChannelId,GameVersionID);
 		#endif
 
 		#if UNITY_ANDROID
@@ -113,7 +135,7 @@ public class YumiSDKAdapter:MonoBehaviour {
 	}
 
 	public void PresentInterstitial(){
-		#if UNITY_IPHONE && !UNITY_EDITOR
+		#if UNITY_IOS
 		bool isplay = YumiMediationSDK_Unity.isInterstitialReady();
 		if (!isplay){
 		Logger.LogError ("interstitial not ready");
@@ -130,8 +152,8 @@ public class YumiSDKAdapter:MonoBehaviour {
 
 	//video 
 	public void InitVideo(){
-		#if UNITY_IPHONE && !UNITY_EDITOR
-		YumiMediationSDK_Unity.loadYumiMediationVideo(videoPlacementID_iOS,channelID_iOS,versionID_iOS);
+		#if UNITY_IOS
+		YumiMediationSDK_Unity.loadYumiMediationVideo(RewardedVideoPlacementId,ChannelId,GameVersionID);
 		#endif
 
 		#if UNITY_ANDROID
@@ -143,7 +165,7 @@ public class YumiSDKAdapter:MonoBehaviour {
 
 	public void PlayVideo(){
 
-		#if UNITY_IPHONE && !UNITY_EDITOR
+		#if UNITY_IOS
 
 		bool isplay = YumiMediationSDK_Unity.isVideoReady();
 		if (!isplay){
@@ -162,7 +184,7 @@ public class YumiSDKAdapter:MonoBehaviour {
 
 	public bool isVideoReady(){
 
-		#if UNITY_IPHONE && !UNITY_EDITOR
+		#if UNITY_IOS
 
 		return YumiMediationSDK_Unity.isVideoReady();
 
