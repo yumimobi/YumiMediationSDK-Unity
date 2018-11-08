@@ -1,0 +1,33 @@
+<dependencies>
+  <packages>
+    <package>com.yumimobi.ads.mediation:adcolony:3.3.9.+</package>
+    <package>com.yumimobi.ads.mediation:applovin:3.3.9.+</package>
+    <package>com.yumimobi.ads.mediation:playableads:3.3.9.+</package>
+    <package>com.yumimobi.ads:mediation:3.3.9.+</package>
+  </packages>
+  <files>
+    <file>Assets/Plugins/Android/com.android.support.animated-vector-drawable-25.3.1.aar</file>
+    <file>Assets/Plugins/Android/com.android.support.appcompat-v7-25.3.1.aar</file>
+    <file>Assets/Plugins/Android/com.android.support.support-annotations-25.3.1.jar</file>
+    <file>Assets/Plugins/Android/com.android.support.support-compat-25.3.1.aar</file>
+    <file>Assets/Plugins/Android/com.android.support.support-core-ui-25.3.1.aar</file>
+    <file>Assets/Plugins/Android/com.android.support.support-core-utils-25.3.1.aar</file>
+    <file>Assets/Plugins/Android/com.android.support.support-fragment-25.3.1.aar</file>
+    <file>Assets/Plugins/Android/com.android.support.support-media-compat-25.3.1.aar</file>
+    <file>Assets/Plugins/Android/com.android.support.support-v4-25.3.1.aar</file>
+    <file>Assets/Plugins/Android/com.android.support.support-vector-drawable-25.3.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-10.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-lite-10.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-base-10.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-basement-10.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-clearcut-10.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-gass-10.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-tasks-10.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.playableads.playableads-2.1.1.aar</file>
+    <file>Assets/Plugins/Android/com.yumimobi.ads.mediation.adcolony-3.3.9.0.aar</file>
+    <file>Assets/Plugins/Android/com.yumimobi.ads.mediation.applovin-3.3.9.2.aar</file>
+    <file>Assets/Plugins/Android/com.yumimobi.ads.mediation.playableads-3.3.9.0.aar</file>
+    <file>Assets/Plugins/Android/com.yumimobi.ads.mediation-3.3.9.8.aar</file>
+    <file>Assets/Plugins/Android/com.yumimobi.ads.thirdparty.adcolony-3.2.1.1</file>
+  </files>
+</dependencies>
