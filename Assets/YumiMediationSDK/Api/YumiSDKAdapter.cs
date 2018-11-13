@@ -200,14 +200,20 @@ public class YumiSDKAdapter:MonoBehaviour {
 		return false;
 	}
 
+	public void CallDebugCenter(){
+		#if UNITY_IOS
+		YumiMediationSDK_Unity.presentYumiMediationDebugCenter(BannerPlacementId,InterstitialsPlacementId, RewardedVideoPlacementId, "", ChannelId , GameVersionID);
+		#endif
+
+		#if UNITY_ANDROID
+		androidAdInstance.StartDebugging ();
+		#endif
+	}
 	public bool GetDebugMode(){ 
 		return MediationManagerSetting.GetDebugMode;
 	}
 
 	#if UNITY_ANDROID
-	public void AndroidStartDebug(){
-		androidAdInstance.StartDebugging ();
-	}
 	public void SetAppIsGooglePlayVersions(){
 		androidAdInstance.SetAppIsGooglePlayVersions ();
 	}
