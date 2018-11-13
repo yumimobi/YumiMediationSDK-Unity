@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba57e6e2f4814696b34841628b1474c, type: 3}
   m_Name: MediationManagerSetting
   m_EditorClassIdentifier: 
-  DebugMode: 0
+  DebugMode: 1
   GameVersion: 
   Android_ChannelId: 
   Android_RewardedVideoPlacementId: c66oi5fq
@@ -21,4 +21,4 @@ MonoBehaviour:
   IOS_RewardedVideoPlacementId: 5x11o7l3
   IOS_InterstitialsPlacementId: rz2wotpp
   IOS_BannerPlacementId: y6op8v69
-  AutomaticAdaptionBanner: 0
+  AutomaticAdaptionBanner: 1
