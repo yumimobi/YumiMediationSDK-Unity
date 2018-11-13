@@ -18,18 +18,6 @@ namespace Assets.YumiMediationSDK.Common
         [SerializeField]
         private bool DebugMode;
 
-        [Header("RequestInterval")]
-        [SerializeField]
-        private int RewardedVideoRequestInterval = 1;
-
-        [Header("Load")]
-        [SerializeField]
-        private bool ReadyRewardedVideoAds;
-        [SerializeField]
-        private bool ReadyInterstitialsAds;
-        [SerializeField]
-        private bool ReadyBannerAds;
-
         [Header("Version")]
         [SerializeField]
         private string GameVersion = "";
@@ -38,30 +26,24 @@ namespace Assets.YumiMediationSDK.Common
         [SerializeField]
         private string Android_ChannelId = "";
         [SerializeField]
-        private string Android_RewardedVideoSlotId = "";
+        private string Android_RewardedVideoPlacementId = "";
         [SerializeField]
-        private string Android_InterstitialsSlotId = "";
+        private string Android_InterstitialsPlacementId = "";
         [SerializeField]
-        private string Android_BannerSlotId = "";
+        private string Android_BannerPlacementId = "";
 
 
         [Header("IOS")]
         [SerializeField]
         private string IOS_ChannelId = "";
         [SerializeField]
-        private string IOS_RewardedVideoSlotId = "";
+        private string IOS_RewardedVideoPlacementId = "";
         [SerializeField]
-        private string IOS_InterstitialsSlotId = "";
+        private string IOS_InterstitialsPlacementId = "";
         [SerializeField]
-        private string IOS_BannerSlotId = "";
+        private string IOS_BannerPlacementId = "";
 
-        [Header("IOSBannerPosition")]
-        [SerializeField]
-        private bool IOS_BannerPositionTop;
-        [SerializeField]
-        private bool IOS_BannerPositionBottom;
-
-        [Header("AutomaticAdaption")]
+        [Header("Banner Self-adaptation")]
         [SerializeField]
         private bool AutomaticAdaptionBanner; 
 
@@ -69,34 +51,22 @@ namespace Assets.YumiMediationSDK.Common
         //Debug 
         public static bool GetDebugMode { get { return Instance.DebugMode; } }
 
-        //RequestInterval
-        public static int GetRewardedVideoRequestInterval { get { return Instance.RewardedVideoRequestInterval; } }
-
-        //Load
-        public static bool GetReadyRewardedVideoAds { get { return Instance.ReadyRewardedVideoAds; } }
-        public static bool GetReadyInterstitialsAds { get { return Instance.ReadyInterstitialsAds; } }
-        public static bool GetReadyBannerAds { get { return Instance.ReadyBannerAds; } }
-
         //Version
         public static string GetGameVersion { get { return Instance.GameVersion; } }
 
         //Android
         public static string GetAndroidZChannelId { get { return Instance.Android_ChannelId; } }
-        public static string GetAndroidZRewardedVideoSlotId { get { return Instance.Android_RewardedVideoSlotId; } }
-        public static string GetAndroidZInterstitialsSlotId { get { return Instance.Android_InterstitialsSlotId; } }
-        public static string GetAndroidZBannelSlotId { get { return Instance.Android_BannerSlotId; } }
+        public static string GetAndroidZRewardedVideoPlacementId { get { return Instance.Android_RewardedVideoPlacementId; } }
+        public static string GetAndroidZInterstitialsPlacementId { get { return Instance.Android_InterstitialsPlacementId; } }
+        public static string GetAndroidZBannelPlacementId { get { return Instance.Android_BannerPlacementId; } }
 
         //IOS
         public static string GetIOSZChannelId { get { return Instance.IOS_ChannelId; } }
-        public static string GetIOSZRewardedVideoSlotId { get { return Instance.IOS_RewardedVideoSlotId; } }
-        public static string GetIOSZInterstitialsSlotId { get { return Instance.IOS_InterstitialsSlotId; } }
-        public static string GetIOSZBannelSlotId { get { return Instance.IOS_BannerSlotId; } }
+        public static string GetIOSZRewardedVideoPlacementId { get { return Instance.IOS_RewardedVideoPlacementId; } }
+        public static string GetIOSZInterstitialsPlacementId { get { return Instance.IOS_InterstitialsPlacementId; } }
+        public static string GetIOSZBannelPlacementId { get { return Instance.IOS_BannerPlacementId; } }
 
-        //IOSBannerPosition
-        public static bool GetIOSBannerPositionTop { get { return Instance.IOS_BannerPositionTop; } }
-        public static bool GetIOSBannnerPostionBottom { get { return Instance.IOS_BannerPositionBottom; } }
-
-        //AutomaticAdaption
+        //Banner Self-adaptation
         public static bool GetAutomaticAdaptionBanner { get { return instance.AutomaticAdaptionBanner; } }
 
         public static MediationManagerSetting Instance

@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -12,19 +12,13 @@ MonoBehaviour:
   m_Name: MediationManagerSetting
   m_EditorClassIdentifier: 
   DebugMode: 0
-  RewardedVideoRequestInterval: 0
-  ReadyRewardedVideoAds: 0
-  ReadyInterstitialsAds: 0
-  ReadyBannerAds: 0
   GameVersion: 
   Android_ChannelId: 
-  Android_RewardedVideoSlotId: c66oi5fq
-  Android_InterstitialsSlotId: 8sbiflac
-  Android_BannerSlotId: 7em46clu
+  Android_RewardedVideoPlacementId: c66oi5fq
+  Android_InterstitialsPlacementId: 8sbiflac
+  Android_BannerPlacementId: 7em46clu
   IOS_ChannelId: 
-  IOS_RewardedVideoSlotId: 5x11o7l3
-  IOS_InterstitialsSlotId: rz2wotpp
-  IOS_BannerSlotId: y6op8v69
-  IOS_BannerPositionTop: 0
-  IOS_BannerPositionBottom: 0
+  IOS_RewardedVideoPlacementId: 5x11o7l3
+  IOS_InterstitialsPlacementId: rz2wotpp
+  IOS_BannerPlacementId: y6op8v69
   AutomaticAdaptionBanner: 0
