@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Runtime.InteropServices;
+using System;
 
 public class YumiMediationSDK_Unity 
 {
@@ -53,6 +54,12 @@ public class YumiMediationSDK_Unity
 	//splash
 	[DllImport ("__Internal")]
 	private static extern void _showYumiAdsSplash(string placementID ,string appKey);
+
+	// debugcenter 
+	[DllImport ("__Internal")]
+	private static extern void _presentYumiMediationDebugCenter(string bannerPlacementID,string interstitialPlacementID, string videoPlacementID, string nativePlacementID, string channelID , string versionID);
+	[DllImport ("__Internal")]
+	private static  extern void _setBannerSizeInDebugCenter(YumiMediationAdViewBannerSize bannerSize);
 
 	//banner
 	public static void initYumiMediationBanner(string placementID,string channelID,string versionID,YumiMediationBannerPosition position)
@@ -115,11 +122,19 @@ public class YumiMediationSDK_Unity
 	{
 		_playVideo ();
 	}
-
+	
 	// splash 
 	public static void showYumiAdsSplash(string placementID,string appKey)
 	{
 		_showYumiAdsSplash (placementID,appKey);
+	}
+	// call debug center
+	public static void presentYumiMediationDebugCenter(string bannerPlacementID,string interstitialPlacementID, string videoPlacementID, string nativePlacementID, string channelID , string versionID){
+		_presentYumiMediationDebugCenter (bannerPlacementID,interstitialPlacementID,videoPlacementID,nativePlacementID,channelID,versionID);
+	}
+
+	public static void setBannerSizeInDebugCenter(YumiMediationAdViewBannerSize bannerSize){
+		_setBannerSizeInDebugCenter (bannerSize);
 	}
 		
 }

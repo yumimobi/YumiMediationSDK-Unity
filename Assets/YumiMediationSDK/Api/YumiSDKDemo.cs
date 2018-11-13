@@ -29,7 +29,7 @@ public class YumiSDKDemo : MonoBehaviour {
 
 		if(GUI.Button(new Rect(40,84,btnWidth,120),"show banner",myButtonStyle))
 		{
-			YumiSDKAdapter.Instance.ShowBanner (false);
+			YumiSDKAdapter.Instance.ShowBanner ();
 
 		}  
 		//remove banner
@@ -81,6 +81,12 @@ public class YumiSDKDemo : MonoBehaviour {
 		if(GUI.Button(new Rect(40+btnWidth+10,344,btnWidth,120),"play video",myButtonStyle))
 		{
 			YumiSDKAdapter.Instance.PlayVideo ();
+		}
+		if(YumiSDKAdapter.Instance.GetDebugMode()){
+			if(GUI.Button(new Rect(40,474,btnWidth,120),"call debugCenter",myButtonStyle)){
+				Logger.Log("call debugcenter");
+				YumiSDKAdapter.Instance.CallDebugCenter();
+			}
 		}
 	}
 }
