@@ -39,7 +39,6 @@ public class YumiSDKAdapter:MonoBehaviour {
 		//get ad info
 		GameVersionID = MediationManagerSetting.GetGameVersion;
 		IsSmartBanner = MediationManagerSetting.GetAutomaticAdaptionBanner;
-
 		#if UNITY_IOS
 		ChannelId = MediationManagerSetting.GetIOSZChannelId;
 		RewardedVideoPlacementId = MediationManagerSetting.GetIOSZRewardedVideoPlacementId;
@@ -74,7 +73,6 @@ public class YumiSDKAdapter:MonoBehaviour {
 		#endif
 	}
 
-
 	void Update()
 	{
 		#if UNITY_ANDROID
@@ -95,7 +93,7 @@ public class YumiSDKAdapter:MonoBehaviour {
 	public void ShowBanner(){
 		Logger.LogError ("click init banner");
 
-		Logger.LogError ("banner id = "+ BannerPlacementId);
+		Logger.LogError ("banner id = "+ BannerPlacementId + "isSmart ="+ IsSmartBanner);
 		#if UNITY_IOS
 		YumiMediationSDK_Unity.initYumiMediationBanner(BannerPlacementId,ChannelId,GameVersionID,position);
 		// set banner custom size 
@@ -202,6 +200,10 @@ public class YumiSDKAdapter:MonoBehaviour {
 		return false;
 	}
 
+	public bool GetDebugMode(){ 
+		return MediationManagerSetting.GetDebugMode;
+	}
+
 	#if UNITY_ANDROID
 	public void AndroidStartDebug(){
 		androidAdInstance.StartDebugging ();
@@ -244,6 +246,7 @@ public class YumiSDKAdapter:MonoBehaviour {
 			rotaIsMediaPrepared = value;
 		}
 	}
+
 #endif
 
 }

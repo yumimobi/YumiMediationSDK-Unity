@@ -82,5 +82,10 @@ public class YumiSDKDemo : MonoBehaviour {
 		{
 			YumiSDKAdapter.Instance.PlayVideo ();
 		}
+		if(YumiSDKAdapter.Instance.GetDebugMode()){
+			if(GUI.Button(new Rect(40,474,btnWidth,120),"call debugCenter",myButtonStyle)){
+				Logger.Log("call debugcenter");
+			}
+		}
 	}
 }
