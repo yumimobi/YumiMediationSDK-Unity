@@ -12,6 +12,8 @@ public class YumiSDKAdapter:MonoBehaviour {
 	private string GameVersionID = "";
 	private String ChannelId = "";
 
+	private bool IsSmartBanner;
+
 	public static YumiSDKAdapter Instance;
 
 // setup your app yumi ads placementid
@@ -36,20 +38,22 @@ public class YumiSDKAdapter:MonoBehaviour {
 		DontDestroyOnLoad(gameObject);
 		//get ad info
 		GameVersionID = MediationManagerSetting.GetGameVersion;
+		IsSmartBanner = MediationManagerSetting.GetAutomaticAdaptionBanner;
+
 		#if UNITY_IOS
 		ChannelId = MediationManagerSetting.GetIOSZChannelId;
-		RewardedVideoPlacementId = MediationManagerSetting.GetIOSZRewardedVideoSlotId;
-		InterstitialsPlacementId = MediationManagerSetting.GetIOSZInterstitialsSlotId;
-		BannerPlacementId = MediationManagerSetting.GetIOSZBannelSlotId;
+		RewardedVideoPlacementId = MediationManagerSetting.GetIOSZRewardedVideoPlacementId;
+		InterstitialsPlacementId = MediationManagerSetting.GetIOSZInterstitialsPlacementId;
+		BannerPlacementId = MediationManagerSetting.GetIOSZBannelPlacementId;
 
 		#endif
 
 		#if UNITY_ANDROID
 
 		ChannelId = MediationManagerSetting.GetAndroidZChannelId;
-		RewardedVideoPlacementId = MediationManagerSetting.GetAndroidZRewardedVideoSlotId;
-		InterstitialsPlacementId = MediationManagerSetting.GetAndroidZInterstitialsSlotId;
-		BannerPlacementId = MediationManagerSetting.GetAndroidZBannelSlotId;
+		RewardedVideoPlacementId = MediationManagerSetting.GetAndroidZRewardedVideoPlacementId;
+		InterstitialsPlacementId = MediationManagerSetting.GetAndroidZInterstitialsPlacementId;
+		BannerPlacementId = MediationManagerSetting.GetAndroidZBannelPlacementId;
 
 		#endif
 
@@ -88,7 +92,7 @@ public class YumiSDKAdapter:MonoBehaviour {
 	}
 
 	//banner 
-	public void ShowBanner(bool isSmartBanner){
+	public void ShowBanner(){
 		Logger.LogError ("click init banner");
 
 		Logger.LogError ("banner id = "+ BannerPlacementId);
@@ -96,12 +100,12 @@ public class YumiSDKAdapter:MonoBehaviour {
 		YumiMediationSDK_Unity.initYumiMediationBanner(BannerPlacementId,ChannelId,GameVersionID,position);
 		// set banner custom size 
 //		YumiMediationSDK_Unity.setBannerAdSize(bannerSize);
-		YumiMediationSDK_Unity.loadAd(isSmartBanner);
+		YumiMediationSDK_Unity.loadAd(IsSmartBanner);
 		#endif
 
 		//android 
 		#if UNITY_ANDROID
-		androidAdInstance.AddBannerAd(gameObject.name, isSmartBanner);
+		androidAdInstance.AddBannerAd(gameObject.name, IsSmartBanner);
 
 		#endif
 
@@ -240,6 +244,6 @@ public class YumiSDKAdapter:MonoBehaviour {
 			rotaIsMediaPrepared = value;
 		}
 	}
-	#endif
+#endif
 
 }

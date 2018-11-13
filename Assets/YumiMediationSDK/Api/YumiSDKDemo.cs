@@ -29,7 +29,7 @@ public class YumiSDKDemo : MonoBehaviour {
 
 		if(GUI.Button(new Rect(40,84,btnWidth,120),"show banner",myButtonStyle))
 		{
-			YumiSDKAdapter.Instance.ShowBanner (false);
+			YumiSDKAdapter.Instance.ShowBanner ();
 
 		}  
 		//remove banner
