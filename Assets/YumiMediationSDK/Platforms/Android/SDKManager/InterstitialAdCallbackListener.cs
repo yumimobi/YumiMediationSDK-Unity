@@ -1,24 +1,30 @@
 ﻿using UnityEngine;
-public class InterstitialAdCallbackListener:MonoBehaviour,YumiUnityAdUtils.InterstitialAdCallbackListener
+public class InterstitialAdCallbackListener : MonoBehaviour, YumiUnityAdUtils.InterstitialAdCallbackListener
 {
     public void onInterstitialPreparedFailed(string data)
     {
-		Logger.LogError("yumiMobi SDK Interstitial Prepared Failed :" + data);
+       
+        YumiSDKEventHandler.OnYumiAdInterstitialDidFailToLoad(data);
     }
     public void onInterstitialPrepared(string data)
     {
-		Logger.LogError("yumiMobi SDK Interstitial Prepared Succeed:" + data);
+      
+        YumiSDKEventHandler.OnYumiAdInterstitialDidLoad();
     }
     public void onInterstitialExposure(string data)
     {
-		Logger.LogError("yumiMobi SDK Interstitial Exposure Succeed:" + data);
+       
+    #if UNITY_ANDROID
+        YumiSDKEventHandler.OnYumiAdInterstitialExposure();
+    #endif
+
     }
     public void onInterstitialClosed(string data)
     {
-		Logger.LogError("yumiMobi SDK Interstitial Closed :" + data);
+        YumiSDKEventHandler.OnYumiAdInterstitialDidClose();
     }
     public void onInterstitialClicked(string data)
     {
-		Logger.LogError("yumiMobi SDK Interstitial Clicke :" + data);
+        YumiSDKEventHandler.OnYumiAdInterstitialDidClick();
     }
 }

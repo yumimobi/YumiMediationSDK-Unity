@@ -1,24 +1,35 @@
 ﻿using UnityEngine;
-public class BannerAdCallbackListener:MonoBehaviour,YumiUnityAdUtils.BannerAdCallbackListener {
+public class BannerAdCallbackListener : MonoBehaviour, YumiUnityAdUtils.BannerAdCallbackListener
+{
 
     public void onBannerPreparedFailed(string data)
     {
-        Logger.LogError("yumiMobi SDK Bannel Prepared Failed :" + data);
+
+        YumiSDKEventHandler.OnYumiAdBannerDidFailToLoad(data);
     }
     public void onBannerPrepared(string data)
     {
-		Logger.LogError("yumiMobi SDK Bannel Prepared Succeed:" + data);
+       
+        YumiSDKEventHandler.OnYumiAdBannerDidLoad();
     }
+
     public void onBannerExposure(string data)
     {
-		Logger.LogError("yumiMobi SDK Bannel Exposure Succeed:" + data);
+       
+    #if UNITY_ANDROID
+        YumiSDKEventHandler.OnYumiAdBannerExposure();
+    #endif
     }
     public void onBannerClosed(string data)
     {
-		Logger.LogError("yumiMobi SDK Bannel Closed:" + data);
+       
+    #if UNITY_ANDROID
+        YumiSDKEventHandler.OnYumiAdBannerDidClose();
+    #endif
     }
     public void onBannerClicked(string data)
     {
-		Logger.LogError("yumiMobi SDK Bannel Clicked:" + data);
+       
+        YumiSDKEventHandler.OnYumiAdBannerDidClick();
     }
 }
