@@ -49,81 +49,81 @@ public class YumiMediationSDKManager : MonoBehaviour {
 	//banner delegate
 	public void yumiMediationBannerViewDidLoad()
 	{
-		if( yumiMediationBannerViewDidLoadEvent != null )
-			yumiMediationBannerViewDidLoadEvent();
+
+        YumiSDKEventHandler.OnYumiAdBannerDidLoad();
 	}
 
 	public void yumiMediationSDKDidFailToReceiveAd(string error)
 	{
-		if(yumiMediationSDKDidFailToReceiveAdEvent != null){
-			yumiMediationSDKDidFailToReceiveAdEvent(error);
-		}
-	}
+
+        YumiSDKEventHandler.OnYumiAdBannerDidFailToLoad(error);
+
+    }
 
 	public void yumiMediationBannerViewDidClick()
 	{
-		if(yumiMediationBannerViewDidClickEvent != null){
-			yumiMediationBannerViewDidClickEvent();
-		}
-	}
+       
+        YumiSDKEventHandler.OnYumiAdBannerDidClick();
+
+    }
 
 
 	// interstital delegate
 	public void yumiMediationInterstitialDidReceiveAd()
 	{
-		if(yumiMediationInterstitialDidReceiveAdEvent != null){
-			yumiMediationInterstitialDidReceiveAdEvent();
-		}
-	}
+       
+        YumiSDKEventHandler.OnYumiAdInterstitialDidLoad();
+
+    }
 
 	public void yumiMediationInterstitialDidFailToReceiveAd(string error)
 	{
-		if(yumiMediationInterstitialDidFailToReceiveAdEvent != null){
-			yumiMediationInterstitialDidFailToReceiveAdEvent(error);
-		}
-	}
+       
+        YumiSDKEventHandler.OnYumiAdInterstitialDidFailToLoad(error);
+
+    }
 
 	public void yumiMediationInterstitialWillDismissScreen()
 	{
-		if(yumiMediationInterstitialWillDismissScreenEvent != null){
-			yumiMediationInterstitialWillDismissScreenEvent();
-		}
-	}
+       
+        YumiSDKEventHandler.OnYumiAdInterstitialDidClose();
+
+    }
 
 	public void yumiMediationInterstitialDidClick(){
-		if(yumiMediationInterstitialDidClickEvent != null){
-			yumiMediationInterstitialDidClickEvent();
-		}
-	}
+       
+        YumiSDKEventHandler.OnYumiAdInterstitialDidClick();
+
+    }
 
 	// video delegate
 	public void yumiMediationVideoDidOpen()
 	{
-		if(yumiMediationVideoDidOpenEvent != null){
-			yumiMediationVideoDidOpenEvent();
-		}
-	}
+       
+        YumiSDKEventHandler.OnYumiAdVideoDidOpen();
+
+    }
 
 	public void yumiMediationVideoDidStartPlaying()
 	{
-		if(yumiMediationVideoDidStartPlayingEvent != null){
-			yumiMediationVideoDidStartPlayingEvent();
-		}
-	}
+       
+        YumiSDKEventHandler.OnYumiAdVideoDidStartPlaying();
+
+    }
 
 	public void yumiMediationVideoDidClose()
 	{
-		if(yumiMediationVideoDidCloseEvent!= null){
-			yumiMediationVideoDidCloseEvent ();
-		}
-	}
+       
+        YumiSDKEventHandler.OnYumiAdVideoDidClose();
+
+    }
 
 	public void yumiMediationVideoDidReward()
 	{
-		if(yumiMediationVideoDidRewardEvent != null){
-			yumiMediationVideoDidRewardEvent();
-		}
-	}
+       
+        YumiSDKEventHandler.OnYumiAdVideoDidReward();
+
+    }
 
 	// splash
 	public void yumiAdsSplashDidLoad()
