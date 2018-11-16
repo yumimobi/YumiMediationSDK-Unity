@@ -3,40 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class YumiSDKDemo : MonoBehaviour {
+public class YumiSDKDemo : MonoBehaviour
+{
 
-	void Start () {
-		// Whether to display log log
-		Logger.SetDebug(true);
-	}
+    void Start()
+    {
+        // Whether to display log log
+        Logger.SetDebug(true);
+    }
 
-	void OnGUI() {
+    void OnGUI()
+    {
 
-		// Create style for a button
-		GUIStyle myButtonStyle = new GUIStyle(GUI.skin.button);
-		myButtonStyle.fontSize = 25;
+        // Create style for a button
+        GUIStyle myButtonStyle = new GUIStyle(GUI.skin.button);
+        myButtonStyle.fontSize = 25;
 
-		// Load and set Font
-		Font myFont = (Font)Resources.Load("Fonts/comic", typeof(Font));
-		myButtonStyle.font = myFont;
+        // Load and set Font
+        Font myFont = (Font)Resources.Load("Fonts/comic", typeof(Font));
+        myButtonStyle.font = myFont;
 
-		// Set color for selected and unselected buttons
-		myButtonStyle.normal.textColor = Color.white;
-		myButtonStyle.hover.textColor = Color.white;
+        // Set color for selected and unselected buttons
+        myButtonStyle.normal.textColor = Color.white;
+        myButtonStyle.hover.textColor = Color.white;
 
-		//Yumi banner
-		int btnWidth = (Screen.width-40*2-10)/2;
+        //Yumi banner
+        int btnWidth = (Screen.width - 40 * 2 - 10) / 2;
 
-		if(GUI.Button(new Rect(40,84,btnWidth,120),"show banner",myButtonStyle))
-		{
-			YumiSDKAdapter.Instance.ShowBanner ();
+        if (GUI.Button(new Rect(40, 84, btnWidth, 120), "show banner", myButtonStyle))
+        {
+            YumiSDKAdapter.Instance.ShowBanner();
 
-		}  
-		//remove banner
-		if(GUI.Button(new Rect(40+btnWidth+10,84,btnWidth,120),"reomve banner",myButtonStyle))
-		{
-			// iOS get banner size for developer layout
-			#if UNITY_IPHONE && !UNITY_EDITOR
+        }
+        //remove banner
+        if (GUI.Button(new Rect(40 + btnWidth + 10, 84, btnWidth, 120), "reomve banner", myButtonStyle))
+        {
+            // iOS get banner size for developer layout
+#if UNITY_IPHONE && !UNITY_EDITOR
 
 			string bannerSize = YumiMediationSDK_Unity.fetchBannerAdSize ();
 			string[] sizeArray = bannerSize.Split ('_');
@@ -52,41 +55,53 @@ public class YumiSDKDemo : MonoBehaviour {
 
 			Debug.Log (sizeString);
 
-			#endif
+#endif
 
-			YumiSDKAdapter.Instance.DismissBanner ();
+            YumiSDKAdapter.Instance.DismissBanner();
 
-		}  
-			
-		//Yumi interstital
-		if(GUI.Button(new Rect(40,214,btnWidth,120),"init interstital",myButtonStyle))
-		{
-			
-			YumiSDKAdapter.Instance.InitInterstitial ();
+        }
 
-		}
+        //Yumi interstital
+        if (GUI.Button(new Rect(40, 214, btnWidth, 120), "init interstital", myButtonStyle))
+        {
 
-		if(GUI.Button(new Rect(40+btnWidth+10,214,btnWidth,120),"present interstital",myButtonStyle))
-		{
-			
-			YumiSDKAdapter.Instance.PresentInterstitial ();
-		}
-			
-		//Yumi video
-		if(GUI.Button(new Rect(40,344,btnWidth,120),"init video",myButtonStyle))
-		{
-			YumiSDKAdapter.Instance.InitVideo ();
-		}
+            YumiSDKAdapter.Instance.InitInterstitial();
 
-		if(GUI.Button(new Rect(40+btnWidth+10,344,btnWidth,120),"play video",myButtonStyle))
-		{
-			YumiSDKAdapter.Instance.PlayVideo ();
-		}
-		if(YumiSDKAdapter.Instance.GetDebugMode()){
-			if(GUI.Button(new Rect(40,474,btnWidth,120),"call debugCenter",myButtonStyle)){
-				Logger.Log("call debugcenter");
-				YumiSDKAdapter.Instance.CallDebugCenter();
-			}
-		}
-	}
+        }
+
+        if (GUI.Button(new Rect(40 + btnWidth + 10, 214, btnWidth, 120), "present interstital", myButtonStyle))
+        {
+
+            YumiSDKAdapter.Instance.PresentInterstitial();
+        }
+
+        //Yumi video
+        if (GUI.Button(new Rect(40, 344, btnWidth, 120), "init video", myButtonStyle))
+        {
+            YumiSDKAdapter.Instance.InitVideo();
+        }
+
+        if (GUI.Button(new Rect(40 + btnWidth + 10, 344, btnWidth, 120), "play video", myButtonStyle))
+        {
+            YumiSDKAdapter.Instance.PlayVideo();
+        }
+        if (YumiSDKAdapter.Instance.GetDebugMode())
+        {
+            if (GUI.Button(new Rect(40, 474, btnWidth, 120), "call debugCenter", myButtonStyle))
+            {
+                Logger.Log("call debugcenter");
+                YumiSDKAdapter.Instance.CallDebugCenter();
+            }
+        }
+
+#if UNITY_IOS
+         if (GUI.Button(new Rect(40, 604, btnWidth, 120), "show splash", myButtonStyle))
+        {
+            Logger.Log("iOS splash");
+            YumiSDKAdapter.Instance.RequestSplash();
+        }
+
+#endif
+
+    }
 }
