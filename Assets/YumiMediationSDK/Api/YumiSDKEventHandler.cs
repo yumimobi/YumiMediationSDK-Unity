@@ -1,17 +1,21 @@
 using UnityEngine;
 using System;
 
-public class YumiSDKEventHandler{
+public class YumiSDKEventHandler
+{
 
     #region Banner ad  call back 
 
-    public static void OnYumiAdBannerDidLoad(){
+    public static void OnYumiAdBannerDidLoad()
+    {
         Logger.Log("OnYumiAdBannerDidLoad");
     }
-    public static void OnYumiAdBannerDidFailToLoad(string error){
+    public static void OnYumiAdBannerDidFailToLoad(string error)
+    {
         Logger.Log("OnYumiAdBannerDidFailToLoad" + error);
     }
-     public static void OnYumiAdBannerDidClick(){
+    public static void OnYumiAdBannerDidClick()
+    {
         Logger.Log("OnYumiAdBannerDidClick");
     }
     // android platforms had close and exposure
@@ -27,47 +31,83 @@ public class YumiSDKEventHandler{
 
     #region Interstitial ad  call back 
 
-    public static void OnYumiAdInterstitialDidLoad(){
+    public static void OnYumiAdInterstitialDidLoad()
+    {
         Logger.Log("OnYumiAdInterstitialDidLoad");
     }
-    public static void OnYumiAdInterstitialDidFailToLoad(string error){
+    public static void OnYumiAdInterstitialDidFailToLoad(string error)
+    {
         Logger.Log("OnYumiAdInterstitialDidFailToLoad" + error);
     }
-    public static void OnYumiAdInterstitialDidClick(){
+    public static void OnYumiAdInterstitialDidClick()
+    {
         Logger.Log("OnYumiAdInterstitialDidClick");
     }
-    public static void OnYumiAdInterstitialDidClose(){
+    public static void OnYumiAdInterstitialDidClose()
+    {
         Logger.Log("OnYumiAdInterstitialDidClose");
     }
     // android platforms had exposure
-    #if UNITY_ANDROID
+#if UNITY_ANDROID
     
     public static void OnYumiAdInterstitialExposure(){
         Logger.Log("OnYumiAdInterstitialExposure");
     }
-    #endif
+#endif
     #endregion
 
     #region video ad  call back 
 
-    public static void OnYumiAdVideoDidOpen(){
+    public static void OnYumiAdVideoDidOpen()
+    {
         Logger.Log("OnYumiAdVideoDidOpen");
     }
-    public static void OnYumiAdVideoDidStartPlaying(){
+    public static void OnYumiAdVideoDidStartPlaying()
+    {
         Logger.Log("OnYumiAdVideoDidStartPlaying");
     }
-    public static void OnYumiAdVideoDidClose(){
+    public static void OnYumiAdVideoDidClose()
+    {
         Logger.Log("OnYumiAdVideoDidClose");
     }
-    public static void OnYumiAdVideoDidReward(){
+    public static void OnYumiAdVideoDidReward()
+    {
         Logger.Log("OnYumiAdVideoDidReward");
     }
+
     // android platforms had click
-    #if UNITY_ANDROID
+#if UNITY_ANDROID
     
     public static void OnYumiAdVideoDidClick(){
         Logger.Log("OnYumiAdVideoDidClick");
     }
-    #endif
+#endif
+#endregion
+
+
+// splash only iOS
+#if UNITY_IOS
+
+#region splash ad  call back 
+
+    public static void OnYumiAdSplashDidLoad()
+    {
+        Logger.Log("OnYumiAdSplashDidLoad");
+    }
+    public static void OnYumiAdSplashDidFailToLoad(string error)
+    {
+        Logger.Log("OnYumiAdSplashDidFailToLoad" +  error);
+    }
+    public static void OnYumiAdSplashDidClose()
+    {
+        Logger.Log("OnYumiAdSplashDidClose");
+    }
+    public static void OnYumiAdSplashDidClick()
+    {
+        Logger.Log("OnYumiAdSplashDidClick");
+    }
+
     #endregion
+#endif
+
 }
