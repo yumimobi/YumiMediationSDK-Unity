@@ -19,30 +19,6 @@ public class YumiMediationSDKManager : MonoBehaviour
 
     }
 
-    //// bannerEvent
-    //public static event Action yumiMediationBannerViewDidLoadEvent;
-    //public static event Action<string> yumiMediationSDKDidFailToReceiveAdEvent;
-    //public static event Action yumiMediationBannerViewDidClickEvent;
-
-    //// InterstitalEvent
-    //public static event Action yumiMediationInterstitialDidReceiveAdEvent;
-    //public static event Action<string> yumiMediationInterstitialDidFailToReceiveAdEvent;
-    //public static event Action yumiMediationInterstitialWillDismissScreenEvent;
-    //public static event Action yumiMediationInterstitialDidClickEvent;
-
-    //// videoEvent
-    //public static event Action yumiMediationVideoDidOpenEvent;
-    //public static event Action yumiMediationVideoDidStartPlayingEvent;
-    //public static event Action yumiMediationVideoDidCloseEvent;
-    //public static event Action yumiMediationVideoDidRewardEvent;
-
-    ////splash
-    //public static event Action yumiAdsSplashDidLoadEvent;
-    //public static event Action<string> yumiAdsSplashDidFailToLoadEvent;
-    //public static event Action yumiAdsSplashDidClickEvent;
-    //public static event Action yumiAdsSplashDidClosedEvent;
-    //public static event Func<Image> yumiAdsSplashDefaultImageEvent;
-
     void Awake()
     {
         // Set the GameObject name to the class name for easy access from Obj-C
