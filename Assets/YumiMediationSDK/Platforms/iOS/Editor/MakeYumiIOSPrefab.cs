@@ -11,7 +11,6 @@ public class AddYumiIOSPrefab{
 	{		
 		GameObject obj = new GameObject("YumiMobiPrefab_iOS");
 		obj.AddComponent<YumiSDKAdapter>();
-		obj.AddComponent<YumiMediationSDKEventListener>();
 		obj.AddComponent<YumiMediationSDKManager>();
 
 	}
