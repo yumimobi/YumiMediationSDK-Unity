@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "YumiTypes.h"
 #import "YumiBanner.h"
+#import "YumiObjectCache.h"
 
 /// Returns an NSString copying the characters from |bytes|, a C array of UTF8-encoded bytes.
 /// Returns nil if |bytes| is NULL.
@@ -44,7 +45,8 @@ static const char **cStringArrayCopy(NSArray *array) {
 YumiTypeBannerRef InitYumiBannerAd(YumiTypeBannerClientRef *bannerClient,const char * placementID, const char * channelID, const char * versionID, int position){
     
     YumiBanner *banner = [[YumiBanner alloc] initWithBannerClientReference:bannerClient placementID:YumiStringFromUTF8String(placementID) channelID:YumiStringFromUTF8String(channelID) versionID:YumiStringFromUTF8String(versionID) position:position];
-    
+    YumiObjectCache *cache = [YumiObjectCache sharedInstance];
+    [cache.references setObject:banner forKey:[banner yumi_referenceKey]];
     return (__bridge YumiTypeBannerRef)banner;
 }
 void ShowBannerView(YumiTypeBannerRef bannerView){
@@ -80,4 +82,12 @@ void SetBannerCallbacks(
 void RequestBannerAd( YumiTypeBannerRef bannerView,BOOL isSmart){
     YumiBanner *internalBanner = (__bridge YumiBanner *)bannerView;
     [internalBanner loadAd:isSmart];
+}
+#pragma mark - Other methods
+/// Removes an object from the cache.
+void YumiRelease(YumiTypeRef ref) {
+    if (ref) {
+        YumiObjectCache *cache = [YumiObjectCache sharedInstance];
+        [cache.references removeObjectForKey:[(__bridge NSObject *)ref yumi_referenceKey]];
+    }
 }

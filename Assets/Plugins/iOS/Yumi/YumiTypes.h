@@ -5,7 +5,8 @@
 //  Created by Michael Tang on 2018/11/19.
 //
 
-
+/// Base type representing a GADU* pointer.
+typedef const void *YumiTypeRef;
 #pragma mark - yumi ads ref
 /// Type representing a Unity banner client.
 typedef const void *YumiTypeBannerClientRef;

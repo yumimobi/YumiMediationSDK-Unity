@@ -104,7 +104,7 @@ namespace YumiMediationSDK.iOS
         private static void BannerDidFailToReceiveAdWithErrorCallback(IntPtr bannerClient, string error)
         {
             YumiBannerClient client = IntPtrToBannerClient(bannerClient);
-            if (client.OnAdFailedToLoad != null)`
+            if (client.OnAdFailedToLoad != null)
             {
                 YumiAdFailedToLoadEventArgs args = new YumiAdFailedToLoadEventArgs()
                 {
