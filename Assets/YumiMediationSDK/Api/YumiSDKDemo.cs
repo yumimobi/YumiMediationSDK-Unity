@@ -137,7 +137,7 @@ public class YumiSDKDemo : MonoBehaviour
 
     public void HandleAdClicked(object sender, EventArgs args)
     {
-        Logger.Log("HandleAdOpened event received");
+        Logger.Log("Handle Ad Clicked");
     }
 
   

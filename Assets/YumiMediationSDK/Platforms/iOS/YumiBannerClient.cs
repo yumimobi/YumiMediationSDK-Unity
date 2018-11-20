@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using YumiMediationSDK.Common;
 using YumiMediationSDK.Api;
 
+#if UNITY_IOS
 
 namespace YumiMediationSDK.iOS
 {
@@ -68,24 +69,38 @@ namespace YumiMediationSDK.iOS
         public void LoadAd(bool isSmart)
         {
             Logger.LogError("load ad");
-            YumiExterns.RequestBannerAd(this.BannerViewPtr,isSmart);
+            YumiExterns.RequestBannerAd(this.BannerViewPtr, isSmart);
         }
 
         // Shows the banner view on the screen.
-        public void ShowBannerView(){
+        public void ShowBannerView()
+        {
             YumiExterns.ShowBannerView(this.BannerViewPtr);
         }
 
         // Hides the banner view from the screen.
-        public void HideBannerView(){
+        public void HideBannerView()
+        {
             YumiExterns.HideBannerView(this.BannerViewPtr);
         }
 
         // Destroys a banner view.
-        public void DestroyBannerView(){
+        public void DestroyBannerView()
+        {
 
             YumiExterns.DestroyBannerView(this.BannerViewPtr);
             this.BannerViewPtr = IntPtr.Zero;
+        }
+        //dealloc
+        public void Dispose()
+        {
+            this.DestroyBannerView();
+            ((GCHandle)this.bannerClientPtr).Free();
+        }
+
+        ~YumiBannerClient()
+        {
+            this.Dispose();
         }
         #endregion
         #region Banner callback methods
@@ -134,3 +149,5 @@ namespace YumiMediationSDK.iOS
 
     }
 }
+
+#endif
