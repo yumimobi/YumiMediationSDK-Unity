@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using YumiMediationSDK.Api;
 
 public class YumiSDKDemo : MonoBehaviour
 {
+
+    private YumiBannerView bannerView;
 
     void Start()
     {
@@ -32,8 +35,20 @@ public class YumiSDKDemo : MonoBehaviour
 
         if (GUI.Button(new Rect(40, 84, btnWidth, 120), "show banner", myButtonStyle))
         {
-            YumiSDKAdapter.Instance.ShowBanner();
+            //YumiSDKAdapter.Instance.ShowBanner();
+            if(this.bannerView != null)
+            {
+                this.bannerView.Destroy();
+            }
 
+            this.bannerView = new YumiBannerView("y6op8v69", "","",YumiAdPosition.Bottom);
+
+            // banner add ad event
+            this.bannerView.OnAdLoaded += this.HandleAdLoaded;
+            this.bannerView.OnAdFailedToLoad += HandleAdFailedToLoad;
+            this.bannerView.OnAdClick += HandleAdClicked;
+
+            this.bannerView.LoadAd(true);
         }
         //remove banner
         if (GUI.Button(new Rect(40 + btnWidth + 10, 84, btnWidth, 120), "reomve banner", myButtonStyle))
@@ -57,7 +72,10 @@ public class YumiSDKDemo : MonoBehaviour
 
 #endif
 
-            YumiSDKAdapter.Instance.DismissBanner();
+            //YumiSDKAdapter.Instance.DismissBanner();
+            if(this.bannerView != null){
+                this.bannerView.Destroy();
+            }
 
         }
 
@@ -103,5 +121,25 @@ public class YumiSDKDemo : MonoBehaviour
 
 #endif
 
+
     }
+    #region Banner callback handlers
+
+    public void HandleAdLoaded(object sender, EventArgs args)
+    {
+        Logger.Log("HandleAdLoaded event received");
+    }
+
+    public void HandleAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args)
+    {
+        Logger.Log("HandleFailedToReceiveAd event received with message: " + args.Message);
+    }
+
+    public void HandleAdClicked(object sender, EventArgs args)
+    {
+        Logger.Log("HandleAdOpened event received");
+    }
+
+  
+    #endregion
 }
