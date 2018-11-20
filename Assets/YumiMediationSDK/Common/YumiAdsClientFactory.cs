@@ -17,5 +17,17 @@ namespace YumiMediationSDK
                 return new YumiMediationSDK.Common.YumiDummyClient();
 #endif
         }
+        public static IYumiInterstitialClient BuildInterstitialClient()
+        {
+
+#if UNITY_ANDROID
+            //return new YumiMediationSDK.Android.BannerClient();
+            return null;
+#elif UNITY_IOS
+            return new YumiMediationSDK.iOS.YumiInterstitialClient();
+#else
+                return new YumiMediationSDK.Common.YumiDummyClient();
+#endif
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace YumiMediationSDK.iOS
 {
     public class YumiExterns
     {
-        #region
+        #region banner 
 
         public enum YumiMediationAdViewBannerSize
         {
@@ -24,7 +24,7 @@ namespace YumiMediationSDK.iOS
 
         // banner
         [DllImport("__Internal")]
-        internal static extern IntPtr InitYumiBannerAd(IntPtr bannerView,string placementID, string channelID, string versionID, int position);
+        internal static extern IntPtr InitYumiBannerAd(IntPtr bannerView, string placementID, string channelID, string versionID, int position);
         [DllImport("__Internal")]
         internal static extern void RequestBannerAd(IntPtr bannerView, bool isSmartBanner);
         [DllImport("__Internal")]
@@ -34,7 +34,7 @@ namespace YumiMediationSDK.iOS
         [DllImport("__Internal")]
         internal static extern void DestroyBannerView(IntPtr bannerView);
         [DllImport("__Internal")]
-        internal static extern void SetBannerAdSize(IntPtr bannerView,YumiMediationAdViewBannerSize bannerSize);
+        internal static extern void SetBannerAdSize(IntPtr bannerView, YumiMediationAdViewBannerSize bannerSize);
         [DllImport("__Internal")]
         internal static extern void SetBannerCallbacks(
            IntPtr bannerView,
@@ -43,6 +43,24 @@ namespace YumiMediationSDK.iOS
            YumiBannerClient.YumiBannerDidClickCallback adClickedCallback);
 
         #endregion
-      
+
+        #region interstitial 
+        // interstital
+        [DllImport("__Internal")]
+        internal static extern IntPtr InitYumiInterstitial(IntPtr interstitial, string placementID, string channelID, string versionID);
+        [DllImport("__Internal")]
+        internal static extern bool IsInterstitialReady(IntPtr interstitia);
+        [DllImport("__Internal")]
+        internal static extern void Present(IntPtr interstitia);
+        [DllImport("__Internal")]
+        internal static extern void SetInterstitiaCallbacks(
+           IntPtr interstitia,
+            YumiInterstitialClient.YumiInterstitialDidReceiveAdCallback adReceivedCallback,
+            YumiInterstitialClient.YumiInterstitialDidFailToReceiveAdWithErrorCallback adFailedCallback,
+            YumiInterstitialClient.YumiInterstitialDidClickCallback adClickedCallback,
+            YumiInterstitialClient.YumiInterstitialDidCloseCallback adClosedCallback);
+
+        #endregion
+
     }
 }
