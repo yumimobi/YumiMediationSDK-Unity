@@ -29,5 +29,17 @@ namespace YumiMediationSDK
                 return new YumiMediationSDK.Common.YumiDummyClient();
 #endif
         }
+        public static IYumiRewardVideoClient BuildRewardVideoClient()
+        {
+
+#if UNITY_ANDROID
+            //return new YumiMediationSDK.Android.BannerClient();
+            return null;
+#elif UNITY_IOS
+            return new YumiMediationSDK.iOS.YumiRewardVideoClient();
+#else
+                return new YumiMediationSDK.Common.YumiDummyClient();
+#endif
+        }
     }
 }

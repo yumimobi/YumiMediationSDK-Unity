@@ -51,7 +51,7 @@ namespace YumiMediationSDK.iOS
         [DllImport("__Internal")]
         internal static extern bool IsInterstitialReady(IntPtr interstitia);
         [DllImport("__Internal")]
-        internal static extern void Present(IntPtr interstitia);
+        internal static extern void PresentInterstitial(IntPtr interstitia);
         [DllImport("__Internal")]
         internal static extern void SetInterstitiaCallbacks(
            IntPtr interstitia,
@@ -59,6 +59,27 @@ namespace YumiMediationSDK.iOS
             YumiInterstitialClient.YumiInterstitialDidFailToReceiveAdWithErrorCallback adFailedCallback,
             YumiInterstitialClient.YumiInterstitialDidClickCallback adClickedCallback,
             YumiInterstitialClient.YumiInterstitialDidCloseCallback adClosedCallback);
+
+        #endregion
+
+        #region RewardVideo 
+        // create RewardVideo single obj
+        [DllImport("__Internal")]
+        internal static extern IntPtr CreateYumiRewardVideo(IntPtr rewardVideo);
+
+        [DllImport("__Internal")]
+        internal static extern void LoadYumiRewardVideo(IntPtr rewardVideo, string placementID, string channelID, string versionID);
+        [DllImport("__Internal")]
+        internal static extern bool IsRewardVideoReady(IntPtr rewardVideo);
+        [DllImport("__Internal")]
+        internal static extern void PlayRewardVideo(IntPtr rewardVideo);
+        [DllImport("__Internal")]
+        internal static extern void SetRewardVideoCallbacks(
+           IntPtr rewardVideo,
+            YumiRewardVideoClient.YumiRewardVideoDidOpenAdCallback adOpenedCallback,
+            YumiRewardVideoClient.YumiRewardVideoDidStartPlayingCallback adStartPlayingCallback,
+            YumiRewardVideoClient.YumiRewardVideoDidRewardCallback adRewardCallback,
+            YumiRewardVideoClient.YumiRewardVideoDidCloseCallback adClosedCallback);
 
         #endregion
 
