@@ -50,7 +50,7 @@ namespace YumiMediationSDK.iOS
             }
         }
 
-        #region IYumiBannerClient implement 
+        #region IYumiInterstitialClient implement 
         public void CreateInterstitialAd(string placementId, string channelId, string versionId)
         {
             this.interstitialClientPtr = (IntPtr)GCHandle.Alloc(this);
@@ -60,8 +60,8 @@ namespace YumiMediationSDK.iOS
                 this.InterstitialPtr,
                 InterstitialDidReceiveAdCallback,
                 InterstitialDidFailToReceiveAdWithErrorCallback,
-                InterstitialDidCloseCallback,
-                InterstitialDidClickCallback);
+                InterstitialDidClickCallback,
+                InterstitialDidCloseCallback);
 
         }
 
@@ -75,7 +75,7 @@ namespace YumiMediationSDK.iOS
         // Shows the InterstitialAd.
         public void ShowInterstitial()
         {
-            YumiExterns.Present(this.InterstitialPtr);
+            YumiExterns.PresentInterstitial(this.InterstitialPtr);
         }
 
         // Destroys an InterstitialAd.
