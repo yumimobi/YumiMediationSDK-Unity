@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace Assets.YumiMediationSDK.Common
+namespace YumiMediationSDK.Common
 {
     public class MediationManagerSetting : ScriptableObject
     {
