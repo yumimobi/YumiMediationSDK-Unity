@@ -1,7 +1,8 @@
-﻿using System;
+﻿#if UNITY_IOS
+using System;
 using YumiMediationSDK.Common;
 using System.Runtime.InteropServices;
-#if UNITY_IOS
+
 namespace YumiMediationSDK.iOS
 {
     public class YumiRewardVideoClient : IYumiRewardVideoClient
@@ -10,7 +11,7 @@ namespace YumiMediationSDK.iOS
         IntPtr rewardVideoClientPtr;
         IntPtr rewardVideoPtr;
 
-        #region YumiRewardVideoClient callback  types
+#region YumiRewardVideoClient callback  types
         internal delegate void YumiRewardVideoDidOpenAdCallback(IntPtr rewardVideo);
 
         internal delegate void YumiRewardVideoDidStartPlayingCallback(IntPtr rewardVideo);
@@ -19,7 +20,7 @@ namespace YumiMediationSDK.iOS
 
         internal delegate void YumiRewardVideoDidRewardCallback(IntPtr rewardVideo);
 
-        #endregion
+#endregion
 
         // Ad event fired when the reward based video ad is opened.
         public event EventHandler<EventArgs> OnAdOpening;
@@ -46,7 +47,7 @@ namespace YumiMediationSDK.iOS
         }
 
 
-        #region IYumiRewardVideoClient implement 
+#region IYumiRewardVideoClient implement 
 
         // Creates an RewardVideo.
         public void CreateRewardVideoAd()
@@ -96,9 +97,9 @@ namespace YumiMediationSDK.iOS
         {
             this.Dispose();
         }
-        #endregion
+#endregion
 
-        #region RewardVideo callback methods
+#region RewardVideo callback methods
         [MonoPInvokeCallback(typeof(YumiRewardVideoDidOpenAdCallback))]
         private static void RewardVideoDidOpenAdCallback(IntPtr rewardVideo)
         {
@@ -143,7 +144,7 @@ namespace YumiMediationSDK.iOS
             GCHandle handle = (GCHandle)rewardVideoClient;
             return handle.Target as YumiRewardVideoClient;
         }
-        #endregion
+#endregion
     }
 }
 #endif

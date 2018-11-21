@@ -1,10 +1,10 @@
-﻿using System;
+﻿#if UNITY_IOS
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using YumiMediationSDK.Common;
 using YumiMediationSDK.Api;
 
-#if UNITY_IOS
 
 namespace YumiMediationSDK.iOS
 {
@@ -15,7 +15,7 @@ namespace YumiMediationSDK.iOS
 
         private IntPtr bannerClientPtr;
 
-        #region Banner callback types
+#region Banner callback types
 
         internal delegate void YumiBannerDidReceiveAdCallback(IntPtr bannerClient);
 
@@ -24,7 +24,7 @@ namespace YumiMediationSDK.iOS
 
         internal delegate void YumiBannerDidClickCallback(IntPtr bannerClient);
 
-        #endregion
+#endregion
 
         public event EventHandler<EventArgs> OnAdLoaded;
         // Ad event fired when the banner ad has failed to load.
@@ -49,7 +49,7 @@ namespace YumiMediationSDK.iOS
         }
 
 
-        #region IYumiBannerClient implement 
+#region IYumiBannerClient implement 
         public void CreateBannerView(string placementId, string channelId, string versionId, YumiAdPosition adPosition)
         {
             // A new GCHandle that protects the object from garbage collection. This GCHandle must be released with Free() when it is no longer needed.
@@ -102,8 +102,8 @@ namespace YumiMediationSDK.iOS
         {
             this.Dispose();
         }
-        #endregion
-        #region Banner callback methods
+#endregion
+#region Banner callback methods
 
 
         [MonoPInvokeCallback(typeof(YumiBannerDidReceiveAdCallback))]
@@ -144,7 +144,7 @@ namespace YumiMediationSDK.iOS
             GCHandle handle = (GCHandle)bannerClient;
             return handle.Target as YumiBannerClient;
         }
-        #endregion
+#endregion
 
 
     }

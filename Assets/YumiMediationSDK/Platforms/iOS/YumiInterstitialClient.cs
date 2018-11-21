@@ -1,10 +1,11 @@
-﻿using System;
+﻿#if UNITY_IOS
+using System;
 using System.Collections.Generic;
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
 using System.Runtime.InteropServices;
 
-#if UNITY_IOS
+
 namespace YumiMediationSDK.iOS
 {
     public class YumiInterstitialClient : IYumiInterstitialClient
@@ -13,7 +14,7 @@ namespace YumiMediationSDK.iOS
         private IntPtr interstitialPtr;
         private IntPtr interstitialClientPtr;
 
-        #region Interstitial callback types
+#region Interstitial callback types
 
         internal delegate void YumiInterstitialDidReceiveAdCallback(IntPtr interstitialClient);
 
@@ -25,7 +26,7 @@ namespace YumiMediationSDK.iOS
         internal delegate void YumiInterstitialDidClickCallback(IntPtr interstitialClient);
 
 
-        #endregion
+#endregion
 
         public event EventHandler<EventArgs> OnAdLoaded;
         // Ad event fired when the interstitial ad has failed to load.
@@ -50,7 +51,7 @@ namespace YumiMediationSDK.iOS
             }
         }
 
-        #region IYumiInterstitialClient implement 
+#region IYumiInterstitialClient implement 
         public void CreateInterstitialAd(string placementId, string channelId, string versionId)
         {
             this.interstitialClientPtr = (IntPtr)GCHandle.Alloc(this);
@@ -95,9 +96,9 @@ namespace YumiMediationSDK.iOS
             this.Dispose();
         }
 
-        #endregion
+#endregion
 
-        #region Interstitial callback methods
+#region Interstitial callback methods
 
         [MonoPInvokeCallback(typeof(YumiInterstitialDidReceiveAdCallback))]
         private static void InterstitialDidReceiveAdCallback(IntPtr interstitialClient)
@@ -147,7 +148,7 @@ namespace YumiMediationSDK.iOS
             GCHandle handle = (GCHandle)interstitialClient;
             return handle.Target as YumiInterstitialClient;
         }
-        #endregion
+#endregion
 
 
     }

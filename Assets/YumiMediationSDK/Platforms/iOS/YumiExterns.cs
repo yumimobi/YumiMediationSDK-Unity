@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_IOS
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Runtime.InteropServices;
@@ -7,7 +8,7 @@ namespace YumiMediationSDK.iOS
 {
     public class YumiExterns
     {
-        #region banner 
+#region banner 
 
         public enum YumiMediationAdViewBannerSize
         {
@@ -42,9 +43,9 @@ namespace YumiMediationSDK.iOS
            YumiBannerClient.YumiBannerDidFailToReceiveAdWithErrorCallback adFailedCallback,
            YumiBannerClient.YumiBannerDidClickCallback adClickedCallback);
 
-        #endregion
+#endregion
 
-        #region interstitial 
+#region interstitial 
         // interstital
         [DllImport("__Internal")]
         internal static extern IntPtr InitYumiInterstitial(IntPtr interstitial, string placementID, string channelID, string versionID);
@@ -60,9 +61,9 @@ namespace YumiMediationSDK.iOS
             YumiInterstitialClient.YumiInterstitialDidClickCallback adClickedCallback,
             YumiInterstitialClient.YumiInterstitialDidCloseCallback adClosedCallback);
 
-        #endregion
+#endregion
 
-        #region RewardVideo 
+#region RewardVideo 
         // create RewardVideo single obj
         [DllImport("__Internal")]
         internal static extern IntPtr CreateYumiRewardVideo(IntPtr rewardVideo);
@@ -81,7 +82,9 @@ namespace YumiMediationSDK.iOS
             YumiRewardVideoClient.YumiRewardVideoDidRewardCallback adRewardCallback,
             YumiRewardVideoClient.YumiRewardVideoDidCloseCallback adClosedCallback);
 
-        #endregion
+#endregion
 
     }
 }
+
+#endif
