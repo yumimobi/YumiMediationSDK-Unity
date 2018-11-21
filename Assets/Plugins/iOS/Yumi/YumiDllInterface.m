@@ -9,6 +9,8 @@
 #import "YumiTypes.h"
 #import "YumiBanner.h"
 #import "YumiObjectCache.h"
+#import "YumiInterstital.h"
+#import "YumiRewardVideo.h"
 
 /// Returns an NSString copying the characters from |bytes|, a C array of UTF8-encoded bytes.
 /// Returns nil if |bytes| is NULL.
@@ -78,11 +80,77 @@ void SetBannerCallbacks(
     internalBanner.adClickedCallback = adClickedCallback;
 }
 
-#pragma mark: request ads
 void RequestBannerAd( YumiTypeBannerRef bannerView,BOOL isSmart){
     YumiBanner *internalBanner = (__bridge YumiBanner *)bannerView;
     [internalBanner loadAd:isSmart];
 }
+
+#pragma mark: interstitial method
+YumiTypeInterstitialRef InitYumiInterstitial(YumiTypeInterstitialClientRef *interstitialClient,const char * placementID, const char * channelID, const char * versionID){
+    
+    YumiInterstital *interstitial = [[YumiInterstital alloc] initWithInterstitialClientReference:interstitialClient placementID:YumiStringFromUTF8String(placementID) channelID:YumiStringFromUTF8String(channelID) versionID:YumiStringFromUTF8String(versionID)];
+    // save pointer
+    YumiObjectCache *cache = [YumiObjectCache sharedInstance];
+    [cache.references setObject:interstitial forKey:[interstitial yumi_referenceKey]];
+    return (__bridge YumiTypeInterstitialRef)interstitial;
+}
+BOOL IsInterstitialReady(YumiTypeInterstitialRef interstitial){
+    YumiInterstital *internalInterstitial = (__bridge YumiInterstital *)interstitial;
+    return [internalInterstitial isReady];
+}
+void PresentInterstitial(YumiTypeInterstitialRef interstitial){
+    YumiInterstital *internalInterstitial = (__bridge YumiInterstital *)interstitial;
+    [internalInterstitial present];
+}
+void SetInterstitiaCallbacks(YumiTypeInterstitialRef interstitial,
+                             YumiInterstitialDidReceiveAdCallback adReceivedCallback,
+                             YumiInterstitialDidFailToReceiveAdWithErrorCallback adFailCallback,
+                             YumiInterstitialDidClickCallback adClickedCallback,
+                             YumiInterstitialDidCloseCallback adClosedCallback
+                             ){
+    YumiInterstital *internalInterstitial = (__bridge YumiInterstital *)interstitial;
+    internalInterstitial.adReceivedCallback = adReceivedCallback;
+    internalInterstitial.adFailedCallback = adFailCallback;
+    internalInterstitial.adClickCallback = adClickedCallback;
+    internalInterstitial.adCloseCallback = adClosedCallback;
+    
+}
+
+#pragma mark - reward video
+YumiTypeRewardVideoRef CreateYumiRewardVideo(YumiTypeRewardVideoClientRef *rewardVideoClientRef){
+    YumiRewardVideo *rewardVideo = [[YumiRewardVideo alloc] initWithRewardVideoClientReference:rewardVideoClientRef];
+    // save pointer
+    YumiObjectCache *cache = [YumiObjectCache sharedInstance];
+    [cache.references setObject:rewardVideo forKey:[rewardVideo yumi_referenceKey]];
+    return (__bridge YumiTypeRewardVideoRef)rewardVideo;
+}
+
+void LoadYumiRewardVideo(YumiTypeRewardVideoRef rewardVideo,const char * placementID, const char * channelID, const char * versionID){
+    YumiRewardVideo *internalRewardVideo = (__bridge YumiRewardVideo *)rewardVideo;
+    [internalRewardVideo loadAdWithPlacementID:YumiStringFromUTF8String(placementID) channelID:YumiStringFromUTF8String(channelID) versionID:YumiStringFromUTF8String(versionID)];
+}
+BOOL IsRewardVideoReady(YumiTypeRewardVideoRef rewardVideo){
+     YumiRewardVideo *internalRewardVideo = (__bridge YumiRewardVideo *)rewardVideo;
+    return [internalRewardVideo isReady];
+}
+void PlayRewardVideo(YumiTypeRewardVideoRef rewardVideo){
+    YumiRewardVideo *internalRewardVideo = (__bridge YumiRewardVideo *)rewardVideo;
+    [internalRewardVideo playRewardVideo];
+}
+void SetRewardVideoCallbacks(YumiTypeRewardVideoRef rewardVideo,
+                             YumiRewardVideoDidOpenAdCallback adOpenedCallback,
+                             YumiRewardVideoDidStartPlayingCallback adStartPlaying,
+                             YumiRewardVideoDidRewardCallback adRewardedCallback,
+                             YumiRewardVideoDidCloseCallback adClosedCallback
+                             ){
+    YumiRewardVideo *internalRewardVideo = (__bridge YumiRewardVideo *)rewardVideo;
+    internalRewardVideo.adOpenedCallback = adOpenedCallback;
+    internalRewardVideo.adStartPlayingCallback = adStartPlaying;
+    internalRewardVideo.adRewardedCallback = adRewardedCallback;
+    internalRewardVideo.adClosedCallback = adClosedCallback;
+    
+}
+
 #pragma mark - Other methods
 /// Removes an object from the cache.
 void YumiRelease(YumiTypeRef ref) {
