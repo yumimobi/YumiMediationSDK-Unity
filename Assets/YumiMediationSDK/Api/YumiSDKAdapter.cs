@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Assets.YumiMediationSDK.Common;
+using YumiMediationSDK.Common;
 
 public class YumiSDKAdapter : MonoBehaviour
 {
