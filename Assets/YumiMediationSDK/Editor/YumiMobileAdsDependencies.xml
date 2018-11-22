@@ -13,7 +13,10 @@
     <androidPackage spec="com.yumimobi.ads.mediation:mraid:3.3.9.+" />
     <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.3.9.+" />
     <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.3.9.+" />
-    <androidPackage spec="com.yumimobi.ads.mediation:mobvista:3.3.9.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.3.9.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.3.9.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:unity:3.3.9.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.3.9.+" />
 
     <repositories>
         <repository>https://jcenter.bintray.com/</repository>
