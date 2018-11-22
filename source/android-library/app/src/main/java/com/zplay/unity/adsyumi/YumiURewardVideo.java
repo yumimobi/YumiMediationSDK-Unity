@@ -17,7 +17,7 @@ public class YumiURewardVideo {
     private YumiMedia rewardVideo;
 
     /**
-     * The {@code Activity} on which the interstitial will display.
+     * The {@code Activity} on which the rewardVideo will display.
      */
     private Activity activity;
 
