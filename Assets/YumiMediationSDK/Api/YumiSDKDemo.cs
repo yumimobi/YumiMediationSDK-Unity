@@ -67,7 +67,7 @@ public class YumiSDKDemo : MonoBehaviour
 
         if (GUI.Button(new Rect(40, 84, btnWidth, 120), "request banner", myButtonStyle))
         {
-            //YumiSDKAdapter.Instance.ShowBanner();
+          
             if(this.bannerView != null)
             {
                 this.bannerView.Destroy();
@@ -85,26 +85,6 @@ public class YumiSDKDemo : MonoBehaviour
         //remove banner
         if (GUI.Button(new Rect(40 + btnWidth + 10, 84, btnWidth, 120), "reomve banner", myButtonStyle))
         {
-            // iOS get banner size for developer layout
-#if UNITY_IPHONE && !UNITY_EDITOR
-
-			string bannerSize = YumiMediationSDK_Unity.fetchBannerAdSize ();
-			string[] sizeArray = bannerSize.Split ('_');
-			string width = "0.0";
-			string height = "0.0";
-			if(sizeArray.Length == 2)
-			{
-			width = sizeArray[0];
-			height = sizeArray[1];
-			}
-
-			string sizeString = string.Format ("width = {0:N2} , height = {1:N2}",Convert.ToDouble(width),Convert.ToDouble(height));
-
-			Debug.Log (sizeString);
-
-#endif
-
-            //YumiSDKAdapter.Instance.DismissBanner();
             if(this.bannerView != null){
                 this.bannerView.Destroy();
             }
@@ -114,8 +94,7 @@ public class YumiSDKDemo : MonoBehaviour
         //Yumi interstital
         if (GUI.Button(new Rect(40, 214, btnWidth, 120), "request interstital", myButtonStyle))
         {
-
-            //YumiSDKAdapter.Instance.InitInterstitial();
+        
             if(this.interstitialAd != null){
                 this.interstitialAd.DestroyInterstitial();
             }
@@ -132,7 +111,6 @@ public class YumiSDKDemo : MonoBehaviour
         if (GUI.Button(new Rect(40 + btnWidth + 10, 214, btnWidth, 120), "present interstital", myButtonStyle))
         {
 
-            //YumiSDKAdapter.Instance.PresentInterstitial();
             if(this.interstitialAd.IsInterstitialReady()){
                 this.interstitialAd.ShowInterstitial();
             }
@@ -142,7 +120,7 @@ public class YumiSDKDemo : MonoBehaviour
         //Yumi video
         if (GUI.Button(new Rect(40, 344, btnWidth, 120), "Load video", myButtonStyle))
         {
-            //YumiSDKAdapter.Instance.InitVideo();
+           
             if(this.rewardVideoAd != null){
                 this.rewardVideoAd.DestroyRewardVideo();
             }
@@ -157,7 +135,7 @@ public class YumiSDKDemo : MonoBehaviour
 
         if (GUI.Button(new Rect(40 + btnWidth + 10, 344, btnWidth, 120), "play video", myButtonStyle))
         {
-            //YumiSDKAdapter.Instance.PlayVideo();
+
             if(this.rewardVideoAd.IsRewardVideoReady()){
                 this.rewardVideoAd.PlayRewardVideo();
             }
