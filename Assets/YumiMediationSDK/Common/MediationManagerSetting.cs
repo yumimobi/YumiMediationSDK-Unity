@@ -102,19 +102,19 @@ namespace YumiMediationSDK.Common
 		[UnityEditor.MenuItem("Window/YumiMediationSDK/Edit Settings")]
         public static void ZplayPromoteHTSetting()
         {
-            UnityEditor.Selection.activeObject = Instance;
-			if (GameObject.Find("YumiSDKAdapter"))
-            {
-                Debug.Log("MediationManagerSetting game object already exists and does not need to be created");
-            }
-            else
-            {
-                GameObject gameObject = new GameObject();
-				gameObject.name = "YumiSDKAdapter";
-				gameObject.AddComponent<YumiSDKAdapter>();
-            }
-            UnityEngine.SceneManagement.Scene scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
-            UnityEditor.SceneManagement.EditorSceneManager.SaveScene(scene);
+   //         UnityEditor.Selection.activeObject = Instance;
+			//if (GameObject.Find("YumiSDKAdapter"))
+    //        {
+    //            Debug.Log("MediationManagerSetting game object already exists and does not need to be created");
+    //        }
+    //        else
+    //        {
+    //            GameObject gameObject = new GameObject();
+				//gameObject.name = "YumiSDKAdapter";
+				//gameObject.AddComponent<YumiSDKAdapter>();
+            //}
+            //UnityEngine.SceneManagement.Scene scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+            //UnityEditor.SceneManagement.EditorSceneManager.SaveScene(scene);
         }
 #endif
     }

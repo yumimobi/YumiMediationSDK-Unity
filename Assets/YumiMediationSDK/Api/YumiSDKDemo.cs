@@ -162,23 +162,6 @@ public class YumiSDKDemo : MonoBehaviour
                 this.rewardVideoAd.PlayRewardVideo();
             }
         }
-        if (YumiSDKAdapter.Instance.GetDebugMode())
-        {
-            if (GUI.Button(new Rect(40, 474, btnWidth, 120), "call debugCenter", myButtonStyle))
-            {
-                Logger.Log("call debugcenter");
-                YumiSDKAdapter.Instance.CallDebugCenter();
-            }
-        }
-
-#if UNITY_IOS
-         if (GUI.Button(new Rect(40, 604, btnWidth, 120), "show splash", myButtonStyle))
-        {
-            Logger.Log("iOS splash");
-            YumiSDKAdapter.Instance.RequestSplash();
-        }
-
-#endif
 
 
     }
