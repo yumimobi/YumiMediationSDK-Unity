@@ -9,8 +9,8 @@ namespace YumiMediationSDK
         {
 
 #if UNITY_ANDROID
-            //return new YumiMediationSDK.Android.BannerClient();
-            return null;
+            return new YumiMediationSDK.Android.YumiBannerClient();
+
 #elif UNITY_IOS
                 return new YumiMediationSDK.iOS.YumiBannerClient();
 #else
