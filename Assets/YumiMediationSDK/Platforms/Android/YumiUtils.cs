@@ -14,23 +14,14 @@ namespace YumiMediationSDK.Android
         #region Yumi  Ads Unity Plugin class names
 
         public const string BannerViewClassName = "com.zplay.unity.adsyumi.YumiUBanner";
-
-        //public const string InterstitialClassName = "com.google.unity.ads.Interstitial";
-
-        //public const string RewardBasedVideoClassName = "com.google.unity.ads.RewardBasedVideo";
-
-        //public const string NativeAdLoaderClassName = "com.google.unity.ads.NativeAdLoader";
+        public const string InterstitialClassName = "com.zplay.unity.adsyumi.YumiUInterstitial";
+        public const string RewardVideoClassName = "com.zplay.unity.adsyumi.YumiURewardVideo";
 
         public const string UnityBannerAdListenerClassName = "com.zplay.unity.adsyumi.YumiUBannerListener";
-
-        public const string UnityRewardBasedVideoAdListenerClassName =
-            "com.google.unity.ads.UnityRewardBasedVideoAdListener";
-
-        public const string UnityAdLoaderListenerClassName =
-            "com.google.unity.ads.UnityAdLoaderListener";
-
-        public const string PluginUtilsClassName = "com.google.unity.ads.PluginUtils";
-       
+        public const string UnityInterstitialAdListenerClassName = "com.zplay.unity.adsyumi.YumiUInterstitialListener";
+        public const string UnityRewardVideoAdListenerClassName =
+            "com.zplay.unity.adsyumi.YumiURewardVideoListener";
+            
         #endregion
     }
 }

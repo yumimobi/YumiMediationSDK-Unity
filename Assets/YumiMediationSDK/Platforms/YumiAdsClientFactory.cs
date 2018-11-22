@@ -21,8 +21,8 @@ namespace YumiMediationSDK
         {
 
 #if UNITY_ANDROID
-            //return new YumiMediationSDK.Android.BannerClient();
-            return null;
+            return new YumiMediationSDK.Android.YumiInterstitialClient();
+
 #elif UNITY_IOS
             return new YumiMediationSDK.iOS.YumiInterstitialClient();
 #else
@@ -33,8 +33,8 @@ namespace YumiMediationSDK
         {
 
 #if UNITY_ANDROID
-            //return new YumiMediationSDK.Android.BannerClient();
-            return null;
+            return new YumiMediationSDK.Android.YumiRewardVideoClient();
+           
 #elif UNITY_IOS
             return new YumiMediationSDK.iOS.YumiRewardVideoClient();
 #else
