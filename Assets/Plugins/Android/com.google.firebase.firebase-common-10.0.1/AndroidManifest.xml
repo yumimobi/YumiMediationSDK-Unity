@@ -2,6 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.google.firebase">
   <uses-sdk android:minSdkVersion="9" />
   <application>
-    <provider android:authorities="com.Company.yumi.firebaseinitprovider" android:name="com.google.firebase.provider.FirebaseInitProvider" android:exported="false" android:initOrder="100" />
+    <provider android:authorities="com.zplay.yumi.firebaseinitprovider" android:name="com.google.firebase.provider.FirebaseInitProvider" android:exported="false" android:initOrder="100" />
   </application>
 </manifest>

@@ -23,7 +23,7 @@
     <activity android:name="com.google.android.gms.tagmanager.TagManagerPreviewActivity" android:noHistory="true">
       <!-- optional, removes the previewActivity from the activity stack. -->
       <intent-filter>
-        <data android:scheme="tagmanager.c.com.Company.yumi" />
+        <data android:scheme="tagmanager.c.com.zplay.yumi" />
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
