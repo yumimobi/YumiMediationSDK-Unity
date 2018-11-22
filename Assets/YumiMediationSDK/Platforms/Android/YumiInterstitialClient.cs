@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if UNITY_ANDROID
+
+using System;
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
 using UnityEngine;
@@ -29,25 +31,29 @@ namespace YumiMediationSDK.Android
 
         #region implement IYumiInterstitialClient
         // Creates an InterstitialAd.
-        public void CreateInterstitialAd(string placementId, string channelId, string versionId){
+        public void CreateInterstitialAd(string placementId, string channelId, string versionId)
+        {
             this.interstitial.Call(
                     "create",
                 new object[3] { placementId, channelId, versionId });
         }
 
         // Determines whether the interstitial has loaded.
-        public bool IsInterstitialReady(){
+        public bool IsInterstitialReady()
+        {
 
             return this.interstitial.Call<bool>("isReady");
         }
 
         // Shows the InterstitialAd.
-        public void ShowInterstitial(){
+        public void ShowInterstitial()
+        {
             this.interstitial.Call("showInterstitial");
         }
 
         // Destroys an InterstitialAd.
-        public void DestroyInterstitial(){
+        public void DestroyInterstitial()
+        {
             this.interstitial.Call("destroyInterstitial");
         }
 
@@ -94,3 +100,4 @@ namespace YumiMediationSDK.Android
 
     }
 }
+#endif

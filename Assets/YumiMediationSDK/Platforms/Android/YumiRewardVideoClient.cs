@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if UNITY_ANDROID
+
+using System;
 using YumiMediationSDK.Common;
 using UnityEngine;
 
@@ -29,11 +31,13 @@ namespace YumiMediationSDK.Android
         #region implement IYumiRewardVideoClient 
 
         // Creates an RewardVideo.
-        public void CreateRewardVideoAd(){
+        public void CreateRewardVideoAd()
+        {
             this.rewardVideo.Call("create");
         }
         // load RewardVideo
-        public void LoadRewardVideoAd(string placementId, string channelId, string versionId){
+        public void LoadRewardVideoAd(string placementId, string channelId, string versionId)
+        {
 
             this.rewardVideo.Call(
                    "requestRewardVideoAd",
@@ -41,17 +45,20 @@ namespace YumiMediationSDK.Android
         }
 
         // Determines whether the interstitial has loaded.
-        public bool IsRewardVideoReady(){
+        public bool IsRewardVideoReady()
+        {
             return this.rewardVideo.Call<bool>("isReady");
         }
 
         // Shows the RewardVideo.
-        public void PlayRewardVideo(){
+        public void PlayRewardVideo()
+        {
             this.rewardVideo.Call("playRewardVideo");
         }
 
         // Destroys an RewardVideo.
-        public void DestroyRewardVideo(){
+        public void DestroyRewardVideo()
+        {
             this.rewardVideo.Call("destroyRewardVideo");
         }
 
@@ -59,25 +66,29 @@ namespace YumiMediationSDK.Android
 
         #region UnityRewardVideoAdListener call back 
 
-        public void onAdOpening(){
+        public void onAdOpening()
+        {
             if (this.OnAdOpening != null)
             {
                 this.OnAdOpening(this, EventArgs.Empty);
             }
         }
-        public void onAdStartPlaying(){
+        public void onAdStartPlaying()
+        {
             if (this.OnAdStartPlaying != null)
             {
                 this.OnAdStartPlaying(this, EventArgs.Empty);
             }
         }
-        public void onAdRewarded(){
+        public void onAdRewarded()
+        {
             if (this.OnAdRewarded != null)
             {
                 this.OnAdRewarded(this, EventArgs.Empty);
             }
         }
-        public void onAdClosed(){
+        public void onAdClosed()
+        {
             if (this.OnAdClosed != null)
             {
                 this.OnAdClosed(this, EventArgs.Empty);
@@ -86,3 +97,4 @@ namespace YumiMediationSDK.Android
         #endregion
     }
 }
+#endif

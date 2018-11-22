@@ -1,11 +1,12 @@
-﻿using System;
+﻿#if UNITY_ANDROID
+using System;
 using YumiMediationSDK.Common;
 using YumiMediationSDK.Api;
 using UnityEngine;
 
 namespace YumiMediationSDK.Android
 {
-    public class YumiBannerClient : AndroidJavaProxy,IYumiBannerClient
+    public class YumiBannerClient : AndroidJavaProxy, IYumiBannerClient
     {
         private AndroidJavaObject bannerView;
         public YumiBannerClient() : base(YumiUtils.UnityBannerAdListenerClassName)
@@ -25,29 +26,34 @@ namespace YumiMediationSDK.Android
         #region implement IYumiBannerClient
 
         // Creates a banner view and adds it to the view hierarchy.
-        public void CreateBannerView(string placementId, string channelId, string versionId, YumiAdPosition adPosition){
+        public void CreateBannerView(string placementId, string channelId, string versionId, YumiAdPosition adPosition)
+        {
             this.bannerView.Call(
                     "create",
-                new object[3] { placementId,channelId,versionId });
+                new object[3] { placementId, channelId, versionId });
         }
 
         // Requests a new ad for the banner view.
-        public void LoadAd(bool isSmart){
+        public void LoadAd(bool isSmart)
+        {
             this.bannerView.Call("requestAd");
         }
 
         // Shows the banner view on the screen.
-        public void ShowBannerView(){
+        public void ShowBannerView()
+        {
             this.bannerView.Call("showBannerView");
         }
 
         // Hides the banner view from the screen.
-        public void HideBannerView(){
+        public void HideBannerView()
+        {
             this.bannerView.Call("hideBanner");
         }
 
         // Destroys a banner view.
-        public void DestroyBannerView(){
+        public void DestroyBannerView()
+        {
             this.bannerView.Call("destroyBanner");
         }
         #endregion
@@ -82,8 +88,8 @@ namespace YumiMediationSDK.Android
             }
         }
 
-       
 
         #endregion
     }
 }
+#endif
