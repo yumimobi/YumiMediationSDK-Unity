@@ -16,6 +16,7 @@ namespace YumiMediationSDK.Android
         public const string BannerViewClassName = "com.zplay.unity.adsyumi.YumiUBanner";
         public const string InterstitialClassName = "com.zplay.unity.adsyumi.YumiUInterstitial";
         public const string RewardVideoClassName = "com.zplay.unity.adsyumi.YumiURewardVideo";
+        public const string DebugCenterClassName = "com.zplay.unity.adsyumi.YumiUDebugCenter";
 
         public const string UnityBannerAdListenerClassName = "com.zplay.unity.adsyumi.YumiUBannerListener";
         public const string UnityInterstitialAdListenerClassName = "com.zplay.unity.adsyumi.YumiUInterstitialListener";
