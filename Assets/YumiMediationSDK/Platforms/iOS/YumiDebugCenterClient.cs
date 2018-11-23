@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_IOS
+using System;
 using YumiMediationSDK.Common;
 
 namespace YumiMediationSDK.iOS
@@ -11,3 +12,4 @@ namespace YumiMediationSDK.iOS
         }
     }
 }
+#endif
