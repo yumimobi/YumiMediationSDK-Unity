@@ -11,6 +11,7 @@
 #import "YumiObjectCache.h"
 #import "YumiInterstital.h"
 #import "YumiRewardVideo.h"
+#import "YumiDebugCenter.h"
 
 /// Returns an NSString copying the characters from |bytes|, a C array of UTF8-encoded bytes.
 /// Returns nil if |bytes| is NULL.
@@ -158,4 +159,12 @@ void YumiRelease(YumiTypeRef ref) {
         YumiObjectCache *cache = [YumiObjectCache sharedInstance];
         [cache.references removeObjectForKey:[(__bridge NSObject *)ref yumi_referenceKey]];
     }
+}
+
+#pragma mark: debugcenter
+
+void PresentDebugCenter(const char * bannerPlacementID, const char * interstitialPlacementID, const char * videoPlacementID, const char * nativePlacementID,const char * channelID, const char * versionID){
+    YumiDebugCenter *debugcenter = [[YumiDebugCenter alloc] init];
+    
+    [debugcenter presentWithBannerPlacementID:YumiStringFromUTF8String(bannerPlacementID) interstitialPlacementID:YumiStringFromUTF8String(interstitialPlacementID) videoPlacementID:YumiStringFromUTF8String(videoPlacementID) nativePlacementID:YumiStringFromUTF8String(nativePlacementID) channelID:YumiStringFromUTF8String(channelID) versionID:YumiStringFromUTF8String(versionID)];
 }

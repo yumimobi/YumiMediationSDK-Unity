@@ -3,7 +3,7 @@ using YumiMediationSDK.Api;
 
 namespace YumiMediationSDK.Common
 {
-    public class YumiDummyClient : IYumiBannerClient,IYumiInterstitialClient,IYumiRewardVideoClient
+    public class YumiDummyClient : IYumiBannerClient,IYumiInterstitialClient,IYumiRewardVideoClient,IYumiDebugCenterClient
     {
         public YumiDummyClient()
         {
@@ -101,6 +101,10 @@ namespace YumiMediationSDK.Common
         // Destroys an RewardVideo.
         public void DestroyRewardVideo(){
             Logger.LogError("Dummy: DestroyRewardVideo");
+        }
+        public void CallYumiMediationDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string channelID, string versionID)
+        {
+            Logger.LogError("Dummy: CallYumiMediationDebugCenter");
         }
 
     }
