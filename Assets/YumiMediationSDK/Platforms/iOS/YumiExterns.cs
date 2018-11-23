@@ -83,6 +83,13 @@ namespace YumiMediationSDK.iOS
             YumiRewardVideoClient.YumiRewardVideoDidCloseCallback adClosedCallback);
 
 #endregion
+#region Debugcenter 
+    // call debugcenter
+        [DllImport("__Internal")]
+        internal static extern void PresentDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string nativePlacementID,string channelID, string versionID);
+
+
+#endregion
 
     }
 }

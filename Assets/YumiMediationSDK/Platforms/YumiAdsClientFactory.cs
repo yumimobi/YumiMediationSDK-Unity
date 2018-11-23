@@ -41,5 +41,17 @@ namespace YumiMediationSDK
                 return new YumiMediationSDK.Common.YumiDummyClient();
 #endif
         }
+        public static IYumiDebugCenterClient BuildDebugCenterClient()
+        {
+
+#if UNITY_ANDROID
+            return new YumiMediationSDK.Android.YumiRewardVideoClient();
+           
+#elif UNITY_IOS
+            return new YumiMediationSDK.iOS.YumiDebugCenterClient();
+#else
+                return new YumiMediationSDK.Common.YumiDummyClient();
+#endif
+        }
     }
 }
