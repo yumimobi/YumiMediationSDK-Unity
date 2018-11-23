@@ -27,24 +27,13 @@ public class YumiSDKDemo : MonoBehaviour
         Logger.SetDebug(true);
 
         //get ad info
-        GameVersionID = MediationManagerSetting.GetGameVersion;
-        IsSmartBanner = MediationManagerSetting.GetAutomaticAdaptionBanner;
-#if UNITY_IOS
-        ChannelId = MediationManagerSetting.GetIOSZChannelId;
-        RewardedVideoPlacementId = MediationManagerSetting.GetIOSZRewardedVideoPlacementId;
-        InterstitialsPlacementId = MediationManagerSetting.GetIOSZInterstitialsPlacementId;
-        BannerPlacementId = MediationManagerSetting.GetIOSZBannelPlacementId;
+        GameVersionID = YumiMediationSDKSetting.GetGameVersion;
+        IsSmartBanner = YumiMediationSDKSetting.GetAutomaticAdaptionBanner;
 
-#endif
-
-#if UNITY_ANDROID
-
-        ChannelId = MediationManagerSetting.GetAndroidZChannelId;
-        RewardedVideoPlacementId = MediationManagerSetting.GetAndroidZRewardedVideoPlacementId;
-        InterstitialsPlacementId = MediationManagerSetting.GetAndroidZInterstitialsPlacementId;
-        BannerPlacementId = MediationManagerSetting.GetAndroidZBannelPlacementId;
-
-#endif
+        ChannelId = YumiMediationSDKSetting.ChannelId();
+        RewardedVideoPlacementId = YumiMediationSDKSetting.RewardVideoPlacementId();
+        InterstitialsPlacementId = YumiMediationSDKSetting.InterstitialPlacementId();
+        BannerPlacementId = YumiMediationSDKSetting.BannerPlacementId();
     }
 
     void OnGUI()
@@ -140,7 +129,7 @@ public class YumiSDKDemo : MonoBehaviour
                 this.rewardVideoAd.PlayRewardVideo();
             }
         }
-        if(MediationManagerSetting.GetDebugMode)
+        if(YumiMediationSDKSetting.GetDebugMode)
         {
             if (GUI.Button(new Rect(40, 474, btnWidth, 120), "Call DebugCenter", myButtonStyle))
             {
