@@ -11,7 +11,7 @@ public class YumiSDKDemo : MonoBehaviour
     private YumiBannerView bannerView;
     private YumiInterstitialAd interstitialAd;
     private YumiRewardVideoAd rewardVideoAd;
-
+    private YumiDebugCenter debugCenter;
 
     private string BannerPlacementId = "";
     private String RewardedVideoPlacementId = "";
@@ -138,6 +138,18 @@ public class YumiSDKDemo : MonoBehaviour
 
             if(this.rewardVideoAd.IsRewardVideoReady()){
                 this.rewardVideoAd.PlayRewardVideo();
+            }
+        }
+        if(MediationManagerSetting.GetDebugMode)
+        {
+            if (GUI.Button(new Rect(40, 474, btnWidth, 120), "Call DebugCenter", myButtonStyle))
+            {
+                if(this.debugCenter == null)
+                {
+                    this.debugCenter = new YumiDebugCenter();
+                }
+
+                this.debugCenter.PresentYumiMediationDebugCenter(BannerPlacementId, InterstitialsPlacementId, RewardedVideoPlacementId, ChannelId, GameVersionID);
             }
         }
 
