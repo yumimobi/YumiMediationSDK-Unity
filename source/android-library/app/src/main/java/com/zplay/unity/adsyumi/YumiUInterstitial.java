@@ -129,19 +129,31 @@ public class YumiUInterstitial {
 
     public void showInterstitial(){
         Log.d(TAG, "show Interstitial");
-        if (interstitial != null){
-            if (isReady){
-                isReady = false;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (interstitial != null){
+                    if (isReady){
+                        isReady = false;
+                    }
+                    interstitial.showInterstitial(false);
+                }
             }
-            interstitial.showInterstitial(false);
-        }
+        });
+
     }
 
     public  void  destroyInterstitial(){
         Log.d(TAG, "destroy Interstitial ");
-        if (interstitial != null){
-            interstitial.onDestory();
-        }
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (interstitial != null){
+                    interstitial.onDestory();
+                }
+            }
+        });
+
     }
     /**
      * Returns {@code True} if the interstitial has loaded.

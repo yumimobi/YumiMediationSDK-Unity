@@ -55,7 +55,7 @@ public class YumiUBanner {
                 int height = dip2px(mUnityPlayerActivity, 50);
                 Log.d(TAG, "run addbannerad");
                 if (isTablet((Activity) mUnityPlayerActivity)) {
-                    // 适配ipad
+                    // 锟斤拷ipad
                     width = dip2px(mUnityPlayerActivity, 728);
                     height = dip2px(mUnityPlayerActivity, 90);
 
@@ -157,26 +157,44 @@ public class YumiUBanner {
             @Override
             public void run() {
                 Log.d(TAG, "Calling requestAd() on Android");
-                // requestYumiBanner. (Require)
-                bannerAdView.requestYumiBanner();
+                if (bannerAdView != null){
+                    bannerAdView.requestYumiBanner();
+                }
             }
         });
     }
     public  void showBannerView(){
-            if(bannerAdView != null){
-                bannerAdView.resumeBanner();
+        mUnityPlayerActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(bannerAdView != null){
+                    bannerAdView.resumeBanner();
+                }
             }
+        });
     }
     public  void  hideBanner(){
-        if (bannerAdView != null){
-            bannerAdView.dismissBanner();
-        }
+        mUnityPlayerActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (bannerAdView != null){
+                    bannerAdView.dismissBanner();
+                }
+            }
+        });
+
     }
     public void destroyBanner(){
-        if (bannerAdView != null){
-            bannerAdView.onDestroy();
-        }
+        mUnityPlayerActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (bannerAdView != null){
+                    bannerAdView.onDestroy();
+                }
+            }
+        });
     }
+
     private final  boolean isApproximateTablet(Context context) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         int width = displayMetrics.widthPixels;

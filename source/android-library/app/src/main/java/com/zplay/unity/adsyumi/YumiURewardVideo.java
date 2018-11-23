@@ -17,7 +17,7 @@ public class YumiURewardVideo {
     private YumiMedia rewardVideo;
 
     /**
-     * The {@code Activity} on which the rewardVideo will display.
+     * The {@code Activity} on which the interstitial will display.
      */
     private Activity activity;
 
@@ -101,6 +101,7 @@ public class YumiURewardVideo {
                         }
                     }
                 });
+
                 rewardVideo.requestYumiMedia();
             }
         });
@@ -111,15 +112,27 @@ public class YumiURewardVideo {
         return false;
     }
     public  void playRewardVideo(){
-        if (rewardVideo != null){
-            Log.d(TAG, "play RewardVideo ");
-            rewardVideo.showMedia();
-        }
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (rewardVideo != null){
+                    Log.d(TAG, "play RewardVideo ");
+                    rewardVideo.showMedia();
+                }
+            }
+        });
+
     }
     public  void  destroyRewardVideo(){
-        Log.d(TAG, "destroy RewardVideo ");
-        if (rewardVideo != null){
-            rewardVideo.onDestory();
-        }
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, "destroy RewardVideo ");
+                if (rewardVideo != null){
+                    rewardVideo.onDestory();
+                }
+            }
+        });
+
     }
 }
