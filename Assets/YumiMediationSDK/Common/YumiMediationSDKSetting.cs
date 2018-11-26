@@ -5,14 +5,14 @@ using UnityEngine;
 
 namespace YumiMediationSDK.Common
 {
-    public class MediationManagerSetting : ScriptableObject
+    public class YumiMediationSDKSetting : ScriptableObject
     {
 
-        private const string settingsAssetName = "MediationManagerSetting";
+        private const string settingsAssetName = "YumiMediationSDKSetting";
 		private const string settingsPath = "YumiMediationSDK/Resources";
         private const string settingsAssetExtension = ".asset";
 
-        private static MediationManagerSetting instance;
+        private static YumiMediationSDKSetting instance;
 
         [Header("Debug")]
         [SerializeField]
@@ -54,33 +54,21 @@ namespace YumiMediationSDK.Common
         //Version
         public static string GetGameVersion { get { return Instance.GameVersion; } }
 
-        //Android
-        public static string GetAndroidZChannelId { get { return Instance.Android_ChannelId; } }
-        public static string GetAndroidZRewardedVideoPlacementId { get { return Instance.Android_RewardedVideoPlacementId; } }
-        public static string GetAndroidZInterstitialsPlacementId { get { return Instance.Android_InterstitialsPlacementId; } }
-        public static string GetAndroidZBannelPlacementId { get { return Instance.Android_BannerPlacementId; } }
-
-        //IOS
-        public static string GetIOSZChannelId { get { return Instance.IOS_ChannelId; } }
-        public static string GetIOSZRewardedVideoPlacementId { get { return Instance.IOS_RewardedVideoPlacementId; } }
-        public static string GetIOSZInterstitialsPlacementId { get { return Instance.IOS_InterstitialsPlacementId; } }
-        public static string GetIOSZBannelPlacementId { get { return Instance.IOS_BannerPlacementId; } }
-
         //Banner Self-adaptation
         public static bool GetAutomaticAdaptionBanner { get { return instance.AutomaticAdaptionBanner; } }
 
-        public static MediationManagerSetting Instance
+        public static YumiMediationSDKSetting Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = Resources.Load(settingsAssetName) as MediationManagerSetting;
+                    instance = Resources.Load(settingsAssetName) as YumiMediationSDKSetting;
 
                     if (instance == null)
                     {
                         // If not found, autocreate the asset object.
-                        instance = CreateInstance<MediationManagerSetting>();
+                        instance = CreateInstance<YumiMediationSDKSetting>();
 #if UNITY_EDITOR
                         string properPath = Path.Combine(Application.dataPath, settingsPath);
                         if (!Directory.Exists(properPath))
@@ -98,23 +86,63 @@ namespace YumiMediationSDK.Common
             }
         }
 
-#if UNITY_EDITOR
-		[UnityEditor.MenuItem("Window/YumiMediationSDK/Edit Settings")]
-        public static void ZplayPromoteHTSetting()
+        public static string BannerPlacementId()
         {
-   //         UnityEditor.Selection.activeObject = Instance;
-			//if (GameObject.Find("YumiSDKAdapter"))
-    //        {
-    //            Debug.Log("MediationManagerSetting game object already exists and does not need to be created");
-    //        }
-    //        else
-    //        {
-    //            GameObject gameObject = new GameObject();
-				//gameObject.name = "YumiSDKAdapter";
-				//gameObject.AddComponent<YumiSDKAdapter>();
-            //}
-            //UnityEngine.SceneManagement.Scene scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
-            //UnityEditor.SceneManagement.EditorSceneManager.SaveScene(scene);
+#if UNITY_ANDROID
+            return Instance.Android_BannerPlacementId;
+
+#elif UNITY_IOS
+            return  Instance.IOS_BannerPlacementId;
+#else
+                return "unknown";
+#endif
+
+        }
+        public static string InterstitialPlacementId()
+        {
+#if UNITY_ANDROID
+            return Instance.Android_InterstitialsPlacementId;
+
+
+#elif UNITY_IOS
+            return  Instance.IOS_InterstitialsPlacementId;
+#else
+                return "unknown";
+#endif
+
+        }
+        public static string RewardVideoPlacementId()
+        {
+#if UNITY_ANDROID
+            return Instance.Android_RewardedVideoPlacementId;
+
+#elif UNITY_IOS
+            return  Instance.IOS_RewardedVideoPlacementId;
+#else
+                return "unknown";
+#endif
+
+        }
+        public static string ChannelId()
+        {
+#if UNITY_ANDROID
+            return Instance.Android_ChannelId;
+
+#elif UNITY_IOS
+            return  Instance.IOS_ChannelId;
+#else
+                return "unknown";
+#endif
+
+        }
+
+#if UNITY_EDITOR
+        [UnityEditor.MenuItem("Window/YumiMediationSDK/YumiMediationAd Settings")]
+        public static void HandleYumiMediationSDKSettings()
+        {
+            Logger.Log("HandleYumiMediationSDKSettings");
+            UnityEditor.Selection.activeObject = Instance;
+			
         }
 #endif
     }
