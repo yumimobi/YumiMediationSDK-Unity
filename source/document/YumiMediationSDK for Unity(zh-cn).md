@@ -23,7 +23,7 @@
 
 - 部署Android
 
-  Android SDK： > 4.4 (API level 19)
+  Android SDK： > 4.1 (API level 16)
 
 3.[Demo 获取地址](https://github.com/yumimobi/YumiMediationSDK-Unity)   
 
@@ -31,7 +31,7 @@
 
 Yumi聚合广告Unity插件使Unity开发人员可以轻松地在Android和iOS应用上展示广告，无需编写Java或Objective-C代码。该插件提供了一个C＃接口用于请求Unity项目中C＃脚本使用的广告。使用下面的链接下载插件的Unity包或在GitHub上查看其代码。
 
-[下载YumiAdss Unity插件]()
+[下载YumiMediationSDK Unity插件]()
 
 [查看源码]()
 
@@ -129,9 +129,9 @@ public class YumiSDKDemo : MonoBehaviour
 
 ```c#
 // banner add ad event
-        this.bannerView.OnAdLoaded += this.HandleAdLoaded;
-        this.bannerView.OnAdFailedToLoad += HandleAdFailedToLoad;
-        this.bannerView.OnAdClick += HandleAdClicked;
+this.bannerView.OnAdLoaded += this.HandleAdLoaded;
+this.bannerView.OnAdFailedToLoad += HandleAdFailedToLoad;
+this.bannerView.OnAdClick += HandleAdClicked;
 
 ```
 
@@ -218,10 +218,10 @@ public class YumiSDKDemo : MonoBehaviour
 
 ```C#
   // add interstitial event 
-            this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
-            this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
-            this.interstitialAd.OnAdClicked += HandleInterstitialAdClicked;
-            this.interstitialAd.OnAdClosed += HandleInterstitialAdClosed;
+  this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
+  this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
+  this.interstitialAd.OnAdClicked += HandleInterstitialAdClicked;
+  this.interstitialAd.OnAdClosed += HandleInterstitialAdClosed;
 ```
 
 ```C#
@@ -254,9 +254,10 @@ public class YumiSDKDemo : MonoBehaviour
 建议先调用```this.interstitialAd.IsInterstitialReady()```判断插屏是否准备好
 
 ```C#
- if(this.interstitialAd.IsInterstitialReady()){
-                this.interstitialAd.ShowInterstitial();
-            }
+ if(this.interstitialAd.IsInterstitialReady())
+ {
+	this.interstitialAd.ShowInterstitial();
+ }
 ```
 
 #### 销毁Interstitial
@@ -302,10 +303,10 @@ public class YumiSDKDemo : MonoBehaviour
 
 ```C#
  this.rewardVideoAd = new YumiRewardVideoAd();
-        this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
-        this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
-        this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
-        this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
+ this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
+ this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
+ this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
+ this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
 ```
 
 ```C#
@@ -342,9 +343,10 @@ public class YumiSDKDemo : MonoBehaviour
 #### 展示Rewarded Video
 
 ```c#
- if(this.rewardVideoAd.IsRewardVideoReady()){
-                this.rewardVideoAd.PlayRewardVideo();
-            }	
+ if(this.rewardVideoAd.IsRewardVideoReady())
+ {
+	this.rewardVideoAd.PlayRewardVideo();
+  }	
 ```
 
 #### 销毁Rewarded Video
