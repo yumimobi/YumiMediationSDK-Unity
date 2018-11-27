@@ -1,29 +1,28 @@
 * [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
-  * [概述](#概述)
-  * [下载YumiMediationSDK Unity插件](#下载yumimediationsdk-unity插件)
-  * [导入YumiMediationSDK Unity插件](#导入yumimediationsdk-unity插件)
-  * [集成YumiMediationSDK](#集成yumimediationsdk)
-    * [部署iOS项目](#部署ios项目)
-    * [部署Android项目](#部署android项目)
-  * [选择广告形式](#选择广告形式)
-     * [Banner](#banner)
-        * [初始化 Banner](#初始化-banner)
-        * [请求Banner](#请求banner)
-        * [隐藏Banner](#隐藏banner)
-        * [显示隐藏的Banner](#显示隐藏的banner)
-        * [销毁Banner](#销毁banner)
-     * [Interstitial](#interstitial)
-        * [初始化及请求插屏](#初始化及请求插屏)
-        * [展示Interstitial](#展示interstitial)
-        * [销毁Interstitial](#销毁interstitial)
-     * [Rewarded Video](#rewarded-video)
-        * [初始化及请求视频](#初始化及请求视频)
-        * [判断视频是否准备好](#判断视频是否准备好)
-        * [展示Rewarded Video](#展示rewarded-video)
-        * [销毁Rewarded Video](#销毁rewarded-video)
-  * [调试模式](#调试模式)
-     * [调用调试模式](#调用调试模式)
-
+   * [概述](#概述)
+   * [下载 YumiMediationSDK Unity 插件](#下载-yumimediationsdk-unity-插件)
+   * [导入 YumiMediationSDK Unity 插件](#导入-yumimediationsdk-unity-插件)
+   * [集成 YumiMediationSDK](#集成-yumimediationsdk)
+      * [部署 iOS 项目](#部署-ios-项目)
+      * [部署 Android 项目](#部署-android-项目)
+   * [选择广告形式](#选择广告形式)
+      * [Banner](#banner)
+         * [初始化 Banner](#初始化-banner)
+         * [请求 Banner](#请求-banner)
+         * [隐藏 Banner](#隐藏-banner)
+         * [显示隐藏的 Banner](#显示隐藏的-banner)
+         * [销毁 Banner](#销毁-banner)
+      * [Interstitial](#interstitial)
+         * [初始化及请求插屏](#初始化及请求插屏)
+         * [展示 Interstitial](#展示-interstitial)
+         * [销毁 Interstitial](#销毁-interstitial)
+      * [Rewarded Video](#rewarded-video)
+         * [初始化及请求视频](#初始化及请求视频)
+         * [判断视频是否准备好](#判断视频是否准备好)
+         * [展示 Rewarded Video](#展示-rewarded-video)
+         * [销毁 Rewarded Video](#销毁-rewarded-video)
+   * [调试模式](#调试模式)
+      * [调用调试模式](#调用调试模式)
 
 # YumiMediationSDK for Unity
 
@@ -52,7 +51,7 @@
 
 3.[Demo 获取地址](https://github.com/yumimobi/YumiMediationSDK-Unity)   
 
-## 下载YumiMediationSDK Unity插件
+## 下载 YumiMediationSDK Unity 插件
 
 Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android 和 iOS 应用上展示广告，无需编写 Java 或 Objective-C 代码。该插件提供了一个 C# 接口来请求广告。使用下面的链接下载插件的 Unity 包或在 GitHub 上查看其代码。
 
@@ -60,7 +59,7 @@ Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android �
 
 [查看源码](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
-## 导入YumiMediationSDK Unity插件
+## 导入 YumiMediationSDK Unity 插件
 
 在 Unity 编辑器中打开您的项目。选择**Assets> Import Package> Custom Package**，找到您下载的 YumiMediationSDKPlugin.unitypackage 文件。
 
@@ -70,11 +69,11 @@ Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android �
 
 ![img](resources/02.png)
 
-## 集成YumiMediationSDK
+## 集成 YumiMediationSDK
 
 YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver) 一起发布。该库主要供访问 Android 特定库（例如，AAR）或 iOS CocoaPods 的任何Unity插件使用。它为 Unity 插件提供了声明依赖关系的能力，然后自动解析并复制到 Unity 项目中。请按照下面列出的步骤确保您的项目包含 YumiMediationSDK。
 
-### 部署iOS项目
+### 部署 iOS 项目
 
 将 YumiMediationSDK 集成到 Unity 项目中无需其他步骤。
 
@@ -82,19 +81,19 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 **注意：使用 CocoaPods 识别 iOS 依赖项。 CocoaPods 作为后期构建过程步骤运行。**
 
-### 部署Android项目
+### 部署 Android 项目
 
-​ 在Unity编辑器中，选择 **Assets> Play Services Resolver> Android Resolver>Force Resolve**。 Unity Play 服务解析器库会将声明的依赖项复制到Unity应用程序的 **Assets/Plugins/Android** 目录中。
+在Unity编辑器中，选择 **Assets> Play Services Resolver> Android Resolver>Force Resolve**。 Unity Play 服务解析器库会将声明的依赖项复制到Unity应用程序的 **Assets/Plugins/Android** 目录中。
 
 ![img](resources/03.png)
 
 
 
-注意： YumiMediationSDK Unity 插件依赖项列在 **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml** 中
+注意: YumiMediationSDK Unity 插件依赖项列在 **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml** 中
 
 ## 选择广告形式
 
-在部署到 Android 或 iOS 平台时，YumiMediationSDK 现在包含在Unity应用程序中。您现在已准备好实施广告。 YumiMediationSDK 提供多种不同的广告格式，因此您可以选择最适合您的用户体验需求的广告格式。
+在部署到 Android 或 iOS 平台时，YumiMediationSDK 现在包含在Unity应用程序中。您现在已准备好实施广告。YumiMediationSDK 提供多种不同的广告格式，因此您可以选择最适合您的用户体验需求的广告格式。
 
 ### Banner
 
@@ -119,11 +118,11 @@ public class YumiSDKDemo : MonoBehaviour
     string  channelId = "YOUR_CHANNEL_ID";
 
     #if UNITY_ANDROID
-      string bannerPlacementId = "YOUR_BANNER_PLACEMENT_ID_ANDROID";
+       string bannerPlacementId = "YOUR_BANNER_PLACEMENT_ID_ANDROID";
     #elif UNITY_IOS
-      string bannerPlacementId = "YOUR_BANNER_PLACEMENT_ID_IOS";
+       string bannerPlacementId = "YOUR_BANNER_PLACEMENT_ID_IOS";
     #else
-      string bannerPlacementId = "unexpected_platform";
+       string bannerPlacementId = "unexpected_platform";
     #endif
     if ( this.bannerView != null )
     {
@@ -203,11 +202,11 @@ public class YumiSDKDemo : MonoBehaviour
     string gameVersionId = "YOUR_VERSION_ID";
     string channelId = "YOUR_CHANNEL_ID";
     #if UNITY_ANDROID
-           string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_ANDROID";
+		string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_ANDROID";
     #elif UNITY_IOS
-           string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_IOS";
+		string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_IOS";
     # else
-           string interstitialPlacementId = "unexpected_platform";
+		string interstitialPlacementId = "unexpected_platform";
     #endif
     if (this.interstitialAd != null) 
     {
@@ -278,11 +277,11 @@ public class YumiSDKDemo : MonoBehaviour
     string gameVersionId = "YOUR_VERSION_ID";
     string channelId = "YOUR_CHANNEL_ID";
     #if UNITY_ANDROID
-      string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_ANDROID";
+		string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_ANDROID";
     #elif UNITY_IOS
-        string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_IOS";
+		string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_IOS";
     # else
-        string rewardVideoPlacementId = "unexpected_platform";
+		string rewardVideoPlacementId = "unexpected_platform";
     #endif
     if (this.rewardVideoAd != null) 
     {
@@ -330,7 +329,7 @@ public class YumiSDKDemo : MonoBehaviour
  if(this.rewardVideoAd.IsRewardVideoReady())
  {
   this.rewardVideoAd.PlayRewardVideo();
-  } 
+ } 
 ```
 
 #### 销毁 Rewarded Video
