@@ -16,7 +16,7 @@ public class YumiSDKDemo : MonoBehaviour
     private string BannerPlacementId = "";
     private String RewardedVideoPlacementId = "";
     private String InterstitialsPlacementId = "";
-    private string GameVersionID = "";
+    private string GameVersionId = "";
     private String ChannelId = "";
 
     private bool IsSmartBanner;
@@ -27,7 +27,7 @@ public class YumiSDKDemo : MonoBehaviour
         Logger.SetDebug(true);
 
         //get ad info
-        GameVersionID = YumiMediationSDKSetting.GetGameVersion;
+        GameVersionId = YumiMediationSDKSetting.GetGameVersion;
         IsSmartBanner = YumiMediationSDKSetting.GetAutomaticAdaptionBanner;
 
         ChannelId = YumiMediationSDKSetting.ChannelId();
@@ -62,7 +62,7 @@ public class YumiSDKDemo : MonoBehaviour
                 this.bannerView.Destroy();
             }
 
-            this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionID,YumiAdPosition.Bottom);
+            this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionId,YumiAdPosition.Bottom);
 
             // banner add ad event
             this.bannerView.OnAdLoaded += this.HandleAdLoaded;
@@ -88,7 +88,7 @@ public class YumiSDKDemo : MonoBehaviour
                 this.interstitialAd.DestroyInterstitial();
             }
 
-            this.interstitialAd = new YumiInterstitialAd(InterstitialsPlacementId, ChannelId,GameVersionID);
+            this.interstitialAd = new YumiInterstitialAd(InterstitialsPlacementId, ChannelId,GameVersionId);
             // add interstitial event 
             this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
             this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
@@ -119,7 +119,7 @@ public class YumiSDKDemo : MonoBehaviour
             this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
             this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
 
-            this.rewardVideoAd.LoadRewardVideoAd(RewardedVideoPlacementId,ChannelId,GameVersionID);
+            this.rewardVideoAd.LoadRewardVideoAd(RewardedVideoPlacementId,ChannelId,GameVersionId);
         }
 
         if (GUI.Button(new Rect(40 + btnWidth + 10, 344, btnWidth, 120), "play video", myButtonStyle))
@@ -138,7 +138,7 @@ public class YumiSDKDemo : MonoBehaviour
                     this.debugCenter = new YumiDebugCenter();
                 }
 
-                this.debugCenter.PresentYumiMediationDebugCenter(BannerPlacementId, InterstitialsPlacementId, RewardedVideoPlacementId, ChannelId, GameVersionID);
+                this.debugCenter.PresentYumiMediationDebugCenter(BannerPlacementId, InterstitialsPlacementId, RewardedVideoPlacementId, ChannelId, GameVersionId);
             }
         }
 
