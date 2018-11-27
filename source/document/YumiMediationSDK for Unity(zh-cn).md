@@ -29,11 +29,11 @@
 
 ## 下载YumiMediationSDK Unity插件
 
-Yumi聚合广告Unity插件使Unity开发人员可以轻松地在Android和iOS应用上展示广告，无需编写Java或Objective-C代码。该插件提供了一个C＃接口用于请求Unity项目中C＃脚本使用的广告。使用下面的链接下载插件的Unity包或在GitHub上查看其代码。
+Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android 和 iOS 应用上展示广告，无需编写 Java 或 Objective-C 代码。该插件提供了一个 C# 接口来请求广告。使用下面的链接下载插件的 Unity 包或在 GitHub 上查看其代码。
 
 [下载YumiMediationSDK Unity插件]()
 
-[查看源码]()
+[查看源码](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
 ## 导入YumiMediationSDK Unity插件
 
@@ -53,7 +53,7 @@ YumiMediationSDK Unity插件随着 [Unity Play Services Resolver library](https:
 
 将YumiMediationSDK集成到Unity项目中无需其他步骤。
 
-构建完成，打开**.xcworkspace**工程。
+构建完成，打开**xcworkspace**工程。
 
 **注意：使用CocoaPods识别iOS依赖项。 CocoaPods作为后期构建过程步骤运行。**
 
@@ -71,20 +71,6 @@ YumiMediationSDK Unity插件随着 [Unity Play Services Resolver library](https:
 
 在部署到Android或iOS平台时，YumiMediationSDK现在包含在Unity应用程序中。您现在已准备好实施广告。 YumiMediationSDK提供多种不同的广告格式，因此您可以选择最适合您的用户体验需求的广告格式。
 
-### 设置YumiMediationSDK 广告位等信息
-
-为了更好地帮助开发者填写广告信息，YumiMediationSDK 提供了图形化界面帮助开发者填写广告位等信息。
-
-选择**Window>YumiMediationSDK>YumiMediationAd Settings**导入Unity项目
-
-![img](resources/04.png)
-
-在 **Assets/YumiMediationSDK/Resources/YumiMediationSDKSetting.asset** 中输入您的广告位信息。
-
-![img](resources/05.png)
-
-接口详情参考：**YumiMediationSDK.Common.YumiMediationSDKSetting**
-
 ### Banner
 
 #### 初始化 Banner
@@ -97,45 +83,36 @@ public class YumiSDKDemo : MonoBehaviour
 {
 
     private YumiBannerView bannerView;
-    private string BannerPlacementId = "";
-    private string GameVersionID = "";
-    private String ChannelId = "";
-    private bool IsSmartBanner;
 
     void Start()
     {
-        //get ad info
-        GameVersionID = YumiMediationSDKSetting.GetGameVersion;
-        IsSmartBanner = YumiMediationSDKSetting.GetAutomaticAdaptionBanner;
-
-        ChannelId = YumiMediationSDKSetting.ChannelId();
-        BannerPlacementId = YumiMediationSDKSetting.BannerPlacementId();
+        this.InitBanner();
     }
   
-   private void InitBanner()
-    {
+    private void InitBanner(){
+
+         string gameVersionId = "YOUR_VERSION_ID";
+         string channelId = "YOUR_CHANNEL_ID";
+
+#if UNITY_ANDROID
+          string bannerPlacementId = "YOUR_BANNER_PLACEMENT_ID_ANDROID";
+#elif UNITY_IOS
+          string bannerPlacementId = "YOUR_BANNER_PLACEMENT_ID_IOS";
+#else
+          string bannerPlacementId = "unexpected_platform";
+#endif
         if (this.bannerView != null)
         {
             this.bannerView.Destroy();
         }
 
-        this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionID, YumiAdPosition.Bottom);
+        this.bannerView = new YumiBannerView(bannerPlacementId, channelId, gameVersionId, YumiAdPosition.Bottom);
 
+        // banner add ad event
+        this.bannerView.OnAdLoaded += this.HandleAdLoaded;
+        this.bannerView.OnAdFailedToLoad += HandleAdFailedToLoad;
+        this.bannerView.OnAdClick += HandleAdClicked;
     }
-}
-```
-
-#### 设置Banner事件
-
-```c#
-// banner add ad event
-this.bannerView.OnAdLoaded += this.HandleAdLoaded;
-this.bannerView.OnAdFailedToLoad += HandleAdFailedToLoad;
-this.bannerView.OnAdClick += HandleAdClicked;
-
-```
-
-```C#
   #region Banner callback handlers
 
     public void HandleAdLoaded(object sender, EventArgs args)
@@ -154,12 +131,14 @@ this.bannerView.OnAdClick += HandleAdClicked;
     }
 
     #endregion
+}
 ```
 
 #### 请求Banner
 
 ```C#
- this.bannerView.LoadAd(IsSmartBanner); //IsSmartBanner is true only support iOS
+bool IsSmartBanner = true;//如果设置 isSmartBanner 为 YES ,YumiMediationBannerView 将会自动根据设备的尺寸进行适配。
+this.bannerView.LoadAd(IsSmartBanner); 
 ```
 
 #### 隐藏Banner
@@ -191,41 +170,36 @@ using YumiMediationSDK.Common;
 public class YumiSDKDemo : MonoBehaviour
 {
     private YumiInterstitialAd interstitialAd;
-    private String InterstitialsPlacementId = "";
-    private string GameVersionID = "";
-    private String ChannelId = "";
 
     void Start()
     {
-        //get ad info
-        GameVersionID = YumiMediationSDKSetting.GetGameVersion;
-        ChannelId = YumiMediationSDKSetting.ChannelId();
-        InterstitialsPlacementId = YumiMediationSDKSetting.InterstitialPlacementId();
+        this.RequestInterstitial();
     }
- private void RequestInterstitial(){
+	private void RequestInterstitial(){
+
+         string gameVersionId = "YOUR_VERSION_ID";
+         string channelId = "YOUR_CHANNEL_ID";
+
+#if UNITY_ANDROID
+        string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_ANDROID";
+#elif UNITY_IOS
+           string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_IOS";
+#else
+           string interstitialPlacementId = "unexpected_platform";
+#endif
         if (this.interstitialAd != null)
         {
             this.interstitialAd.DestroyInterstitial();
         }
 
-        this.interstitialAd = new YumiInterstitialAd(InterstitialsPlacementId, ChannelId, GameVersionID);
+        this.interstitialAd = new YumiInterstitialAd(interstitialPlacementId, channelId, gameVersionId);
+        // add interstitial event 
+        this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
+        this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
+        this.interstitialAd.OnAdClicked += HandleInterstitialAdClicked;
+        this.interstitialAd.OnAdClosed += HandleInterstitialAdClosed;
     }
-  
-}
-```
-
-#### 设置Interstitial事件
-
-```C#
-  // add interstitial event 
-  this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
-  this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
-  this.interstitialAd.OnAdClicked += HandleInterstitialAdClicked;
-  this.interstitialAd.OnAdClosed += HandleInterstitialAdClosed;
-```
-
-```C#
-  #region interstitial callback handlers
+   #region interstitial callback handlers
 
     public void HandleInterstitialAdLoaded(object sender, EventArgs args)
     {
@@ -247,6 +221,7 @@ public class YumiSDKDemo : MonoBehaviour
     }
 
     #endregion
+}
 ```
 
 #### 展示Interstitial
@@ -278,39 +253,35 @@ public class YumiSDKDemo : MonoBehaviour
 {
     private YumiRewardVideoAd rewardVideoAd;
 
-    private String RewardedVideoPlacementId = "";
-    private string GameVersionID = "";
-    private String ChannelId = "";
-
     void Start()
     {
-        //get ad info
-        GameVersionID = YumiMediationSDKSetting.GetGameVersion;
-        ChannelId = YumiMediationSDKSetting.ChannelId();
-        RewardedVideoPlacementId = YumiMediationSDKSetting.RewardVideoPlacementId();
+        this.RequestRewardVideo();
     }
-    private void RequestRewardVide(){
+     private void RequestRewardVideo(){
+
+         string gameVersionId = "YOUR_VERSION_ID";
+         string channelId = "YOUR_CHANNEL_ID";
+
+#if UNITY_ANDROID
+        string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_ANDROID";
+#elif UNITY_IOS
+           string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_IOS";
+#else
+           string rewardVideoPlacementId = "unexpected_platform";
+#endif
         if (this.rewardVideoAd != null)
         {
             this.rewardVideoAd.DestroyRewardVideo();
         }
-        this.rewardVideoAd.LoadRewardVideoAd(RewardedVideoPlacementId, ChannelId, GameVersionID);
+        this.rewardVideoAd = new YumiRewardVideoAd();
+        this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
+        this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
+        this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
+        this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
+        // load ad
+        this.rewardVideoAd.LoadRewardVideoAd(rewardVideoPlacementId, channelId, gameVersionId);
     }
-}
-```
-
-#### 设置Rewarded Video 事件
-
-```C#
- this.rewardVideoAd = new YumiRewardVideoAd();
- this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
- this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
- this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
- this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
-```
-
-```C#
- #region reward video callback handlers
+  #region reward video callback handlers
 
     public void HandleRewardVideoAdOpened(object sender, EventArgs args)
     {
@@ -332,6 +303,7 @@ public class YumiSDKDemo : MonoBehaviour
     }
 
     #endregion
+}
 ```
 
 #### 判断视频是否准备好
@@ -374,8 +346,8 @@ public class YumiSDKDemo : MonoBehaviour
         {
             this.debugCenter = new YumiDebugCenter();
         }
-
-        this.debugCenter.PresentYumiMediationDebugCenter("your BannerPlacementId", "your InterstitialsPlacementId", "your RewardedVideoPlacementId", "your ChannelId", "your GameVersionID");
+// 注意：填写的广告位信息要区分iOS和Android
+        this.debugCenter.PresentYumiMediationDebugCenter("YOUR_BANNER_PLACEMENT_ID", "YOUR_INTERSTITIAL_PLACEMENT_ID", "YOUR_REWARDVIDEO_PLACEMENT_ID", "YOUR_CHANNEL_ID", "YOUR_VERSION_ID");
     }
 }
 ```
