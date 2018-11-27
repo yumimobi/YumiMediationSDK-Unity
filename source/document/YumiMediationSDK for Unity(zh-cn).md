@@ -106,56 +106,56 @@ using YumiMediationSDK.Common;
 
 public class YumiSDKDemo : MonoBehaviour
 {
+	private YumiBannerView bannerView;
 
-    private YumiBannerView bannerView;
+	void Start()
+	{
+		this.InitBanner();
+	}
 
-    void Start()
-    {
-        this.InitBanner();
-    }
-  
-    private void InitBanner(){
+	private void InitBanner()
+	{
+		string	gameVersionId	= "YOUR_VERSION_ID";
+		string	channelId	= "YOUR_CHANNEL_ID";
 
-         string gameVersionId = "YOUR_VERSION_ID";
-         string channelId = "YOUR_CHANNEL_ID";
+		#if UNITY_ANDROID
+			string bannerPlacementId = "YOUR_BANNER_PLACEMENT_ID_ANDROID";
+		#elif UNITY_IOS
+			string bannerPlacementId = "YOUR_BANNER_PLACEMENT_ID_IOS";
+		#else
+			string bannerPlacementId = "unexpected_platform";
+		#endif
+		if ( this.bannerView != null )
+		{
+			this.bannerView.Destroy();
+		}
 
-#if UNITY_ANDROID
-          string bannerPlacementId = "YOUR_BANNER_PLACEMENT_ID_ANDROID";
-#elif UNITY_IOS
-          string bannerPlacementId = "YOUR_BANNER_PLACEMENT_ID_IOS";
-#else
-          string bannerPlacementId = "unexpected_platform";
-#endif
-        if (this.bannerView != null)
-        {
-            this.bannerView.Destroy();
-        }
+		this.bannerView = new YumiBannerView( bannerPlacementId, channelId, gameVersionId, YumiAdPosition.Bottom );
 
-        this.bannerView = new YumiBannerView(bannerPlacementId, channelId, gameVersionId, YumiAdPosition.Bottom);
+		/* banner add ad event */
+		this.bannerView.OnAdLoaded		+= this.HandleAdLoaded;
+		this.bannerView.OnAdFailedToLoad	+= HandleAdFailedToLoad;
+		this.bannerView.OnAdClick		+= HandleAdClicked;
+	}
 
-        // banner add ad event
-        this.bannerView.OnAdLoaded += this.HandleAdLoaded;
-        this.bannerView.OnAdFailedToLoad += HandleAdFailedToLoad;
-        this.bannerView.OnAdClick += HandleAdClicked;
-    }
-  #region Banner callback handlers
+	#region Banner callback handlers
 
-    public void HandleAdLoaded(object sender, EventArgs args)
-    {
-        Logger.Log("HandleAdLoaded event received");
-    }
+	public void HandleAdLoaded( object sender, EventArgs args )
+	{
+		Logger.Log( "HandleAdLoaded event received" );
+	}
 
-    public void HandleAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args)
-    {
-        Logger.Log("HandleFailedToReceiveAd event received with message: " + args.Message);
-    }
+	public void HandleAdFailedToLoad( object sender, YumiAdFailedToLoadEventArgs args )
+	{
+		Logger.Log( "HandleFailedToReceiveAd event received with message: " + args.Message );
+	}
 
-    public void HandleAdClicked(object sender, EventArgs args)
-    {
-        Logger.Log("Handle Ad Clicked");
-    }
+	public void HandleAdClicked( object sender, EventArgs args )
+	{
+		Logger.Log( "Handle Ad Clicked" );
+	}
 
-    #endregion
+	#endregion
 }
 ```
 
@@ -191,61 +191,54 @@ this.bannerView.Destroy();
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
-
-public class YumiSDKDemo : MonoBehaviour
+public class YumiSDKDemo : MonoBehaviour 
 {
-    private YumiInterstitialAd interstitialAd;
-
-    void Start()
-    {
-        this.RequestInterstitial();
-    }
-	private void RequestInterstitial(){
-
-         string gameVersionId = "YOUR_VERSION_ID";
-         string channelId = "YOUR_CHANNEL_ID";
-
-#if UNITY_ANDROID
-        string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_ANDROID";
-#elif UNITY_IOS
-           string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_IOS";
-#else
-           string interstitialPlacementId = "unexpected_platform";
-#endif
-        if (this.interstitialAd != null)
-        {
-            this.interstitialAd.DestroyInterstitial();
-        }
-
-        this.interstitialAd = new YumiInterstitialAd(interstitialPlacementId, channelId, gameVersionId);
-        // add interstitial event 
-        this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
-        this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
-        this.interstitialAd.OnAdClicked += HandleInterstitialAdClicked;
-        this.interstitialAd.OnAdClosed += HandleInterstitialAdClosed;
-    }
-   #region interstitial callback handlers
-
-    public void HandleInterstitialAdLoaded(object sender, EventArgs args)
-    {
-        Logger.Log("HandleInterstitialAdLoaded event received");
-    }
-
-    public void HandleInterstitialAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args)
-    {
-        Logger.Log("HandleInterstitialAdFailedToLoad event received with message: " + args.Message);
-    }
-
-    public void HandleInterstitialAdClicked(object sender, EventArgs args)
-    {
-        Logger.Log("HandleInterstitialAdClicked Clicked");
-    }
-    public void HandleInterstitialAdClosed(object sender, EventArgs args)
-    {
-        Logger.Log("HandleInterstitialAdClosed Ad closed");
-    }
-
-    #endregion
+	private YumiInterstitialAd interstitialAd;
+	void Start() 
+	{
+		this.RequestInterstitial();
+	}
+	private void RequestInterstitial() 
+	{
+		string gameVersionId = "YOUR_VERSION_ID";
+		string channelId = "YOUR_CHANNEL_ID";
+		#if UNITY_ANDROID
+		       string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_ANDROID";
+		#elif UNITY_IOS
+		       string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_IOS";
+		# else
+		       string interstitialPlacementId = "unexpected_platform";
+		#endif
+		if (this.interstitialAd != null) 
+		{
+			this.interstitialAd.DestroyInterstitial();
+		}
+		this.interstitialAd = new YumiInterstitialAd(interstitialPlacementId, channelId, gameVersionId);
+		// add interstitial event 
+		this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
+		this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
+		this.interstitialAd.OnAdClicked += HandleInterstitialAdClicked;
+		this.interstitialAd.OnAdClosed += HandleInterstitialAdClosed;
+	}
+  
+	#region interstitial callback handlers
+	public void HandleInterstitialAdLoaded(object sender, EventArgs args) 
+	{
+		Logger.Log("HandleInterstitialAdLoaded event received");
+	}
+	public void HandleInterstitialAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args) 
+	{
+		Logger.Log("HandleInterstitialAdFailedToLoad event received with message: " + args.Message);
+	}
+	public void HandleInterstitialAdClicked(object sender, EventArgs args) 
+	{
+		Logger.Log("HandleInterstitialAdClicked Clicked");
+	}
+	public void HandleInterstitialAdClosed(object sender, EventArgs args) 
+	{
+		Logger.Log("HandleInterstitialAdClosed Ad closed");
+	}
+	#endregion
 }
 ```
 
@@ -273,61 +266,55 @@ this.interstitialAd.DestroyInterstitial();
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
-
-public class YumiSDKDemo : MonoBehaviour
+public class YumiSDKDemo : MonoBehaviour 
 {
-    private YumiRewardVideoAd rewardVideoAd;
-
-    void Start()
-    {
-        this.RequestRewardVideo();
-    }
-     private void RequestRewardVideo(){
-
-         string gameVersionId = "YOUR_VERSION_ID";
-         string channelId = "YOUR_CHANNEL_ID";
-
-#if UNITY_ANDROID
-        string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_ANDROID";
-#elif UNITY_IOS
-           string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_IOS";
-#else
-           string rewardVideoPlacementId = "unexpected_platform";
-#endif
-        if (this.rewardVideoAd != null)
-        {
-            this.rewardVideoAd.DestroyRewardVideo();
-        }
-        this.rewardVideoAd = new YumiRewardVideoAd();
-        this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
-        this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
-        this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
-        this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
-        // load ad
-        this.rewardVideoAd.LoadRewardVideoAd(rewardVideoPlacementId, channelId, gameVersionId);
-    }
-  #region reward video callback handlers
-
-    public void HandleRewardVideoAdOpened(object sender, EventArgs args)
-    {
-        Logger.Log("HandleRewardVideoAdOpened event opened");
-    }
-
-    public void HandleRewardVideoAdStartPlaying(object sender, EventArgs args)
-    {
-        Logger.Log("HandleRewardVideoAdStartPlaying event start playing ");
-    }
-
-    public void HandleRewardVideoAdReward(object sender, EventArgs args)
-    {
-        Logger.Log("HandleRewardVideoAdReward reward");
-    }
-    public void HandleRewardVideoAdClosed(object sender, EventArgs args)
-    {
-        Logger.Log("HandleRewardVideoAdClosed Ad closed");
-    }
-
-    #endregion
+	private YumiRewardVideoAd rewardVideoAd;
+	void Start() 
+	{
+		this.RequestRewardVideo();
+	}
+	private void RequestRewardVideo() 
+	{
+		string gameVersionId = "YOUR_VERSION_ID";
+		string channelId = "YOUR_CHANNEL_ID";
+		#if UNITY_ANDROID
+			string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_ANDROID";
+		#elif UNITY_IOS
+		    string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_IOS";
+		# else
+		    string rewardVideoPlacementId = "unexpected_platform";
+		#endif
+		if (this.rewardVideoAd != null) 
+		{
+			this.rewardVideoAd.DestroyRewardVideo();
+		}
+		this.rewardVideoAd = new YumiRewardVideoAd();
+		this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
+		this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
+		this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
+		this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
+		// load ad
+		this.rewardVideoAd.LoadRewardVideoAd(rewardVideoPlacementId, channelId, gameVersionId);
+	}
+  
+	#region reward video callback handlers
+	public void HandleRewardVideoAdOpened(object sender, EventArgs args) 
+	{
+		Logger.Log("HandleRewardVideoAdOpened event opened");
+	}
+	public void HandleRewardVideoAdStartPlaying(object sender, EventArgs args) 
+	{
+		Logger.Log("HandleRewardVideoAdStartPlaying event start playing ");
+	}
+	public void HandleRewardVideoAdReward(object sender, EventArgs args) 
+	{
+		Logger.Log("HandleRewardVideoAdReward reward");
+	}
+	public void HandleRewardVideoAdClosed(object sender, EventArgs args) 
+	{
+		Logger.Log("HandleRewardVideoAdClosed Ad closed");
+	}
+	#endregion
 }
 ```
 
