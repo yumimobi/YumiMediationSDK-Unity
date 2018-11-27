@@ -23,7 +23,7 @@ namespace YumiMediationSDK.Android
         // Ad event fired when the banner ad is click.
         public event EventHandler<EventArgs> OnAdClick;
 
-        #region implement IYumiBannerClient
+#region implement IYumiBannerClient
 
         // Creates a banner view and adds it to the view hierarchy.
         public void CreateBannerView(string placementId, string channelId, string versionId, YumiAdPosition adPosition)
@@ -36,7 +36,7 @@ namespace YumiMediationSDK.Android
         // Requests a new ad for the banner view.
         public void LoadAd(bool isSmart)
         {
-            this.bannerView.Call("requestAd");
+            this.bannerView.Call("requestAd", isSmart);
         }
 
         // Shows the banner view on the screen.
@@ -56,9 +56,9 @@ namespace YumiMediationSDK.Android
         {
             this.bannerView.Call("destroyBanner");
         }
-        #endregion
+#endregion
 
-        #region Callbacks from UnityBannerAdListener.
+#region Callbacks from UnityBannerAdListener.
 
         public void onAdLoaded()
         {
@@ -89,7 +89,7 @@ namespace YumiMediationSDK.Android
         }
 
 
-        #endregion
+#endregion
     }
 }
 #endif

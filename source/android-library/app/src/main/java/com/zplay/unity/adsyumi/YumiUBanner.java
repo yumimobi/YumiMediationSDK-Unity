@@ -43,30 +43,6 @@ public class YumiUBanner {
 
             @Override
             public void run() {
-                boolean isMatchWindowWidth = true;
-                if (null != bannerAdView) {
-                    zplay_view.removeAllViews();
-                } else {
-                    zplay_view = new FrameLayout(mUnityPlayerActivity);
-                    zplay_view.setTag(1);
-                }
-                FrameLayout.LayoutParams params;
-                int width = dip2px(mUnityPlayerActivity, 320);
-                int height = dip2px(mUnityPlayerActivity, 50);
-                Log.d(TAG, "run addbannerad");
-                if (isTablet((Activity) mUnityPlayerActivity)) {
-                    // 锟斤拷ipad
-                    width = dip2px(mUnityPlayerActivity, 728);
-                    height = dip2px(mUnityPlayerActivity, 90);
-
-                }
-                if (isPortrait(mUnityPlayerActivity) && isMatchWindowWidth) {
-                    params = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-                } else {
-                    params = new FrameLayout.LayoutParams(width, height);
-                }
-                params.gravity = Gravity.CENTER | Gravity.BOTTOM;
-
                 bannerListener = new IYumiBannerListener() {
 
                     @Override
@@ -132,8 +108,7 @@ public class YumiUBanner {
                     }
                 };
                 bannerAdView = new YumiBanner((Activity) mUnityPlayerActivity, placementId, true);
-                // setBannerContainer
-                bannerAdView.setBannerContainer(zplay_view, AdSize.BANNER_SIZE_AUTO, isMatchWindowWidth);
+
                 // setChannelID . (Recommend)
                 bannerAdView.setChannelID(channelId);
                 // setVersionName . (Recommend)
@@ -141,23 +116,55 @@ public class YumiUBanner {
                 // setBannerEventListener. (Recommend)
                 bannerAdView.setBannerEventListener(bannerListener);
 
-                if (((int) zplay_view.getTag()) == 1) {
-                    Log.d(TAG, "addContentView 1");
-                    ((Activity) mUnityPlayerActivity).getWindow().addContentView(zplay_view, params);
-                    zplay_view.setTag(2);
-                } else {
-                    Log.d(TAG, "addContentView 2");
-                }
             }
         });
     }
 
-    public void requestAd(){
+    private void setBannerContentView(boolean isMatchWindowWidth){
+        if (null != zplay_view) {
+            zplay_view.removeAllViews();
+        } else {
+            zplay_view = new FrameLayout(mUnityPlayerActivity);
+            zplay_view.setTag(1);
+        }
+        FrameLayout.LayoutParams params;
+        int width = dip2px(mUnityPlayerActivity, 320);
+        int height = dip2px(mUnityPlayerActivity, 50);
+        Log.d(TAG, "run addbannerad");
+        if (isTablet((Activity) mUnityPlayerActivity)) {
+            // 锟斤拷ipad
+            width = dip2px(mUnityPlayerActivity, 728);
+            height = dip2px(mUnityPlayerActivity, 90);
+
+        }
+        if (isPortrait(mUnityPlayerActivity) && isMatchWindowWidth) {
+            params = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        } else {
+            params = new FrameLayout.LayoutParams(width, height);
+        }
+        params.gravity = Gravity.CENTER | Gravity.BOTTOM;
+
+        if (((int) zplay_view.getTag()) == 1) {
+            Log.d(TAG, "addContentView 1");
+            ((Activity) mUnityPlayerActivity).getWindow().addContentView(zplay_view, params);
+            zplay_view.setTag(2);
+        } else {
+            Log.d(TAG, "addContentView 2");
+        }
+    }
+
+    public void requestAd(final boolean isSmart){
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Log.d(TAG, "Calling requestAd() on Android");
+                Log.d(TAG, "Calling requestAd() on Android isSmart is " + isSmart);
                 if (bannerAdView != null){
+                    if (zplay_view == null){
+                        setBannerContentView(isSmart);
+                        // setBannerContainer
+                        bannerAdView.setBannerContainer(zplay_view, AdSize.BANNER_SIZE_AUTO, isSmart);
+                    }
+                   
                     bannerAdView.requestYumiBanner();
                 }
             }
@@ -168,6 +175,7 @@ public class YumiUBanner {
             @Override
             public void run() {
                 if(bannerAdView != null){
+
                     bannerAdView.resumeBanner();
                 }
             }
