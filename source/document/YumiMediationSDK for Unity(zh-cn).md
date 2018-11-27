@@ -38,7 +38,7 @@
 - Unity 5.6 或更高版本
 
 
-- 部署iOS
+- 部署 iOS
 
    Xcode 7.0 或更高版本
 
@@ -46,7 +46,7 @@
 
     [CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
 
-- 部署Android
+- 部署 Android
 
   Android SDK： > 4.1 (API level 16)
 
@@ -62,7 +62,7 @@ Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android �
 
 ## 导入YumiMediationSDK Unity插件
 
-在Unity编辑器中打开您的项目。选择**Assets> Import Package> Custom Package**，找到您下载的YumiMediationSDKPlugin.unitypackage文件。
+在 Unity 编辑器中打开您的项目。选择**Assets> Import Package> Custom Package**，找到您下载的 YumiMediationSDKPlugin.unitypackage 文件。
 
 ![img](resources/01.png)
 
@@ -72,29 +72,29 @@ Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android �
 
 ## 集成YumiMediationSDK
 
-YumiMediationSDK Unity插件随着 [Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver) 一起发布。该库主要供访问Android特定库（例如，AAR）或iOS CocoaPods的任何Unity插件使用。它为Unity插件提供了声明依赖关系的能力，然后自动解析并复制到Unity项目中。请按照下面列出的步骤确保您的项目包含Yumi移动广告SDK。
+YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver) 一起发布。该库主要供访问 Android 特定库（例如，AAR）或 iOS CocoaPods 的任何Unity插件使用。它为 Unity 插件提供了声明依赖关系的能力，然后自动解析并复制到 Unity 项目中。请按照下面列出的步骤确保您的项目包含 YumiMediationSDK。
 
 ### 部署iOS项目
 
-将YumiMediationSDK集成到Unity项目中无需其他步骤。
+将 YumiMediationSDK 集成到 Unity 项目中无需其他步骤。
 
-构建完成，打开**xcworkspace**工程。
+构建完成，打开 **xcworkspace** 工程。
 
-**注意：使用CocoaPods识别iOS依赖项。 CocoaPods作为后期构建过程步骤运行。**
+**注意：使用 CocoaPods 识别 iOS 依赖项。 CocoaPods 作为后期构建过程步骤运行。**
 
 ### 部署Android项目
 
-​	在Unity编辑器中，选择**Assets> Play Services Resolver> Android Resolver>Force Resolve**。 Unity Play服务解析器库会将声明的依赖项复制到Unity应用程序的**Assets/Plugins/Android**目录中。
+​	在Unity编辑器中，选择 **Assets> Play Services Resolver> Android Resolver>Force Resolve**。 Unity Play 服务解析器库会将声明的依赖项复制到Unity应用程序的 **Assets/Plugins/Android** 目录中。
 
 ![img](resources/03.png)
 
 
 
-注意： YumiMediationSDK Unity插件依赖项列在**Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml**中
+注意： YumiMediationSDK Unity 插件依赖项列在 **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml** 中
 
 ## 选择广告形式
 
-在部署到Android或iOS平台时，YumiMediationSDK现在包含在Unity应用程序中。您现在已准备好实施广告。 YumiMediationSDK提供多种不同的广告格式，因此您可以选择最适合您的用户体验需求的广告格式。
+在部署到 Android 或 iOS 平台时，YumiMediationSDK 现在包含在Unity应用程序中。您现在已准备好实施广告。 YumiMediationSDK 提供多种不同的广告格式，因此您可以选择最适合您的用户体验需求的广告格式。
 
 ### Banner
 
@@ -159,26 +159,26 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
-#### 请求Banner
+#### 请求 Banner
 
 ```C#
 bool IsSmartBanner = true;//如果设置 isSmartBanner 为 YES ,YumiMediationBannerView 将会自动根据设备的尺寸进行适配。
 this.bannerView.LoadAd(IsSmartBanner); 
 ```
 
-#### 隐藏Banner
+#### 隐藏 Banner
 
 ```C#
 this.bannerView.Hide();
 ```
 
-#### 显示隐藏的Banner
+#### 显示隐藏的 Banner
 
 ```C#
 this.bannerView.Show();
 ```
 
-#### 销毁Banner
+#### 销毁 Banner
 
 ```C#
 this.bannerView.Destroy();
@@ -242,7 +242,7 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
-#### 展示Interstitial
+#### 展示 Interstitial
 
 建议先调用```this.interstitialAd.IsInterstitialReady()```判断插屏是否准备好
 
@@ -253,7 +253,7 @@ public class YumiSDKDemo : MonoBehaviour
  }
 ```
 
-#### 销毁Interstitial
+#### 销毁 Interstitial
 
 ```c#
 this.interstitialAd.DestroyInterstitial();
@@ -324,7 +324,7 @@ public class YumiSDKDemo : MonoBehaviour
  this.rewardVideoAd.IsRewardVideoReady();
 ```
 
-#### 展示Rewarded Video
+#### 展示 Rewarded Video
 
 ```c#
  if(this.rewardVideoAd.IsRewardVideoReady())
@@ -333,7 +333,7 @@ public class YumiSDKDemo : MonoBehaviour
   }	
 ```
 
-#### 销毁Rewarded Video
+#### 销毁 Rewarded Video
 
 ```c#
 this.rewardVideoAd.DestroyRewardVideo();
@@ -341,7 +341,7 @@ this.rewardVideoAd.DestroyRewardVideo();
 
 ## 调试模式
 
-如果您想调试平台key是否有广告返回，可选择调试模式。 
+如果您想调试平台 key 是否有广告返回，可选择调试模式。 
 
 ### 调用调试模式
 
