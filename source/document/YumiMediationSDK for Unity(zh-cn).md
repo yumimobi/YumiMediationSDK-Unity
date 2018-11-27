@@ -59,13 +59,13 @@ YumiMediationSDK Unity插件随着 [Unity Play Services Resolver library](https:
 
 ### 部署Android项目
 
-​	在Unity编辑器中，选择**Assets> Play Services Resolver> Android Resolver>Force Resolve**。 Unity Play服务解析器库会将声明的依赖项复制到Unity应用程序的Assets / Plugins / Android目录中。
+​	在Unity编辑器中，选择**Assets> Play Services Resolver> Android Resolver>Force Resolve**。 Unity Play服务解析器库会将声明的依赖项复制到Unity应用程序的**Assets/Plugins/Android**目录中。
 
 ![img](resources/03.png)
 
 
 
-注意： YumiMediationSDK Unity插件依赖项列在**Assets / YumiMediationSDK / Editor / YumiMobileAdsDependencies.xml**中
+注意： YumiMediationSDK Unity插件依赖项列在**Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml**中
 
 ## 选择广告形式
 
