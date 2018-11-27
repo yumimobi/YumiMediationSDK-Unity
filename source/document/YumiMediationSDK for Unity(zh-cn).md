@@ -118,11 +118,11 @@ public class YumiSDKDemo : MonoBehaviour
     string  channelId = "YOUR_CHANNEL_ID";
 
     #if UNITY_ANDROID
-       string bannerPlacementId = "YOUR_BANNER_PLACEMENT_ID_ANDROID";
+      string bannerPlacementId = "YOUR_BANNER_PLACEMENT_ID_ANDROID";
     #elif UNITY_IOS
-       string bannerPlacementId = "YOUR_BANNER_PLACEMENT_ID_IOS";
+      string bannerPlacementId = "YOUR_BANNER_PLACEMENT_ID_IOS";
     #else
-       string bannerPlacementId = "unexpected_platform";
+      string bannerPlacementId = "unexpected_platform";
     #endif
     if ( this.bannerView != null )
     {
@@ -202,11 +202,11 @@ public class YumiSDKDemo : MonoBehaviour
     string gameVersionId = "YOUR_VERSION_ID";
     string channelId = "YOUR_CHANNEL_ID";
     #if UNITY_ANDROID
-		string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_ANDROID";
+	  string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_ANDROID";
     #elif UNITY_IOS
-		string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_IOS";
+	  string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_IOS";
     # else
-		string interstitialPlacementId = "unexpected_platform";
+	  string interstitialPlacementId = "unexpected_platform";
     #endif
     if (this.interstitialAd != null) 
     {
@@ -277,11 +277,11 @@ public class YumiSDKDemo : MonoBehaviour
     string gameVersionId = "YOUR_VERSION_ID";
     string channelId = "YOUR_CHANNEL_ID";
     #if UNITY_ANDROID
-		string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_ANDROID";
+	  string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_ANDROID";
     #elif UNITY_IOS
-		string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_IOS";
+	  string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_IOS";
     # else
-		string rewardVideoPlacementId = "unexpected_platform";
+	  string rewardVideoPlacementId = "unexpected_platform";
     #endif
     if (this.rewardVideoAd != null) 
     {
