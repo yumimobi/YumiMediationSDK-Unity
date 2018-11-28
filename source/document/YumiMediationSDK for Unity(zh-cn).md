@@ -71,7 +71,7 @@ Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android �
 
 ## 集成 YumiMediationSDK
 
-YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver) 一起发布。该库主要供访问 Android 特定库（例如，AAR）或 iOS CocoaPods 的任何Unity插件使用。它为 Unity 插件提供了声明依赖关系的能力，然后自动解析并复制到 Unity 项目中。请按照下面列出的步骤确保您的项目包含 YumiMediationSDK。
+YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver) 一起发布。该库主要供访问 Android 特定库（例如，AAR）或 iOS CocoaPods 的任何 Unity 插件使用。它为 Unity 插件提供了声明依赖关系的能力，然后自动解析并复制到 Unity 项目中。请按照下面列出的步骤确保您的项目包含 YumiMediationSDK。
 
 ### 部署 iOS 项目
 
@@ -83,7 +83,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ### 部署 Android 项目
 
-在Unity编辑器中，选择 **Assets> Play Services Resolver> Android Resolver>Force Resolve**。 Unity Play 服务解析器库会将声明的依赖项复制到Unity应用程序的 **Assets/Plugins/Android** 目录中。
+在 Unity 编辑器中，选择 **Assets> Play Services Resolver> Android Resolver>Force Resolve**。 Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用程序的 **Assets/Plugins/Android** 目录中。
 
 ![img](resources/03.png)
 
@@ -93,7 +93,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ## 选择广告形式
 
-在部署到 Android 或 iOS 平台时，YumiMediationSDK 现在包含在Unity应用程序中。您现在已准备好实施广告。YumiMediationSDK 提供多种不同的广告格式，因此您可以选择最适合您的用户体验需求的广告格式。
+在部署到 Android 或 iOS 平台时，YumiMediationSDK 现在包含在 Unity 应用程序中。您现在已准备好实施广告。YumiMediationSDK 提供多种不同的广告格式，因此您可以选择最适合您的用户体验需求的广告格式。
 
 ### Banner
 
