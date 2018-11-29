@@ -1,22 +1,42 @@
 <dependencies>
   <androidPackages>
-    <androidPackage spec="com.yumimobi.ads:mediation:3.3.9.+" />
-    <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.3.9.+" />
-    <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.3.9.+" />
-    <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.3.9.+" />
-    <androidPackage spec="com.yumimobi.ads.mediation:admob:3.3.9.+" />
-    <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.3.9.+" />
-    <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.3.9.+" />
-    <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.3.9.+" />
-    <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.3.9.+" />
-    <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.3.9.+" />
-    <androidPackage spec="com.yumimobi.ads.mediation:mraid:3.3.9.+" />
-    <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.3.9.+" />
-    <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.3.9.+" />
-    <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.3.9.+" />
-    <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.3.9.+" />
-    <androidPackage spec="com.yumimobi.ads.mediation:unity:3.3.9.+" />
-    <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.3.9.+" />
+    <androidPackage spec="com.yumimobi.ads:mediation:3.4.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.4.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.4.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.4.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.4.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.4.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.4.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.4.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.4.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:mraid:3.4.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.4.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.4.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.4.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.4.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:unity:3.4.+" />
+    <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.4.+" />
+
+    <!-- yumi sdk dependency -->
+    <androidPackage spec="com.google.android.gms:play-services-ads:10.0.1" />
+    <androidPackage spec="com.google.firebase:firebase-ads:10.0.1" />
+    <androidPackage spec="com.yumimobi.ads.thirdparty:vungle:6.3.17.0'" />
+    <androidPackage spec="com.yumimobi.ads.thirdparty:applovin:8.1.4.0" />
+    <androidPackage spec="com.yumimobi.ads.thirdparty:unity:2.3.0.0" />
+    <androidPackage spec="com.yumimobi.ads.thirdparty:chartboost:6.6.3.1" />
+    <androidPackage spec="com.yumimobi.ads.thirdparty:baidu:5.8.0.1" />
+    <androidPackage spec="com.yumimobi.ads.thirdparty:gdt:4.20.580.0" />
+    <androidPackage spec="com.yumimobi.ads.thirdparty:adcolony:3.2.1.1" />
+    <androidPackage spec="com.yumimobi.ads.thirdparty:oneway:1.3.5.0" />
+    <androidPackage spec="com.yumimobi.ads.thirdparty:inmobi:6.2.0.1" />
+    <androidPackage spec="com.yumimobi.ads.thirdparty:ksyun:4.0.3.0" />
+    <androidPackage spec="com.yumimobi.ads.thirdparty:ironsource:6.7.10.0" />
+    <androidPackage spec="com.facebook.android:audience-network-sdk:4.99.3" />
+    <androidPackage spec="com.yumimobi.ads.thirdparty:mobvista:8.13.0.0" />
+    <androidPackage spec="com.playableads:playableads:2.3.0" />
+    <androidPackage spec="com.android.support:support-annotations:26.1.0" /> 
+
 
     <repositories>
         <repository>https://jcenter.bintray.com/</repository>
@@ -24,9 +44,9 @@
   </androidPackages>
 
   <iosPods>
-    <iosPod name="YumiMediationDebugCenter-iOS" version="3.3.9" minTargetSdk="8.0"/>
-    <iosPod name="YumiMediationAdapters" version="3.3.9" />
-    <iosPod name="YumiMediationSDK" version="3.3.9" />
+    <iosPod name="YumiMediationDebugCenter-iOS" version="3.4.0" minTargetSdk="8.0"/>
+    <iosPod name="YumiMediationAdapters" version="3.4.0" />
+    <iosPod name="YumiMediationSDK" version="3.4.0" />
       <sources>
         <source>https://github.com/CocoaPods/Specs</source>
       </sources>
