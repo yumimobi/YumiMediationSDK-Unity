@@ -71,7 +71,7 @@ Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android �
 
 ## 集成 YumiMediationSDK
 
-YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver) 一起发布。该库主要供访问 Android 特定库（例如，AAR）或 iOS CocoaPods 的任何 Unity 插件使用。它为 Unity 插件提供了声明依赖关系的能力，然后自动解析并复制到 Unity 项目中。请按照下面列出的步骤确保您的项目包含 YumiMediationSDK。
+YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver) 一起发布。这个库适用于任何需要访问 Android 特定库(例如 AARs )或 iOS CocoaPods 的 Unity 插件。它为 Unity 插件提供了声明依赖关系的能力，然后自动解析并复制到 Unity 项目中。请按照下面列出的步骤确保您的项目包含 YumiMediationSDK。
 
 ### 部署 iOS 项目
 
