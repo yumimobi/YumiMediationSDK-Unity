@@ -77,6 +77,39 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 将 YumiMediationSDK 集成到 Unity 项目中无需其他步骤。
 
+如果你想要修改 YumiMediationSDK 依赖的库，请修改 **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml**  文件，iOS 依赖如下：
+
+```xml
+<iosPods>
+
+  <iosPod name="YumiMediationSDK" version="3.4.0" minTargetSdk="8.0" />
+ <!-- adapters -->
+  <iosPod name="YumiMediationAdapters/AdColony" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/AdMob" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/AppLovin" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/Baidu" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/Chartboost" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/Domob" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/Facebook" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/GDT" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/InMobi" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/IronSource" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/Unity" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/Vungle" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/Mintegral" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/OneWay" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/PlayableAds" version="3.4.0" />
+  <!-- debugCenter -->
+  <iosPod name="YumiMediationDebugCenter-iOS" version="3.4.0" />
+
+    <sources>
+      <source>https://github.com/CocoaPods/Specs</source>
+    </sources>
+</iosPods>
+```
+
+比如删除 ```YumiMediationDebugCenter-iOS```，直接删除 ``` <iosPod name="YumiMediationDebugCenter-iOS" version="3.4.0" />```  即可。
+
 构建完成，打开 **xcworkspace** 工程。
 
 **注意：使用 CocoaPods 识别 iOS 依赖项。 CocoaPods 作为后期构建过程步骤运行。**
@@ -87,9 +120,35 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ![img](resources/03.png)
 
+如果你想要修改 YumiMediationSDK 依赖的库，请修改 **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml**  文件，Android 依赖如下：
 
+```xml
+<androidPackages>
+  <androidPackage spec="com.yumimobi.ads:mediation:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:mraid:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.4.+" />
 
-注意: YumiMediationSDK Unity 插件依赖项列在 **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml** 中
+  <repositories>
+      <repository>https://jcenter.bintray.com/</repository>
+  </repositories>
+</androidPackages>
+```
+
+比如删除  ```admob```，直接删除 ```<androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.+" />```  即可。
 
 ## 选择广告形式
 
