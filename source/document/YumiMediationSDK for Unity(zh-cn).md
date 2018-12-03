@@ -108,7 +108,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 </iosPods>
 ```
 
-比如删除 ```YumiMediationDebugCenter-iOS```，直接删除 ``` <iosPod name="YumiMediationDebugCenter-iOS" version="3.4.0" />```  即可。
+比如删除 ```AdMob``` ，直接删除 ``` <iosPod name="YumiMediationAdapters/AdMob" version="3.4.0" />```  即可。
 
 构建完成，打开 **xcworkspace** 工程。
 
