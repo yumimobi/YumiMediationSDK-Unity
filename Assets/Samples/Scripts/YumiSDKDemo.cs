@@ -13,10 +13,10 @@ public class YumiSDKDemo : MonoBehaviour
     private YumiRewardVideoAd rewardVideoAd;
     private YumiDebugCenter debugCenter;
 
-    private string BannerPlacementId = "";
+    private String BannerPlacementId = "";
     private String RewardedVideoPlacementId = "";
     private String InterstitialsPlacementId = "";
-    private string GameVersionId = "";
+    private String GameVersionId = "";
     private String ChannelId = "";
 
     private bool IsSmartBanner;
