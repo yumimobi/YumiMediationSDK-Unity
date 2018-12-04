@@ -57,17 +57,14 @@ public class YumiSDKDemo : MonoBehaviour
         if (GUI.Button(new Rect(40, 84, btnWidth, 120), "request banner", myButtonStyle))
         {
           
-            if(this.bannerView != null)
+            if(this.bannerView == null)
             {
-                this.bannerView.Destroy();
+                this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionId, YumiAdPosition.Bottom);
+                // banner add ad event
+                this.bannerView.OnAdLoaded += this.HandleAdLoaded;
+                this.bannerView.OnAdFailedToLoad += HandleAdFailedToLoad;
+                this.bannerView.OnAdClick += HandleAdClicked;
             }
-
-            this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionId,YumiAdPosition.Bottom);
-
-            // banner add ad event
-            this.bannerView.OnAdLoaded += this.HandleAdLoaded;
-            this.bannerView.OnAdFailedToLoad += HandleAdFailedToLoad;
-            this.bannerView.OnAdClick += HandleAdClicked;
 
             this.bannerView.LoadAd(IsSmartBanner);
         }
@@ -76,6 +73,7 @@ public class YumiSDKDemo : MonoBehaviour
         {
             if(this.bannerView != null){
                 this.bannerView.Destroy();
+                this.bannerView = null;
             }
 
         }
@@ -136,6 +134,22 @@ public class YumiSDKDemo : MonoBehaviour
                 if(this.debugCenter == null)
                 {
                     this.debugCenter = new YumiDebugCenter();
+                }
+
+                //Destroy ad
+
+                if (this.bannerView != null)
+                {
+                    this.bannerView.Destroy();
+                    this.bannerView = null;
+                }
+                if (this.interstitialAd != null)
+                {
+                    this.interstitialAd.DestroyInterstitial();
+                }
+                if (this.rewardVideoAd != null)
+                {
+                    this.rewardVideoAd.DestroyRewardVideo();
                 }
 
                 this.debugCenter.PresentYumiMediationDebugCenter(BannerPlacementId, InterstitialsPlacementId, RewardedVideoPlacementId, ChannelId, GameVersionId);
