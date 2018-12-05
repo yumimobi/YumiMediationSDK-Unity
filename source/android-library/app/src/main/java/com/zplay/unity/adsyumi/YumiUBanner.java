@@ -198,6 +198,7 @@ public class YumiUBanner {
             public void run() {
                 if (bannerAdView != null){
                     bannerAdView.onDestroy();
+                    bannerAdView = null;
                 }
             }
         });
