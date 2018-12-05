@@ -64,17 +64,19 @@ public class YumiSDKDemo : MonoBehaviour
                 this.bannerView.OnAdLoaded += this.HandleAdLoaded;
                 this.bannerView.OnAdFailedToLoad += HandleAdFailedToLoad;
                 this.bannerView.OnAdClick += HandleAdClicked;
-            }
+             }
 
+           
             this.bannerView.LoadAd(IsSmartBanner);
+            this.bannerView.Show();
+
         }
         //remove banner
-        if (GUI.Button(new Rect(40 + btnWidth + 10, 84, btnWidth, 120), "reomve banner", myButtonStyle))
+        if (GUI.Button(new Rect(40 + btnWidth + 10, 84, btnWidth, 120), "hide banner", myButtonStyle))
         {
             if(this.bannerView != null){
-                this.bannerView.Destroy();
-                this.bannerView = null;
-            }
+                this.bannerView.Hide();
+        }
 
         }
 
@@ -140,8 +142,8 @@ public class YumiSDKDemo : MonoBehaviour
 
                 if (this.bannerView != null)
                 {
-                    this.bannerView.Destroy();
-                    this.bannerView = null;
+                    this.bannerView.Hide();
+
                 }
                 if (this.interstitialAd != null)
                 {
