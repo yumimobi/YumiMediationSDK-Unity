@@ -132,14 +132,27 @@ public class YumiUBanner {
         int height = dip2px(mUnityPlayerActivity, 50);
         Log.d(TAG, "run addbannerad");
         if (isTablet((Activity) mUnityPlayerActivity)) {
-            // 锟斤拷ipad
+            // ipad
             width = dip2px(mUnityPlayerActivity, 728);
             height = dip2px(mUnityPlayerActivity, 90);
 
         }
         if (isPortrait(mUnityPlayerActivity) && isMatchWindowWidth) {
-            params = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            width = getWindowWidth(mUnityPlayerActivity);
+            height = (int) ((getWindowWidth(mUnityPlayerActivity) * 1.00f) / 6.40f);
+
+            if (isTablet((Activity) mUnityPlayerActivity)) {
+                // ipad
+                width = getWindowWidth(mUnityPlayerActivity);
+                height = (int) ((getWindowWidth(mUnityPlayerActivity) * 1.00f) / 8.00f);
+
+            }
+            Log.d(TAG, "isMatchWindowWidth:" + isMatchWindowWidth
+                    + "width:" + width + " , height:" + height);
+            params = new FrameLayout.LayoutParams(width, height);
         } else {
+            Log.d(TAG, "isMatchWindowWidth:" + isMatchWindowWidth
+                    + "width:" + width + " , height:" + height);
             params = new FrameLayout.LayoutParams(width, height);
         }
         params.gravity = Gravity.CENTER | Gravity.BOTTOM;
@@ -159,12 +172,13 @@ public class YumiUBanner {
             public void run() {
                 Log.d(TAG, "Calling requestAd() on Android isSmart is " + isSmart);
                 if (bannerAdView != null){
+
                     if (zplay_view == null){
                         setBannerContentView(isSmart);
                         // setBannerContainer
                         bannerAdView.setBannerContainer(zplay_view, AdSize.BANNER_SIZE_AUTO, isSmart);
                     }
-                   
+
                     bannerAdView.requestYumiBanner();
                 }
             }
@@ -175,7 +189,7 @@ public class YumiUBanner {
             @Override
             public void run() {
                 if(bannerAdView != null){
-
+                    Log.d(TAG, "show banner view");
                     bannerAdView.resumeBanner();
                 }
             }
@@ -186,6 +200,7 @@ public class YumiUBanner {
             @Override
             public void run() {
                 if (bannerAdView != null){
+                    Log.d(TAG, "hide banner view");
                     bannerAdView.dismissBanner();
                 }
             }
@@ -197,13 +212,20 @@ public class YumiUBanner {
             @Override
             public void run() {
                 if (bannerAdView != null){
+                    Log.d(TAG, "destroy banner view");
                     bannerAdView.onDestroy();
                     bannerAdView = null;
                 }
             }
         });
     }
-
+    public final static int getWindowWidth(Context context) {
+        DisplayMetrics displayMetrics = context.getResources()
+                .getDisplayMetrics();
+        int width = displayMetrics.widthPixels;
+        int height = displayMetrics.heightPixels;
+        return width;
+    }
     private final  boolean isApproximateTablet(Context context) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         int width = displayMetrics.widthPixels;
