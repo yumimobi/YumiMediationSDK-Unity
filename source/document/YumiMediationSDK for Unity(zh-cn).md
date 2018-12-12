@@ -11,7 +11,6 @@
          * [请求 Banner](#请求-banner)
          * [隐藏 Banner](#隐藏-banner)
          * [显示隐藏的 Banner](#显示隐藏的-banner)
-         * [销毁 Banner](#销毁-banner)
       * [Interstitial](#interstitial)
          * [初始化及请求插屏](#初始化及请求插屏)
          * [展示 Interstitial](#展示-interstitial)
@@ -183,11 +182,7 @@ public class YumiSDKDemo : MonoBehaviour
     #else
       string bannerPlacementId = "unexpected_platform";
     #endif
-    if ( this.bannerView != null )
-    {
-      this.bannerView.Destroy();
-    }
-
+   
     this.bannerView = new YumiBannerView( bannerPlacementId, channelId, gameVersionId, YumiAdPosition.Bottom );
 
     /* banner add ad event */
@@ -234,12 +229,6 @@ this.bannerView.Hide();
 
 ```C#
 this.bannerView.Show();
-```
-
-#### 销毁 Banner
-
-```C#
-this.bannerView.Destroy();
 ```
 
 ### Interstitial
