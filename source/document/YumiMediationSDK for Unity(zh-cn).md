@@ -183,11 +183,7 @@ public class YumiSDKDemo : MonoBehaviour
     #else
       string bannerPlacementId = "unexpected_platform";
     #endif
-    if ( this.bannerView != null )
-    {
-      this.bannerView.Destroy();
-    }
-
+   
     this.bannerView = new YumiBannerView( bannerPlacementId, channelId, gameVersionId, YumiAdPosition.Bottom );
 
     /* banner add ad event */
@@ -234,12 +230,6 @@ this.bannerView.Hide();
 
 ```C#
 this.bannerView.Show();
-```
-
-#### 销毁 Banner
-
-```C#
-this.bannerView.Destroy();
 ```
 
 ### Interstitial
