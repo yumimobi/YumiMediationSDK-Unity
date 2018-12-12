@@ -11,7 +11,6 @@
          * [请求 Banner](#请求-banner)
          * [隐藏 Banner](#隐藏-banner)
          * [显示隐藏的 Banner](#显示隐藏的-banner)
-         * [销毁 Banner](#销毁-banner)
       * [Interstitial](#interstitial)
          * [初始化及请求插屏](#初始化及请求插屏)
          * [展示 Interstitial](#展示-interstitial)
