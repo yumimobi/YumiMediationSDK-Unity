@@ -17,7 +17,7 @@
     <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.4.+" />
     <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.4.+" />
 
-    <!--  unity: release china channel please use unity-china   -->
+    <!--  If your app is only available in mainland China, use unity-china,else use Unity.   -->
     <androidPackage spec="com.yumimobi.ads.mediation:unity:3.4.+" />
     <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.4.+" /> -->
 

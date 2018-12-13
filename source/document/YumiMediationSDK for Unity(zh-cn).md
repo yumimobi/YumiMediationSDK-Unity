@@ -136,11 +136,11 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
   <androidPackage spec="com.yumimobi.ads.mediation:mraid:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.4.+" />
-   <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.4.+" />
   
-  <!--  unity: release china channel please use unity-china   -->
+  <!--  If your app is only available in mainland China, use unity-china,else use unity.   -->
   <androidPackage spec="com.yumimobi.ads.mediation:unity:3.4.+" />
   <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.4.+" /> -->
   
