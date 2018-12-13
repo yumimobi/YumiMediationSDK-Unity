@@ -38,7 +38,7 @@
     <file>Assets/Plugins/Android/com.facebook.android.audience-network-sdk-4.99.3.aar</file>
     <file>Assets/Plugins/Android/com.google.android.exoplayer.exoplayer-core-r2.4.2.aar</file>
     <file>Assets/Plugins/Android/com.google.android.exoplayer.exoplayer-dash-r2.4.2.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-10.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-10.0.1</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-10.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-lite-10.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-analytics-10.0.1.aar</file>
@@ -68,23 +68,23 @@
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-plus-10.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-safetynet-10.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-tagmanager-10.0.1.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-tagmanager-api-10.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-tagmanager-api-10.0.1</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-tagmanager-v4-impl-10.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-tasks-10.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-vision-10.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-wallet-10.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-wearable-10.0.1.aar</file>
-    <file>Assets/Plugins/Android/com.google.firebase.firebase-ads-10.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.firebase.firebase-ads-10.0.1</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-analytics-10.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-analytics-impl-10.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-appindexing-10.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-auth-10.0.1.aar</file>
-    <file>Assets/Plugins/Android/com.google.firebase.firebase-common-10.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.firebase.firebase-common-10.0.1</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-config-10.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-crash-10.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-database-10.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-database-connection-10.0.1.aar</file>
-    <file>Assets/Plugins/Android/com.google.firebase.firebase-iid-10.0.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.firebase.firebase-iid-10.0.1</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-messaging-10.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-storage-10.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-storage-common-10.0.1.aar</file>
@@ -99,7 +99,7 @@
     <file>Assets/Plugins/Android/com.yumimobi.ads.mediation.gdt-3.4.0.aar</file>
     <file>Assets/Plugins/Android/com.yumimobi.ads.mediation.inmobi-3.4.0.aar</file>
     <file>Assets/Plugins/Android/com.yumimobi.ads.mediation.ironsource-3.4.0.aar</file>
-    <file>Assets/Plugins/Android/com.yumimobi.ads.mediation.ksyun-3.4.0.aar</file>
+    <file>Assets/Plugins/Android/com.yumimobi.ads.mediation.ksyun-3.4.0</file>
     <file>Assets/Plugins/Android/com.yumimobi.ads.mediation.mintegral-3.4.0.aar</file>
     <file>Assets/Plugins/Android/com.yumimobi.ads.mediation.mraid-3.4.0.aar</file>
     <file>Assets/Plugins/Android/com.yumimobi.ads.mediation.oneway-3.4.0.aar</file>
@@ -107,7 +107,7 @@
     <file>Assets/Plugins/Android/com.yumimobi.ads.mediation.unity-3.4.0.aar</file>
     <file>Assets/Plugins/Android/com.yumimobi.ads.mediation.vungle-3.4.0.aar</file>
     <file>Assets/Plugins/Android/com.yumimobi.ads.mediation-3.4.0.aar</file>
-    <file>Assets/Plugins/Android/com.yumimobi.ads.thirdparty.adcolony-3.2.1.1.aar</file>
+    <file>Assets/Plugins/Android/com.yumimobi.ads.thirdparty.adcolony-3.2.1.1</file>
     <file>Assets/Plugins/Android/com.yumimobi.ads.thirdparty.applovin-8.0.2.0.aar</file>
     <file>Assets/Plugins/Android/com.yumimobi.ads.thirdparty.baidu-5.8.0.2.aar</file>
     <file>Assets/Plugins/Android/com.yumimobi.ads.thirdparty.chartboost-6.6.3.1.aar</file>
