@@ -427,4 +427,10 @@ Reference Android official solution，[Click to view](https://developer.android.
 If your version of Google play-services is above 15.0.0, please download the new admob adapter instead of 
 **Assets/Plugins/Editor/Android/com.yumimobi.ads.mediation.admob-3.4.0.aar** 。[Download](http://adsdk.yumimobi.com/Android/Android_Adapters/3.4.0/yumi_adapter_admob_v3.4.0(For_GooglePlayService_version_15_and_above).aar)。
 
+**3.Test ad placementIDs**
+
+| Platform | Banner   | Interstitial | Rewarded Video |
+| -------- | -------- | ------------ | -------------- |
+| iOS      | l6ibkpae | onkkeg5i     | 5xmpgti4       |
+| Android  | uz852t89 | 56ubk22h     | ew9hyvl4       |
 
