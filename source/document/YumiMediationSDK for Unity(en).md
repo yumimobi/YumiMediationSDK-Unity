@@ -4,7 +4,7 @@
   - [Import the YumiMediationSDK Unity plugin](#import-the-yumimediationsdk-unity-plugin)
   - [Include the YumiMediationSDK](#include-the-yumimediationsdk)
     - [Deploy iOS](#deploy-ios)
-    - [Deploy iOS](#deploy-ios-1)
+    - [Deploy Android](#deploy-android)
   - [Select an ad format](#select-an-ad-format)
     - [Banner](#banner)
       - [Initialize Banner](#initialize-banner)
@@ -19,7 +19,7 @@
       - [Initialization and Rewarded Video request](#initialization-and-rewarded-video-request)
       - [Determine if the video is ready](#determine-if-the-video-is-ready)
       - [Show Rewarded Video](#show-rewarded-video)
-      - [Destroy Rewarded Video](#destroy-rewarded-video)
+      - [Delegate Rewarded Video](#delegate-rewarded-video)
   - [Debug Mode](#debug-mode)
     - [Call Debug Mode](#call-debug-mode)
   - [Common issues of developer](#common-issues-of-developer)
@@ -114,13 +114,14 @@ Complete the above procedure，Open **xcworkspace** project.
 
 **Note：Use CocoaPods to identify iOS dependencies. CocoaPods runs as a post-build process step.**
 
-### Deploy iOS 
+### Deploy Android 
 
 In the Unity editor, select **Assets> Play Services Resolver> Android Resolver>Force Resolve**。  The Unity Play Services Resolver library will copy the declared dependencies into the  **Assets/Plugins/Android** directory of your Unity app.
 
 ![img](resources/03.png)
 
-The YumiMediationSDK Ads Unity plugin dependencies are listed in **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml**  .
+The YumiMediationSDK Ads Unity plugin dependencies are listed in **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml** .
+
 Android dependencies：
 
 ```xml
@@ -384,7 +385,7 @@ public class YumiSDKDemo : MonoBehaviour
  } 
 ```
 
-#### Destroy Rewarded Video
+#### Delegate Rewarded Video
 
 ```c#
 this.rewardVideoAd.DestroyRewardVideo();
