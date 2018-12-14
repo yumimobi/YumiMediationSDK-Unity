@@ -5,7 +5,7 @@
   - [Include the YumiMediationSDK](#include-the-yumimediationsdk)
     - [Deploy iOS](#deploy-ios)
     - [Deploy iOS](#deploy-ios-1)
-  - [选择广告形式](#%E9%80%89%E6%8B%A9%E5%B9%BF%E5%91%8A%E5%BD%A2%E5%BC%8F)
+  - [Select an ad format](#select-an-ad-format)
     - [Banner](#banner)
       - [Initialize Banner](#initialize-banner)
       - [Request Banner](#request-banner)
@@ -21,7 +21,7 @@
       - [Show Rewarded Video](#show-rewarded-video)
       - [Destroy Rewarded Video](#destroy-rewarded-video)
   - [Debug Mode](#debug-mode)
-    - [调用调试模式](#%E8%B0%83%E7%94%A8%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F)
+    - [Call Debug Mode](#call-debug-mode)
   - [Common issues of developer](#common-issues-of-developer)
 # YumiMediationSDK for Unity
 
@@ -41,13 +41,13 @@ This documentation is intended for developers who want to integrate Yumimobi SDK
 
   iOS 8.0 and above
 
-[CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
+  [CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
 
 - To deploy to Android
 
   Android SDK： > 4.1 (API level 16)
 
-[Demo ](https://github.com/yumimobi/YumiMediationSDK-Unity)   
+  [Demo ](https://github.com/yumimobi/YumiMediationSDK-Unity)   
 
 ## Download the YumiMediationSDK Unity plugin
 
@@ -110,7 +110,7 @@ iOS dependencies：
 
 e.g., Delete ```AdMob``` ，Delete ``` <iosPod name="YumiMediationAdapters/AdMob" version="3.4.0" />```  
 
-Complete the above procedure，Open **xcworkspace** project。
+Complete the above procedure，Open **xcworkspace** project.
 
 **Note：Use CocoaPods to identify iOS dependencies. CocoaPods runs as a post-build process step.**
 
@@ -153,7 +153,7 @@ Android dependencies：
 ```
 e.g., Delete  ```admob```，Delete ```<androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.+" />``` .
 
-## 选择广告形式
+## Select an ad format
 
 The YumiMediationSDK is now included in your Unity app when deploying to either the Android or iOS platform. You're now ready to implement an ad. YumiMediationSDK offers a number of different ad formats, so you can choose the one that best fits your user experience needs.
 
@@ -394,7 +394,7 @@ this.rewardVideoAd.DestroyRewardVideo();
 
 Please select debug mode if you want to test whether ad ruturn is available for an app. 
 
-### 调用调试模式
+### Call Debug Mode
 
 ```C#
 using YumiMediationSDK.Api;
