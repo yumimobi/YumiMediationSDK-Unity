@@ -424,3 +424,10 @@ public class YumiSDKDemo : MonoBehaviour
 
 如果您的 Google play-services 版本在15.0.0 以上，请下载新的 admob adapter 替换 **Assets/Plugins/Editor/Android/com.yumimobi.ads.mediation.admob-3.4.0.aar** 文件。[下载地址](http://adsdk.yumimobi.com/Android/Android_Adapters/3.4.0/yumi_adapter_admob_v3.4.0(For_GooglePlayService_version_15_and_above).aar)。
 
+**3.测试广告位**
+
+| 平台      | Banner   | Interstitial | Rewarded Video |
+| ------- | -------- | ------------ | -------------- |
+| iOS     | l6ibkpae | onkkeg5i     | 5xmpgti4       |
+| Android | uz852t89 | 56ubk22h     | ew9hyvl4       |
+
