@@ -1,1 +1,429 @@
+- [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
+  - [Summary](#summary)
+  - [Download the YumiMediationSDK Unity plugin](#download-the-yumimediationsdk-unity-plugin)
+  - [Import the YumiMediationSDK Unity plugin](#import-the-yumimediationsdk-unity-plugin)
+  - [Include the YumiMediationSDK](#include-the-yumimediationsdk)
+    - [Deploy iOS](#deploy-ios)
+    - [Deploy iOS](#deploy-ios-1)
+  - [选择广告形式](#%E9%80%89%E6%8B%A9%E5%B9%BF%E5%91%8A%E5%BD%A2%E5%BC%8F)
+    - [Banner](#banner)
+      - [Initialize Banner](#initialize-banner)
+      - [Request Banner](#request-banner)
+      - [Hide Banner](#hide-banner)
+      - [Show Banner](#show-banner)
+    - [Interstitial](#interstitial)
+      - [Initialization and Interstitial request](#initialization-and-interstitial-request)
+      - [Show Interstitial](#show-interstitial)
+      - [Delegate Interstitial](#delegate-interstitial)
+    - [Rewarded Video](#rewarded-video)
+      - [Initialization and Rewarded Video request](#initialization-and-rewarded-video-request)
+      - [Determine if the video is ready](#determine-if-the-video-is-ready)
+      - [Show Rewarded Video](#show-rewarded-video)
+      - [Destroy Rewarded Video](#destroy-rewarded-video)
+  - [Debug Mode](#debug-mode)
+    - [调用调试模式](#%E8%B0%83%E7%94%A8%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F)
+  - [Common issues of developer](#common-issues-of-developer)
+# YumiMediationSDK for Unity
+
+## Summary
+
+
+1.To Readers
+
+This documentation is intended for developers who want to integrate Yumimobi SDK in Unity products.
+
+2.Prerequisites
+
+- Unity 5.6 and above
+- To deploy to iOS
+  
+  Xcode 7.0 or higher
+
+  iOS 8.0 and above
+
+[CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
+
+- To deploy to Android
+
+  Android SDK： > 4.1 (API level 16)
+
+[Demo ](https://github.com/yumimobi/YumiMediationSDK-Unity)   
+
+## Download the YumiMediationSDK Unity plugin
+
+The YumiMediationSDK Unity plugin enables Unity developers to easily serve Yumimobi Ads on Android and iOS apps without having to write Java or Objective-C code. The plugin provides a C# interface for requesting ads that is used by C# scripts in your Unity project. Use the links below to download the Unity package for the plugin or to take a look at its code on GitHub.
+
+[Download the YumiMediationSDK Unity plugin](https://adsdk.yumimobi.com/Unity/3.4.0/YumiMediationSDKPlugin_v3.4.0.unitypackage)
+
+[VIEW SOURCE](https://github.com/yumimobi/YumiMediationSDK-Unity)
+
+## Import the YumiMediationSDK Unity plugin
+
+Open your project in the Unity editor。Select**Assets> Import Package> Custom Package** and find the YumiMediationSDKPlugin.unitypackage file 有downloaded
+
+![img](resources/01.png)
+
+Make sure all of the files are selected and click **Import**.
+
+![img](resources/02.png)
+
+## Include the YumiMediationSDK
+
+The YumiMediationSDK Unity plugin is distributed with the [Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver) 。This library is intended for use by any Unity plugin that requires access to Android specific libraries (e.g., AARs) or iOS CocoaPods. It provides Unity plugins the ability to declare dependencies, which are then automatically resolved and copied into your Unity project.
+
+Follow the steps listed below to ensure your project includes the YumiMediationSDK Unity
+### Deploy iOS 
+
+No procedure are required to integrate the YumiMediationSDK into a Unity project.
+
+The YumiMediationSDK Ads Unity plugin dependencies are listed in **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml**  .
+iOS dependencies：
+
+```xml
+<iosPods>
+
+  <iosPod name="YumiMediationSDK" version="3.4.0" minTargetSdk="8.0" />
+ <!-- adapters -->
+  <iosPod name="YumiMediationAdapters/AdColony" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/AdMob" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/AppLovin" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/Baidu" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/Chartboost" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/Domob" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/Facebook" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/GDT" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/InMobi" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/IronSource" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/Unity" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/Vungle" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/Mintegral" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/OneWay" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/PlayableAds" version="3.4.0" />
+  <!-- debugCenter -->
+  <iosPod name="YumiMediationDebugCenter-iOS" version="3.4.0" />
+
+    <sources>
+      <source>https://github.com/CocoaPods/Specs</source>
+    </sources>
+</iosPods>
+```
+
+e.g., Delete ```AdMob``` ，Delete ``` <iosPod name="YumiMediationAdapters/AdMob" version="3.4.0" />```  
+
+Complete the above procedure，Open **xcworkspace** project。
+
+**Note：Use CocoaPods to identify iOS dependencies. CocoaPods runs as a post-build process step.**
+
+### Deploy iOS 
+
+In the Unity editor, select **Assets> Play Services Resolver> Android Resolver>Force Resolve**。  The Unity Play Services Resolver library will copy the declared dependencies into the  **Assets/Plugins/Android** directory of your Unity app.
+
+![img](resources/03.png)
+
+The YumiMediationSDK Ads Unity plugin dependencies are listed in **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml**  .
+Android dependencies：
+
+```xml
+<androidPackages>
+  <androidPackage spec="com.yumimobi.ads:mediation:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:mraid:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.4.+" />
+  
+  <!--  If your app is only available in mainland China, use unity-china,else use unity.   -->
+  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.4.+" />
+  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.4.+" /> -->
+  
+  <repositories>
+      <repository>https://jcenter.bintray.com/</repository>
+  </repositories>
+</androidPackages>
+```
+e.g., Delete  ```admob```，Delete ```<androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.+" />``` .
+
+## 选择广告形式
+
+The YumiMediationSDK is now included in your Unity app when deploying to either the Android or iOS platform. You're now ready to implement an ad. YumiMediationSDK offers a number of different ad formats, so you can choose the one that best fits your user experience needs.
+
+### Banner
+
+#### Initialize Banner
+
+```c#
+using YumiMediationSDK.Api;
+using YumiMediationSDK.Common;
+
+public class YumiSDKDemo : MonoBehaviour
+{
+  private YumiBannerView bannerView;
+
+  void Start()
+  {
+    this.InitBanner();
+  }
+
+  private void InitBanner()
+  {
+    string  gameVersionId = "YOUR_VERSION_ID";
+    string  channelId = "YOUR_CHANNEL_ID";
+
+    #if UNITY_ANDROID
+      string bannerPlacementId = "YOUR_BANNER_PLACEMENT_ID_ANDROID";
+    #elif UNITY_IOS
+      string bannerPlacementId = "YOUR_BANNER_PLACEMENT_ID_IOS";
+    #else
+      string bannerPlacementId = "unexpected_platform";
+    #endif
+   
+    this.bannerView = new YumiBannerView( bannerPlacementId, channelId, gameVersionId, YumiAdPosition.Bottom );
+
+    /* banner add ad event */
+    this.bannerView.OnAdLoaded    += this.HandleAdLoaded;
+    this.bannerView.OnAdFailedToLoad  += HandleAdFailedToLoad;
+    this.bannerView.OnAdClick   += HandleAdClicked;
+  }
+
+  #region Banner callback handlers
+
+  public void HandleAdLoaded( object sender, EventArgs args )
+  {
+    Logger.Log( "HandleAdLoaded event received" );
+  }
+
+  public void HandleAdFailedToLoad( object sender, YumiAdFailedToLoadEventArgs args )
+  {
+    Logger.Log( "HandleFailedToReceiveAd event received with message: " + args.Message );
+  }
+
+  public void HandleAdClicked( object sender, EventArgs args )
+  {
+    Logger.Log( "Handle Ad Clicked" );
+  }
+
+  #endregion
+}
+```
+
+#### Request Banner
+
+```C#
+bool IsSmartBanner = true;//If you set isSmartBanner to YES, YumiMediationBannerView will automatically adapt to the size of the device.
+this.bannerView.LoadAd(IsSmartBanner); 
+```
+
+#### Hide Banner
+
+```C#
+this.bannerView.Hide();
+```
+
+#### Show Banner
+
+```C#
+this.bannerView.Show();
+```
+
+### Interstitial
+
+#### Initialization and Interstitial request
+
+```C#
+using YumiMediationSDK.Api;
+using YumiMediationSDK.Common;
+public class YumiSDKDemo : MonoBehaviour 
+{
+  private YumiInterstitialAd interstitialAd;
+  void Start() 
+  {
+    this.RequestInterstitial();
+  }
+  private void RequestInterstitial() 
+  {
+    string gameVersionId = "YOUR_VERSION_ID";
+    string channelId = "YOUR_CHANNEL_ID";
+    #if UNITY_ANDROID
+	  string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_ANDROID";
+    #elif UNITY_IOS
+	  string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_IOS";
+    # else
+	  string interstitialPlacementId = "unexpected_platform";
+    #endif
+    if (this.interstitialAd != null) 
+    {
+      this.interstitialAd.DestroyInterstitial();
+    }
+    this.interstitialAd = new YumiInterstitialAd(interstitialPlacementId, channelId, gameVersionId);
+    // add interstitial event 
+    this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
+    this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
+    this.interstitialAd.OnAdClicked += HandleInterstitialAdClicked;
+    this.interstitialAd.OnAdClosed += HandleInterstitialAdClosed;
+  }
+  
+  #region interstitial callback handlers
+  public void HandleInterstitialAdLoaded(object sender, EventArgs args) 
+  {
+    Logger.Log("HandleInterstitialAdLoaded event received");
+  }
+  public void HandleInterstitialAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args) 
+  {
+    Logger.Log("HandleInterstitialAdFailedToLoad event received with message: " + args.Message);
+  }
+  public void HandleInterstitialAdClicked(object sender, EventArgs args) 
+  {
+    Logger.Log("HandleInterstitialAdClicked Clicked");
+  }
+  public void HandleInterstitialAdClosed(object sender, EventArgs args) 
+  {
+    Logger.Log("HandleInterstitialAdClosed Ad closed");
+  }
+  #endregion
+}
+```
+
+#### Show Interstitial
+
+It is recommended to call```this.interstitialAd.IsInterstitialReady()```to determine if the screen is ready.
+
+```C#
+ if(this.interstitialAd.IsInterstitialReady())
+ {
+  this.interstitialAd.ShowInterstitial();
+ }
+```
+
+#### Delegate Interstitial
+
+```c#
+this.interstitialAd.DestroyInterstitial();
+```
+
+### Rewarded Video
+
+#### Initialization and Rewarded Video request
+
+```C#
+using YumiMediationSDK.Api;
+using YumiMediationSDK.Common;
+public class YumiSDKDemo : MonoBehaviour 
+{
+  private YumiRewardVideoAd rewardVideoAd;
+  void Start() 
+  {
+    this.RequestRewardVideo();
+  }
+  private void RequestRewardVideo() 
+  {
+    string gameVersionId = "YOUR_VERSION_ID";
+    string channelId = "YOUR_CHANNEL_ID";
+    #if UNITY_ANDROID
+	  string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_ANDROID";
+    #elif UNITY_IOS
+	  string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_IOS";
+    # else
+	  string rewardVideoPlacementId = "unexpected_platform";
+    #endif
+    if (this.rewardVideoAd != null) 
+    {
+      this.rewardVideoAd.DestroyRewardVideo();
+    }
+    this.rewardVideoAd = new YumiRewardVideoAd();
+    this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
+    this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
+    this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
+    this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
+    // load ad
+    this.rewardVideoAd.LoadRewardVideoAd(rewardVideoPlacementId, channelId, gameVersionId);
+  }
+  
+  #region reward video callback handlers
+  public void HandleRewardVideoAdOpened(object sender, EventArgs args) 
+  {
+    Logger.Log("HandleRewardVideoAdOpened event opened");
+  }
+  public void HandleRewardVideoAdStartPlaying(object sender, EventArgs args) 
+  {
+    Logger.Log("HandleRewardVideoAdStartPlaying event start playing ");
+  }
+  public void HandleRewardVideoAdReward(object sender, EventArgs args) 
+  {
+    Logger.Log("HandleRewardVideoAdReward reward");
+  }
+  public void HandleRewardVideoAdClosed(object sender, EventArgs args) 
+  {
+    Logger.Log("HandleRewardVideoAdClosed Ad closed");
+  }
+  #endregion
+}
+```
+
+#### Determine if the video is ready
+
+```c#
+ this.rewardVideoAd.IsRewardVideoReady();
+```
+
+#### Show Rewarded Video
+
+```c#
+ if(this.rewardVideoAd.IsRewardVideoReady())
+ {
+  this.rewardVideoAd.PlayRewardVideo();
+ } 
+```
+
+#### Destroy Rewarded Video
+
+```c#
+this.rewardVideoAd.DestroyRewardVideo();
+```
+
+## Debug Mode
+
+Please select debug mode if you want to test whether ad ruturn is available for an app. 
+
+### 调用调试模式
+
+```C#
+using YumiMediationSDK.Api;
+using YumiMediationSDK.Common;
+
+public class YumiSDKDemo : MonoBehaviour
+{
+   private YumiDebugCenter debugCenter;
+  
+   private void CallDebugCenter(){
+        if (this.debugCenter == null)
+        {
+            this.debugCenter = new YumiDebugCenter();
+        }
+// Note: Fill in the ad slot information to distinguish between iOS and Android
+        this.debugCenter.PresentYumiMediationDebugCenter("YOUR_BANNER_PLACEMENT_ID", "YOUR_INTERSTITIAL_PLACEMENT_ID", "YOUR_REWARDVIDEO_PLACEMENT_ID", "YOUR_CHANNEL_ID", "YOUR_VERSION_ID");
+    }
+}
+```
+
+## Common issues of developer 
+
+**1.Apps with more than 64K (65536) Android configuration methods**
+
+Reference Android official solution，[Click to view](https://developer.android.com/studio/build/multidex)
+
+**2.Google play-services version 15.0.0 or higher**
+
+If your version of Google play-services is above 15.0.0, please download the new admob adapter instead of 
+**Assets/Plugins/Editor/Android/com.yumimobi.ads.mediation.admob-3.4.0.aar** 。[Download](http://adsdk.yumimobi.com/Android/Android_Adapters/3.4.0/yumi_adapter_admob_v3.4.0(For_GooglePlayService_version_15_and_above).aar)。
+
 
