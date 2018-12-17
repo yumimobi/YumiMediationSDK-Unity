@@ -53,7 +53,7 @@ This documentation is intended for developers who want to integrate Yumimobi SDK
 
 The YumiMediationSDK Unity plugin enables Unity developers to easily serve Yumimobi Ads on Android and iOS apps without having to write Java or Objective-C code. The plugin provides a C# interface for requesting ads that is used by C# scripts in your Unity project. Use the links below to download the Unity package for the plugin or to take a look at its code on GitHub.
 
-[Download the YumiMediationSDK Unity plugin](https://adsdk.yumimobi.com/Unity/3.4.0/YumiMediationSDKPlugin_v3.4.0.unitypackage)
+[Download the YumiMediationSDK Unity plugin](https://adsdk.yumimobi.com/Unity/3.4.1/YumiMediationSDKPlugin_v3.4.1.unitypackage)
 
 [VIEW SOURCE](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
@@ -82,25 +82,25 @@ iOS dependencies：
 ```xml
 <iosPods>
 
-  <iosPod name="YumiMediationSDK" version="3.4.0" minTargetSdk="8.0" />
+  <iosPod name="YumiMediationSDK" version="3.4.1" minTargetSdk="8.0" />
  <!-- adapters -->
-  <iosPod name="YumiMediationAdapters/AdColony" version="3.4.0" />
-  <iosPod name="YumiMediationAdapters/AdMob" version="3.4.0" />
-  <iosPod name="YumiMediationAdapters/AppLovin" version="3.4.0" />
-  <iosPod name="YumiMediationAdapters/Baidu" version="3.4.0" />
-  <iosPod name="YumiMediationAdapters/Chartboost" version="3.4.0" />
-  <iosPod name="YumiMediationAdapters/Domob" version="3.4.0" />
-  <iosPod name="YumiMediationAdapters/Facebook" version="3.4.0" />
-  <iosPod name="YumiMediationAdapters/GDT" version="3.4.0" />
-  <iosPod name="YumiMediationAdapters/InMobi" version="3.4.0" />
-  <iosPod name="YumiMediationAdapters/IronSource" version="3.4.0" />
-  <iosPod name="YumiMediationAdapters/Unity" version="3.4.0" />
-  <iosPod name="YumiMediationAdapters/Vungle" version="3.4.0" />
-  <iosPod name="YumiMediationAdapters/Mintegral" version="3.4.0" />
-  <iosPod name="YumiMediationAdapters/OneWay" version="3.4.0" />
-  <iosPod name="YumiMediationAdapters/PlayableAds" version="3.4.0" />
+  <iosPod name="YumiMediationAdapters/AdColony" version="3.4.1" />
+  <iosPod name="YumiMediationAdapters/AdMob" version="3.4.1" />
+  <iosPod name="YumiMediationAdapters/AppLovin" version="3.4.1" />
+  <iosPod name="YumiMediationAdapters/Baidu" version="3.4.1" />
+  <iosPod name="YumiMediationAdapters/Chartboost" version="3.4.1" />
+  <iosPod name="YumiMediationAdapters/Domob" version="3.4.1" />
+  <iosPod name="YumiMediationAdapters/Facebook" version="3.4.1" />
+  <iosPod name="YumiMediationAdapters/GDT" version="3.4.1" />
+  <iosPod name="YumiMediationAdapters/InMobi" version="3.4.1" />
+  <iosPod name="YumiMediationAdapters/IronSource" version="3.4.1" />
+  <iosPod name="YumiMediationAdapters/Unity" version="3.4.1" />
+  <iosPod name="YumiMediationAdapters/Vungle" version="3.4.1" />
+  <iosPod name="YumiMediationAdapters/Mintegral" version="3.4.1" />
+  <iosPod name="YumiMediationAdapters/OneWay" version="3.4.1" />
+  <iosPod name="YumiMediationAdapters/PlayableAds" version="3.4.1" />
   <!-- debugCenter -->
-  <iosPod name="YumiMediationDebugCenter-iOS" version="3.4.0" />
+  <iosPod name="YumiMediationDebugCenter-iOS" version="3.4.1" />
 
     <sources>
       <source>https://github.com/CocoaPods/Specs</source>
@@ -108,7 +108,7 @@ iOS dependencies：
 </iosPods>
 ```
 
-e.g., Delete ```AdMob``` ，Delete ``` <iosPod name="YumiMediationAdapters/AdMob" version="3.4.0" />```  
+e.g., Delete ```AdMob``` ，Delete ``` <iosPod name="YumiMediationAdapters/AdMob" version="3.4.1" />```  
 
 Complete the above procedure，Open **xcworkspace** project.
 
