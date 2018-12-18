@@ -28,25 +28,25 @@
 
   <iosPods>
     
-    <iosPod name="YumiMediationSDK" version="3.4.0" minTargetSdk="8.0" />
+    <iosPod name="YumiMediationSDK" version="3.4.1" minTargetSdk="8.0" />
    <!-- adapters -->
-    <iosPod name="YumiMediationAdapters/AdColony" version="3.4.0" />
-    <iosPod name="YumiMediationAdapters/AdMob" version="3.4.0" />
-    <iosPod name="YumiMediationAdapters/AppLovin" version="3.4.0" />
-    <iosPod name="YumiMediationAdapters/Baidu" version="3.4.0" />
-    <iosPod name="YumiMediationAdapters/Chartboost" version="3.4.0" />
-    <iosPod name="YumiMediationAdapters/Domob" version="3.4.0" />
-    <iosPod name="YumiMediationAdapters/Facebook" version="3.4.0" />
-    <iosPod name="YumiMediationAdapters/GDT" version="3.4.0" />
-    <iosPod name="YumiMediationAdapters/InMobi" version="3.4.0" />
-    <iosPod name="YumiMediationAdapters/IronSource" version="3.4.0" />
-    <iosPod name="YumiMediationAdapters/Unity" version="3.4.0" />
-    <iosPod name="YumiMediationAdapters/Vungle" version="3.4.0" />
-    <iosPod name="YumiMediationAdapters/Mintegral" version="3.4.0" />
-    <iosPod name="YumiMediationAdapters/OneWay" version="3.4.0" />
-    <iosPod name="YumiMediationAdapters/PlayableAds" version="3.4.0" />
+    <iosPod name="YumiMediationAdapters/AdColony" version="3.4.1" />
+    <iosPod name="YumiMediationAdapters/AdMob" version="3.4.1" />
+    <iosPod name="YumiMediationAdapters/AppLovin" version="3.4.1" />
+    <iosPod name="YumiMediationAdapters/Baidu" version="3.4.1" />
+    <iosPod name="YumiMediationAdapters/Chartboost" version="3.4.1" />
+    <iosPod name="YumiMediationAdapters/Domob" version="3.4.1" />
+    <iosPod name="YumiMediationAdapters/Facebook" version="3.4.1" />
+    <iosPod name="YumiMediationAdapters/GDT" version="3.4.1" />
+    <iosPod name="YumiMediationAdapters/InMobi" version="3.4.1" />
+    <iosPod name="YumiMediationAdapters/IronSource" version="3.4.1" />
+    <iosPod name="YumiMediationAdapters/Unity" version="3.4.1" />
+    <iosPod name="YumiMediationAdapters/Vungle" version="3.4.1" />
+    <iosPod name="YumiMediationAdapters/Mintegral" version="3.4.1" />
+    <iosPod name="YumiMediationAdapters/OneWay" version="3.4.1" />
+    <iosPod name="YumiMediationAdapters/PlayableAds" version="3.4.1" />
     <!-- debugCenter -->
-    <iosPod name="YumiMediationDebugCenter-iOS" version="3.4.0" />
+    <iosPod name="YumiMediationDebugCenter-iOS" version="3.4.1" />
 
 
       <sources>
