@@ -36,7 +36,7 @@ This documentation is intended for developers who want to integrate Yumimobi SDK
 
 - Unity 5.6 and above
 - To deploy to iOS
-  
+
   Xcode 7.0 or higher
 
   iOS 8.0 and above
@@ -220,7 +220,7 @@ public class YumiSDKDemo : MonoBehaviour
 #### Request Banner
 
 ```C#
-bool IsSmartBanner = true;//If you set isSmartBanner to YES, YumiMediationBannerView will automatically adapt to the size of the device.
+bool IsSmartBanner = false;//If you set isSmartBanner to true, YumiMediationBannerView will automatically adapt to the size of the device (only support iOS if isSmart is true).
 this.bannerView.LoadAd(IsSmartBanner); 
 ```
 

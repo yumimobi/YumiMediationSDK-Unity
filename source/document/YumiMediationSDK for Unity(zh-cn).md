@@ -218,7 +218,7 @@ public class YumiSDKDemo : MonoBehaviour
 #### 请求 Banner
 
 ```C#
-bool IsSmartBanner = true;//如果设置 isSmartBanner 为 YES ,YumiMediationBannerView 将会自动根据设备的尺寸进行适配。
+bool IsSmartBanner = false;//如果设置 isSmartBanner 为 true ,YumiMediationBannerView 将会自动根据设备的尺寸进行适配（目前只有 iOS 支持 isSmart = true）。
 this.bannerView.LoadAd(IsSmartBanner); 
 ```
 
