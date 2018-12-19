@@ -220,7 +220,7 @@ public class YumiSDKDemo : MonoBehaviour
 #### Request Banner
 
 ```C#
-bool IsSmartBanner = true;//only support iOS if isSmart is true. If you set isSmartBanner to true, YumiMediationBannerView will automatically adapt to the size of the device.
+bool IsSmartBanner = false;//If you set isSmartBanner to true, YumiMediationBannerView will automatically adapt to the size of the device (only support iOS if isSmart is true).
 this.bannerView.LoadAd(IsSmartBanner); 
 ```
 
