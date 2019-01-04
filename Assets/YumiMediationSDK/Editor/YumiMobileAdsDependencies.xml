@@ -32,13 +32,13 @@
             <source>https://github.com/yumimobi/Specs</source>
         </sources>
     </iosPod>
-   <!-- adapters -->
+    <!-- adapters -->
     <iosPod name="YumiMediationAdapters/AdColony" version="3.5.0"></iosPod>
     <iosPod name="YumiMediationAdapters/AdMob" version="3.5.0"></iosPod>
     <iosPod name="YumiMediationAdapters/AppLovin" version="3.5.0"></iosPod>
     <iosPod name="YumiMediationAdapters/Baidu" version="3.5.0"></iosPod>
     <iosPod name="YumiMediationAdapters/Chartboost" version="3.5.0"></iosPod>
-<!--    <iosPod name="YumiMediationAdapters/Domob" version="3.5.0"></iosPod>-->
+    <!--    <iosPod name="YumiMediationAdapters/Domob" version="3.5.0"></iosPod>-->
     <iosPod name="YumiMediationAdapters/Facebook" version="3.5.0"></iosPod>
     <iosPod name="YumiMediationAdapters/GDT" version="3.5.0"></iosPod>
     <iosPod name="YumiMediationAdapters/InMobi" version="3.5.0"></iosPod>
