@@ -22,7 +22,7 @@ namespace YumiMediationSDK.Common
         void ReportImpression(YumiNativeData nativeData);
         //report click
         void ReportClick(YumiNativeData nativeData);
-        // Destroys an native.
+        // Destroys native ad object.
         void DestroyNativeAd();
     }
 }
