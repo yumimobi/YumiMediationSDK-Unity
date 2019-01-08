@@ -5,6 +5,6 @@ namespace YumiMediationSDK.Api
 {
     public class YumiNativeToLoadEventArgs : EventArgs
     {
-        public List<YumiNativeData>  nativeDatta { get; set; }
+        public List<YumiNativeData>  nativeData { get; set; }
     }
 }
