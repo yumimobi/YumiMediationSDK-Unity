@@ -12,10 +12,12 @@ public class YumiSDKDemo : MonoBehaviour
     private YumiInterstitialAd interstitialAd;
     private YumiRewardVideoAd rewardVideoAd;
     private YumiDebugCenter debugCenter;
+    private YumiNativeAd nativeAd;
 
     private String BannerPlacementId = "";
     private String RewardedVideoPlacementId = "";
     private String InterstitialsPlacementId = "";
+    private String NativePlacementId = "";
     private String GameVersionId = "";
     private String ChannelId = "";
 
@@ -34,6 +36,7 @@ public class YumiSDKDemo : MonoBehaviour
         RewardedVideoPlacementId = YumiMediationSDKSetting.RewardVideoPlacementId();
         InterstitialsPlacementId = YumiMediationSDKSetting.InterstitialPlacementId();
         BannerPlacementId = YumiMediationSDKSetting.BannerPlacementId();
+        NativePlacementId = "i5bjoh2o";
     }
 
     void OnGUI()
@@ -56,17 +59,17 @@ public class YumiSDKDemo : MonoBehaviour
 
         if (GUI.Button(new Rect(40, 84, btnWidth, 120), "request banner", myButtonStyle))
         {
-          
-            if(this.bannerView == null)
+
+            if (this.bannerView == null)
             {
                 this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionId, YumiAdPosition.Bottom);
                 // banner add ad event
                 this.bannerView.OnAdLoaded += this.HandleAdLoaded;
                 this.bannerView.OnAdFailedToLoad += HandleAdFailedToLoad;
                 this.bannerView.OnAdClick += HandleAdClicked;
-             }
+            }
 
-           
+
             this.bannerView.LoadAd(IsSmartBanner);
             this.bannerView.Show();
 
@@ -74,21 +77,23 @@ public class YumiSDKDemo : MonoBehaviour
         //remove banner
         if (GUI.Button(new Rect(40 + btnWidth + 10, 84, btnWidth, 120), "hide banner", myButtonStyle))
         {
-            if(this.bannerView != null){
+            if (this.bannerView != null)
+            {
                 this.bannerView.Hide();
-        }
+            }
 
         }
 
         //Yumi interstital
         if (GUI.Button(new Rect(40, 214, btnWidth, 120), "request interstital", myButtonStyle))
         {
-        
-            if(this.interstitialAd != null){
+
+            if (this.interstitialAd != null)
+            {
                 this.interstitialAd.DestroyInterstitial();
             }
 
-            this.interstitialAd = new YumiInterstitialAd(InterstitialsPlacementId, ChannelId,GameVersionId);
+            this.interstitialAd = new YumiInterstitialAd(InterstitialsPlacementId, ChannelId, GameVersionId);
             // add interstitial event 
             this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
             this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
@@ -100,7 +105,8 @@ public class YumiSDKDemo : MonoBehaviour
         if (GUI.Button(new Rect(40 + btnWidth + 10, 214, btnWidth, 120), "present interstital", myButtonStyle))
         {
 
-            if(this.interstitialAd.IsInterstitialReady()){
+            if (this.interstitialAd.IsInterstitialReady())
+            {
                 this.interstitialAd.ShowInterstitial();
             }
 
@@ -109,8 +115,9 @@ public class YumiSDKDemo : MonoBehaviour
         //Yumi video
         if (GUI.Button(new Rect(40, 344, btnWidth, 120), "Load video", myButtonStyle))
         {
-           
-            if(this.rewardVideoAd != null){
+
+            if (this.rewardVideoAd != null)
+            {
                 this.rewardVideoAd.DestroyRewardVideo();
             }
             this.rewardVideoAd = new YumiRewardVideoAd();
@@ -119,21 +126,46 @@ public class YumiSDKDemo : MonoBehaviour
             this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
             this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
 
-            this.rewardVideoAd.LoadRewardVideoAd(RewardedVideoPlacementId,ChannelId,GameVersionId);
+            this.rewardVideoAd.LoadRewardVideoAd(RewardedVideoPlacementId, ChannelId, GameVersionId);
         }
 
         if (GUI.Button(new Rect(40 + btnWidth + 10, 344, btnWidth, 120), "play video", myButtonStyle))
         {
 
-            if(this.rewardVideoAd.IsRewardVideoReady()){
+            if (this.rewardVideoAd.IsRewardVideoReady())
+            {
                 this.rewardVideoAd.PlayRewardVideo();
             }
         }
-        if(YumiMediationSDKSetting.GetDebugMode)
+
+        //native
+
+        if (GUI.Button(new Rect(40, 474, btnWidth, 120), "Load native", myButtonStyle))
         {
-            if (GUI.Button(new Rect(40, 474, btnWidth, 120), "Call DebugCenter", myButtonStyle))
+            if (this.nativeAd == null)
             {
-                if(this.debugCenter == null)
+                this.nativeAd = new YumiNativeAd(NativePlacementId, ChannelId, GameVersionId);
+
+                this.nativeAd.OnNativeAdLoaded += HandleNativeAdLoaded;
+                this.nativeAd.OnAdFailedToLoad += HandleNativeAdFailedToLoad;
+                this.nativeAd.OnAdClick += HandleNativeAdClicked;
+            }
+
+            this.nativeAd.LoadNativeAd(1);
+
+        }
+
+        if (GUI.Button(new Rect(40 + btnWidth + 10, 474, btnWidth, 120), "present native", myButtonStyle))
+        {
+
+
+        }
+
+        if (YumiMediationSDKSetting.GetDebugMode)
+        {
+            if (GUI.Button(new Rect(40, 594, btnWidth, 120), "Call DebugCenter", myButtonStyle))
+            {
+                if (this.debugCenter == null)
                 {
                     this.debugCenter = new YumiDebugCenter();
                 }
@@ -221,6 +253,25 @@ public class YumiSDKDemo : MonoBehaviour
     public void HandleRewardVideoAdClosed(object sender, EventArgs args)
     {
         Logger.Log("HandleRewardVideoAdClosed Ad closed");
+    }
+
+
+    #endregion
+    #region native call back handles
+
+    public void HandleNativeAdLoaded(object sender , YumiNativeToLoadEventArgs args)
+    {
+        Logger.Log("HandleNativeAdLoaded event opened");
+        Logger.Log("native count = "+ args.nativeData.Count);
+    }
+    public void HandleNativeAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args)
+    {
+        Logger.Log("HandleNativeAdFailedToLoad event received with message: " + args.Message);
+    }
+
+    public void HandleNativeAdClicked(object sender, EventArgs args)
+    {
+        Logger.Log("HandleNativeAdClicked");
     }
 
 
