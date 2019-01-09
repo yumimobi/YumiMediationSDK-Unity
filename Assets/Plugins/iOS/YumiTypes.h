@@ -56,3 +56,19 @@ typedef void (*YumiRewardVideoDidStartPlayingCallback)(YumiTypeRewardVideoClient
 typedef void (*YumiRewardVideoDidRewardCallback)(YumiTypeRewardVideoClientRef *rewardVideo);
 /// Callback for when an rewardVideo has just been closed.
 typedef void (*YumiRewardVideoDidCloseCallback)(YumiTypeRewardVideoClientRef *rewardVideo);
+
+#pragma mark - native ads
+/// Type representing a Unity native client.
+typedef const void *YumiTypeNativeClientRef;
+/// Type representing a YumiNative.
+typedef const void *YumiTypeNativeAdRef;
+#pragma mark - native call back
+/// Callback for when a native ad request was successfully loaded.
+typedef void (*YumiNativeAdDidReceiveAdCallback)(YumiTypeNativeClientRef *nativeClient , int adCount);
+
+/// Callback for when a native ad request failed.
+typedef void (*YumiNativeAdDidFailToReceiveAdWithErrorCallback)(YumiTypeNativeClientRef *nativeClient, const char *error);
+
+/// Callback for when an  native has clicked.
+typedef void (*YumiNativeAdDidClickCallback)(YumiTypeNativeClientRef *nativeClient);
+
