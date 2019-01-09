@@ -36,7 +36,7 @@ public class YumiSDKDemo : MonoBehaviour
         RewardedVideoPlacementId = YumiMediationSDKSetting.RewardVideoPlacementId();
         InterstitialsPlacementId = YumiMediationSDKSetting.InterstitialPlacementId();
         BannerPlacementId = YumiMediationSDKSetting.BannerPlacementId();
-        NativePlacementId = "i5bjoh2o";
+        NativePlacementId = "rblg9g8d";
     }
 
     void OnGUI()

@@ -57,7 +57,9 @@
 
 /// Tells the delegate that an ad has been successfully loaded.
 - (void)yumiMediationNativeAdDidLoad:(NSArray<YumiMediationNativeModel *> *)nativeAdArray{
-    
+    if (self.adReceivedCallback) {
+        self.adReceivedCallback(self.nativeClient,(int)nativeAdArray.count);
+    }
 }
 
 /// Tells the delegate that a request failed.
@@ -71,6 +73,8 @@
 
 /// Tells the delegate that the Native view has been clicked.
 - (void)yumiMediationNativeAdDidClick:(YumiMediationNativeModel *)nativeAd{
-    
+    if (self.adClickedCallback) {
+        self.adClickedCallback(self.nativeClient);
+    }
 }
 @end
