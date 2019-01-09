@@ -42,7 +42,7 @@ namespace YumiMediationSDK.iOS
 
         #region IYumiNativeClient event
         // Ad event fired when the native ad has been received.
-        public event EventHandler<YumiNativeToLoadEventArgs> OnAdLoaded;
+        public event EventHandler<YumiNativeToLoadEventArgs> OnNativeAdLoaded;
         // Ad event fired when the native ad has failed to load.
         public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
         // Ad event fired when the native ad is click.
@@ -103,14 +103,14 @@ namespace YumiMediationSDK.iOS
         private static void NativeDidReceiveAdCallback(IntPtr nativeClient, List<YumiNativeData> nativeAds)
         {
             YumiNativeClient client = IntPtrToNativeClient(nativeClient);
-            if (client.OnAdLoaded != null)
+            if (client.OnNativeAdLoaded != null)
             {
                 YumiNativeToLoadEventArgs args = new YumiNativeToLoadEventArgs()
                 {
                     nativeData = nativeAds
                 };
 
-                client.OnAdLoaded(client, args);
+                client.OnNativeAdLoaded(client, args);
             }
         }
         [MonoPInvokeCallback(typeof(YumiNativeAdDidFailToReceiveAdWithErrorCallback))]

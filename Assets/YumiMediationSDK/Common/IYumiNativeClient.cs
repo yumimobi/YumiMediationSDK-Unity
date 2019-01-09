@@ -6,7 +6,7 @@ namespace YumiMediationSDK.Common
     public interface IYumiNativeClient
     {
         // Ad event fired when the native ad has been received.
-        event EventHandler<YumiNativeToLoadEventArgs> OnAdLoaded;
+        event EventHandler<YumiNativeToLoadEventArgs> OnNativeAdLoaded;
         // Ad event fired when the native ad has failed to load.
         event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
         // Ad event fired when the native ad is click.
