@@ -8,7 +8,7 @@ namespace YumiMediationSDK.iOS
 {
     public class YumiExterns
     {
-#region banner 
+        #region banner 
 
         public enum YumiMediationAdViewBannerSize
         {
@@ -43,9 +43,9 @@ namespace YumiMediationSDK.iOS
            YumiBannerClient.YumiBannerDidFailToReceiveAdWithErrorCallback adFailedCallback,
            YumiBannerClient.YumiBannerDidClickCallback adClickedCallback);
 
-#endregion
+        #endregion
 
-#region interstitial 
+        #region interstitial 
         // interstital
         [DllImport("__Internal")]
         internal static extern IntPtr InitYumiInterstitial(IntPtr interstitial, string placementID, string channelID, string versionID);
@@ -61,9 +61,9 @@ namespace YumiMediationSDK.iOS
             YumiInterstitialClient.YumiInterstitialDidClickCallback adClickedCallback,
             YumiInterstitialClient.YumiInterstitialDidCloseCallback adClosedCallback);
 
-#endregion
+        #endregion
 
-#region RewardVideo 
+        #region RewardVideo 
         // create RewardVideo single obj
         [DllImport("__Internal")]
         internal static extern IntPtr CreateYumiRewardVideo(IntPtr rewardVideo);
@@ -82,15 +82,32 @@ namespace YumiMediationSDK.iOS
             YumiRewardVideoClient.YumiRewardVideoDidRewardCallback adRewardCallback,
             YumiRewardVideoClient.YumiRewardVideoDidCloseCallback adClosedCallback);
 
-#endregion
-#region Debugcenter 
-    // call debugcenter
+        #endregion
+        #region Debugcenter 
+        // call debugcenter
         [DllImport("__Internal")]
-        internal static extern void PresentDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string nativePlacementID,string channelID, string versionID);
+        internal static extern void PresentDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string nativePlacementID, string channelID, string versionID);
 
 
-#endregion
+        #endregion
+        #region native ad
+        [DllImport("__Internal")]
+        internal static extern IntPtr InitYumiNativeAd(IntPtr nativeAd, string placementID, string channelID, string versionID);
+        [DllImport("__Internal")]
+        internal static extern void RequestNativeAd(IntPtr nativeAd, int adCount);
+        [DllImport("__Internal")]
+        internal static extern void ReportImpression(IntPtr nativeAd);
+        [DllImport("__Internal")]
+        internal static extern void ReportClick(IntPtr nativeAd);
+        [DllImport("__Internal")]
+        internal static extern void SetNativeCallbacks(
+          IntPtr nativeAd,
+            YumiNativeClient.YumiNativeAdDidReceiveAdCallback adReceivedCallback,
+            YumiNativeClient.YumiNativeAdDidFailToReceiveAdWithErrorCallback adFailedCallback,
+            YumiNativeClient.YumiNativeAdDidClickCallback adClickedCallback
+         );
 
+        #endregion
     }
 }
 
