@@ -302,7 +302,7 @@ It is recommended to call```this.interstitialAd.IsInterstitialReady()```to deter
  }
 ```
 
-#### Delegate Interstitial
+#### Destroy Interstitial
 
 ```c#
 this.interstitialAd.DestroyInterstitial();
@@ -378,7 +378,7 @@ public class YumiSDKDemo : MonoBehaviour
  } 
 ```
 
-#### Delegate Rewarded Video
+#### Destroy Rewarded Video
 
 ```c#
 this.rewardVideoAd.DestroyRewardVideo();
