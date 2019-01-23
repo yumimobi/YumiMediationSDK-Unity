@@ -133,7 +133,6 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
   <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:mraid:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.4.+" />
