@@ -133,7 +133,6 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
   <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:mraid:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.4.+" />
@@ -218,7 +217,9 @@ public class YumiSDKDemo : MonoBehaviour
 #### 请求 Banner
 
 ```C#
-bool IsSmartBanner = false;//如果设置 isSmartBanner 为 true ,YumiMediationBannerView 将会自动根据设备的尺寸进行适配（目前只有 iOS 支持 isSmart = true）。
+//如果设置 isSmartBanner 为 true ,YumiMediationBannerView 将会自动根据设备的尺寸进行适配（目前只有 iOS 支持 isSmart = true）
+//banner 广告位会自动填充，您无需重复调用
+bool IsSmartBanner = false;
 this.bannerView.LoadAd(IsSmartBanner); 
 ```
 
@@ -237,7 +238,7 @@ this.bannerView.Show();
 ### Interstitial
 
 #### 初始化及请求插屏
-
+插屏广告位会自动加载下一条广告，您无需重复调用
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
@@ -259,10 +260,6 @@ public class YumiSDKDemo : MonoBehaviour
     # else
 	  string interstitialPlacementId = "unexpected_platform";
     #endif
-    if (this.interstitialAd != null) 
-    {
-      this.interstitialAd.DestroyInterstitial();
-    }
     this.interstitialAd = new YumiInterstitialAd(interstitialPlacementId, channelId, gameVersionId);
     // add interstitial event 
     this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
@@ -312,7 +309,7 @@ this.interstitialAd.DestroyInterstitial();
 ### Rewarded Video
 
 #### 初始化及请求视频
-
+视频广告位会自动加载下一条广告，您无需重复调用。
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
@@ -334,10 +331,6 @@ public class YumiSDKDemo : MonoBehaviour
     # else
 	  string rewardVideoPlacementId = "unexpected_platform";
     #endif
-    if (this.rewardVideoAd != null) 
-    {
-      this.rewardVideoAd.DestroyRewardVideo();
-    }
     this.rewardVideoAd = new YumiRewardVideoAd();
     this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
     this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;

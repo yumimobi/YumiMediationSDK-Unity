@@ -136,7 +136,6 @@ Android dependencies：
   <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:mraid:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.4.+" />
   <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.4.+" />
@@ -220,7 +219,9 @@ public class YumiSDKDemo : MonoBehaviour
 #### Request Banner
 
 ```C#
-bool IsSmartBanner = false;//If you set isSmartBanner to true, YumiMediationBannerView will automatically adapt to the size of the device (only support iOS if isSmart is true).
+//If you set isSmartBanner to true, YumiMediationBannerView will automatically adapt to the size of the device (only support iOS if isSmart is true).
+//the banner placement will auto refresh.You don't need to call this method repeatedly.
+bool IsSmartBanner = false;
 this.bannerView.LoadAd(IsSmartBanner); 
 ```
 
@@ -239,7 +240,7 @@ this.bannerView.Show();
 ### Interstitial
 
 #### Initialization and Interstitial request
-
+The interstitial placement will auto cached.
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
@@ -261,10 +262,6 @@ public class YumiSDKDemo : MonoBehaviour
     # else
 	  string interstitialPlacementId = "unexpected_platform";
     #endif
-    if (this.interstitialAd != null) 
-    {
-      this.interstitialAd.DestroyInterstitial();
-    }
     this.interstitialAd = new YumiInterstitialAd(interstitialPlacementId, channelId, gameVersionId);
     // add interstitial event 
     this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
@@ -311,10 +308,10 @@ It is recommended to call```this.interstitialAd.IsInterstitialReady()```to deter
 this.interstitialAd.DestroyInterstitial();
 ```
 
-### Rewarded Video
+### Reward Video
 
-#### Initialization and Rewarded Video request
-
+#### Initialization and Reward Video request
+The reward video placement will auto cached.
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
@@ -336,10 +333,6 @@ public class YumiSDKDemo : MonoBehaviour
     # else
 	  string rewardVideoPlacementId = "unexpected_platform";
     #endif
-    if (this.rewardVideoAd != null) 
-    {
-      this.rewardVideoAd.DestroyRewardVideo();
-    }
     this.rewardVideoAd = new YumiRewardVideoAd();
     this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
     this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
