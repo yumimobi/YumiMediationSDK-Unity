@@ -262,10 +262,6 @@ public class YumiSDKDemo : MonoBehaviour
     # else
 	  string interstitialPlacementId = "unexpected_platform";
     #endif
-    if (this.interstitialAd != null) 
-    {
-      this.interstitialAd.DestroyInterstitial();
-    }
     this.interstitialAd = new YumiInterstitialAd(interstitialPlacementId, channelId, gameVersionId);
     // add interstitial event 
     this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
@@ -337,10 +333,6 @@ public class YumiSDKDemo : MonoBehaviour
     # else
 	  string rewardVideoPlacementId = "unexpected_platform";
     #endif
-    if (this.rewardVideoAd != null) 
-    {
-      this.rewardVideoAd.DestroyRewardVideo();
-    }
     this.rewardVideoAd = new YumiRewardVideoAd();
     this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
     this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
