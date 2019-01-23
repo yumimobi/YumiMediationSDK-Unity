@@ -219,7 +219,9 @@ public class YumiSDKDemo : MonoBehaviour
 #### Request Banner
 
 ```C#
-bool IsSmartBanner = false;//If you set isSmartBanner to true, YumiMediationBannerView will automatically adapt to the size of the device (only support iOS if isSmart is true).
+//If you set isSmartBanner to true, YumiMediationBannerView will automatically adapt to the size of the device (only support iOS if isSmart is true).
+//the banner placement will auto refresh.You don't need to call this method repeatedly.
+bool IsSmartBanner = false;
 this.bannerView.LoadAd(IsSmartBanner); 
 ```
 
@@ -238,7 +240,7 @@ this.bannerView.Show();
 ### Interstitial
 
 #### Initialization and Interstitial request
-
+The interstitial placement will auto cached.
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
@@ -310,10 +312,10 @@ It is recommended to call```this.interstitialAd.IsInterstitialReady()```to deter
 this.interstitialAd.DestroyInterstitial();
 ```
 
-### Rewarded Video
+### Reward Video
 
-#### Initialization and Rewarded Video request
-
+#### Initialization and Reward Video request
+The reward video placement will auto cached.
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;

@@ -217,7 +217,9 @@ public class YumiSDKDemo : MonoBehaviour
 #### 请求 Banner
 
 ```C#
-bool IsSmartBanner = false;//如果设置 isSmartBanner 为 true ,YumiMediationBannerView 将会自动根据设备的尺寸进行适配（目前只有 iOS 支持 isSmart = true）。
+//如果设置 isSmartBanner 为 true ,YumiMediationBannerView 将会自动根据设备的尺寸进行适配（目前只有 iOS 支持 isSmart = true）
+//banner 广告位会自动填充，您无需重复调用
+bool IsSmartBanner = false;
 this.bannerView.LoadAd(IsSmartBanner); 
 ```
 
@@ -236,7 +238,7 @@ this.bannerView.Show();
 ### Interstitial
 
 #### 初始化及请求插屏
-
+插屏广告位会自动加载下一条广告，您无需重复调用
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
@@ -311,7 +313,7 @@ this.interstitialAd.DestroyInterstitial();
 ### Rewarded Video
 
 #### 初始化及请求视频
-
+视频广告位会自动加载下一条广告，您无需重复调用。
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
