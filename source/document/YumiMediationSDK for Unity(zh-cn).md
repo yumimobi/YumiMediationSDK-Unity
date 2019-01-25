@@ -123,25 +123,29 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ```xml
 <androidPackages>
-  <androidPackage spec="com.yumimobi.ads:mediation:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads:mediation:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.4.1">
+      <repositories>
+        <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
+      </repositories>
+  </androidPackage>
+  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.4.1" />
   
   <!--  If your app is only available in mainland China, use unity-china,else use unity.   -->
-  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.4.+" />
-  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.4.+" /> -->
+  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.4.1" />
+  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.4.1" /> -->
   
   <repositories>
       <repository>https://jcenter.bintray.com/</repository>
@@ -149,7 +153,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 </androidPackages>
 ```
 
-比如删除  ```admob```，直接删除 ```<androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.+" />```  即可。
+比如删除  ```admob```，直接删除 ```<androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.1" />```  即可。
 
 ## 选择广告形式
 
