@@ -53,7 +53,7 @@ This documentation is intended for developers who want to integrate Yumimobi SDK
 
 The YumiMediationSDK Unity plugin enables Unity developers to easily serve Yumimobi Ads on Android and iOS apps without having to write Java or Objective-C code. The plugin provides a C# interface for requesting ads that is used by C# scripts in your Unity project. Use the links below to download the Unity package for the plugin or to take a look at its code on GitHub.
 
-[Download the YumiMediationSDK Unity plugin](https://adsdk.yumimobi.com/Unity/3.4.1/YumiMediationSDKPlugin_v3.4.1.unitypackage)
+[Download the YumiMediationSDK Unity plugin](https://adsdk.yumimobi.com/Unity/3.4.1.0/YumiMediationSDKPlugin_v3.4.1.0.unitypackage)
 
 [VIEW SOURCE](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
@@ -422,7 +422,7 @@ Reference Android official solution，[Click to view](https://developer.android.
 **2.Google play-services version 15.0.0 or higher**
 
 If your version of Google play-services is above 15.0.0, please download the new admob adapter instead of 
-**Assets/Plugins/Editor/Android/com.yumimobi.ads.mediation.admob-3.4.0.aar** 。[Download](http://adsdk.yumimobi.com/Android/Android_Adapters/3.4.0/yumi_adapter_admob_v3.4.0(For_GooglePlayService_version_15_and_above).aar)。
+**Assets/Plugins/Editor/Android/com.yumimobi.ads.mediation.admob-3.4.1.aar** 。[Download](http://adsdk.yumimobi.com/Android/Android_Adapters/3.4.1/yumi_adapter_admob_v3.4.1(For_GooglePlayService_version_15_and_above).aar)。
 
 **3.Test ad placementIDs**
 

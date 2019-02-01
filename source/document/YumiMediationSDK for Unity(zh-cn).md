@@ -54,7 +54,7 @@
 
 Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android 和 iOS 应用上展示广告，无需编写 Java 或 Objective-C 代码。该插件提供了一个 C# 接口来请求广告。使用下面的链接下载插件的 Unity 包或在 GitHub 上查看其代码。
 
-[下载YumiMediationSDK Unity插件](https://adsdk.yumimobi.com/Unity/3.4.1/YumiMediationSDKPlugin_v3.4.1.unitypackage)
+[下载YumiMediationSDK Unity插件](https://adsdk.yumimobi.com/Unity/3.4.1.0/YumiMediationSDKPlugin_v3.4.1.0.unitypackage)
 
 [查看源码](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
@@ -419,7 +419,7 @@ public class YumiSDKDemo : MonoBehaviour
 
 **2.Google play-services 版本 15.0.0 以上**
 
-如果您的 Google play-services 版本在15.0.0 以上，请下载新的 admob adapter 替换 **Assets/Plugins/Editor/Android/com.yumimobi.ads.mediation.admob-3.4.0.aar** 文件。[下载地址](http://adsdk.yumimobi.com/Android/Android_Adapters/3.4.0/yumi_adapter_admob_v3.4.0(For_GooglePlayService_version_15_and_above).aar)。
+如果您的 Google play-services 版本在15.0.0 以上，请下载新的 admob adapter 替换 **Assets/Plugins/Editor/Android/com.yumimobi.ads.mediation.admob-3.4.1.aar** 文件。[下载地址](http://adsdk.yumimobi.com/Android/Android_Adapters/3.4.1/yumi_adapter_admob_v3.4.1(For_GooglePlayService_version_15_and_above).aar)。
 
 **3.测试广告位**
 
