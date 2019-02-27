@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
+using UnityEngine.SceneManagement;
 
 public class YumiSDKDemo : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class YumiSDKDemo : MonoBehaviour
     private String ChannelId = "";
 
     private bool IsSmartBanner;
+
 
     void Start()
     {
@@ -155,10 +157,10 @@ public class YumiSDKDemo : MonoBehaviour
 
         }
 
-        if (GUI.Button(new Rect(40 + btnWidth + 10, 474, btnWidth, 120), "present native", myButtonStyle))
+        if (GUI.Button(new Rect(40 + btnWidth + 10, 474, btnWidth, 120), "Show Native Scene", myButtonStyle))
         {
 
-
+            SceneManager.LoadScene("YumiNativeScene");
         }
 
         if (YumiMediationSDKSetting.GetDebugMode)
