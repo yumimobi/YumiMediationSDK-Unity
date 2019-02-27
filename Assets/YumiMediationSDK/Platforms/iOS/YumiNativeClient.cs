@@ -3,6 +3,7 @@ using YumiMediationSDK.Common;
 using YumiMediationSDK.Api;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using UnityEngine;
 
 namespace YumiMediationSDK.iOS
 {
@@ -12,6 +13,8 @@ namespace YumiMediationSDK.iOS
         private IntPtr nativeAdPtr;
 
         private IntPtr nativeClientPtr;
+
+        private GameObject currentGameObject;
 
         #region Banner callback types
 
@@ -84,8 +87,34 @@ namespace YumiMediationSDK.iOS
         public void DestroyNativeAd()
         {
             this.NativeAdPtr = IntPtr.Zero;
+            this.currentGameObject = null;
         }
-        public void Dispose()
+
+        public void RegisterGameObjectsForInteraction(GameObject gameObject, RectTransform adViewRectTransform,RectTransform mediaViewRectTransform, RectTransform iconViewRectTransform, RectTransform ctaViewRectTransform)
+        {
+            Logger.Log("RegisterGameObjectsForInteraction");
+            this.currentGameObject = gameObject;
+            Camera camera = Camera.main;
+
+            Rect adViewRect = getGameObjectRect(adViewRectTransform, camera);
+            Rect mediaViewRect = getGameObjectRect(mediaViewRectTransform, camera);
+            Rect iconViewRect = getGameObjectRect(iconViewRectTransform, camera);
+            Rect ctaViewRect = getGameObjectRect(ctaViewRectTransform, camera);
+
+            RegisterAssetObjectsForInteraction(adViewRect,mediaViewRect, iconViewRect,ctaViewRect);
+        }
+
+        public void RegisterAssetObjectsForInteraction(Rect adViewRect, Rect mediaViewRect, Rect iconViewRect, Rect ctaViewRect)
+        {
+            int uniqueId = 0;
+            YumiExterns.RegisterAssetViewsForInteraction(this.NativeAdPtr, uniqueId,
+                    (int)adViewRect.x, (int)adViewRect.y, (int)adViewRect.width, (int)adViewRect.height,
+                    (int)mediaViewRect.x, (int)mediaViewRect.y, (int)mediaViewRect.width, (int)mediaViewRect.height,
+                    (int)iconViewRect.x, (int)iconViewRect.y, (int)iconViewRect.width, (int)iconViewRect.height,
+                    (int)ctaViewRect.x, (int)ctaViewRect.y, (int)ctaViewRect.width, (int)ctaViewRect.height);
+        }
+
+            public void Dispose()
         {
             this.DestroyNativeAd();
             ((GCHandle)this.nativeClientPtr).Free();
@@ -96,6 +125,52 @@ namespace YumiMediationSDK.iOS
             this.Dispose();
         }
         #endregion
+
+        #region private method
+        private Rect getGameObjectRect(RectTransform rectTransform, Camera camera)
+        {
+            if (rectTransform == null)
+            {
+                return Rect.zero;
+            }
+
+            Vector3[] worldCorners = new Vector3[4];
+            Canvas canvas = getCanvas(this.currentGameObject);
+
+            rectTransform.GetWorldCorners(worldCorners);
+            Vector3 gameObjectBottomLeft = worldCorners[0];
+            Vector3 gameObjectTopRight = worldCorners[2];
+            Vector3 cameraBottomLeft = camera.pixelRect.min;
+            Vector3 cameraTopRight = camera.pixelRect.max;
+
+            if (canvas.renderMode != RenderMode.ScreenSpaceOverlay)
+            {
+                gameObjectBottomLeft = camera.WorldToScreenPoint(gameObjectBottomLeft);
+                gameObjectTopRight = camera.WorldToScreenPoint(gameObjectTopRight);
+            }
+
+            return new Rect(Mathf.Round(gameObjectBottomLeft.x),
+                            Mathf.Floor((cameraTopRight.y - gameObjectTopRight.y)),
+                            Mathf.Ceil((gameObjectTopRight.x - gameObjectBottomLeft.x)),
+                            Mathf.Round((gameObjectTopRight.y - gameObjectBottomLeft.y)));
+        }
+        private Canvas getCanvas(GameObject gameObject)
+        {
+            if (gameObject.GetComponent<Canvas>() != null)
+            {
+                return gameObject.GetComponent<Canvas>();
+            }
+            else
+            {
+                if (gameObject.transform.parent != null)
+                {
+                    return getCanvas(gameObject.transform.parent.gameObject);
+                }
+            }
+            return null;
+        }
+        #endregion
+
 
         #region  native ad  callback methods
 

@@ -100,6 +100,14 @@ namespace YumiMediationSDK.iOS
         [DllImport("__Internal")]
         internal static extern void ReportClick(IntPtr nativeAd);
         [DllImport("__Internal")]
+        internal static extern void RegisterAssetViewsForInteraction(
+                IntPtr nativeAd,int uniqueId,
+                int adViewX, int adViewY, int adViewWidth, int adViewHeight,
+                int mediaViewX, int mediaViewY, int mediaViewWidth, int mediaViewHeight,
+                int iconViewX, int iconViewY, int iconViewWidth, int iconViewHeight,
+                int ctaViewX, int ctaViewY, int ctaViewWidth, int ctaViewHeight);
+
+        [DllImport("__Internal")]
         internal static extern void SetNativeCallbacks(
           IntPtr nativeAd,
             YumiNativeClient.YumiNativeAdDidReceiveAdCallback adReceivedCallback,
