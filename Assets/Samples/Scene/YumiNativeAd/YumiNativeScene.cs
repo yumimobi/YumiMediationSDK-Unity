@@ -12,7 +12,11 @@ using YumiMediationSDK.Common;
 public class YumiNativeScene : MonoBehaviour
 {
     //private NativeAd nativeAd;
+    private YumiNativeAd nativeAd;
 
+    private String NativePlacementId = "hxqd9uwr";
+    private String GameVersionId = "";
+    private String ChannelId = "";
     // UI elements in scene
     [Header("Text:")]
     public Text title;
@@ -25,6 +29,9 @@ public class YumiNativeScene : MonoBehaviour
     public Button callToActionButton;
     //[Header("Ad Choices:")]
     //public AdChoices adChoices;
+
+    // ad panel
+    public GameObject adPanel;
 
     void Awake()
     {
@@ -47,6 +54,16 @@ public class YumiNativeScene : MonoBehaviour
     public void LoadAd()
     {
         Logger.Log("load ad ");
+        if (this.nativeAd == null)
+        {
+            this.nativeAd = new YumiNativeAd(NativePlacementId, ChannelId, GameVersionId);
+
+            this.nativeAd.OnNativeAdLoaded += HandleNativeAdLoaded;
+            this.nativeAd.OnAdFailedToLoad += HandleNativeAdFailedToLoad;
+            this.nativeAd.OnAdClick += HandleNativeAdClicked;
+        }
+
+        this.nativeAd.LoadNativeAd(1);
     }
 
     private void Log(string s)
@@ -60,4 +77,23 @@ public class YumiNativeScene : MonoBehaviour
     {
         SceneManager.LoadScene("YumiScene");
     }
+    #region native call back handles
+
+    public void HandleNativeAdLoaded(object sender, YumiNativeToLoadEventArgs args)
+    {
+        Logger.Log("HandleNativeAdLoaded event opened");
+        Logger.Log("native count = " + args.nativeData.Count);
+        this.nativeAd.RegisterGameObjectsForInteraction(gameObject,(RectTransform)adPanel.transform,(RectTransform)mediaView.transform,(RectTransform)iconImage.transform,(RectTransform)callToActionButton.transform);
+    }
+    public void HandleNativeAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args)
+    {
+        Logger.Log("HandleNativeAdFailedToLoad event received with message: " + args.Message);
+    }
+
+    public void HandleNativeAdClicked(object sender, EventArgs args)
+    {
+        Logger.Log("HandleNativeAdClicked");
+    }
+
+    #endregion
 }
