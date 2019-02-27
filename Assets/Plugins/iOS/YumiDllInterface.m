@@ -194,7 +194,21 @@ void ReportClick(YumiTypeNativeAdRef nativeAd){
     [internalNativeAd reportClick];
     
 }
-
+void RegisterAssetViewsForInteraction(
+                                           YumiTypeNativeAdRef nativeAd,int uniqueId,
+                                           int adViewX, int adViewY, int adViewWidth, int adViewHeight,
+                                           int mediaViewX, int mediaViewY, int mediaViewWidth, int mediaViewHeight,
+                                           int iconViewX, int iconViewY, int iconViewWidth, int iconViewHeight,
+                                           int ctaViewX, int ctaViewY, int ctaViewWidth, int ctaViewHeight){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    CGRect adViewRect = CGRectMake(adViewX, adViewY, adViewWidth, adViewHeight);
+    CGRect mediaViewRect = CGRectMake(mediaViewX, mediaViewY, mediaViewWidth, mediaViewHeight);
+    CGRect iconViewRect = CGRectMake(iconViewX, iconViewY, iconViewWidth, iconViewHeight);
+     CGRect ctaViewRect = CGRectMake(ctaViewX, ctaViewY, ctaViewWidth,ctaViewHeight);
+    
+    [internalNativeAd registerNativeForInteraction:uniqueId adViewRect:adViewRect mediaViewRect:mediaViewRect iconViewRect:iconViewRect ctaViewRect:ctaViewRect];
+    
+}
 void SetNativeCallbacks(YumiTypeNativeAdRef nativeAd ,
                         YumiNativeAdDidReceiveAdCallback adReceivedCallback,
                         YumiNativeAdDidFailToReceiveAdWithErrorCallback adFailCallback,

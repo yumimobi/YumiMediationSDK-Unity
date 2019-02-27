@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// report click
 - (void)reportClick;
 
+- (void)registerNativeForInteraction:(int)nativeId adViewRect:(CGRect)adViewRect mediaViewRect:(CGRect)mediaViewRect iconViewRect:(CGRect)iconViewRect ctaViewRect:(CGRect)ctaViewRect;
+
 @end
 
 NS_ASSUME_NONNULL_END
