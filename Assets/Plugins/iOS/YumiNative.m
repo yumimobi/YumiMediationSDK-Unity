@@ -9,7 +9,7 @@
 
 @interface YumiNative()<YumiMediationNativeAdDelegate>
 
-
+@property (nonatomic) YumiMediationNativeModel  *currentModel;
 
 @end
 
@@ -49,6 +49,24 @@
     
 }
 
+- (void)registerNativeForInteraction:(int)nativeId adViewRect:(CGRect)adViewRect mediaViewRect:(CGRect)mediaViewRect iconViewRect:(CGRect)iconViewRect ctaViewRect:(CGRect)ctaViewRect{
+    
+    UIView *mainView = UnityGetGLView();
+    UIView *adView = [[UIView alloc] initWithFrame:adViewRect];
+    UIImageView *iconView = [[UIImageView alloc] initWithFrame:iconViewRect];
+    UIImageView *mediaView = [[UIImageView alloc] initWithFrame:mediaViewRect];
+    UILabel *actLab = [[UILabel alloc] initWithFrame:ctaViewRect];
+    
+    [mainView addSubview:adView];
+    [adView addSubview:iconView];
+    [adView addSubview:mediaView];
+    [adView addSubview:actLab];
+    
+    iconView.backgroundColor = [UIColor redColor];
+    mediaView.backgroundColor = [UIColor orangeColor];
+    actLab.text = self.currentModel.title;
+    
+}
 - (void)printLogIfError{
     NSLog(@"YumiMobileAdsPlugin: NativeAd is nil or adCount <= 0. Ignoring ad request.");
 }
@@ -59,6 +77,9 @@
 - (void)yumiMediationNativeAdDidLoad:(NSArray<YumiMediationNativeModel *> *)nativeAdArray{
     if (self.adReceivedCallback) {
         self.adReceivedCallback(self.nativeClient,(int)nativeAdArray.count);
+    }
+    if (nativeAdArray.count > 0) {
+        self.currentModel = nativeAdArray[0];
     }
 }
 
