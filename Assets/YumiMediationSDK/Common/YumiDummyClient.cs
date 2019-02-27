@@ -1,5 +1,6 @@
 ﻿using System;
 using YumiMediationSDK.Api;
+using UnityEngine;
 
 namespace YumiMediationSDK.Common
 {
@@ -128,6 +129,10 @@ namespace YumiMediationSDK.Common
         }
         public void DestroyNativeAd(){
             Logger.LogError("Dummy: call DestroyNativeAd");
+        }
+        public void RegisterGameObjectsForInteraction(GameObject gameObject, RectTransform adViewRectTransform,RectTransform mediaViewRectTransform, RectTransform iconViewRectTransform, RectTransform ctaViewRectTransform)
+        {
+            Logger.LogError("Dummy: call RegisterGameObjectsForInteraction");
         }
 
     }

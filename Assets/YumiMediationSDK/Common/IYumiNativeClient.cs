@@ -1,5 +1,6 @@
 ﻿using System;
 using YumiMediationSDK.Api;
+using UnityEngine;
 
 namespace YumiMediationSDK.Common
 {
@@ -24,5 +25,10 @@ namespace YumiMediationSDK.Common
         void ReportClick(YumiNativeData nativeData);
         // Destroys native ad object.
         void DestroyNativeAd();
+        // Wire up GameObject with the native ad. The game object should be a child of the canvas.
+        // Register game objects for interactions.
+        // MediaView will be used for impression logging.
+        // CallToActionButton will be used for click logging.
+        void RegisterGameObjectsForInteraction(GameObject gameObject, RectTransform adViewRectTransform,RectTransform mediaViewRectTransform, RectTransform iconViewRectTransform, RectTransform ctaViewRectTransform);
     }
 }

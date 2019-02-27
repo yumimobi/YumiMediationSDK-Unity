@@ -1,6 +1,7 @@
 ﻿using System;
 using YumiMediationSDK.Common;
 using System.Reflection;
+using UnityEngine;
 
 namespace YumiMediationSDK.Api
 {
@@ -41,6 +42,12 @@ namespace YumiMediationSDK.Api
         {
             this.client.DestroyNativeAd();
         }
+
+        public void RegisterGameObjectsForInteraction(GameObject gameObject, RectTransform adViewRectTransform,RectTransform mediaViewRectTransform, RectTransform iconViewRectTransform, RectTransform ctaViewRectTransform)
+        {
+            this.client.RegisterGameObjectsForInteraction(gameObject,adViewRectTransform,mediaViewRectTransform, iconViewRectTransform,ctaViewRectTransform);
+        }
+
         #region IYumiNativeClient event
         // Ad event fired when the native ad has been received.
         public event EventHandler<YumiNativeToLoadEventArgs> OnNativeAdLoaded;
