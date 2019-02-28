@@ -134,6 +134,8 @@ namespace YumiMediationSDK.Common
         {
             Logger.LogError("Dummy: call RegisterGameObjectsForInteraction");
         }
-
+        public void UnregisterView(YumiNativeData nativeData){
+            Logger.LogError("Dummy: call UnregisterView");
+        }
     }
 }

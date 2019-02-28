@@ -114,10 +114,14 @@ namespace YumiMediationSDK.iOS
                     (int)ctaViewRect.x, (int)ctaViewRect.y, (int)ctaViewRect.width, (int)ctaViewRect.height);
         }
 
-            public void Dispose()
+        public void Dispose()
         {
             this.DestroyNativeAd();
             ((GCHandle)this.nativeClientPtr).Free();
+        }
+
+        public void UnregisterView(YumiNativeData nativeData){
+            YumiExterns.UnregisterView(this.NativeAdPtr, nativeData.uniqueId);
         }
 
         ~YumiNativeClient()

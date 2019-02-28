@@ -48,6 +48,11 @@ namespace YumiMediationSDK.Api
             this.client.RegisterGameObjectsForInteraction(gameObject,adViewRectTransform,mediaViewRectTransform, iconViewRectTransform,ctaViewRectTransform);
         }
 
+        public void UnregisterView(YumiNativeData nativeData)
+        {
+            this.client.UnregisterView(nativeData);
+        }
+
         #region IYumiNativeClient event
         // Ad event fired when the native ad has been received.
         public event EventHandler<YumiNativeToLoadEventArgs> OnNativeAdLoaded;

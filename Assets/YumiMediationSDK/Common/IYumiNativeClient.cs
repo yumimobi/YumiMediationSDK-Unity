@@ -30,5 +30,9 @@ namespace YumiMediationSDK.Common
         // MediaView will be used for impression logging.
         // CallToActionButton will be used for click logging.
         void RegisterGameObjectsForInteraction(GameObject gameObject, RectTransform adViewRectTransform,RectTransform mediaViewRectTransform, RectTransform iconViewRectTransform, RectTransform ctaViewRectTransform);
+
+        //this is a method to disconnect a YumiNativeData with the view you used to display the native ads.
+        void UnregisterView(YumiNativeData nativeData);
+
     }
 }

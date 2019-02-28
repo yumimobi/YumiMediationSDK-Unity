@@ -108,6 +108,9 @@ namespace YumiMediationSDK.iOS
                 int ctaViewX, int ctaViewY, int ctaViewWidth, int ctaViewHeight);
 
         [DllImport("__Internal")]
+        internal static extern void UnregisterView(IntPtr nativeA,int uniqueId);
+
+        [DllImport("__Internal")]
         internal static extern void SetNativeCallbacks(
           IntPtr nativeAd,
             YumiNativeClient.YumiNativeAdDidReceiveAdCallback adReceivedCallback,
