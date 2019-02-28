@@ -18,7 +18,7 @@ namespace YumiMediationSDK.iOS
 
         #region Banner callback types
 
-        internal delegate void YumiNativeAdDidReceiveAdCallback(IntPtr nativeClient, List<YumiNativeData> nativeAds);
+        internal delegate void YumiNativeAdDidReceiveAdCallback(IntPtr nativeClient, int adCount);
 
         internal delegate void YumiNativeAdDidFailToReceiveAdWithErrorCallback(
                 IntPtr nativeClient, string error);
@@ -175,15 +175,16 @@ namespace YumiMediationSDK.iOS
         #region  native ad  callback methods
 
         [MonoPInvokeCallback(typeof(YumiNativeAdDidReceiveAdCallback))]
-        private static void NativeDidReceiveAdCallback(IntPtr nativeClient, List<YumiNativeData> nativeAds)
+        private static void NativeDidReceiveAdCallback(IntPtr nativeClient, int adCount)
         {
             YumiNativeClient client = IntPtrToNativeClient(nativeClient);
             if (client.OnNativeAdLoaded != null)
             {
                 YumiNativeToLoadEventArgs args = new YumiNativeToLoadEventArgs()
                 {
-                    nativeData = nativeAds
+                    nativeData = null
                 };
+                Debug.LogFormat("adcount = {0}",adCount);
 
                 client.OnNativeAdLoaded(client, args);
             }
