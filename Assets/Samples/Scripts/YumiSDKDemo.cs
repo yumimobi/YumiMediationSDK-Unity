@@ -13,12 +13,10 @@ public class YumiSDKDemo : MonoBehaviour
     private YumiInterstitialAd interstitialAd;
     private YumiRewardVideoAd rewardVideoAd;
     private YumiDebugCenter debugCenter;
-    private YumiNativeAd nativeAd;
 
     private String BannerPlacementId = "";
     private String RewardedVideoPlacementId = "";
     private String InterstitialsPlacementId = "";
-    private String NativePlacementId = "";
     private String GameVersionId = "";
     private String ChannelId = "";
 
@@ -38,7 +36,6 @@ public class YumiSDKDemo : MonoBehaviour
         RewardedVideoPlacementId = YumiMediationSDKSetting.RewardVideoPlacementId();
         InterstitialsPlacementId = YumiMediationSDKSetting.InterstitialPlacementId();
         BannerPlacementId = YumiMediationSDKSetting.BannerPlacementId();
-        NativePlacementId = "rblg9g8d";
     }
 
     void OnGUI()
@@ -142,25 +139,10 @@ public class YumiSDKDemo : MonoBehaviour
 
         //native
 
-        if (GUI.Button(new Rect(40, 474, btnWidth, 120), "Load native", myButtonStyle))
+        if (GUI.Button(new Rect(40, 474, btnWidth, 120), "Show Native Scen", myButtonStyle))
         {
-            if (this.nativeAd == null)
-            {
-                this.nativeAd = new YumiNativeAd(NativePlacementId, ChannelId, GameVersionId);
-
-                this.nativeAd.OnNativeAdLoaded += HandleNativeAdLoaded;
-                this.nativeAd.OnAdFailedToLoad += HandleNativeAdFailedToLoad;
-                this.nativeAd.OnAdClick += HandleNativeAdClicked;
-            }
-
-            this.nativeAd.LoadNativeAd(1);
-
-        }
-
-        if (GUI.Button(new Rect(40 + btnWidth + 10, 474, btnWidth, 120), "Show Native Scene", myButtonStyle))
-        {
-
             SceneManager.LoadScene("YumiNativeScene");
+
         }
 
         if (YumiMediationSDKSetting.GetDebugMode)
@@ -255,25 +237,6 @@ public class YumiSDKDemo : MonoBehaviour
     public void HandleRewardVideoAdClosed(object sender, EventArgs args)
     {
         Logger.Log("HandleRewardVideoAdClosed Ad closed");
-    }
-
-
-    #endregion
-    #region native call back handles
-
-    public void HandleNativeAdLoaded(object sender , YumiNativeToLoadEventArgs args)
-    {
-        Logger.Log("HandleNativeAdLoaded event opened");
-        Logger.Log("native count = "+ args.nativeData.Count);
-    }
-    public void HandleNativeAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args)
-    {
-        Logger.Log("HandleNativeAdFailedToLoad event received with message: " + args.Message);
-    }
-
-    public void HandleNativeAdClicked(object sender, EventArgs args)
-    {
-        Logger.Log("HandleNativeAdClicked");
     }
 
 
