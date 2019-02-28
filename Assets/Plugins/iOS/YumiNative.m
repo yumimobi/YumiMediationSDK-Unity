@@ -58,13 +58,11 @@
     UILabel *actLab = [[UILabel alloc] initWithFrame:ctaViewRect];
     
     [mainView addSubview:adView];
-    [adView addSubview:iconView];
-    [adView addSubview:mediaView];
-    [adView addSubview:actLab];
+    [mainView addSubview:iconView];
+    [mainView addSubview:mediaView];
+    [mainView addSubview:actLab];
     
-    iconView.backgroundColor = [UIColor redColor];
-    mediaView.backgroundColor = [UIColor orangeColor];
-    actLab.text = self.currentModel.title;
+    [self.nativeAd registerViewForInteraction:adView withViewController:UnityGetGLViewController() nativeAd:self.currentModel];
     
 }
 - (void)printLogIfError{
@@ -75,12 +73,13 @@
 
 /// Tells the delegate that an ad has been successfully loaded.
 - (void)yumiMediationNativeAdDidLoad:(NSArray<YumiMediationNativeModel *> *)nativeAdArray{
-    if (self.adReceivedCallback) {
-        self.adReceivedCallback(self.nativeClient,(int)nativeAdArray.count);
-    }
     if (nativeAdArray.count > 0) {
         self.currentModel = nativeAdArray[0];
     }
+    if (self.adReceivedCallback) {
+        self.adReceivedCallback(self.nativeClient,(int)nativeAdArray.count);
+    }
+   
 }
 
 /// Tells the delegate that a request failed.
