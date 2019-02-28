@@ -75,6 +75,9 @@ public class YumiNativeScene : MonoBehaviour
     // Next button
     public void NextScene()
     {
+        YumiNativeData data = new YumiNativeData();
+        data.uniqueId = 0;
+        this.nativeAd.UnregisterView(data);
         SceneManager.LoadScene("YumiScene");
      
     }
