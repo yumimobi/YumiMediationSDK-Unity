@@ -65,6 +65,15 @@
     [self.nativeAd registerViewForInteraction:adView withViewController:UnityGetGLViewController() nativeAd:self.currentModel];
     
 }
+
+- (void)UnregisterView:(int)uniqueId{
+    UIView *mainView = UnityGetGLView();
+    
+    for (UIView *subView in mainView.subviews) {
+        [subView removeFromSuperview];
+    }
+    
+}
 - (void)printLogIfError{
     NSLog(@"YumiMobileAdsPlugin: NativeAd is nil or adCount <= 0. Ignoring ad request.");
 }
