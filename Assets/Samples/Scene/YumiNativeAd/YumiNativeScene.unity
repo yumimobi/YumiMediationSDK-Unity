@@ -237,7 +237,6 @@ GameObject:
   - component: {fileID: 204526919}
   - component: {fileID: 204526918}
   - component: {fileID: 204526923}
-  - component: {fileID: 204526922}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -325,23 +324,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &204526922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 204526917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40c34939938654fe2abf4efa3c96da48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: {fileID: 1638019997}
-  body: {fileID: 1681615587}
-  mediaView: {fileID: 1806548948}
-  iconImage: {fileID: 553341679}
-  callToActionButton: {fileID: 32481008}
-  adPanel: {fileID: 1270514506}
 --- !u!222 &204526923
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -711,7 +693,6 @@ GameObject:
   - component: {fileID: 1104556269}
   - component: {fileID: 1104556268}
   - component: {fileID: 1104556267}
-  - component: {fileID: 1104556270}
   m_Layer: 5
   m_Name: Load Ad Button
   m_TagString: Untagged
@@ -777,7 +758,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1104556270}
+      - m_Target: {fileID: 1270514510}
         m_MethodName: LoadAd
         m_Mode: 1
         m_Arguments:
@@ -824,23 +805,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1104556265}
   m_CullTransparentMesh: 0
---- !u!114 &1104556270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1104556265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40c34939938654fe2abf4efa3c96da48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: {fileID: 0}
-  body: {fileID: 0}
-  mediaView: {fileID: 0}
-  iconImage: {fileID: 0}
-  callToActionButton: {fileID: 0}
-  adPanel: {fileID: 0}
 --- !u!1 &1231414415
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,9 +963,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1270514506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd5964708acfe42809747906dfb5db5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 40c34939938654fe2abf4efa3c96da48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  title: {fileID: 1638019997}
+  body: {fileID: 1681615587}
+  mediaView: {fileID: 1806548948}
+  iconImage: {fileID: 553341679}
+  callToActionButton: {fileID: 32481008}
+  adPanel: {fileID: 1270514506}
 --- !u!1 &1376652543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,7 +1316,6 @@ GameObject:
   - component: {fileID: 2024663192}
   - component: {fileID: 2024663191}
   - component: {fileID: 2024663190}
-  - component: {fileID: 2024663193}
   m_Layer: 5
   m_Name: Next Scene Button
   m_TagString: Untagged
@@ -1412,7 +1381,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2024663193}
+      - m_Target: {fileID: 1270514510}
         m_MethodName: NextScene
         m_Mode: 1
         m_Arguments:
@@ -1459,20 +1428,3 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2024663188}
   m_CullTransparentMesh: 0
---- !u!114 &2024663193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2024663188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40c34939938654fe2abf4efa3c96da48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: {fileID: 0}
-  body: {fileID: 0}
-  mediaView: {fileID: 0}
-  iconImage: {fileID: 0}
-  callToActionButton: {fileID: 0}
-  adPanel: {fileID: 0}

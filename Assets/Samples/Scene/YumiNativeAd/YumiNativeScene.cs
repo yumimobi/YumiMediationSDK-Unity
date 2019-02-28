@@ -76,14 +76,24 @@ public class YumiNativeScene : MonoBehaviour
     public void NextScene()
     {
         SceneManager.LoadScene("YumiScene");
+     
     }
+
     #region native call back handles
 
     public void HandleNativeAdLoaded(object sender, YumiNativeToLoadEventArgs args)
     {
         Logger.Log("HandleNativeAdLoaded event opened");
-        Logger.Log("native count = " + args.nativeData.Count);
-        this.nativeAd.RegisterGameObjectsForInteraction(gameObject,(RectTransform)adPanel.transform,(RectTransform)mediaView.transform,(RectTransform)iconImage.transform,(RectTransform)callToActionButton.transform);
+        if (this.nativeAd == null)
+        {
+            Logger.Log("nativeAd is null");
+
+        }
+        else
+        {
+            Logger.Log("nativeAd is not null");
+            this.nativeAd.RegisterGameObjectsForInteraction(gameObject, (RectTransform)adPanel.transform, (RectTransform)mediaView.transform, (RectTransform)iconImage.transform, (RectTransform)callToActionButton.transform);
+        }
     }
     public void HandleNativeAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args)
     {
