@@ -212,6 +212,10 @@ void RegisterAssetViewsForInteraction(
     [internalNativeAd registerNativeForInteraction:uniqueId adViewRect:adViewRect mediaViewRect:mediaViewRect iconViewRect:iconViewRect ctaViewRect:ctaViewRect];
     
 }
+void UnregisterView(YumiTypeNativeAdRef nativeAd,int uniqueId){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    [internalNativeAd UnregisterView:uniqueId];
+}
 void SetNativeCallbacks(YumiTypeNativeAdRef nativeAd ,
                         YumiNativeAdDidReceiveAdCallback adReceivedCallback,
                         YumiNativeAdDidFailToReceiveAdWithErrorCallback adFailCallback,
