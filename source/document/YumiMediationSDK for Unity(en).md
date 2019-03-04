@@ -53,7 +53,7 @@ This documentation is intended for developers who want to integrate Yumimobi SDK
 
 The YumiMediationSDK Unity plugin enables Unity developers to easily serve Yumimobi Ads on Android and iOS apps without having to write Java or Objective-C code. The plugin provides a C# interface for requesting ads that is used by C# scripts in your Unity project. Use the links below to download the Unity package for the plugin or to take a look at its code on GitHub.
 
-[Download the YumiMediationSDK Unity plugin](https://adsdk.yumimobi.com/Unity/3.4.1/YumiMediationSDKPlugin_v3.4.1.unitypackage)
+[Download the YumiMediationSDK Unity plugin](https://adsdk.yumimobi.com/Unity/3.4.1.0/YumiMediationSDKPlugin_v3.4.1.0.unitypackage)
 
 [VIEW SOURCE](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
@@ -126,33 +126,36 @@ Android dependencies：
 
 ```xml
 <androidPackages>
-  <androidPackage spec="com.yumimobi.ads:mediation:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:mraid:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads:mediation:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.4.1">
+      <repositories>
+        <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
+      </repositories>
+  </androidPackage>
+  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.4.1" />
   
   <!--  If your app is only available in mainland China, use unity-china,else use unity.   -->
-  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.4.+" />
-  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.4.+" /> -->
+  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.4.1" />
+  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.4.1" /> -->
   
   <repositories>
       <repository>https://jcenter.bintray.com/</repository>
   </repositories>
 </androidPackages>
 ```
-e.g., Delete  ```admob```，Delete ```<androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.+" />``` .
+e.g., Delete  ```admob```，Delete ```<androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.1" />``` .
 
 ## Select an ad format
 
@@ -220,7 +223,9 @@ public class YumiSDKDemo : MonoBehaviour
 #### Request Banner
 
 ```C#
-bool IsSmartBanner = false;//If you set isSmartBanner to true, YumiMediationBannerView will automatically adapt to the size of the device (only support iOS if isSmart is true).
+//If you set isSmartBanner to true, YumiMediationBannerView will automatically adapt to the size of the device (only support iOS if isSmart is true).
+//the banner placement will auto refresh.You don't need to call this method repeatedly.
+bool IsSmartBanner = false;
 this.bannerView.LoadAd(IsSmartBanner); 
 ```
 
@@ -239,7 +244,7 @@ this.bannerView.Show();
 ### Interstitial
 
 #### Initialization and Interstitial request
-
+The interstitial placement will auto cached.
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
@@ -261,10 +266,6 @@ public class YumiSDKDemo : MonoBehaviour
     # else
 	  string interstitialPlacementId = "unexpected_platform";
     #endif
-    if (this.interstitialAd != null) 
-    {
-      this.interstitialAd.DestroyInterstitial();
-    }
     this.interstitialAd = new YumiInterstitialAd(interstitialPlacementId, channelId, gameVersionId);
     // add interstitial event 
     this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
@@ -305,16 +306,16 @@ It is recommended to call```this.interstitialAd.IsInterstitialReady()```to deter
  }
 ```
 
-#### Delegate Interstitial
+#### Destroy Interstitial
 
 ```c#
 this.interstitialAd.DestroyInterstitial();
 ```
 
-### Rewarded Video
+### Reward Video
 
-#### Initialization and Rewarded Video request
-
+#### Initialization and Reward Video request
+The reward video placement will auto cached.
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
@@ -336,10 +337,6 @@ public class YumiSDKDemo : MonoBehaviour
     # else
 	  string rewardVideoPlacementId = "unexpected_platform";
     #endif
-    if (this.rewardVideoAd != null) 
-    {
-      this.rewardVideoAd.DestroyRewardVideo();
-    }
     this.rewardVideoAd = new YumiRewardVideoAd();
     this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
     this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
@@ -385,7 +382,7 @@ public class YumiSDKDemo : MonoBehaviour
  } 
 ```
 
-#### Delegate Rewarded Video
+#### Destroy Rewarded Video
 
 ```c#
 this.rewardVideoAd.DestroyRewardVideo();
@@ -425,7 +422,7 @@ Reference Android official solution，[Click to view](https://developer.android.
 **2.Google play-services version 15.0.0 or higher**
 
 If your version of Google play-services is above 15.0.0, please download the new admob adapter instead of 
-**Assets/Plugins/Editor/Android/com.yumimobi.ads.mediation.admob-3.4.0.aar** 。[Download](http://adsdk.yumimobi.com/Android/Android_Adapters/3.4.0/yumi_adapter_admob_v3.4.0(For_GooglePlayService_version_15_and_above).aar)。
+**Assets/Plugins/Editor/Android/com.yumimobi.ads.mediation.admob-3.4.1.aar** 。[Download](http://adsdk.yumimobi.com/Android/Android_Adapters/3.4.1/yumi_adapter_admob_v3.4.1(For_GooglePlayService_version_15_and_above).aar)。
 
 **3.Test ad placementIDs**
 

@@ -1,12 +1,13 @@
 ﻿using System;
 using YumiMediationSDK.Api;
+using UnityEngine;
 
 namespace YumiMediationSDK.Common
 {
     public interface IYumiNativeClient
     {
         // Ad event fired when the native ad has been received.
-        event EventHandler<YumiNativeToLoadEventArgs> OnAdLoaded;
+        event EventHandler<YumiNativeToLoadEventArgs> OnNativeAdLoaded;
         // Ad event fired when the native ad has failed to load.
         event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
         // Ad event fired when the native ad is click.
@@ -24,5 +25,14 @@ namespace YumiMediationSDK.Common
         void ReportClick(YumiNativeData nativeData);
         // Destroys native ad object.
         void DestroyNativeAd();
+        // Wire up GameObject with the native ad. The game object should be a child of the canvas.
+        // Register game objects for interactions.
+        // MediaView will be used for impression logging.
+        // CallToActionButton will be used for click logging.
+        void RegisterGameObjectsForInteraction(GameObject gameObject, RectTransform adViewRectTransform,RectTransform mediaViewRectTransform, RectTransform iconViewRectTransform, RectTransform ctaViewRectTransform);
+
+        //this is a method to disconnect a YumiNativeData with the view you used to display the native ads.
+        void UnregisterView(YumiNativeData nativeData);
+
     }
 }

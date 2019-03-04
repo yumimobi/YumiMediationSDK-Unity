@@ -54,7 +54,7 @@
 
 Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android 和 iOS 应用上展示广告，无需编写 Java 或 Objective-C 代码。该插件提供了一个 C# 接口来请求广告。使用下面的链接下载插件的 Unity 包或在 GitHub 上查看其代码。
 
-[下载YumiMediationSDK Unity插件](https://adsdk.yumimobi.com/Unity/3.4.1/YumiMediationSDKPlugin_v3.4.1.unitypackage)
+[下载YumiMediationSDK Unity插件](https://adsdk.yumimobi.com/Unity/3.4.1.0/YumiMediationSDKPlugin_v3.4.1.0.unitypackage)
 
 [查看源码](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
@@ -123,26 +123,29 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ```xml
 <androidPackages>
-  <androidPackage spec="com.yumimobi.ads:mediation:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:mraid:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.4.+" />
-  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.4.+" />
+  <androidPackage spec="com.yumimobi.ads:mediation:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.4.1">
+      <repositories>
+        <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
+      </repositories>
+  </androidPackage>
+  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.4.1" />
   
   <!--  If your app is only available in mainland China, use unity-china,else use unity.   -->
-  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.4.+" />
-  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.4.+" /> -->
+  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.4.1" />
+  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.4.1" /> -->
   
   <repositories>
       <repository>https://jcenter.bintray.com/</repository>
@@ -150,7 +153,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 </androidPackages>
 ```
 
-比如删除  ```admob```，直接删除 ```<androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.+" />```  即可。
+比如删除  ```admob```，直接删除 ```<androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.1" />```  即可。
 
 ## 选择广告形式
 
@@ -218,7 +221,9 @@ public class YumiSDKDemo : MonoBehaviour
 #### 请求 Banner
 
 ```C#
-bool IsSmartBanner = false;//如果设置 isSmartBanner 为 true ,YumiMediationBannerView 将会自动根据设备的尺寸进行适配（目前只有 iOS 支持 isSmart = true）。
+//如果设置 isSmartBanner 为 true ,YumiMediationBannerView 将会自动根据设备的尺寸进行适配（目前只有 iOS 支持 isSmart = true）
+//banner 广告位会自动填充，您无需重复调用
+bool IsSmartBanner = false;
 this.bannerView.LoadAd(IsSmartBanner); 
 ```
 
@@ -237,7 +242,7 @@ this.bannerView.Show();
 ### Interstitial
 
 #### 初始化及请求插屏
-
+插屏广告位会自动加载下一条广告，您无需重复调用
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
@@ -259,10 +264,6 @@ public class YumiSDKDemo : MonoBehaviour
     # else
 	  string interstitialPlacementId = "unexpected_platform";
     #endif
-    if (this.interstitialAd != null) 
-    {
-      this.interstitialAd.DestroyInterstitial();
-    }
     this.interstitialAd = new YumiInterstitialAd(interstitialPlacementId, channelId, gameVersionId);
     // add interstitial event 
     this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
@@ -312,7 +313,7 @@ this.interstitialAd.DestroyInterstitial();
 ### Rewarded Video
 
 #### 初始化及请求视频
-
+视频广告位会自动加载下一条广告，您无需重复调用。
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
@@ -334,10 +335,6 @@ public class YumiSDKDemo : MonoBehaviour
     # else
 	  string rewardVideoPlacementId = "unexpected_platform";
     #endif
-    if (this.rewardVideoAd != null) 
-    {
-      this.rewardVideoAd.DestroyRewardVideo();
-    }
     this.rewardVideoAd = new YumiRewardVideoAd();
     this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
     this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
@@ -422,7 +419,7 @@ public class YumiSDKDemo : MonoBehaviour
 
 **2.Google play-services 版本 15.0.0 以上**
 
-如果您的 Google play-services 版本在15.0.0 以上，请下载新的 admob adapter 替换 **Assets/Plugins/Editor/Android/com.yumimobi.ads.mediation.admob-3.4.0.aar** 文件。[下载地址](http://adsdk.yumimobi.com/Android/Android_Adapters/3.4.0/yumi_adapter_admob_v3.4.0(For_GooglePlayService_version_15_and_above).aar)。
+如果您的 Google play-services 版本在15.0.0 以上，请下载新的 admob adapter 替换 **Assets/Plugins/Editor/Android/com.yumimobi.ads.mediation.admob-3.4.1.aar** 文件。[下载地址](http://adsdk.yumimobi.com/Android/Android_Adapters/3.4.1/yumi_adapter_admob_v3.4.1(For_GooglePlayService_version_15_and_above).aar)。
 
 **3.测试广告位**
 

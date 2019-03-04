@@ -12,6 +12,7 @@
 #import "YumiInterstital.h"
 #import "YumiRewardVideo.h"
 #import "YumiDebugCenter.h"
+#import "YumiNative.h"
 
 /// Returns an NSString copying the characters from |bytes|, a C array of UTF8-encoded bytes.
 /// Returns nil if |bytes| is NULL.
@@ -167,4 +168,60 @@ void PresentDebugCenter(const char * bannerPlacementID, const char * interstitia
     YumiDebugCenter *debugcenter = [[YumiDebugCenter alloc] init];
     
     [debugcenter presentWithBannerPlacementID:YumiStringFromUTF8String(bannerPlacementID) interstitialPlacementID:YumiStringFromUTF8String(interstitialPlacementID) videoPlacementID:YumiStringFromUTF8String(videoPlacementID) nativePlacementID:YumiStringFromUTF8String(nativePlacementID) channelID:YumiStringFromUTF8String(channelID) versionID:YumiStringFromUTF8String(versionID)];
+}
+
+#pragma  mark: native  method
+YumiTypeNativeAdRef InitYumiNativeAd(YumiTypeNativeClientRef *nativeClient,const char * placementID, const char * channelID, const char * versionID){
+    YumiNative *nativeAd = [[YumiNative alloc] initWithNativeClientReference:nativeClient placementID:YumiStringFromUTF8String(placementID) channelID:YumiStringFromUTF8String(channelID) versionID:YumiStringFromUTF8String(versionID)];
+    // save pointer
+    YumiObjectCache *cache = [YumiObjectCache sharedInstance];
+    [cache.references setObject:nativeAd forKey:[nativeAd yumi_referenceKey]];
+    return (__bridge YumiTypeNativeAdRef)nativeAd;
+}
+
+void RequestNativeAd(YumiTypeNativeAdRef nativeAd, int adCount){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    
+    [internalNativeAd loadNativeAd:adCount];
+}
+
+void ReportImpression(YumiTypeNativeAdRef nativeAd){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    [internalNativeAd reportImpression];
+}
+void ReportClick(YumiTypeNativeAdRef nativeAd){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    [internalNativeAd reportClick];
+    
+}
+void RegisterAssetViewsForInteraction(
+                                           YumiTypeNativeAdRef nativeAd,int uniqueId,
+                                           int adViewX, int adViewY, int adViewWidth, int adViewHeight,
+                                           int mediaViewX, int mediaViewY, int mediaViewWidth, int mediaViewHeight,
+                                           int iconViewX, int iconViewY, int iconViewWidth, int iconViewHeight,
+                                           int ctaViewX, int ctaViewY, int ctaViewWidth, int ctaViewHeight){
+    // adapte iphone size with screen scale
+    CGFloat scale = [UIScreen mainScreen].scale;
+    
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    CGRect adViewRect = CGRectMake(adViewX / scale , adViewY/scale, adViewWidth/scale, adViewHeight/scale);
+    CGRect mediaViewRect = CGRectMake(mediaViewX/scale, mediaViewY/scale, mediaViewWidth/scale, mediaViewHeight/scale);
+    CGRect iconViewRect = CGRectMake(iconViewX/scale, iconViewY/scale, iconViewWidth/scale, iconViewHeight/scale);
+     CGRect ctaViewRect = CGRectMake(ctaViewX/scale, ctaViewY/scale, ctaViewWidth/scale,ctaViewHeight/scale);
+    
+    [internalNativeAd registerNativeForInteraction:uniqueId adViewRect:adViewRect mediaViewRect:mediaViewRect iconViewRect:iconViewRect ctaViewRect:ctaViewRect];
+    
+}
+void UnregisterView(YumiTypeNativeAdRef nativeAd,int uniqueId){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    [internalNativeAd UnregisterView:uniqueId];
+}
+void SetNativeCallbacks(YumiTypeNativeAdRef nativeAd ,
+                        YumiNativeAdDidReceiveAdCallback adReceivedCallback,
+                        YumiNativeAdDidFailToReceiveAdWithErrorCallback adFailCallback,
+                        YumiNativeAdDidClickCallback adClickedCallback){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    internalNativeAd.adReceivedCallback = adReceivedCallback;
+    internalNativeAd.adFailedCallback = adFailCallback;
+    internalNativeAd.adClickedCallback = adClickedCallback;
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
+using UnityEngine.SceneManagement;
 
 public class YumiSDKDemo : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class YumiSDKDemo : MonoBehaviour
     private String ChannelId = "";
 
     private bool IsSmartBanner;
+
 
     void Start()
     {
@@ -56,17 +58,17 @@ public class YumiSDKDemo : MonoBehaviour
 
         if (GUI.Button(new Rect(40, 84, btnWidth, 120), "request banner", myButtonStyle))
         {
-          
-            if(this.bannerView == null)
+
+            if (this.bannerView == null)
             {
                 this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionId, YumiAdPosition.Bottom);
                 // banner add ad event
                 this.bannerView.OnAdLoaded += this.HandleAdLoaded;
                 this.bannerView.OnAdFailedToLoad += HandleAdFailedToLoad;
                 this.bannerView.OnAdClick += HandleAdClicked;
-             }
+            }
 
-           
+
             this.bannerView.LoadAd(IsSmartBanner);
             this.bannerView.Show();
 
@@ -74,21 +76,23 @@ public class YumiSDKDemo : MonoBehaviour
         //remove banner
         if (GUI.Button(new Rect(40 + btnWidth + 10, 84, btnWidth, 120), "hide banner", myButtonStyle))
         {
-            if(this.bannerView != null){
+            if (this.bannerView != null)
+            {
                 this.bannerView.Hide();
-        }
+            }
 
         }
 
         //Yumi interstital
         if (GUI.Button(new Rect(40, 214, btnWidth, 120), "request interstital", myButtonStyle))
         {
-        
-            if(this.interstitialAd != null){
+
+            if (this.interstitialAd != null)
+            {
                 this.interstitialAd.DestroyInterstitial();
             }
 
-            this.interstitialAd = new YumiInterstitialAd(InterstitialsPlacementId, ChannelId,GameVersionId);
+            this.interstitialAd = new YumiInterstitialAd(InterstitialsPlacementId, ChannelId, GameVersionId);
             // add interstitial event 
             this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
             this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
@@ -100,7 +104,8 @@ public class YumiSDKDemo : MonoBehaviour
         if (GUI.Button(new Rect(40 + btnWidth + 10, 214, btnWidth, 120), "present interstital", myButtonStyle))
         {
 
-            if(this.interstitialAd.IsInterstitialReady()){
+            if (this.interstitialAd.IsInterstitialReady())
+            {
                 this.interstitialAd.ShowInterstitial();
             }
 
@@ -109,8 +114,9 @@ public class YumiSDKDemo : MonoBehaviour
         //Yumi video
         if (GUI.Button(new Rect(40, 344, btnWidth, 120), "Load video", myButtonStyle))
         {
-           
-            if(this.rewardVideoAd != null){
+
+            if (this.rewardVideoAd != null)
+            {
                 this.rewardVideoAd.DestroyRewardVideo();
             }
             this.rewardVideoAd = new YumiRewardVideoAd();
@@ -119,21 +125,31 @@ public class YumiSDKDemo : MonoBehaviour
             this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
             this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
 
-            this.rewardVideoAd.LoadRewardVideoAd(RewardedVideoPlacementId,ChannelId,GameVersionId);
+            this.rewardVideoAd.LoadRewardVideoAd(RewardedVideoPlacementId, ChannelId, GameVersionId);
         }
 
         if (GUI.Button(new Rect(40 + btnWidth + 10, 344, btnWidth, 120), "play video", myButtonStyle))
         {
 
-            if(this.rewardVideoAd.IsRewardVideoReady()){
+            if (this.rewardVideoAd.IsRewardVideoReady())
+            {
                 this.rewardVideoAd.PlayRewardVideo();
             }
         }
-        if(YumiMediationSDKSetting.GetDebugMode)
+
+        //native
+
+        if (GUI.Button(new Rect(40, 474, btnWidth, 120), "Show Native Scen", myButtonStyle))
         {
-            if (GUI.Button(new Rect(40, 474, btnWidth, 120), "Call DebugCenter", myButtonStyle))
+            SceneManager.LoadScene("YumiNativeScene");
+
+        }
+
+        if (YumiMediationSDKSetting.GetDebugMode)
+        {
+            if (GUI.Button(new Rect(40, 594, btnWidth, 120), "Call DebugCenter", myButtonStyle))
             {
-                if(this.debugCenter == null)
+                if (this.debugCenter == null)
                 {
                     this.debugCenter = new YumiDebugCenter();
                 }
