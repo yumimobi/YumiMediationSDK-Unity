@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_IOS
+using System;
 using YumiMediationSDK.Common;
 using YumiMediationSDK.Api;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace YumiMediationSDK.iOS
 
         private GameObject currentGameObject;
 
-        #region Banner callback types
+#region Banner callback types
 
         internal delegate void YumiNativeAdDidReceiveAdCallback(IntPtr nativeClient, int adCount);
 
@@ -25,7 +26,7 @@ namespace YumiMediationSDK.iOS
 
         internal delegate void YumiNativeAdDidClickCallback(IntPtr nativeClient);
 
-        #endregion
+#endregion
 
         // This property should be used when setting the bannerViewPtr.
         private IntPtr NativeAdPtr
@@ -43,16 +44,16 @@ namespace YumiMediationSDK.iOS
         }
 
 
-        #region IYumiNativeClient event
+#region IYumiNativeClient event
         // Ad event fired when the native ad has been received.
         public event EventHandler<YumiNativeToLoadEventArgs> OnNativeAdLoaded;
         // Ad event fired when the native ad has failed to load.
         public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
         // Ad event fired when the native ad is click.
         public event EventHandler<EventArgs> OnAdClick;
-        #endregion
+#endregion
 
-        #region implement IYumiNativeClient interface 
+#region implement IYumiNativeClient interface 
 
         // Creates a native ad
         public void CreateNativeAd(string placementId, string channelId, string versionId)
@@ -128,9 +129,9 @@ namespace YumiMediationSDK.iOS
         {
             this.Dispose();
         }
-        #endregion
+#endregion
 
-        #region private method
+#region private method
         private Rect getGameObjectRect(RectTransform rectTransform, Camera camera)
         {
             if (rectTransform == null)
@@ -173,10 +174,10 @@ namespace YumiMediationSDK.iOS
             }
             return null;
         }
-        #endregion
+#endregion
 
 
-        #region  native ad  callback methods
+#region  native ad  callback methods
 
         [MonoPInvokeCallback(typeof(YumiNativeAdDidReceiveAdCallback))]
         private static void NativeDidReceiveAdCallback(IntPtr nativeClient, int adCount)
@@ -223,7 +224,8 @@ namespace YumiMediationSDK.iOS
             return handle.Target as YumiNativeClient;
         }
 
-        #endregion
+#endregion
 
     }
 }
+#endif
