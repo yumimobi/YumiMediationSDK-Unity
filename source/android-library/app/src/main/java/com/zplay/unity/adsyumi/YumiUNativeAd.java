@@ -35,7 +35,6 @@ public class YumiUNativeAd {
     public YumiUNativeAd(Activity activity, YumiUNativeAdListener listener) {
         mUnityPlayerActivity = activity;
         mNativeAdListener = listener;
-        YumiDebug.runInDebugMode(true);
     }
 
     public void create(final String slotId, final String channelId, final String versionId) {
@@ -100,7 +99,6 @@ public class YumiUNativeAd {
             @Override
             public void run() {
                 FrameLayout adPlaceHolder = new FrameLayout(mUnityPlayerActivity);
-                adPlaceHolder.setBackgroundColor(0x88ff0000);
                 LayoutParams adPlaceHolderLayout = new LayoutParams(containerWidth, containerHeight);
                 adPlaceHolderLayout.leftMargin = containerX;
                 adPlaceHolderLayout.topMargin = containerY;
