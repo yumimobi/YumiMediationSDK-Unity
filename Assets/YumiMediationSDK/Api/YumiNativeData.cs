@@ -3,7 +3,7 @@ namespace YumiMediationSDK.Api
 {
     public struct YumiNativeData
     {
-        public int uniqueId;
+        public string uniqueId;
         public string title;
         public string desc;
         public string iconURL;
@@ -12,6 +12,5 @@ namespace YumiMediationSDK.Api
         public string appRating;
         public string callToAction;
         public string other;
-
     }
 }
