@@ -1114,7 +1114,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: title
+  m_Text: 
 --- !u!222 &1638019998
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1189,7 +1189,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: bodyda askldjaksd asdkasdjkasjdkaskdjaklsdjasdkas ksadjaksjdksakdjaskdk
+  m_Text: 
 --- !u!222 &1681615588
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1297,7 +1297,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Install Now
+  m_Text: '
+
+'
 --- !u!222 &1906400166
 CanvasRenderer:
   m_ObjectHideFlags: 0
