@@ -12,12 +12,23 @@ public class YumiUDebugCenter {
      */
     private Activity activity;
 
-    public YumiUDebugCenter(Activity activity){
+    public YumiUDebugCenter(Activity activity) {
         this.activity = activity;
     }
 
-    public  void presentDebugCenter(final String bannerPlacementId, final String interstitialPlacementId, final String rewardVideoPlacementId, final String channelId, final String versionId) {
+    public void presentDebugCenter(final String bannerPlacementId, final String interstitialPlacementId, final String rewardVideoPlacementId, final String channelId, final String versionId) {
         Log.d(TAG, "present debug center");
-        YumiSettings.startDebugging(this.activity, bannerPlacementId,interstitialPlacementId,rewardVideoPlacementId, channelId, versionId);
+        presentDebugCenter(bannerPlacementId, interstitialPlacementId, rewardVideoPlacementId, "", channelId, versionId);
+    }
+
+    public void presentDebugCenter(final String bannerPlacementId, final String interstitialPlacementId, final String rewardVideoPlacementId, final String nativePlacementId, final String channelId, final String versionId) {
+        Log.d(TAG, "present debug center");
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                YumiSettings.startDebugging(YumiUDebugCenter.this.activity, bannerPlacementId, interstitialPlacementId, rewardVideoPlacementId, nativePlacementId, channelId, versionId);
+
+            }
+        });
     }
 }
