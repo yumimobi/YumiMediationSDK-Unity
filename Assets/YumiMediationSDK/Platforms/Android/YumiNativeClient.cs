@@ -86,6 +86,21 @@ namespace YumiMediationSDK.Android
             Logger.Log("ReportImpression");
         }
 
+        public bool IsAdInvalidated(YumiNativeData nativeData)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowView(YumiNativeData nativeData)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void HideView(YumiNativeData nativeData)
+        {
+            throw new NotImplementedException();
+        }
+
         public void UnregisterView(YumiNativeData nativeData)
         {
             Logger.Log("ReportImpression");
@@ -153,21 +168,6 @@ namespace YumiMediationSDK.Android
         void onLayerClick()
         {
             OnAdClick(this, EventArgs.Empty);
-        }
-
-        public void IsAdInvalidated(YumiNativeData nativeData)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowView(YumiNativeData nativeData)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void HideView(YumiNativeData nativeData)
-        {
-            throw new NotImplementedException();
         }
         #endregion
     }

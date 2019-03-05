@@ -145,9 +145,10 @@ namespace YumiMediationSDK.Common
             Logger.LogError("Dummy: call RegisterGameObjectsForInteraction");
         }
 
-        public void IsAdInvalidated(YumiNativeData nativeData)
+        public bool IsAdInvalidated(YumiNativeData nativeData)
         {
             Logger.LogError("Dummy: call IsAdInvalidated");
+            return false;
         }
 
         public void ShowView(YumiNativeData nativeData)

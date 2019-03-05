@@ -72,7 +72,7 @@ namespace YumiMediationSDK.Common
         /// should call isAdInvalidated() to validate the ad.
         /// </summary>
         /// <param name="nativeData">Native data.</param>
-        void IsAdInvalidated(YumiNativeData nativeData);
+        bool IsAdInvalidated(YumiNativeData nativeData);
 
         /// <summary>
         /// Shows registered native ad view

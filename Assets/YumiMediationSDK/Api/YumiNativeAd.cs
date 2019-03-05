@@ -71,6 +71,21 @@ namespace YumiMediationSDK.Api
             client.RegisterGameObjectsForInteraction(data, gameObject, elements);
         }
 
+        public bool IsAdInvalidated(YumiNativeData nativeData)
+        {
+            return client.IsAdInvalidated(nativeData);
+        }
+
+        public void ShowView(YumiNativeData nativeData)
+        {
+            client.ShowView(nativeData);
+        }
+
+        public void HideView(YumiNativeData nativeData)
+        {
+            client.HideView(nativeData);
+        }
+
         public void UnregisterView(YumiNativeData nativeData)
         {
             this.client.UnregisterView(nativeData);
