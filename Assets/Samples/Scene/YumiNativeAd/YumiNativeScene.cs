@@ -17,7 +17,9 @@ public class YumiNativeScene : MonoBehaviour
     private String NativePlacementId = "hxqd9uwr";
     private String GameVersionId = "";
     private String ChannelId = "";
+
     // UI elements in scene
+    public Text statusText;
     [Header("Text:")]
     public Text title;
     public Text body;
@@ -27,18 +29,15 @@ public class YumiNativeScene : MonoBehaviour
     [Header("Buttons:")]
     // This doesn't be a button - it can also be an image
     public Button callToActionButton;
-    //[Header("Ad Choices:")]
-    //public AdChoices adChoices;
 
     // ad panel
     public GameObject adPanel;
 
+    private YumiNativeData yumiNativeData = new YumiNativeData();
+
     void Awake()
     {
         Logger.Log("Native ad ready to load.");
-        this.title.text = "test title";
-        this.body.text = "test body";
-        callToActionButton.GetComponentInChildren<Text>().text = "安装";
     }
 
     void OnDestroy()
@@ -53,7 +52,7 @@ public class YumiNativeScene : MonoBehaviour
     // Load Ad button
     public void LoadAd()
     {
-        Logger.Log("load ad ");
+        statusText.text = "LoadAd";
         if (this.nativeAd == null)
         {
             this.nativeAd = new YumiNativeAd(NativePlacementId, ChannelId, GameVersionId);
@@ -66,20 +65,46 @@ public class YumiNativeScene : MonoBehaviour
         this.nativeAd.LoadNativeAd(1);
     }
 
-    private void Log(string s)
+    public void RegisterNativeViews()
     {
-
-        Logger.Log(s);
+        statusText.text = "RegisterNativeViews";
+        Dictionary<NativeElemetType, Transform> elementsDictionary = new Dictionary<NativeElemetType, Transform>();
+        elementsDictionary.Add(NativeElemetType.PANEL, adPanel.transform);
+        elementsDictionary.Add(NativeElemetType.TITLE, title.transform);
+        elementsDictionary.Add(NativeElemetType.DESCRIPTION, body.transform);
+        elementsDictionary.Add(NativeElemetType.ICON, iconImage.transform);
+        elementsDictionary.Add(NativeElemetType.COVER_IMAGE, mediaView.transform);
+        elementsDictionary.Add(NativeElemetType.CALL_TO_ACTION, callToActionButton.transform);
+        nativeAd.RegisterGameObjectsForInteraction(yumiNativeData, gameObject, elementsDictionary);
     }
 
-    // Next button
-    public void NextScene()
+    public void ShowAd()
     {
-        YumiNativeData data = new YumiNativeData();
-        data.uniqueId = "";
-        this.nativeAd.UnregisterView(data);
-        SceneManager.LoadScene("YumiScene");
-     
+        statusText.text = "ShowAd";
+        if (!nativeAd.IsAdInvalidated(yumiNativeData))
+        {
+            statusText.text = "Native Data is invalidated";
+            return;
+        }
+        nativeAd.ShowView(yumiNativeData);
+    }
+
+    public void HideAd()
+    {
+        statusText.text = "HideAd";
+        nativeAd.HideView(yumiNativeData);
+    }
+
+    public void UnregisterNativeViews()
+    {
+        statusText.text = "UnregisterNativeViews";
+        nativeAd.UnregisterView(yumiNativeData);
+        yumiNativeData = new YumiNativeData();
+    }
+
+    private void Log(string s)
+    {
+        Logger.Log(s);
     }
 
     #region native call back handles
@@ -87,23 +112,18 @@ public class YumiNativeScene : MonoBehaviour
     public void HandleNativeAdLoaded(object sender, YumiNativeToLoadEventArgs args)
     {
         Logger.Log("HandleNativeAdLoaded event opened");
-        if (this.nativeAd == null)
+        if (nativeAd == null)
         {
-            Logger.Log("nativeAd is null");
+            statusText.text = "nativeAd is null";
+            return;
+        }
 
-        }
-        else
+        if (args == null || args.nativeData == null || args.nativeData.Count == 0)
         {
-            Logger.Log("nativeAd is not null");
-            Dictionary<NativeElemetType, Transform> elementsDictionary = new Dictionary<NativeElemetType, Transform>();
-            elementsDictionary.Add(NativeElemetType.PANEL, adPanel.transform);
-            elementsDictionary.Add(NativeElemetType.TITLE, title.transform);
-            elementsDictionary.Add(NativeElemetType.DESCRIPTION, body.transform);
-            elementsDictionary.Add(NativeElemetType.ICON, iconImage.transform);
-            elementsDictionary.Add(NativeElemetType.COVER_IMAGE, mediaView.transform);
-            elementsDictionary.Add(NativeElemetType.CALL_TO_ACTION, callToActionButton.transform);
-            nativeAd.RegisterGameObjectsForInteraction(new YumiNativeData(), gameObject, elementsDictionary);
+            statusText.text = "nativeAd data not found.";
+            return;
         }
+        yumiNativeData = args.nativeData[0];
     }
     public void HandleNativeAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args)
     {
