@@ -1,10 +1,11 @@
 ﻿using System;
 using YumiMediationSDK.Api;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace YumiMediationSDK.Common
 {
-    public class YumiDummyClient : IYumiBannerClient,IYumiInterstitialClient,IYumiRewardVideoClient,IYumiDebugCenterClient,IYumiNativeClient
+    public class YumiDummyClient : IYumiBannerClient,IYumiInterstitialClient,IYumiRewardVideoClient,IYumiDebugCenterClient, IYumiNativeClient
     {
         public YumiDummyClient()
         {
@@ -113,28 +114,54 @@ namespace YumiMediationSDK.Common
 
         // native ad
         // Creates a native ad
-        public void CreateNativeAd(string placementId, string channelId, string versionId){
+
+        public void CreateNativeAd(string placementId, string channelId, string versionId)
+        {
             Logger.LogError("Dummy: call CreateNativeAd");
         }
 
-        public  void LoadAd(int adCount){
+        public void LoadAd(int adCount)
+        {
             Logger.LogError("Dummy: call LoadAd");
         }
 
-        public void ReportImpression(YumiNativeData nativeData){
+        public void ReportImpression(YumiNativeData nativeData)
+        {
             Logger.LogError("Dummy: call ReportImpression");
         }
-        public void ReportClick(YumiNativeData nativeData){
+
+        public void ReportClick(YumiNativeData nativeData)
+        {
             Logger.LogError("Dummy: call ReportClick");
         }
-        public void DestroyNativeAd(){
+
+        public void DestroyNativeAd()
+        {
             Logger.LogError("Dummy: call DestroyNativeAd");
         }
-        public void RegisterGameObjectsForInteraction(GameObject gameObject, RectTransform adViewRectTransform,RectTransform mediaViewRectTransform, RectTransform iconViewRectTransform, RectTransform ctaViewRectTransform)
+
+        public void RegisterGameObjectsForInteraction(YumiNativeData yumiNaitveData, GameObject gameObject, Dictionary<NativeElemetType, Transform> elements)
         {
             Logger.LogError("Dummy: call RegisterGameObjectsForInteraction");
         }
-        public void UnregisterView(YumiNativeData nativeData){
+
+        public void IsAdInvalidated(YumiNativeData nativeData)
+        {
+            Logger.LogError("Dummy: call IsAdInvalidated");
+        }
+
+        public void ShowView(YumiNativeData nativeData)
+        {
+            Logger.LogError("Dummy: call ShowView");
+        }
+
+        public void HideView(YumiNativeData nativeData)
+        {
+            Logger.LogError("Dummy: call HideView");
+        }
+
+        public void UnregisterView(YumiNativeData nativeData)
+        {
             Logger.LogError("Dummy: call UnregisterView");
         }
     }

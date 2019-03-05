@@ -2,6 +2,7 @@
 using YumiMediationSDK.Common;
 using System.Reflection;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace YumiMediationSDK.Api
 {
@@ -43,9 +44,31 @@ namespace YumiMediationSDK.Api
             this.client.DestroyNativeAd();
         }
 
-        public void RegisterGameObjectsForInteraction(GameObject gameObject, RectTransform adViewRectTransform,RectTransform mediaViewRectTransform, RectTransform iconViewRectTransform, RectTransform ctaViewRectTransform)
+        public void RegisterGameObjectsForInteraction(YumiNativeData data, GameObject gameObject, Dictionary<NativeElemetType, Transform> elements)
         {
-            this.client.RegisterGameObjectsForInteraction(gameObject,adViewRectTransform,mediaViewRectTransform, iconViewRectTransform,ctaViewRectTransform);
+            if (gameObject == null)
+            {
+                Logger.Log("GameObject cannot be null.");
+                return;
+            }
+
+            if (elements == null)
+            {
+                Logger.Log("Native Elements transform Dictionary cannot be null.");
+                return;
+            }
+
+            if (elements[NativeElemetType.PANEL] == null ||
+               elements[NativeElemetType.TITLE] == null ||
+               elements[NativeElemetType.ICON] == null ||
+               elements[NativeElemetType.COVER_IMAGE] == null ||
+               elements[NativeElemetType.CALL_TO_ACTION] == null)
+            {
+                Logger.Log("The follow elements are required: panel, title, icon, coverImage, callToAction");
+                return;
+            }
+
+            client.RegisterGameObjectsForInteraction(data, gameObject, elements);
         }
 
         public void UnregisterView(YumiNativeData nativeData)
@@ -62,7 +85,8 @@ namespace YumiMediationSDK.Api
         public event EventHandler<EventArgs> OnAdClick;
         #endregion
         //回调
-        private void ConfigureNativeEvents(){
+        private void ConfigureNativeEvents()
+        {
             this.client.OnNativeAdLoaded += (sender, args) =>
             {
                 if (this.OnNativeAdLoaded != null)
@@ -70,8 +94,10 @@ namespace YumiMediationSDK.Api
                     this.OnNativeAdLoaded(this, args);
                 }
             };
-            this.client.OnAdFailedToLoad += (sender, args) => { 
-                if(this.OnAdFailedToLoad != null){
+            this.client.OnAdFailedToLoad += (sender, args) =>
+            {
+                if (this.OnAdFailedToLoad != null)
+                {
                     this.OnAdFailedToLoad(this, args);
                 }
             };

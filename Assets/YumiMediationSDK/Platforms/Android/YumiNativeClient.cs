@@ -1,5 +1,6 @@
 ﻿#if UNITY_ANDROID
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
@@ -39,21 +40,40 @@ namespace YumiMediationSDK.Android
             nativeAd.Call("loadAd", adCount);
         }
 
-        public void RegisterGameObjectsForInteraction(GameObject gameObject, RectTransform adViewRectTransform, RectTransform mediaViewRectTransform, RectTransform iconViewRectTransform, RectTransform ctaViewRectTransform)
+        public void RegisterGameObjectsForInteraction(YumiNativeData yumiNaitveData, GameObject gameObject, Dictionary<NativeElemetType, Transform> elements)
         {
-            this.currentGameObject = gameObject;
+            currentGameObject = gameObject;
             Camera camera = Camera.main;
+            RectTransform panel = elements[NativeElemetType.PANEL] as RectTransform;
+            RectTransform titile = elements[NativeElemetType.TITLE] as RectTransform;
+            RectTransform icon = elements[NativeElemetType.ICON] as RectTransform;
+            RectTransform coverImage = elements[NativeElemetType.COVER_IMAGE] as RectTransform;
+            RectTransform callToAction = elements[NativeElemetType.CALL_TO_ACTION] as RectTransform;
+            if (panel == null || titile == null || icon == null || coverImage == null || callToAction == null)
+            {
+                Logger.Log("Yumi Native Ad requires the following transforms: panel, titile, icon, coverImage, callToAction.");
+                return;
+            }
+            RectTransform description = elements[NativeElemetType.DESCRIPTION] as RectTransform;
+            if (description == null)
+            {
+                description = new RectTransform();
+            }
 
-            Rect adViewRect = getGameObjectRect(adViewRectTransform, camera);
-            Rect mediaViewRect = getGameObjectRect(mediaViewRectTransform, camera);
-            Rect iconViewRect = getGameObjectRect(iconViewRectTransform, camera);
-            Rect ctaViewRect = getGameObjectRect(ctaViewRectTransform, camera);
+            Rect panelRect = getGameObjectRect(panel, camera);
+            Rect titileRect = getGameObjectRect(titile, camera);
+            Rect iconRect = getGameObjectRect(icon, camera);
+            Rect coverImageRect = getGameObjectRect(coverImage, camera);
+            Rect callToActionRect = getGameObjectRect(callToAction, camera);
+            Rect descriptionRect = getGameObjectRect(description, camera);
+            nativeAd.Call("filleViews", yumiNaitveData.uniqueId,
+                (int)panelRect.x, (int)panelRect.y, (int)panelRect.width, (int)panelRect.height,
+                (int)titileRect.x, (int)titileRect.y, (int)titileRect.width, (int)titileRect.height,
+                (int)iconRect.x, (int)iconRect.y, (int)iconRect.width, (int)iconRect.height,
+                (int)coverImageRect.x, (int)coverImageRect.y, (int)coverImageRect.width, (int)coverImageRect.height,
+                (int)callToActionRect.x, (int)callToActionRect.y, (int)callToActionRect.width, (int)callToActionRect.height,
+                (int)descriptionRect.x, (int)descriptionRect.y, (int)descriptionRect.width, (int)descriptionRect.height);
 
-            nativeAd.Call("fillViews", 0,
-                (int)adViewRect.x, (int)adViewRect.y, (int)adViewRect.width, (int)adViewRect.height,
-                (int)iconViewRect.x, (int)iconViewRect.y, (int)iconViewRect.width, (int)iconViewRect.height,
-                (int)mediaViewRect.x, (int)mediaViewRect.y, (int)mediaViewRect.width, (int)mediaViewRect.height,
-                (int)ctaViewRect.x, (int)ctaViewRect.y, (int)ctaViewRect.width, (int)ctaViewRect.height);
         }
 
         public void ReportClick(YumiNativeData nativeData)
@@ -133,6 +153,21 @@ namespace YumiMediationSDK.Android
         void onLayerClick()
         {
             OnAdClick(this, EventArgs.Empty);
+        }
+
+        public void IsAdInvalidated(YumiNativeData nativeData)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowView(YumiNativeData nativeData)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void HideView(YumiNativeData nativeData)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

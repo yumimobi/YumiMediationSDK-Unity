@@ -76,7 +76,7 @@ public class YumiNativeScene : MonoBehaviour
     public void NextScene()
     {
         YumiNativeData data = new YumiNativeData();
-        data.uniqueId = 0;
+        data.uniqueId = "";
         this.nativeAd.UnregisterView(data);
         SceneManager.LoadScene("YumiScene");
      
@@ -95,7 +95,14 @@ public class YumiNativeScene : MonoBehaviour
         else
         {
             Logger.Log("nativeAd is not null");
-            this.nativeAd.RegisterGameObjectsForInteraction(gameObject, (RectTransform)adPanel.transform, (RectTransform)mediaView.transform, (RectTransform)iconImage.transform, (RectTransform)callToActionButton.transform);
+            Dictionary<NativeElemetType, Transform> elementsDictionary = new Dictionary<NativeElemetType, Transform>();
+            elementsDictionary.Add(NativeElemetType.PANEL, adPanel.transform);
+            elementsDictionary.Add(NativeElemetType.TITLE, title.transform);
+            elementsDictionary.Add(NativeElemetType.DESCRIPTION, body.transform);
+            elementsDictionary.Add(NativeElemetType.ICON, iconImage.transform);
+            elementsDictionary.Add(NativeElemetType.COVER_IMAGE, mediaView.transform);
+            elementsDictionary.Add(NativeElemetType.CALL_TO_ACTION, callToActionButton.transform);
+            nativeAd.RegisterGameObjectsForInteraction(new YumiNativeData(), gameObject, elementsDictionary);
         }
     }
     public void HandleNativeAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args)
