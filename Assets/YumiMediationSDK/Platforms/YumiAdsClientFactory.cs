@@ -57,7 +57,7 @@ namespace YumiMediationSDK
         {
 
 #if UNITY_ANDROID
-            return new YumiMediationSDK.Android.YumiDebugCenterClient();
+            return new YumiMediationSDK.Android.YumiNativeClient();
            
 #elif UNITY_IOS
             return new YumiMediationSDK.iOS.YumiNativeClient();
