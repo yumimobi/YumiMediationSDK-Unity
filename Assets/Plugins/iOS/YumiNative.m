@@ -48,10 +48,13 @@
 
 - (void)registerNativeForInteraction:(NSString *)nativeId adViewRect:(CGRect)adViewRect mediaViewRect:(CGRect)mediaViewRect iconViewRect:(CGRect)iconViewRect ctaViewRect:(CGRect)ctaViewRect titleRect:(CGRect)titleRect descRect:(CGRect)descRect{
     
+    YumiMediationNativeModel *model = [self getCurrentNativeModel:nativeId];
+    if (!model) {
+        return ;
+    }
+    
     __weak __typeof__(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        YumiMediationNativeModel *model = [weakSelf getCurrentNativeModel:nativeId];
         
         UIView *mainView = UnityGetGLView();
         weakSelf.adView = [[UIView alloc] initWithFrame:adViewRect];
@@ -76,8 +79,13 @@
         descLab.numberOfLines = 0;
         titleLab.font = [UIFont systemFontOfSize:15.0];
         descLab.font = [UIFont systemFontOfSize:13.0];
+        actLab.font = [UIFont systemFontOfSize:17.0];
         // image
-        
+        titleLab.text = model.title;
+        descLab.text = model.desc;
+        actLab.text = model.callToAction;
+        mediaView.image = model.coverImage.image;
+        iconView.image = model.icon.image;
         
         [weakSelf.nativeAd registerViewForInteraction:weakSelf.adView
                                   clickableAssetViews:@{
@@ -103,6 +111,7 @@
 }
 - (BOOL)isAdInvalidated:(NSString *)uniqueId{
     YumiMediationNativeModel *model = [self getCurrentNativeModel:uniqueId];
+    
     return [model isExpired];
 }
 - (void)showView:(NSString *)uniqueId{
