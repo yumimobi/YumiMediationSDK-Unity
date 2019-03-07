@@ -30,11 +30,6 @@ namespace YumiMediationSDK.Android
             nativeAd.Call("create", placementId, channelId, versionId);
         }
 
-        public void DestroyNativeAd()
-        {
-            nativeAd.Call("destroy");
-        }
-
         public void LoadAd(int adCount)
         {
             nativeAd.Call("loadAd", adCount);
@@ -42,6 +37,7 @@ namespace YumiMediationSDK.Android
 
         public void RegisterGameObjectsForInteraction(YumiNativeData yumiNaitveData, GameObject gameObject, Dictionary<NativeElemetType, Transform> elements)
         {
+            Logger.Log("YumiNativeClient: RegisterGameObjectsForInteraction " + yumiNaitveData.uniqueId);
             currentGameObject = gameObject;
             Camera camera = Camera.main;
             RectTransform panel = elements[NativeElemetType.PANEL] as RectTransform;
@@ -66,7 +62,7 @@ namespace YumiMediationSDK.Android
             Rect coverImageRect = getGameObjectRect(coverImage, camera);
             Rect callToActionRect = getGameObjectRect(callToAction, camera);
             Rect descriptionRect = getGameObjectRect(description, camera);
-            nativeAd.Call("filleViews", yumiNaitveData.uniqueId,
+            nativeAd.Call("fillViews", yumiNaitveData.uniqueId,
                 (int)panelRect.x, (int)panelRect.y, (int)panelRect.width, (int)panelRect.height,
                 (int)titileRect.x, (int)titileRect.y, (int)titileRect.width, (int)titileRect.height,
                 (int)iconRect.x, (int)iconRect.y, (int)iconRect.width, (int)iconRect.height,
@@ -74,6 +70,18 @@ namespace YumiMediationSDK.Android
                 (int)callToActionRect.x, (int)callToActionRect.y, (int)callToActionRect.width, (int)callToActionRect.height,
                 (int)descriptionRect.x, (int)descriptionRect.y, (int)descriptionRect.width, (int)descriptionRect.height);
 
+        }
+
+        public bool IsAdInvalidated(YumiNativeData nativeData)
+        {
+            Logger.Log("YumiNativeClient: IsAdInvalidated " + nativeData.uniqueId);
+            return nativeAd.Call<bool>("isAdInvalidated", nativeData.uniqueId );
+        }
+
+        public void ShowView(YumiNativeData nativeData)
+        {
+            Logger.Log("YumiNativeClient: ShowView " + nativeData.uniqueId);
+            nativeAd.Call("showView", nativeData.uniqueId );
         }
 
         public void ReportClick(YumiNativeData nativeData)
@@ -86,24 +94,22 @@ namespace YumiMediationSDK.Android
             Logger.Log("ReportImpression");
         }
 
-        public bool IsAdInvalidated(YumiNativeData nativeData)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowView(YumiNativeData nativeData)
-        {
-            throw new NotImplementedException();
-        }
-
         public void HideView(YumiNativeData nativeData)
         {
-            throw new NotImplementedException();
+            Logger.Log("YumiNativeClient: HideView " + nativeData.uniqueId);
+            nativeAd.Call("hideView",  nativeData.uniqueId );
         }
 
         public void UnregisterView(YumiNativeData nativeData)
         {
-            Logger.Log("ReportImpression");
+            Logger.Log("YumiNativeClient: UnregisterView " + nativeData.uniqueId);
+            nativeAd.Call("removeView",  nativeData.uniqueId );
+        }
+
+        public void DestroyNativeAd()
+        {
+            Logger.Log("YumiNativeClient: DestroyNativeAd ");
+            nativeAd.Call("destroy");
         }
 
         private Rect getGameObjectRect(RectTransform rectTransform, Camera camera)
@@ -151,12 +157,74 @@ namespace YumiMediationSDK.Android
         }
 
         #region Callbacks from UnityBannerAdListener.
-        void onLayerPrepared(int count)
+        void onLayerPrepared(string uniqueIds)
         {
-            OnNativeAdLoaded(this, new YumiNativeToLoadEventArgs());
+            if (uniqueIds == null || uniqueIds.Length == 0)
+            {
+                onLayerFailed("YumiBirdge: cannot found valiated uniqueIds");
+                return;
+            }
+            YumiNativeToLoadEventArgs args = new YumiNativeToLoadEventArgs()
+            {
+                nativeData = getNativeData(uniqueIds)
+            };
+            OnNativeAdLoaded(this, args);
         }
 
-        void onLayerFailed(String errorMsg)
+        private List<YumiNativeData> getNativeData(string uniqueIds)
+        {
+            List<YumiNativeData> result = new List<YumiNativeData>();
+            Logger.Log("getNativeData: " + uniqueIds);
+            string[] uIds = uniqueIds.Split(',');
+            foreach (string uId in uIds)
+            {
+                Logger.Log("getNativeData: " + uId);
+
+                string title = nativeAd.Call<string>("getTitle", uId);
+                Logger.Log("getTitle: " + title);
+
+                string description = nativeAd.Call<string>("getDescription", uId);
+                Logger.Log("getDescription: " + description);
+
+                string iconUrl = nativeAd.Call<string>("getIconURL", uId);
+                Logger.Log("getIconURL: " + iconUrl);
+
+                string coverImageUrl = nativeAd.Call<string>("getCoverImageURL", uId);
+                Logger.Log("getCoverImageURL: " + coverImageUrl);
+
+                string callToAction = nativeAd.Call<string>("getCallToAction", uId);
+                Logger.Log("getCallToAction: " + callToAction);
+
+                string price = nativeAd.Call<string>("getPrice", uId);
+                Logger.Log("getPrice: " + price);
+
+                string starRating = nativeAd.Call<string>("getStarRating", uId);
+                Logger.Log("getStarRating: " + starRating);
+
+                string other = nativeAd.Call<string>("getOther", uId);
+                Logger.Log("getOther: " + other);
+
+                YumiNativeData e = new YumiNativeData
+                {
+                    uniqueId = uId,
+                    title = title,
+                    desc = description,
+                    iconURL = iconUrl,
+                    coverImageURL = coverImageUrl,
+                    callToAction = callToAction,
+                    appPrice = price,
+                    appRating = starRating,
+                    other = other
+                };
+
+                Logger.Log("yumiNativeData: " + e);
+
+                result.Add(e);
+            }
+            return result;
+        }
+
+        void onLayerFailed(string errorMsg)
         {
             YumiAdFailedToLoadEventArgs args = new YumiAdFailedToLoadEventArgs()
             {
