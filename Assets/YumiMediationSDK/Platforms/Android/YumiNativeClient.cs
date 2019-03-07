@@ -179,8 +179,8 @@ namespace YumiMediationSDK.Android
                     iconURL = iconUrl,
                     coverImageURL = coverImageUrl,
                     callToAction = callToAction,
-                    appPrice = price,
-                    appRating = starRating,
+                    price = price,
+                    starRating = starRating,
                     other = other
                 };
 
