@@ -8,8 +8,8 @@ namespace YumiMediationSDK.Api
         public string desc;
         public string iconURL;
         public string coverImageURL;
-        public string appPrice;
-        public string appRating;
+        public string price;
+        public string starRating;
         public string callToAction;
         public string other;
     }
