@@ -208,8 +208,8 @@ namespace YumiMediationSDK.iOS
                 iconURL = YumiExterns.YumiNativeAdBridgeGetIconUrl(this.NativeAdPtr, adUniqueId),
                 coverImageURL = YumiExterns.YumiNativeAdBridgeGetCoverImageURL(this.NativeAdPtr, adUniqueId),
                 callToAction = YumiExterns.YumiNativeAdBridgeGetCallToAction(this.NativeAdPtr, adUniqueId),
-                appPrice = YumiExterns.YumiNativeAdBridgeGetPrice(this.NativeAdPtr, adUniqueId),
-                appRating = YumiExterns.YumiNativeAdBridgeGetStarRating(this.NativeAdPtr, adUniqueId),
+                price = YumiExterns.YumiNativeAdBridgeGetPrice(this.NativeAdPtr, adUniqueId),
+                starRating = YumiExterns.YumiNativeAdBridgeGetStarRating(this.NativeAdPtr, adUniqueId),
                 other = YumiExterns.YumiNativeAdBridgeGetOther(this.NativeAdPtr, adUniqueId)
             };
 
