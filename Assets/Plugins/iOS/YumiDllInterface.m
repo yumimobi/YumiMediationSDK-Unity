@@ -224,7 +224,7 @@ void SetNativeCallbacks(YumiTypeNativeAdRef nativeAd ,
 
 BOOL IsAdInvalidated(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
     YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
-    return [internalNativeAd getHasVideoContent:YumiStringFromUTF8String(uniqueId)];
+    return [internalNativeAd isAdInvalidated:YumiStringFromUTF8String(uniqueId)];
 }
 
 void ShowView(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
@@ -238,39 +238,39 @@ void HideView(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
 }
 #pragma mark: get native property value
 
-static const char *YumiNativeAdBridgeGetTitle(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+const char *YumiNativeAdBridgeGetTitle(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
     YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
     
-    return [[internalNativeAd getTitle:YumiStringFromUTF8String(uniqueId)] cStringUsingEncoding:NSUTF8StringEncoding];
+    return cStringCopy([internalNativeAd getTitle:YumiStringFromUTF8String(uniqueId)].UTF8String);
     
 }
-static const char *YumiNativeAdBridgeGetDesc(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+const char *YumiNativeAdBridgeGetDesc(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
     YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
-    return [[internalNativeAd getDesc:YumiStringFromUTF8String(uniqueId)] cStringUsingEncoding:NSUTF8StringEncoding];
+    return cStringCopy([internalNativeAd getDesc:YumiStringFromUTF8String(uniqueId)].UTF8String);
 }
-static const char *YumiNativeAdBridgeGetIconUrl(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+const char *YumiNativeAdBridgeGetIconUrl(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
     YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
-    return [[internalNativeAd getIconUrl:YumiStringFromUTF8String(uniqueId)] cStringUsingEncoding:NSUTF8StringEncoding];
+    return cStringCopy([internalNativeAd getIconUrl:YumiStringFromUTF8String(uniqueId)].UTF8String);
 }
-static const char *YumiNativeAdBridgeGetCoverImageURL(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+const char *YumiNativeAdBridgeGetCoverImageURL(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
     YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
-    return [[internalNativeAd getCoverImageUrl:YumiStringFromUTF8String(uniqueId)] cStringUsingEncoding:NSUTF8StringEncoding];
+    return cStringCopy([internalNativeAd getCoverImageUrl:YumiStringFromUTF8String(uniqueId)].UTF8String);
 }
-static const char *YumiNativeAdBridgeGetCallToAction(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+const char *YumiNativeAdBridgeGetCallToAction(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
     YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
-    return [[internalNativeAd getCallToAction:YumiStringFromUTF8String(uniqueId)] cStringUsingEncoding:NSUTF8StringEncoding];
+    return cStringCopy([internalNativeAd getCallToAction:YumiStringFromUTF8String(uniqueId)].UTF8String);
 }
-static const char *YumiNativeAdBridgeGetPrice(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+const char *YumiNativeAdBridgeGetPrice(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
     YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
-    return [[internalNativeAd getCallToAction:YumiStringFromUTF8String(uniqueId)] cStringUsingEncoding:NSUTF8StringEncoding];
+    return cStringCopy([internalNativeAd getPrice:YumiStringFromUTF8String(uniqueId)].UTF8String);
 }
-static const char *YumiNativeAdBridgeGetStarRating(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+const char *YumiNativeAdBridgeGetStarRating(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
     YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
-    return [[internalNativeAd getStarRating:YumiStringFromUTF8String(uniqueId)] cStringUsingEncoding:NSUTF8StringEncoding];
+    return cStringCopy([internalNativeAd getStarRating:YumiStringFromUTF8String(uniqueId)].UTF8String);
 }
-static const char *YumiNativeAdBridgeGetOther(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+const char *YumiNativeAdBridgeGetOther(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
     YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
-    return [[internalNativeAd getOther:YumiStringFromUTF8String(uniqueId)] cStringUsingEncoding:NSUTF8StringEncoding];
+    return cStringCopy([internalNativeAd getOther:YumiStringFromUTF8String(uniqueId)].UTF8String);
 }
 BOOL YumiNativeAdBridgeHasVideoContent(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
     YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
