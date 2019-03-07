@@ -96,10 +96,6 @@ namespace YumiMediationSDK.iOS
         [DllImport("__Internal")]
         internal static extern void RequestNativeAd(IntPtr nativeAd, int adCount);
         [DllImport("__Internal")]
-        internal static extern void ReportImpression(IntPtr nativeAd);
-        [DllImport("__Internal")]
-        internal static extern void ReportClick(IntPtr nativeAd);
-        [DllImport("__Internal")]
         internal static extern void RegisterAssetViewsForInteraction(
                 IntPtr nativeAd,string uniqueId,
                 int adViewX, int adViewY, int adViewWidth, int adViewHeight,

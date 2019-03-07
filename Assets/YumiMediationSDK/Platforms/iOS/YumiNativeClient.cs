@@ -75,16 +75,6 @@ namespace YumiMediationSDK.iOS
             YumiExterns.RequestNativeAd(this.NativeAdPtr, adCount);
         }
 
-        //report Impression
-        public void ReportImpression(YumiNativeData nativeData)
-        {
-            YumiExterns.ReportImpression(this.NativeAdPtr);
-        }
-        //report click
-        public void ReportClick(YumiNativeData nativeData)
-        {
-            YumiExterns.ReportClick(this.NativeAdPtr);
-        }
         // Destroys native ad object.
         public void DestroyNativeAd()
         {
@@ -246,6 +236,12 @@ namespace YumiMediationSDK.iOS
                     {
                         Debug.LogFormat("adcount = {0}", adUniqueId);
                         YumiNativeData model = client.GetNativeAdData(adUniqueId);
+                        Debug.LogFormat("title = {0}", model.title);
+                        Debug.LogFormat("desc = {0}", model.desc);
+                        Debug.LogFormat("icon = {0}", model.iconURL);
+                        Debug.LogFormat("imag = {0}", model.coverImageURL);
+                        Debug.LogFormat("callToAction = {0}", model.callToAction);
+
                         nativeList.Add(model);
                     }
                 }
@@ -255,6 +251,7 @@ namespace YumiMediationSDK.iOS
                    
                     nativeData = nativeList
                 };
+
                 Debug.LogFormat("adcount = {0}", nativeDataKey);
 
                 client.OnNativeAdLoaded(client, args);
