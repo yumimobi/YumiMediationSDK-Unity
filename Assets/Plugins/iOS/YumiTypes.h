@@ -64,7 +64,7 @@ typedef const void *YumiTypeNativeClientRef;
 typedef const void *YumiTypeNativeAdRef;
 #pragma mark - native call back
 /// Callback for when a native ad request was successfully loaded.
-typedef void (*YumiNativeAdDidReceiveAdCallback)(YumiTypeNativeClientRef *nativeClient , int adCount);
+typedef void (*YumiNativeAdDidReceiveAdCallback)(YumiTypeNativeClientRef *nativeClient ,  const char *adKeys);
 
 /// Callback for when a native ad request failed.
 typedef void (*YumiNativeAdDidFailToReceiveAdWithErrorCallback)(YumiTypeNativeClientRef *nativeClient, const char *error);
