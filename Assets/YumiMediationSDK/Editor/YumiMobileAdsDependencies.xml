@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dependencies>
     <androidPackages>
-        <androidPackage spec="com.yumimobi.ads:mediation:3.6.+">
+        <androidPackage spec="com.yumimobi.ads:mediation:3.6.0-alpha5">
             <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
         </androidPackage>
-        <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.6.+">
+  <!--      <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.6.+">
             <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
@@ -20,13 +20,13 @@
             <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
-        </androidPackage>
-        <androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.+">
+        </androidPackage>-->
+        <androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.0-alpha5">
             <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
         </androidPackage>
-        <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.6.+">
+        <!--<androidPackage spec="com.yumimobi.ads.mediation:baidu:3.6.+">
             <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
@@ -78,9 +78,9 @@
             <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
-        </androidPackage>
+        </androidPackage>-->
         <!--  If your app is only available in mainland China, use unity-china,else use Unity.   -->
-        <androidPackage spec="com.yumimobi.ads.mediation:unity:3.6.+">
+        <!--<androidPackage spec="com.yumimobi.ads.mediation:unity:3.6.+">
             <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
@@ -89,7 +89,7 @@
             <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
-        </androidPackage>
+        </androidPackage>-->
         <repositories>
             <repository>https://jcenter.bintray.com/</repository>
         </repositories>
