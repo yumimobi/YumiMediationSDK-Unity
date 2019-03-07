@@ -118,6 +118,9 @@
     self.adView.hidden = NO;
     ///report impression
     YumiMediationNativeModel *model = [self getCurrentNativeModel:uniqueId];
+    if (!model) {
+        return;
+    }
     [self.nativeAd reportImpression:model view:self.adView];
 }
 - (void)hideView:(NSString *)uniqueId{
