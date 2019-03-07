@@ -74,41 +74,26 @@ namespace YumiMediationSDK.Android
 
         public bool IsAdInvalidated(YumiNativeData nativeData)
         {
-            Logger.Log("YumiNativeClient: IsAdInvalidated " + nativeData.uniqueId);
             return nativeAd.Call<bool>("isAdInvalidated", nativeData.uniqueId );
         }
 
         public void ShowView(YumiNativeData nativeData)
         {
-            Logger.Log("YumiNativeClient: ShowView " + nativeData.uniqueId);
             nativeAd.Call("showView", nativeData.uniqueId );
-        }
-
-        public void ReportClick(YumiNativeData nativeData)
-        {
-            Logger.Log("ReportClick");
-        }
-
-        public void ReportImpression(YumiNativeData nativeData)
-        {
-            Logger.Log("ReportImpression");
         }
 
         public void HideView(YumiNativeData nativeData)
         {
-            Logger.Log("YumiNativeClient: HideView " + nativeData.uniqueId);
             nativeAd.Call("hideView",  nativeData.uniqueId );
         }
 
         public void UnregisterView(YumiNativeData nativeData)
         {
-            Logger.Log("YumiNativeClient: UnregisterView " + nativeData.uniqueId);
             nativeAd.Call("removeView",  nativeData.uniqueId );
         }
 
         public void DestroyNativeAd()
         {
-            Logger.Log("YumiNativeClient: DestroyNativeAd ");
             nativeAd.Call("destroy");
         }
 
@@ -174,35 +159,17 @@ namespace YumiMediationSDK.Android
         private List<YumiNativeData> getNativeData(string uniqueIds)
         {
             List<YumiNativeData> result = new List<YumiNativeData>();
-            Logger.Log("getNativeData: " + uniqueIds);
             string[] uIds = uniqueIds.Split(',');
             foreach (string uId in uIds)
             {
-                Logger.Log("getNativeData: " + uId);
-
                 string title = nativeAd.Call<string>("getTitle", uId);
-                Logger.Log("getTitle: " + title);
-
                 string description = nativeAd.Call<string>("getDescription", uId);
-                Logger.Log("getDescription: " + description);
-
                 string iconUrl = nativeAd.Call<string>("getIconURL", uId);
-                Logger.Log("getIconURL: " + iconUrl);
-
                 string coverImageUrl = nativeAd.Call<string>("getCoverImageURL", uId);
-                Logger.Log("getCoverImageURL: " + coverImageUrl);
-
                 string callToAction = nativeAd.Call<string>("getCallToAction", uId);
-                Logger.Log("getCallToAction: " + callToAction);
-
                 string price = nativeAd.Call<string>("getPrice", uId);
-                Logger.Log("getPrice: " + price);
-
                 string starRating = nativeAd.Call<string>("getStarRating", uId);
-                Logger.Log("getStarRating: " + starRating);
-
                 string other = nativeAd.Call<string>("getOther", uId);
-                Logger.Log("getOther: " + other);
 
                 YumiNativeData e = new YumiNativeData
                 {
@@ -216,8 +183,6 @@ namespace YumiMediationSDK.Android
                     appRating = starRating,
                     other = other
                 };
-
-                Logger.Log("yumiNativeData: " + e);
 
                 result.Add(e);
             }

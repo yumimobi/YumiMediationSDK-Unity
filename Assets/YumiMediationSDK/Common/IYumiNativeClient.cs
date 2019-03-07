@@ -37,18 +37,6 @@ namespace YumiMediationSDK.Common
         void LoadAd(int adCount);
 
         /// <summary>
-        /// report Impression
-        /// </summary>
-        /// <param name="nativeData">Native data.</param>
-        void ReportImpression(YumiNativeData nativeData);
-
-        /// <summary>
-        /// report click
-        /// </summary>
-        /// <param name="nativeData">Native data.</param>
-        void ReportClick(YumiNativeData nativeData);
-
-        /// <summary>
         /// Destroys native ad object.
         /// </summary>
         void DestroyNativeAd();
