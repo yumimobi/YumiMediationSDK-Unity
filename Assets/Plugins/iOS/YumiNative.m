@@ -138,11 +138,11 @@
 }
 - (NSString *)getPrice:(NSString *)uniqueId{
     YumiMediationNativeModel *model = [self getCurrentNativeModel:uniqueId];
-    return model.appPrice;
+    return model.price;
 }
 - (NSString *)getStarRating:(NSString *)uniqueId{
     YumiMediationNativeModel *model = [self getCurrentNativeModel:uniqueId];
-    return model.appRating;
+    return model.starRating;
 }
 - (NSString *)getOther:(NSString *)uniqueId{
     YumiMediationNativeModel *model = [self getCurrentNativeModel:uniqueId];
