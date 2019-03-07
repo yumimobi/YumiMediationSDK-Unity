@@ -234,14 +234,8 @@ namespace YumiMediationSDK.iOS
                    
                     foreach (var adUniqueId in keys)
                     {
-                        Debug.LogFormat("adcount = {0}", adUniqueId);
+                        
                         YumiNativeData model = client.GetNativeAdData(adUniqueId);
-                        Debug.LogFormat("title = {0}", model.title);
-                        Debug.LogFormat("desc = {0}", model.desc);
-                        Debug.LogFormat("icon = {0}", model.iconURL);
-                        Debug.LogFormat("imag = {0}", model.coverImageURL);
-                        Debug.LogFormat("callToAction = {0}", model.callToAction);
-
                         nativeList.Add(model);
                     }
                 }
