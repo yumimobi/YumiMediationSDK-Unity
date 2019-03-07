@@ -13,10 +13,19 @@ public class YumiNativeScene : MonoBehaviour
 {
     //private NativeAd nativeAd;
     private YumiNativeAd nativeAd;
-
+#if UNITY_ANDROID
+    private String NativePlacementId = "zsvrfeni";
+    private String GameVersionId = "";
+    private String ChannelId = "";
+#elif UNITY_IOS
     private String NativePlacementId = "hxqd9uwr";
     private String GameVersionId = "";
     private String ChannelId = "";
+#else
+    private String NativePlacementId = "";
+    private String GameVersionId = "";
+    private String ChannelId = "";
+#endif
 
     // UI elements in scene
     public Text statusText;
@@ -107,7 +116,7 @@ public class YumiNativeScene : MonoBehaviour
         Logger.Log(s);
     }
 
-    #region native call back handles
+#region native call back handles
 
     public void HandleNativeAdLoaded(object sender, YumiNativeToLoadEventArgs args)
     {
@@ -123,17 +132,20 @@ public class YumiNativeScene : MonoBehaviour
             statusText.text = "nativeAd data not found.";
             return;
         }
+        statusText.text = "HandleNativeAdLoaded";
         yumiNativeData = args.nativeData[0];
     }
     public void HandleNativeAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args)
     {
+        statusText.text = "HandleNativeAdFailedToLoad: " + args.Message;
         Logger.Log("HandleNativeAdFailedToLoad event received with message: " + args.Message);
     }
 
     public void HandleNativeAdClicked(object sender, EventArgs args)
     {
+        statusText.text = "HandleNativeAdClicked";
         Logger.Log("HandleNativeAdClicked");
     }
 
-    #endregion
+#endregion
 }
