@@ -28,16 +28,6 @@ namespace YumiMediationSDK.Api
             this.client.LoadAd(adCount);
         }
 
-        //report Impression
-        public void ReportImpression(YumiNativeData nativeData)
-        {
-            this.client.ReportImpression(nativeData);
-        }
-        //report click
-        public void ReportClick(YumiNativeData nativeData)
-        {
-            this.client.ReportClick(nativeData);
-        }
         // Destroys native ad object.
         public void DestroyNativeAd()
         {
