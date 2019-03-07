@@ -230,7 +230,6 @@ public class YumiUNativeAd {
 
     public String getTitle(String uniqueId) {
         try {
-            Log.d(TAG, "getTitle: " + mNativeContents.get(uniqueId).getTitle());
             return mNativeContents.get(uniqueId).getTitle();
         } catch (NullPointerException ignore) {
             return "";
@@ -294,7 +293,6 @@ public class YumiUNativeAd {
     }
 
     public void showView(final String uniqueId) {
-        Log.d(TAG, "showView: " + uniqueId + " <--- must be a value");
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -309,7 +307,6 @@ public class YumiUNativeAd {
     }
 
     public void hideView(final String uniqueId) {
-        Log.d(TAG, "hideView: ");
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -329,7 +326,6 @@ public class YumiUNativeAd {
     }
 
     public void removeView(final String uniqueId) {
-        Log.d(TAG, "removeView: ");
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -342,7 +338,6 @@ public class YumiUNativeAd {
     }
 
     public void destroy() {
-        Log.d(TAG, "destroy: ");
         if (mNativeContents != null) {
             mNativeContents.clear();
         }
