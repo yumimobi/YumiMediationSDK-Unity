@@ -18,7 +18,7 @@ public class YumiNativeScene : MonoBehaviour
     private String GameVersionId = "";
     private String ChannelId = "";
 #elif UNITY_IOS
-    private String NativePlacementId = "hxqd9uwr";
+    private String NativePlacementId = "atb3ke1i";
     private String GameVersionId = "";
     private String ChannelId = "";
 #else
