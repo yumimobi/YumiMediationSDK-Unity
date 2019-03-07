@@ -30,6 +30,10 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 public class YumiUNativeAd {
     private static final String TAG = "YumiUNativeAd";
 
+    private static final String FAKE_URL = "http://www.fakeurl.com";
+
+    private static final String FACEBOOK_NAME = "Facebook";
+
     private static final int TEXT_SIZE_DELTA = 2;
 
     private YumiNative mNativeAd;
@@ -138,6 +142,14 @@ public class YumiUNativeAd {
                 if (nativeContent == null) {
                     Log.d(TAG, "cannot fillViews without content.");
                     return;
+                }
+
+                if (TextUtils.equals(FACEBOOK_NAME, nativeContent.getProviderName())) {
+                    try {
+                        nativeContent.getIcon().setUrl(FAKE_URL);
+                        nativeContent.getCoverImage().setUrl(FAKE_URL);
+                    } catch (NullPointerException ignore) {
+                    }
                 }
 
                 FrameLayout adPlaceHolder = new FrameLayout(mUnityPlayerActivity);
