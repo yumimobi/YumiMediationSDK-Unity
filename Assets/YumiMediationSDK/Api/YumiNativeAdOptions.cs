@@ -58,8 +58,8 @@ namespace YumiMediationSDK.Api
             backgroundColor = 0x00000000
         };
 
-        internal ScaleType iconScaleType = ScaleType.CENTER_CROP;
-        internal ScaleType coverImageScaleType = ScaleType.CENTER_CROP;
+        internal ScaleType iconScaleType = ScaleType.SCALE_ASPECT_FILL;
+        internal ScaleType coverImageScaleType = ScaleType.SCALE_ASPECT_FILL;
 
 
         public NativeAdOptionsBuilder setAdChoices(AdOptionViewPosition position)
@@ -131,8 +131,18 @@ namespace YumiMediationSDK.Api
 
     public enum ScaleType
     {
-        CENTER_CROP,
-        FIT_CENTER
+        /// <summary>
+        /// contents scaled to fill both with width and height. the content's aspect ratio may be changed 
+        /// </summary>
+        SCALE_TO_FILL,
+        /// <summary>
+        /// contents scaled to fit with fixed aspect. remainder is transparent
+        /// </summary>
+        SCALE_ASPECT_FIT,
+        /// <summary>
+        /// contents scaled to fill with fixed aspect. some portion of content may be clipped
+        /// </summary>
+        SCALE_ASPECT_FILL
     }
 
     struct AdAttribution

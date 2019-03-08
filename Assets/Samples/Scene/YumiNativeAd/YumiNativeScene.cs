@@ -65,7 +65,7 @@ public class YumiNativeScene : MonoBehaviour
         if (nativeAd == null)
         {
             YumiNativeAdOptions options = new NativeAdOptionsBuilder()
-                .setCoverImageScaleType(ScaleType.FIT_CENTER)
+                .setCoverImageScaleType(ScaleType.SCALE_ASPECT_FILL)
                 .Build();
 
             nativeAd = new YumiNativeAd(NativePlacementId, ChannelId, GameVersionId, options);
