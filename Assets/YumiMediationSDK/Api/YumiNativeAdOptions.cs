@@ -40,7 +40,7 @@ namespace YumiMediationSDK.Api
         {
             textSize = 15,
             textColor = 0x11000000,
-            backgroundColor = 0x00345678
+            backgroundColor = 0x00000000
 
         };
 
@@ -55,7 +55,7 @@ namespace YumiMediationSDK.Api
         {
             textSize = 15,
             textColor = 0xff222222,
-            backgroundColor = 0x00000000
+            backgroundColor = 0x0000ff00
         };
 
         internal ScaleType iconScaleType = ScaleType.SCALE_TO_FILL;
