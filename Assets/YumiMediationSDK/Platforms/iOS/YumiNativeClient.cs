@@ -18,6 +18,9 @@ namespace YumiMediationSDK.iOS
 
         private GameObject currentGameObject;
 
+        // options 
+        private YumiNativeAdOptions adOptions;
+
 #region Banner callback types
 
         internal delegate void YumiNativeAdDidReceiveAdCallback(IntPtr nativeClient, string nativeDataKey);
@@ -57,11 +60,13 @@ namespace YumiMediationSDK.iOS
 #region implement IYumiNativeClient interface 
 
         // Creates a native ad
-        public void CreateNativeAd(string placementId, string channelId, string versionId)
+        public void CreateNativeAd(string placementId, string channelId, string versionId, YumiNativeAdOptions option)
         {
             this.nativeClientPtr = (IntPtr)GCHandle.Alloc(this);
-            this.NativeAdPtr = YumiExterns.InitYumiNativeAd(this.nativeClientPtr, placementId, channelId, versionId);
-
+            this.NativeAdPtr = YumiExterns.InitYumiNativeAd(this.nativeClientPtr, placementId, channelId, versionId, (int)option.adChoiseViewPosition,
+                                                            (int)option.adAttribution.AdOptionsPosition, option.adAttribution.text, option.adAttribution.textColor,
+                                                            option.adAttribution.backgroundColor, option.adAttribution.textSize, option.adAttribution.hide);
+            adOptions = option;
             YumiExterns.SetNativeCallbacks(
                 this.NativeAdPtr,
                 NativeDidReceiveAdCallback,
@@ -146,6 +151,13 @@ namespace YumiMediationSDK.iOS
         // private method
         private void RegisterAssetObjectsForInteraction(YumiNativeData yumiNaitveData, Rect adViewRect, Rect mediaViewRect, Rect iconViewRect, Rect ctaViewRect, Rect titleRect, Rect descRect)
         {
+
+            //set view style
+            YumiExterns.RenderingTitleText(NativeAdPtr,adOptions.titleTextOptions.textColor, adOptions.titleTextOptions.backgroundColor, adOptions.titleTextOptions.textSize);
+            YumiExterns.RenderingDescText(NativeAdPtr, adOptions.descTextOptions.textColor, adOptions.descTextOptions.backgroundColor, adOptions.descTextOptions.textSize);
+            YumiExterns.RenderingCallToActionText(NativeAdPtr, adOptions.callToActionTextOptions.textColor, adOptions.callToActionTextOptions.backgroundColor, adOptions.callToActionTextOptions.textSize);
+            YumiExterns.RenderingIconScaleType(NativeAdPtr,(int)adOptions.iconScaleType);
+            YumiExterns.RenderingCoverImageScaleType(NativeAdPtr, (int)adOptions.coverImageScaleType);
 
             YumiExterns.RegisterAssetViewsForInteraction(this.NativeAdPtr, yumiNaitveData.uniqueId,
                     (int)adViewRect.x, (int)adViewRect.y, (int)adViewRect.width, (int)adViewRect.height,
