@@ -66,11 +66,9 @@ public class YumiUNativeAd {
                 mNativeAd.setNativeEventListener(new IYumiNativeListener() {
                     @Override
                     public void onLayerPrepared(List<NativeContent> list) {
-                        Log.d(TAG, "onLayerPrepared: ");
                         if (list == null) {
                             return;
                         }
-                        Log.d(TAG, "onLayerPrepared: " + list.size());
 
                         StringBuilder uniqueIds = new StringBuilder();
                         for (NativeContent content : list) {
@@ -90,7 +88,6 @@ public class YumiUNativeAd {
 
                     @Override
                     public void onLayerFailed(LayerErrorCode layerErrorCode) {
-                        Log.d(TAG, "onLayerFailed: " + layerErrorCode);
                         if (mNativeAdListener != null) {
                             mNativeAdListener.onLayerFailed(layerErrorCode.toString());
                         }
@@ -98,7 +95,6 @@ public class YumiUNativeAd {
 
                     @Override
                     public void onLayerClick() {
-                        Log.d(TAG, "onLayerClick: ");
                         if (mNativeAdListener != null) {
                             mNativeAdListener.onLayerClick();
                         }
@@ -114,7 +110,6 @@ public class YumiUNativeAd {
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Log.d(TAG, "loadAd: ");
                 mNativeAd.requestYumiNative(count);
             }
         });
@@ -131,8 +126,6 @@ public class YumiUNativeAd {
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Log.d(TAG, "fillViews: ");
-
                 if (mNativeContents == null || mNativeContents.isEmpty()) {
                     Log.d(TAG, "cannot found native ad data");
                     return;
@@ -234,7 +227,6 @@ public class YumiUNativeAd {
                 mUnityPlayerActivity.addContentView(adPlaceHolder, adPlaceHolderLayout);
 
                 adPlaceHolder.setVisibility(View.GONE);
-                Log.d(TAG, "fills: " + uniqueId);
                 mNativeViews.put(uniqueId, adPlaceHolder);
             }
         });
@@ -334,7 +326,7 @@ public class YumiUNativeAd {
 
     public boolean isAdInvalidated(final String uniqueId) {
         NativeContent content = mNativeContents.get(uniqueId);
-        return content != null && !content.isExpired();
+        return content == null || content.isExpired();
     }
 
     public void removeView(final String uniqueId) {
