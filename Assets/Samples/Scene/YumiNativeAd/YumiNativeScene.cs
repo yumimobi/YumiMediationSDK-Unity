@@ -62,16 +62,20 @@ public class YumiNativeScene : MonoBehaviour
     public void LoadAd()
     {
         statusText.text = "LoadAd";
-        if (this.nativeAd == null)
+        if (nativeAd == null)
         {
-            this.nativeAd = new YumiNativeAd(NativePlacementId, ChannelId, GameVersionId);
+            YumiNativeAdOptions options = new NativeAdOptionsBuilder()
+                .setCoverImageScaleType(ScaleType.SCALE_ASPECT_FILL)
+                .Build();
 
-            this.nativeAd.OnNativeAdLoaded += HandleNativeAdLoaded;
-            this.nativeAd.OnAdFailedToLoad += HandleNativeAdFailedToLoad;
-            this.nativeAd.OnAdClick += HandleNativeAdClicked;
+            nativeAd = new YumiNativeAd(NativePlacementId, ChannelId, GameVersionId, options);
+
+            nativeAd.OnNativeAdLoaded += HandleNativeAdLoaded;
+            nativeAd.OnAdFailedToLoad += HandleNativeAdFailedToLoad;
+            nativeAd.OnAdClick += HandleNativeAdClicked;
         }
 
-        this.nativeAd.LoadNativeAd(1);
+        nativeAd.LoadNativeAd(1);
     }
 
     public void RegisterNativeViews()
@@ -157,5 +161,5 @@ public class YumiNativeScene : MonoBehaviour
         Logger.Log("HandleNativeAdClicked");
     }
 
-#endregion
+    #endregion
 }

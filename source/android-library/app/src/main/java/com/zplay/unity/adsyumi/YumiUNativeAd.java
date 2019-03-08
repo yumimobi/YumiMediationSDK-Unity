@@ -30,6 +30,10 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 public class YumiUNativeAd {
     private static final String TAG = "YumiUNativeAd";
 
+    private static final String FAKE_URL = "http://www.fakeurl.com";
+
+    private static final String FACEBOOK_NAME = "Facebook";
+
     private static final int TEXT_SIZE_DELTA = 2;
 
     private YumiNative mNativeAd;
@@ -62,11 +66,9 @@ public class YumiUNativeAd {
                 mNativeAd.setNativeEventListener(new IYumiNativeListener() {
                     @Override
                     public void onLayerPrepared(List<NativeContent> list) {
-                        Log.d(TAG, "onLayerPrepared: ");
                         if (list == null) {
                             return;
                         }
-                        Log.d(TAG, "onLayerPrepared: " + list.size());
 
                         StringBuilder uniqueIds = new StringBuilder();
                         for (NativeContent content : list) {
@@ -86,7 +88,6 @@ public class YumiUNativeAd {
 
                     @Override
                     public void onLayerFailed(LayerErrorCode layerErrorCode) {
-                        Log.d(TAG, "onLayerFailed: " + layerErrorCode);
                         if (mNativeAdListener != null) {
                             mNativeAdListener.onLayerFailed(layerErrorCode.toString());
                         }
@@ -94,7 +95,6 @@ public class YumiUNativeAd {
 
                     @Override
                     public void onLayerClick() {
-                        Log.d(TAG, "onLayerClick: ");
                         if (mNativeAdListener != null) {
                             mNativeAdListener.onLayerClick();
                         }
@@ -110,7 +110,6 @@ public class YumiUNativeAd {
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Log.d(TAG, "loadAd: ");
                 mNativeAd.requestYumiNative(count);
             }
         });
@@ -127,8 +126,6 @@ public class YumiUNativeAd {
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Log.d(TAG, "fillViews: ");
-
                 if (mNativeContents == null || mNativeContents.isEmpty()) {
                     Log.d(TAG, "cannot found native ad data");
                     return;
@@ -138,6 +135,14 @@ public class YumiUNativeAd {
                 if (nativeContent == null) {
                     Log.d(TAG, "cannot fillViews without content.");
                     return;
+                }
+
+                if (TextUtils.equals(FACEBOOK_NAME, nativeContent.getProviderName())) {
+                    try {
+                        nativeContent.getIcon().setUrl(FAKE_URL);
+                        nativeContent.getCoverImage().setUrl(FAKE_URL);
+                    } catch (NullPointerException ignore) {
+                    }
                 }
 
                 FrameLayout adPlaceHolder = new FrameLayout(mUnityPlayerActivity);
@@ -222,7 +227,6 @@ public class YumiUNativeAd {
                 mUnityPlayerActivity.addContentView(adPlaceHolder, adPlaceHolderLayout);
 
                 adPlaceHolder.setVisibility(View.GONE);
-                Log.d(TAG, "fills: " + uniqueId);
                 mNativeViews.put(uniqueId, adPlaceHolder);
             }
         });
@@ -230,7 +234,6 @@ public class YumiUNativeAd {
 
     public String getTitle(String uniqueId) {
         try {
-            Log.d(TAG, "getTitle: " + mNativeContents.get(uniqueId).getTitle());
             return mNativeContents.get(uniqueId).getTitle();
         } catch (NullPointerException ignore) {
             return "";
@@ -294,7 +297,6 @@ public class YumiUNativeAd {
     }
 
     public void showView(final String uniqueId) {
-        Log.d(TAG, "showView: " + uniqueId + " <--- must be a value");
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -309,7 +311,6 @@ public class YumiUNativeAd {
     }
 
     public void hideView(final String uniqueId) {
-        Log.d(TAG, "hideView: ");
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -325,11 +326,10 @@ public class YumiUNativeAd {
 
     public boolean isAdInvalidated(final String uniqueId) {
         NativeContent content = mNativeContents.get(uniqueId);
-        return content != null && !content.isExpired();
+        return content == null || content.isExpired();
     }
 
     public void removeView(final String uniqueId) {
-        Log.d(TAG, "removeView: ");
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -342,7 +342,6 @@ public class YumiUNativeAd {
     }
 
     public void destroy() {
-        Log.d(TAG, "destroy: ");
         if (mNativeContents != null) {
             mNativeContents.clear();
         }

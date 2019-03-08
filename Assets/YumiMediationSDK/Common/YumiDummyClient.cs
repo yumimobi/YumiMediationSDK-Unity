@@ -115,7 +115,7 @@ namespace YumiMediationSDK.Common
         // native ad
         // Creates a native ad
 
-        public void CreateNativeAd(string placementId, string channelId, string versionId)
+        public void CreateNativeAd(string placementId, string channelId, string versionId, YumiNativeAdOptions options)
         {
             Logger.LogError("Dummy: call CreateNativeAd");
         }

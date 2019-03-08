@@ -9,16 +9,13 @@ namespace YumiMediationSDK.Api
     public class YumiNativeAd
     {
         private IYumiNativeClient client;
+        private YumiNativeAdOptions options;
 
-        public YumiNativeAd(string placementId, string channelId, string versionId)
+        public YumiNativeAd(string placementId, string channelId, string versionId, YumiNativeAdOptions options)
         {
-            Type yumiAdsClientFactory = Type.GetType(
-               "YumiMediationSDK.YumiAdsClientFactory,Assembly-CSharp");
-            MethodInfo method = yumiAdsClientFactory.GetMethod(
-                "BuildNativeClient",
-                BindingFlags.Static | BindingFlags.Public);
-            this.client = (IYumiNativeClient)method.Invoke(null, null);
-            client.CreateNativeAd(placementId, channelId, versionId);
+            client = YumiAdsClientFactory.BuildNativeClient();
+
+            client.CreateNativeAd(placementId, channelId, versionId, options);
 
             ConfigureNativeEvents();
         }

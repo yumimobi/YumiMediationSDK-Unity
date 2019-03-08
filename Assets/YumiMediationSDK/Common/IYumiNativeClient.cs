@@ -23,12 +23,13 @@ namespace YumiMediationSDK.Common
         event EventHandler<EventArgs> OnAdClick;
 
         /// <summary>
-        /// Creates a native ad
+        /// Creates the native ad.
         /// </summary>
         /// <param name="placementId">Placement identifier.</param>
         /// <param name="channelId">Channel identifier.</param>
         /// <param name="versionId">Version identifier.</param>
-        void CreateNativeAd(string placementId, string channelId, string versionId);
+        /// <param name="options">Options.</param>
+        void CreateNativeAd(string placementId, string channelId, string versionId, YumiNativeAdOptions options);
 
         /// <summary>
         /// Begins loading the YumiMediationNativeAd with the count you wanted.
