@@ -13,6 +13,7 @@
 #import "YumiRewardVideo.h"
 #import "YumiDebugCenter.h"
 #import "YumiNative.h"
+#import "YumiAdBridgeTool.h"
 
 /// Returns an NSString copying the characters from |bytes|, a C array of UTF8-encoded bytes.
 /// Returns nil if |bytes| is NULL.
@@ -171,8 +172,51 @@ void PresentDebugCenter(const char * bannerPlacementID, const char * interstitia
 }
 
 #pragma  mark: native  method
-YumiTypeNativeAdRef InitYumiNativeAd(YumiTypeNativeClientRef *nativeClient,const char * placementID, const char * channelID, const char * versionID){
-    YumiNative *nativeAd = [[YumiNative alloc] initWithNativeClientReference:nativeClient placementID:YumiStringFromUTF8String(placementID) channelID:YumiStringFromUTF8String(channelID) versionID:YumiStringFromUTF8String(versionID)];
+
+YumiTypeNativeAdRef InitYumiNativeAd(YumiTypeNativeClientRef *nativeClient,const char * placementID, const char * channelID, const char * versionID,int preferredAdChoicesPosition,int preferredAdAttributionPosition,const char *preferredAdAttributionText,uint preferredAdAttributionTextColor,uint preferredAdAttributionTextBackgroundColor,int preferredAdAttributionTextFontSize,BOOL hideAdAttribution){
+    
+    YumiMediationNativeAdConfiguration *adConfiguration = [[YumiMediationNativeAdConfiguration alloc] init];
+    switch (preferredAdChoicesPosition) {
+        case 0:
+            adConfiguration.preferredAdChoicesPosition = YumiMediationAdViewPositionTopLeftCorner;
+            break;
+        case 1:
+             adConfiguration.preferredAdChoicesPosition = YumiMediationAdViewPositionTopRightCorner;
+            break;
+        case 2:
+             adConfiguration.preferredAdChoicesPosition = YumiMediationAdViewPositionBottomLeftCorner;
+            break;
+        case 3:
+             adConfiguration.preferredAdChoicesPosition = YumiMediationAdViewPositionBottomRightCorner;
+            break;
+            
+        default:
+            break;
+    }
+    switch (preferredAdAttributionPosition) {
+        case 0:
+            adConfiguration.preferredAdAttributionPosition = YumiMediationAdViewPositionTopLeftCorner;
+            break;
+        case 1:
+            adConfiguration.preferredAdAttributionPosition = YumiMediationAdViewPositionTopRightCorner;
+            break;
+        case 2:
+            adConfiguration.preferredAdAttributionPosition = YumiMediationAdViewPositionBottomLeftCorner;
+            break;
+        case 3:
+            adConfiguration.preferredAdAttributionPosition = YumiMediationAdViewPositionBottomRightCorner;
+            break;
+            
+        default:
+            break;
+    }
+    adConfiguration.preferredAdAttributionText = YumiStringFromUTF8String(preferredAdAttributionText);
+    adConfiguration.preferredAdAttributionTextFont = [UIFont systemFontOfSize:preferredAdAttributionTextFontSize];
+    adConfiguration.hideAdAttribution = hideAdAttribution;
+    adConfiguration.preferredAdAttributionTextColor = [YumiAdBridgeTool colorWithARGB:preferredAdAttributionTextColor];
+    adConfiguration.preferredAdAttributionTextBackgroundColor = [YumiAdBridgeTool colorWithARGB:preferredAdAttributionTextBackgroundColor];
+    
+    YumiNative *nativeAd = [[YumiNative alloc] initWithNativeClientReference:nativeClient placementID:YumiStringFromUTF8String(placementID) channelID:YumiStringFromUTF8String(channelID) versionID:YumiStringFromUTF8String(versionID) configuration:adConfiguration];
     // save pointer
     YumiObjectCache *cache = [YumiObjectCache sharedInstance];
     [cache.references setObject:nativeAd forKey:[nativeAd yumi_referenceKey]];
@@ -235,6 +279,28 @@ void ShowView(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
 void HideView(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
     YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
     [internalNativeAd hideView:YumiStringFromUTF8String(uniqueId)];
+}
+
+#pragma mark: native Ad view options
+void RenderingTitleText(YumiTypeNativeAdRef nativeAd,uint textColor,uint textBgColor ,int fontSize){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    [internalNativeAd setTitleTextColor:textColor textBgColor:textBgColor fontSize:fontSize];
+}
+void RenderingDescText(YumiTypeNativeAdRef nativeAd,uint textColor,uint textBgColor ,int fontSize){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    [internalNativeAd setDescTextColor:textColor textBgColor:textBgColor fontSize:fontSize];
+}
+void RenderingCallToActionText(YumiTypeNativeAdRef nativeAd,uint textColor,uint textBgColor ,int fontSize){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    [internalNativeAd setCallToActionTextColor:textColor textBgColor:textBgColor fontSize:fontSize];
+}
+void RenderingIconScaleType(YumiTypeNativeAdRef nativeAd,int scaleType){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    [internalNativeAd setIconScaleType:scaleType];
+}
+void RenderingCoverImageScaleType(YumiTypeNativeAdRef nativeAd,int scaleType){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    [internalNativeAd setCoverImageScaleType:scaleType];
 }
 #pragma mark: get native property value
 
