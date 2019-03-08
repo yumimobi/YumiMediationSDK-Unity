@@ -29,37 +29,37 @@ namespace YumiMediationSDK.Api
         internal AdAttribution adAttribution = new AdAttribution
         {
             AdOptionsPosition = AdOptionViewPosition.TOP_LEFT,
-            text = "ad",
+            text = "Ad",
             textColor = 0xff222222,
-            backgroundColor = 0x00000000,
+            backgroundColor = 0x11eeeeee,
             textSize = 8,
             hide = false
         };
 
         internal TextOptions titleTextOptions = new TextOptions
         {
-            textSize = 12,
-            textColor = 0x12345678,
-            backgroundColor = 0x12345678
+            textSize = 15,
+            textColor = 0x11000000,
+            backgroundColor = 0x00345678
 
         };
 
         internal TextOptions descTextOptions = new TextOptions
         {
-            textSize = 8,
+            textSize = 12,
             textColor = 0xff222222,
             backgroundColor = 0x00000000
         };
 
         internal TextOptions callToActionTextOptions = new TextOptions
         {
-            textSize = 8,
+            textSize = 15,
             textColor = 0xff222222,
             backgroundColor = 0x00000000
         };
 
-        internal ScaleType iconScaleType = ScaleType.SCALE_ASPECT_FILL;
-        internal ScaleType coverImageScaleType = ScaleType.SCALE_ASPECT_FILL;
+        internal ScaleType iconScaleType = ScaleType.SCALE_TO_FILL;
+        internal ScaleType coverImageScaleType = ScaleType.SCALE_TO_FILL;
 
 
         public NativeAdOptionsBuilder setAdChoices(AdOptionViewPosition position)
