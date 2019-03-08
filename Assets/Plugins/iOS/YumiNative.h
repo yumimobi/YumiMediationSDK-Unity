@@ -37,14 +37,24 @@ NS_ASSUME_NONNULL_BEGIN
 /// Begins loading the YumiMediationNativeAd with the count you wanted.
 - (void)loadNativeAd:(NSUInteger)adCount;
 
-///report impression
-- (void)reportImpression;
-/// report click
-- (void)reportClick;
+- (void)registerNativeForInteraction:(NSString *)nativeId adViewRect:(CGRect)adViewRect mediaViewRect:(CGRect)mediaViewRect iconViewRect:(CGRect)iconViewRect ctaViewRect:(CGRect)ctaViewRect titleRect:(CGRect)titleRect descRect:(CGRect)descRect;
 
-- (void)registerNativeForInteraction:(int)nativeId adViewRect:(CGRect)adViewRect mediaViewRect:(CGRect)mediaViewRect iconViewRect:(CGRect)iconViewRect ctaViewRect:(CGRect)ctaViewRect;
+- (void)unRegisterView:(NSString *)uniqueId;
+// expired
+- (BOOL)isAdInvalidated:(NSString *)uniqueId;
+- (void)showView:(NSString *)uniqueId;
+- (void)hideView:(NSString *)uniqueId;
 
-- (void)UnregisterView:(int)uniqueId;
+/// get native data property
+- (NSString *)getTitle:(NSString *)uniqueId;
+- (NSString *)getDesc:(NSString *)uniqueId;
+- (NSString *)getCallToAction:(NSString *)uniqueId;
+- (NSString *)getIconUrl:(NSString *)uniqueId;
+- (NSString *)getCoverImageUrl:(NSString *)uniqueId;
+- (NSString *)getPrice:(NSString *)uniqueId;
+- (NSString *)getStarRating:(NSString *)uniqueId;
+- (NSString *)getOther:(NSString *)uniqueId;
+- (BOOL)getHasVideoContent:(NSString *)uniqueId;
 
 @end
 

@@ -185,36 +185,32 @@ void RequestNativeAd(YumiTypeNativeAdRef nativeAd, int adCount){
     [internalNativeAd loadNativeAd:adCount];
 }
 
-void ReportImpression(YumiTypeNativeAdRef nativeAd){
-    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
-    [internalNativeAd reportImpression];
-}
-void ReportClick(YumiTypeNativeAdRef nativeAd){
-    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
-    [internalNativeAd reportClick];
-    
-}
 void RegisterAssetViewsForInteraction(
-                                           YumiTypeNativeAdRef nativeAd,int uniqueId,
+                                           YumiTypeNativeAdRef nativeAd,const char *uniqueId,
                                            int adViewX, int adViewY, int adViewWidth, int adViewHeight,
                                            int mediaViewX, int mediaViewY, int mediaViewWidth, int mediaViewHeight,
                                            int iconViewX, int iconViewY, int iconViewWidth, int iconViewHeight,
-                                           int ctaViewX, int ctaViewY, int ctaViewWidth, int ctaViewHeight){
+                                           int ctaViewX, int ctaViewY, int ctaViewWidth, int ctaViewHeight, int titleX, int titleY, int titleWidth, int titleHeight,int descX, int descY, int descWidth, int descHeight){
     // adapte iphone size with screen scale
     CGFloat scale = [UIScreen mainScreen].scale;
+    CGFloat adViewTop = adViewY/scale;
+    CGFloat adViewLeft = adViewX / scale;
     
     YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
-    CGRect adViewRect = CGRectMake(adViewX / scale , adViewY/scale, adViewWidth/scale, adViewHeight/scale);
-    CGRect mediaViewRect = CGRectMake(mediaViewX/scale, mediaViewY/scale, mediaViewWidth/scale, mediaViewHeight/scale);
-    CGRect iconViewRect = CGRectMake(iconViewX/scale, iconViewY/scale, iconViewWidth/scale, iconViewHeight/scale);
-     CGRect ctaViewRect = CGRectMake(ctaViewX/scale, ctaViewY/scale, ctaViewWidth/scale,ctaViewHeight/scale);
+    CGRect adViewRect = CGRectMake( adViewLeft, adViewTop, adViewWidth/scale, adViewHeight/scale);
+    CGRect mediaViewRect = CGRectMake(mediaViewX/scale - adViewLeft, mediaViewY/scale - adViewTop, mediaViewWidth/scale, mediaViewHeight/scale);
+    CGRect iconViewRect = CGRectMake(iconViewX/scale - adViewLeft, iconViewY/scale - adViewTop, iconViewWidth/scale, iconViewHeight/scale);
+    CGRect ctaViewRect = CGRectMake(ctaViewX/scale - adViewLeft, ctaViewY/scale - adViewTop, ctaViewWidth/scale,ctaViewHeight/scale);
     
-    [internalNativeAd registerNativeForInteraction:uniqueId adViewRect:adViewRect mediaViewRect:mediaViewRect iconViewRect:iconViewRect ctaViewRect:ctaViewRect];
+    CGRect titleRect = CGRectMake(titleX/scale - adViewLeft, titleY/scale - adViewTop, titleWidth/scale,titleHeight/scale);
+    CGRect descRect = CGRectMake(descX/scale - adViewLeft, descY/scale - adViewTop, descWidth/scale,descHeight/scale);
+    
+    [internalNativeAd registerNativeForInteraction:YumiStringFromUTF8String(uniqueId) adViewRect:adViewRect mediaViewRect:mediaViewRect iconViewRect:iconViewRect ctaViewRect:ctaViewRect titleRect:titleRect descRect:descRect];
     
 }
-void UnregisterView(YumiTypeNativeAdRef nativeAd,int uniqueId){
+void UnregisterView(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
     YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
-    [internalNativeAd UnregisterView:uniqueId];
+    [internalNativeAd unRegisterView:YumiStringFromUTF8String(uniqueId)];
 }
 void SetNativeCallbacks(YumiTypeNativeAdRef nativeAd ,
                         YumiNativeAdDidReceiveAdCallback adReceivedCallback,
@@ -224,4 +220,59 @@ void SetNativeCallbacks(YumiTypeNativeAdRef nativeAd ,
     internalNativeAd.adReceivedCallback = adReceivedCallback;
     internalNativeAd.adFailedCallback = adFailCallback;
     internalNativeAd.adClickedCallback = adClickedCallback;
+}
+
+BOOL IsAdInvalidated(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    return [internalNativeAd isAdInvalidated:YumiStringFromUTF8String(uniqueId)];
+}
+
+void ShowView(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    [internalNativeAd showView:YumiStringFromUTF8String(uniqueId)];
+}
+
+void HideView(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    [internalNativeAd hideView:YumiStringFromUTF8String(uniqueId)];
+}
+#pragma mark: get native property value
+
+const char *YumiNativeAdBridgeGetTitle(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    
+    return cStringCopy([internalNativeAd getTitle:YumiStringFromUTF8String(uniqueId)].UTF8String);
+    
+}
+const char *YumiNativeAdBridgeGetDesc(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    return cStringCopy([internalNativeAd getDesc:YumiStringFromUTF8String(uniqueId)].UTF8String);
+}
+const char *YumiNativeAdBridgeGetIconUrl(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    return cStringCopy([internalNativeAd getIconUrl:YumiStringFromUTF8String(uniqueId)].UTF8String);
+}
+const char *YumiNativeAdBridgeGetCoverImageURL(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    return cStringCopy([internalNativeAd getCoverImageUrl:YumiStringFromUTF8String(uniqueId)].UTF8String);
+}
+const char *YumiNativeAdBridgeGetCallToAction(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    return cStringCopy([internalNativeAd getCallToAction:YumiStringFromUTF8String(uniqueId)].UTF8String);
+}
+const char *YumiNativeAdBridgeGetPrice(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    return cStringCopy([internalNativeAd getPrice:YumiStringFromUTF8String(uniqueId)].UTF8String);
+}
+const char *YumiNativeAdBridgeGetStarRating(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    return cStringCopy([internalNativeAd getStarRating:YumiStringFromUTF8String(uniqueId)].UTF8String);
+}
+const char *YumiNativeAdBridgeGetOther(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    return cStringCopy([internalNativeAd getOther:YumiStringFromUTF8String(uniqueId)].UTF8String);
+}
+BOOL YumiNativeAdBridgeHasVideoContent(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    return [internalNativeAd getHasVideoContent:YumiStringFromUTF8String(uniqueId)];
 }

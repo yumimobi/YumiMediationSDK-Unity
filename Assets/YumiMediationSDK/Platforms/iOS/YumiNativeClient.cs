@@ -5,6 +5,7 @@ using YumiMediationSDK.Api;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using System.Collections;
 
 namespace YumiMediationSDK.iOS
 {
@@ -19,7 +20,7 @@ namespace YumiMediationSDK.iOS
 
 #region Banner callback types
 
-        internal delegate void YumiNativeAdDidReceiveAdCallback(IntPtr nativeClient, int adCount);
+        internal delegate void YumiNativeAdDidReceiveAdCallback(IntPtr nativeClient, string nativeDataKey);
 
         internal delegate void YumiNativeAdDidFailToReceiveAdWithErrorCallback(
                 IntPtr nativeClient, string error);
@@ -74,16 +75,6 @@ namespace YumiMediationSDK.iOS
             YumiExterns.RequestNativeAd(this.NativeAdPtr, adCount);
         }
 
-        //report Impression
-        public void ReportImpression(YumiNativeData nativeData)
-        {
-            YumiExterns.ReportImpression(this.NativeAdPtr);
-        }
-        //report click
-        public void ReportClick(YumiNativeData nativeData)
-        {
-            YumiExterns.ReportClick(this.NativeAdPtr);
-        }
         // Destroys native ad object.
         public void DestroyNativeAd()
         {
@@ -91,28 +82,53 @@ namespace YumiMediationSDK.iOS
             this.currentGameObject = null;
         }
 
-        public void RegisterGameObjectsForInteraction(GameObject gameObject, RectTransform adViewRectTransform,RectTransform mediaViewRectTransform, RectTransform iconViewRectTransform, RectTransform ctaViewRectTransform)
-        {
+        public void RegisterGameObjectsForInteraction(YumiNativeData yumiNaitveData, GameObject gameObject, Dictionary<NativeElemetType, Transform> elements){
             Logger.Log("RegisterGameObjectsForInteraction");
             this.currentGameObject = gameObject;
             Camera camera = Camera.main;
+            
+            RectTransform panelRectTransform = elements[NativeElemetType.PANEL] as RectTransform;
+            RectTransform titleRectTransform = elements[NativeElemetType.TITLE] as RectTransform;
+            RectTransform iconRectTransform = elements[NativeElemetType.ICON] as RectTransform;
+            RectTransform coverImageRectTransform = elements[NativeElemetType.COVER_IMAGE] as RectTransform;
+            RectTransform callToActionRectTransform = elements[NativeElemetType.CALL_TO_ACTION] as RectTransform;
+            if (panelRectTransform == null || titleRectTransform == null || iconRectTransform == null || coverImageRectTransform == null || callToActionRectTransform == null)
+            {
+                Logger.Log("Yumi Native Ad requires the following transforms: panel, title, icon, coverImage, callToAction.");
+                return;
+            }
+            RectTransform descriptionRectTransform = elements[NativeElemetType.DESCRIPTION] as RectTransform;
+            if (descriptionRectTransform == null)
+            {
+                descriptionRectTransform = new RectTransform();
+            }
 
-            Rect adViewRect = getGameObjectRect(adViewRectTransform, camera);
-            Rect mediaViewRect = getGameObjectRect(mediaViewRectTransform, camera);
-            Rect iconViewRect = getGameObjectRect(iconViewRectTransform, camera);
-            Rect ctaViewRect = getGameObjectRect(ctaViewRectTransform, camera);
+            Rect adViewRect = getGameObjectRect(panelRectTransform, camera);
 
-            RegisterAssetObjectsForInteraction(adViewRect,mediaViewRect, iconViewRect,ctaViewRect);
+            Rect mediaViewRect = getGameObjectRect(coverImageRectTransform, camera);
+            Rect iconViewRect = getGameObjectRect(iconRectTransform, camera);
+            Rect ctaViewRect = getGameObjectRect(callToActionRectTransform, camera);
+            Rect titleRect = getGameObjectRect(titleRectTransform, camera);
+            Rect descRect = getGameObjectRect(descriptionRectTransform, camera);
+
+            RegisterAssetObjectsForInteraction(yumiNaitveData,adViewRect, mediaViewRect, iconViewRect, ctaViewRect,titleRect,descRect);
         }
 
-        public void RegisterAssetObjectsForInteraction(Rect adViewRect, Rect mediaViewRect, Rect iconViewRect, Rect ctaViewRect)
+        public bool IsAdInvalidated(YumiNativeData nativeData){
+            return YumiExterns.IsAdInvalidated(this.NativeAdPtr,nativeData.uniqueId);
+        }
+
+        public void ShowView(YumiNativeData nativeData){
+            YumiExterns.ShowView(this.NativeAdPtr, nativeData.uniqueId);
+        }
+
+        public void HideView(YumiNativeData nativeData){
+            YumiExterns.HideView(this.NativeAdPtr, nativeData.uniqueId);
+        }
+
+        public void UnregisterView(YumiNativeData nativeData)
         {
-            int uniqueId = 0;
-            YumiExterns.RegisterAssetViewsForInteraction(this.NativeAdPtr, uniqueId,
-                    (int)adViewRect.x, (int)adViewRect.y, (int)adViewRect.width, (int)adViewRect.height,
-                    (int)mediaViewRect.x, (int)mediaViewRect.y, (int)mediaViewRect.width, (int)mediaViewRect.height,
-                    (int)iconViewRect.x, (int)iconViewRect.y, (int)iconViewRect.width, (int)iconViewRect.height,
-                    (int)ctaViewRect.x, (int)ctaViewRect.y, (int)ctaViewRect.width, (int)ctaViewRect.height);
+            YumiExterns.UnregisterView(this.NativeAdPtr, nativeData.uniqueId);
         }
 
         public void Dispose()
@@ -120,18 +136,25 @@ namespace YumiMediationSDK.iOS
             this.DestroyNativeAd();
             ((GCHandle)this.nativeClientPtr).Free();
         }
-
-        public void UnregisterView(YumiNativeData nativeData){
-            YumiExterns.UnregisterView(this.NativeAdPtr, nativeData.uniqueId);
-        }
-
         ~YumiNativeClient()
         {
             this.Dispose();
         }
-#endregion
+        #endregion
 
-#region private method
+        #region private method
+        // private method
+        private void RegisterAssetObjectsForInteraction(YumiNativeData yumiNaitveData, Rect adViewRect, Rect mediaViewRect, Rect iconViewRect, Rect ctaViewRect, Rect titleRect, Rect descRect)
+        {
+
+            YumiExterns.RegisterAssetViewsForInteraction(this.NativeAdPtr, yumiNaitveData.uniqueId,
+                    (int)adViewRect.x, (int)adViewRect.y, (int)adViewRect.width, (int)adViewRect.height,
+                    (int)mediaViewRect.x, (int)mediaViewRect.y, (int)mediaViewRect.width, (int)mediaViewRect.height,
+                    (int)iconViewRect.x, (int)iconViewRect.y, (int)iconViewRect.width, (int)iconViewRect.height,
+                    (int)ctaViewRect.x, (int)ctaViewRect.y, (int)ctaViewRect.width, (int)ctaViewRect.height,
+                     (int)titleRect.x, (int)titleRect.y, (int)titleRect.width, (int)titleRect.height,
+                     (int)descRect.x, (int)descRect.y, (int)descRect.width, (int)descRect.height);
+        }
         private Rect getGameObjectRect(RectTransform rectTransform, Camera camera)
         {
             if (rectTransform == null)
@@ -174,22 +197,56 @@ namespace YumiMediationSDK.iOS
             }
             return null;
         }
+
+        private YumiNativeData GetNativeAdData(string adUniqueId){
+
+            YumiNativeData nativeAdData = new YumiNativeData
+            {
+                uniqueId = adUniqueId,
+                title = YumiExterns.YumiNativeAdBridgeGetTitle(this.NativeAdPtr, adUniqueId),
+                desc = YumiExterns.YumiNativeAdBridgeGetDesc(this.NativeAdPtr, adUniqueId),
+                iconURL = YumiExterns.YumiNativeAdBridgeGetIconUrl(this.NativeAdPtr, adUniqueId),
+                coverImageURL = YumiExterns.YumiNativeAdBridgeGetCoverImageURL(this.NativeAdPtr, adUniqueId),
+                callToAction = YumiExterns.YumiNativeAdBridgeGetCallToAction(this.NativeAdPtr, adUniqueId),
+                price = YumiExterns.YumiNativeAdBridgeGetPrice(this.NativeAdPtr, adUniqueId),
+                starRating = YumiExterns.YumiNativeAdBridgeGetStarRating(this.NativeAdPtr, adUniqueId),
+                other = YumiExterns.YumiNativeAdBridgeGetOther(this.NativeAdPtr, adUniqueId)
+            };
+
+            return nativeAdData;
+        }
 #endregion
 
 
 #region  native ad  callback methods
 
         [MonoPInvokeCallback(typeof(YumiNativeAdDidReceiveAdCallback))]
-        private static void NativeDidReceiveAdCallback(IntPtr nativeClient, int adCount)
+        private static void NativeDidReceiveAdCallback(IntPtr nativeClient, string nativeDataKey)
         {
             YumiNativeClient client = IntPtrToNativeClient(nativeClient);
             if (client.OnNativeAdLoaded != null)
             {
+                List<YumiNativeData> nativeList = new List<YumiNativeData>();
+
+                if (nativeDataKey != null)
+                {
+                    string[] keys = nativeDataKey.Split(',');
+                   
+                    foreach (var adUniqueId in keys)
+                    {
+                        
+                        YumiNativeData model = client.GetNativeAdData(adUniqueId);
+                        nativeList.Add(model);
+                    }
+                }
+               
                 YumiNativeToLoadEventArgs args = new YumiNativeToLoadEventArgs()
                 {
-                    nativeData = null
+                   
+                    nativeData = nativeList
                 };
-                Debug.LogFormat("adcount = {0}",adCount);
+
+                Debug.LogFormat("adcount = {0}", nativeDataKey);
 
                 client.OnNativeAdLoaded(client, args);
             }

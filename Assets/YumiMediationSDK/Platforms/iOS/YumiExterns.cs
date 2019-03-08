@@ -96,19 +96,44 @@ namespace YumiMediationSDK.iOS
         [DllImport("__Internal")]
         internal static extern void RequestNativeAd(IntPtr nativeAd, int adCount);
         [DllImport("__Internal")]
-        internal static extern void ReportImpression(IntPtr nativeAd);
-        [DllImport("__Internal")]
-        internal static extern void ReportClick(IntPtr nativeAd);
-        [DllImport("__Internal")]
         internal static extern void RegisterAssetViewsForInteraction(
-                IntPtr nativeAd,int uniqueId,
+                IntPtr nativeAd,string uniqueId,
                 int adViewX, int adViewY, int adViewWidth, int adViewHeight,
                 int mediaViewX, int mediaViewY, int mediaViewWidth, int mediaViewHeight,
                 int iconViewX, int iconViewY, int iconViewWidth, int iconViewHeight,
-                int ctaViewX, int ctaViewY, int ctaViewWidth, int ctaViewHeight);
+                int ctaViewX, int ctaViewY, int ctaViewWidth, int ctaViewHeight,
+                int titleX, int titleY, int titleWidth, int titleHeight,
+                int descX, int descY, int descWidth, int descHeight);
 
         [DllImport("__Internal")]
-        internal static extern void UnregisterView(IntPtr nativeA,int uniqueId);
+        internal static extern void UnregisterView(IntPtr nativeA,string uniqueId);
+
+        [DllImport("__Internal")]
+        internal static extern bool IsAdInvalidated(IntPtr nativeA, string uniqueId);
+        [DllImport("__Internal")]
+        internal static extern void ShowView(IntPtr nativeA, string uniqueId);
+        [DllImport("__Internal")]
+        internal static extern void HideView(IntPtr nativeA, string uniqueId);
+
+        //get native data value
+        [DllImport("__Internal")]
+        internal static extern string YumiNativeAdBridgeGetTitle(IntPtr nativeA, string uniqueId);
+        [DllImport("__Internal")]
+        internal static extern string YumiNativeAdBridgeGetDesc(IntPtr nativeA, string uniqueId);
+        [DllImport("__Internal")]
+        internal static extern string YumiNativeAdBridgeGetIconUrl(IntPtr nativeA, string uniqueId);
+        [DllImport("__Internal")]
+        internal static extern string YumiNativeAdBridgeGetCoverImageURL(IntPtr nativeA, string uniqueId);
+        [DllImport("__Internal")]
+        internal static extern string YumiNativeAdBridgeGetCallToAction(IntPtr nativeA, string uniqueId);
+        [DllImport("__Internal")]
+        internal static extern string YumiNativeAdBridgeGetPrice(IntPtr nativeA, string uniqueId);
+        [DllImport("__Internal")]
+        internal static extern string YumiNativeAdBridgeGetStarRating(IntPtr nativeA, string uniqueId);
+        [DllImport("__Internal")]
+        internal static extern string YumiNativeAdBridgeGetOther(IntPtr nativeA, string uniqueId);
+        [DllImport("__Internal")]
+        internal static extern bool   YumiNativeAdBridgeHasVideoContent(IntPtr nativeA, string uniqueId);
 
         [DllImport("__Internal")]
         internal static extern void SetNativeCallbacks(

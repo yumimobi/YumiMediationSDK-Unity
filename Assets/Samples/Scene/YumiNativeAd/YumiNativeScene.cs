@@ -18,7 +18,7 @@ public class YumiNativeScene : MonoBehaviour
     private String GameVersionId = "";
     private String ChannelId = "";
 #elif UNITY_IOS
-    private String NativePlacementId = "hxqd9uwr";
+    private String NativePlacementId = "atb3ke1i";
     private String GameVersionId = "";
     private String ChannelId = "";
 #else
@@ -77,6 +77,7 @@ public class YumiNativeScene : MonoBehaviour
     public void RegisterNativeViews()
     {
         statusText.text = "RegisterNativeViews";
+      
         Dictionary<NativeElemetType, Transform> elementsDictionary = new Dictionary<NativeElemetType, Transform>();
         elementsDictionary.Add(NativeElemetType.PANEL, adPanel.transform);
         elementsDictionary.Add(NativeElemetType.TITLE, title.transform);
@@ -84,13 +85,15 @@ public class YumiNativeScene : MonoBehaviour
         elementsDictionary.Add(NativeElemetType.ICON, iconImage.transform);
         elementsDictionary.Add(NativeElemetType.COVER_IMAGE, mediaView.transform);
         elementsDictionary.Add(NativeElemetType.CALL_TO_ACTION, callToActionButton.transform);
+
         nativeAd.RegisterGameObjectsForInteraction(yumiNativeData, gameObject, elementsDictionary);
+
     }
 
     public void ShowAd()
     {
         statusText.text = "ShowAd";
-        if (!nativeAd.IsAdInvalidated(yumiNativeData))
+        if (nativeAd.IsAdInvalidated(yumiNativeData))
         {
             statusText.text = "Native Data is invalidated";
             return;
@@ -115,8 +118,15 @@ public class YumiNativeScene : MonoBehaviour
     {
         Logger.Log(s);
     }
+    // Next button
+    public void NextScene()
+    {
+        this.nativeAd.UnregisterView(yumiNativeData);
+        this.nativeAd.DestroyNativeAd();
+        SceneManager.LoadScene("YumiScene");
 
-#region native call back handles
+    }
+    #region native call back handles
 
     public void HandleNativeAdLoaded(object sender, YumiNativeToLoadEventArgs args)
     {
