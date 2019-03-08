@@ -11,6 +11,7 @@ namespace YumiMediationSDK.Android
     {
         private AndroidJavaObject nativeAd;
         private GameObject currentGameObject;
+        private YumiNativeAdOptions options;
 
         public YumiNativeClient() : base(YumiUtils.UnityNativeAdListenerClassName)
         {
@@ -25,8 +26,9 @@ namespace YumiMediationSDK.Android
         public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
         public event EventHandler<EventArgs> OnAdClick;
 
-        public void CreateNativeAd(string placementId, string channelId, string versionId)
+        public void CreateNativeAd(string placementId, string channelId, string versionId, YumiNativeAdOptions options)
         {
+            this.options = options;
             nativeAd.Call("create", placementId, channelId, versionId);
         }
 
