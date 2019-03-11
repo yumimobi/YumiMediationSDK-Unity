@@ -29,7 +29,31 @@ namespace YumiMediationSDK.Android
         public void CreateNativeAd(string placementId, string channelId, string versionId, YumiNativeAdOptions options)
         {
             this.options = options;
-            nativeAd.Call("create", placementId, channelId, versionId);
+            AdAttribution aab = options.adAttribution;
+            TextOptions titleOps = options.titleTextOptions;
+            TextOptions ctaOps = options.callToActionTextOptions;
+            TextOptions descOps = options.descTextOptions;
+
+            nativeAd.Call("create", placementId, channelId, versionId,
+                // int adChosePosition,
+                (int)options.adChoiseViewPosition,
+                // int attriPosition, String attriText, int attriTextSize, String attriTextColor, String attriTextBackgroundColor
+                (int)aab.AdOptionsPosition, aab.text, aab.textSize, getColorString(aab.textColor), getColorString(aab.backgroundColor),
+                // int titleSize, String titleColor, String titleBackgroundColor,
+                titleOps.textSize, getColorString(titleOps.textColor), getColorString(titleOps.backgroundColor),
+                // int descSize, String descColor, String descBackgroundColor
+                descOps.textSize, getColorString(descOps.textColor), getColorString(descOps.backgroundColor),
+                // int ctaSize, String ctaColor, String ctaBackgroundColor,
+                ctaOps.textSize, getColorString(ctaOps.textColor), getColorString(ctaOps.backgroundColor),
+                // int iconScaleType, int coverImageScaleType
+                (int)options.iconScaleType, (int)options.coverImageScaleType);
+
+            Logger.Log("YumiUNativeAd unity: create 2");
+        }
+
+        private String getColorString(uint color)
+        {
+            return color.ToString("x");
         }
 
         public void LoadAd(int adCount)
@@ -76,22 +100,22 @@ namespace YumiMediationSDK.Android
 
         public bool IsAdInvalidated(YumiNativeData nativeData)
         {
-            return nativeAd.Call<bool>("isAdInvalidated", nativeData.uniqueId );
+            return nativeAd.Call<bool>("isAdInvalidated", nativeData.uniqueId);
         }
 
         public void ShowView(YumiNativeData nativeData)
         {
-            nativeAd.Call("showView", nativeData.uniqueId );
+            nativeAd.Call("showView", nativeData.uniqueId);
         }
 
         public void HideView(YumiNativeData nativeData)
         {
-            nativeAd.Call("hideView",  nativeData.uniqueId );
+            nativeAd.Call("hideView", nativeData.uniqueId);
         }
 
         public void UnregisterView(YumiNativeData nativeData)
         {
-            nativeAd.Call("removeView",  nativeData.uniqueId );
+            nativeAd.Call("removeView", nativeData.uniqueId);
         }
 
         public void DestroyNativeAd()
