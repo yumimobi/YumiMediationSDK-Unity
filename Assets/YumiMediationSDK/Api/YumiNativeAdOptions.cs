@@ -39,7 +39,7 @@ namespace YumiMediationSDK.Api
         internal TextOptions titleTextOptions = new TextOptions
         {
             textSize = 15,
-            textColor = 0x11000000,
+            textColor = 0xff222222,
             backgroundColor = 0x00000000
 
         };
