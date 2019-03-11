@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.yumi.android.sdk.ads.formats.YumiNativeAdOptions;
 import com.yumi.android.sdk.ads.formats.YumiNativeAdView;
 import com.yumi.android.sdk.ads.publish.NativeContent;
-import com.yumi.android.sdk.ads.publish.YumiDebug;
 import com.yumi.android.sdk.ads.publish.YumiNative;
 import com.yumi.android.sdk.ads.publish.enumbean.LayerErrorCode;
 import com.yumi.android.sdk.ads.publish.listener.IYumiNativeListener;
@@ -46,19 +45,6 @@ public class YumiUNativeAd {
         mUnityPlayerActivity = activity;
         mNativeAdListener = listener;
         mNativeContents = new HashMap<>();
-    }
-
-    public void create(final String str, final String color) {
-        Log.d(TAG, "create: " + str + " : " + color);
-
-        mUnityPlayerActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                View view = new View(mUnityPlayerActivity);
-                view.setBackgroundColor(Long.valueOf(color, 16).intValue());
-                mUnityPlayerActivity.getWindow().addContentView(view, new FrameLayout.LayoutParams(-1, -1));
-            }
-        });
     }
 
     public void create(final String slotId, final String channelId, final String versionId,
