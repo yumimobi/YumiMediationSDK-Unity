@@ -6,11 +6,12 @@
 //
 
 #import "YumiNative.h"
+#import "YumiNativeBridgeView.h"
 
 @interface YumiNative()<YumiMediationNativeAdDelegate>
 
 @property (nonatomic) NSMutableDictionary<NSString *,YumiMediationNativeModel *>  *nativeADDataMapping;
-@property (nonatomic) UIView  *adView;
+@property (nonatomic) YumiNativeBridgeView  *nativeAdView;
 
 @end
 
@@ -24,11 +25,11 @@
 - (instancetype)initWithNativeClientReference:(YumiTypeNativeClientRef *)nativeClientRef
                                   placementID:(NSString *)placementID
                                     channelID:(NSString *)channelID
-                                    versionID:(NSString *)versionID{
+                                    versionID:(NSString *)versionID
+                                    configuration:(YumiMediationNativeAdConfiguration *)configuration{
     self = [super init];
     if (self) {
         _nativeClient = nativeClientRef;
-        YumiMediationNativeAdConfiguration *configuration = [[YumiMediationNativeAdConfiguration alloc] init];
         _nativeAd = [[YumiMediationNativeAd alloc] initWithPlacementID:placementID channelID:channelID versionID:versionID configuration:configuration];
         _nativeAd.delegate = self;
     }
@@ -57,44 +58,30 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         
         UIView *mainView = UnityGetGLView();
-        weakSelf.adView = [[UIView alloc] initWithFrame:adViewRect];
-        weakSelf.adView.hidden = YES; // default is Yes
+        [mainView addSubview:weakSelf.nativeAdView];
         
-        UIImageView *iconView = [[UIImageView alloc] initWithFrame:iconViewRect];
-        UIImageView *mediaView = [[UIImageView alloc] initWithFrame:mediaViewRect];
-        UILabel *actLab = [[UILabel alloc] initWithFrame:ctaViewRect];
+        // set frame
+        [weakSelf.nativeAdView setFrame:adViewRect];
+        [weakSelf.nativeAdView.titleLab setFrame:titleRect];
+        [weakSelf.nativeAdView.descLab setFrame:descRect];
+        [weakSelf.nativeAdView.actLab setFrame:ctaViewRect];
+        [weakSelf.nativeAdView.iconView setFrame:iconViewRect];
+        [weakSelf.nativeAdView.mediaView setFrame:mediaViewRect];
+        // set value
+        weakSelf.nativeAdView.titleLab.text = model.title;
+        weakSelf.nativeAdView.descLab.text = model.desc;
+        weakSelf.nativeAdView.actLab.text = model.callToAction;
+        weakSelf.nativeAdView.mediaView.image = model.coverImage.image;
+        weakSelf.nativeAdView.iconView.image = model.icon.image;
         
-        UILabel *titleLab = [[UILabel alloc] initWithFrame:titleRect];
-        UILabel *descLab = [[UILabel alloc] initWithFrame:descRect];
-        
-        [mainView addSubview:weakSelf.adView];
-        [weakSelf.adView addSubview:iconView];
-        [weakSelf.adView addSubview:mediaView];
-        [weakSelf.adView addSubview:actLab];
-        [weakSelf.adView addSubview:titleLab];
-        [weakSelf.adView addSubview:descLab];
-        
-        // render value to view
-        titleLab.numberOfLines = 0;
-        descLab.numberOfLines = 0;
-        titleLab.font = [UIFont systemFontOfSize:15.0];
-        descLab.font = [UIFont systemFontOfSize:13.0];
-        actLab.font = [UIFont systemFontOfSize:17.0];
-        // image
-        titleLab.text = model.title;
-        descLab.text = model.desc;
-        actLab.text = model.callToAction;
-        mediaView.image = model.coverImage.image;
-        iconView.image = model.icon.image;
-        
-        [weakSelf.nativeAd registerViewForInteraction:weakSelf.adView
+        [weakSelf.nativeAd registerViewForInteraction:weakSelf.nativeAdView
                                   clickableAssetViews:@{
-                                                        YumiMediationUnifiedNativeTitleAsset : titleLab,
-                                                        YumiMediationUnifiedNativeDescAsset : descLab,
-                                                        YumiMediationUnifiedNativeCoverImageAsset : mediaView,
-                                                        YumiMediationUnifiedNativeMediaViewAsset : mediaView,
-                                                        YumiMediationUnifiedNativeIconAsset : iconView,
-                                                        YumiMediationUnifiedNativeCallToActionAsset : actLab
+                                                        YumiMediationUnifiedNativeTitleAsset : weakSelf.nativeAdView.titleLab,
+                                                        YumiMediationUnifiedNativeDescAsset : weakSelf.nativeAdView.descLab,
+                                                        YumiMediationUnifiedNativeCoverImageAsset : weakSelf.nativeAdView.mediaView,
+                                                        YumiMediationUnifiedNativeMediaViewAsset : weakSelf.nativeAdView.mediaView,
+                                                        YumiMediationUnifiedNativeIconAsset : weakSelf.nativeAdView.iconView,
+                                                        YumiMediationUnifiedNativeCallToActionAsset : weakSelf.nativeAdView.actLab
                                                         }
                                    withViewController:UnityGetGLViewController()
                                              nativeAd:model];
@@ -104,8 +91,9 @@
 
 - (void)unRegisterView:(NSString *)uniqueId{
     
-    if (self.adView) {
-        [self.adView removeFromSuperview];
+    if (self.nativeAdView) {
+        [self.nativeAdView removeFromSuperview];
+        self.nativeAdView = nil;
     }
     
 }
@@ -115,16 +103,16 @@
     return [model isExpired];
 }
 - (void)showView:(NSString *)uniqueId{
-    self.adView.hidden = NO;
+    self.nativeAdView.hidden = NO;
     ///report impression
     YumiMediationNativeModel *model = [self getCurrentNativeModel:uniqueId];
     if (!model) {
         return;
     }
-    [self.nativeAd reportImpression:model view:self.adView];
+    [self.nativeAd reportImpression:model view:self.nativeAdView];
 }
 - (void)hideView:(NSString *)uniqueId{
-    self.adView.hidden = YES;
+    self.nativeAdView.hidden = YES;
 }
 
 /// get native data property
@@ -176,7 +164,22 @@
 - (YumiMediationNativeModel *)getCurrentNativeModel:(NSString *)uniqueId{
     return self.nativeADDataMapping[uniqueId];
 }
-
+#pragma mark: native Ad view options
+- (void)setTitleTextColor:(uint)textColor textBgColor:(uint)textBgColor fontSize:(int)fontSize{
+    [self.nativeAdView setTitleTextColor:textColor textBgColor:textBgColor fontSize:fontSize];
+}
+- (void)setDescTextColor:(uint)textColor textBgColor:(uint)textBgColor fontSize:(int)fontSize{
+    [self.nativeAdView setDescTextColor:textColor textBgColor:textBgColor fontSize:fontSize];
+}
+- (void)setCallToActionTextColor:(uint)textColor textBgColor:(uint)textBgColor fontSize:(int)fontSize{
+    [self.nativeAdView setCallToActionTextColor:textColor textBgColor:textBgColor fontSize:fontSize];
+}
+- (void)setIconScaleType:(int)scaleType{
+    [self.nativeAdView setIconScaleType:scaleType];
+}
+- (void)setCoverImageScaleType:(int)scaleType{
+    [self.nativeAdView setCoverImageScaleType:scaleType];
+}
 #pragma mark:YumiMediationNativeAdDelegate
 
 /// Tells the delegate that an ad has been successfully loaded.
@@ -224,6 +227,14 @@
         _nativeADDataMapping = [NSMutableDictionary dictionaryWithCapacity:1];
     }
     return _nativeADDataMapping;
+}
+
+- (YumiNativeBridgeView *)nativeAdView{
+    if (!_nativeAdView) {
+        _nativeAdView = [[YumiNativeBridgeView alloc] init];
+        _nativeAdView.hidden = YES;
+    }
+    return _nativeAdView;
 }
 
 @end

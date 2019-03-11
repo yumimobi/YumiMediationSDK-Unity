@@ -32,7 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithNativeClientReference:(YumiTypeNativeClientRef *)nativeClientRef
                                   placementID:(NSString *)placementID
                                     channelID:(NSString *)channelID
-                                    versionID:(NSString *)versionID;
+                                    versionID:(NSString *)versionID
+                                     configuration:(YumiMediationNativeAdConfiguration *)configuration;
 
 /// Begins loading the YumiMediationNativeAd with the count you wanted.
 - (void)loadNativeAd:(NSUInteger)adCount;
@@ -55,6 +56,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)getStarRating:(NSString *)uniqueId;
 - (NSString *)getOther:(NSString *)uniqueId;
 - (BOOL)getHasVideoContent:(NSString *)uniqueId;
+
+#pragma mark: set ad view style
+- (void)setTitleTextColor:(uint)textColor textBgColor:(uint)textBgColor fontSize:(int)fontSize;
+- (void)setDescTextColor:(uint)textColor textBgColor:(uint)textBgColor fontSize:(int)fontSize;
+- (void)setCallToActionTextColor:(uint)textColor textBgColor:(uint)textBgColor fontSize:(int)fontSize;
+- (void)setIconScaleType:(int)scaleType;
+- (void)setCoverImageScaleType:(int)scaleType;
 
 @end
 
