@@ -1,11 +1,10 @@
 package com.zplay.unity.adsyumi;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView;
@@ -24,7 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import static android.util.TypedValue.COMPLEX_UNIT_PX;
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 public class YumiUNativeAd {
@@ -42,6 +40,7 @@ public class YumiUNativeAd {
     private Activity mUnityPlayerActivity;
     private Map<String, NativeContent> mNativeContents;
     private Map<String, View> mNativeViews = new HashMap<>(5);
+    private NativeAdOptions mAdOptions;
 
     public YumiUNativeAd(Activity activity, YumiUNativeAdListener listener) {
         mUnityPlayerActivity = activity;
@@ -49,18 +48,45 @@ public class YumiUNativeAd {
         mNativeContents = new HashMap<>();
     }
 
-    public void create(final String slotId, final String channelId, final String versionId) {
+    public void create(final String str, final String color) {
+        Log.d(TAG, "create: " + str + " : " + color);
+
+        mUnityPlayerActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                View view = new View(mUnityPlayerActivity);
+                view.setBackgroundColor(Long.valueOf(color, 16).intValue());
+                mUnityPlayerActivity.getWindow().addContentView(view, new FrameLayout.LayoutParams(-1, -1));
+            }
+        });
+    }
+
+    public void create(final String slotId, final String channelId, final String versionId,
+                       int adChosePosition,
+                       int attriPosition, String attriText, int attriTextSize, String attriTextColor, String attriTextBackgroundColor,
+                       int titleSize, String titleColor, String titleBackgroundColor,
+                       int descSize, String descColor, String descBackgroundColor,
+                       int ctaSize, String ctaColor, String ctaBackgroundColor,
+                       int iconScaleType, int coverImageScaleType) {
+        mAdOptions = new NativeAdOptions(
+                adChosePosition,
+                attriPosition, attriText, attriTextSize, attriTextColor, attriTextBackgroundColor,
+                titleSize, titleColor, titleBackgroundColor,
+                descSize, descColor, descBackgroundColor,
+                ctaSize, ctaColor, ctaBackgroundColor,
+                iconScaleType, coverImageScaleType);
+
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 YumiNativeAdOptions nativeAdOptions = new YumiNativeAdOptions.Builder()
                         .setIsDownloadImage(true)
-                        .setAdChoicesPosition(YumiNativeAdOptions.POSITION_TOP_RIGHT)
-                        .setAdAttributionPosition(YumiNativeAdOptions.POSITION_TOP_LEFT)
-                        .setAdAttributionText("ad")
-                        .setAdAttributionTextColor(Color.argb(255, 255, 255, 255))
-                        .setAdAttributionBackgroundColor(Color.argb(90, 0, 0, 0))
-                        .setAdAttributionTextSize(10)
+                        .setAdChoicesPosition(mAdOptions.getAdChosePosition())
+                        .setAdAttributionPosition(mAdOptions.getAttriPosition())
+                        .setAdAttributionText(mAdOptions.getAttriText())
+                        .setAdAttributionTextColor(mAdOptions.getAttriTextColor())
+                        .setAdAttributionBackgroundColor(mAdOptions.getAttriTextBackgroundColor())
+                        .setAdAttributionTextSize(mAdOptions.getAttriTextSize())
                         .setHideAdAttribution(false).build();
                 mNativeAd = new YumiNative(mUnityPlayerActivity, slotId, nativeAdOptions);
                 mNativeAd.setNativeEventListener(new IYumiNativeListener() {
@@ -131,6 +157,11 @@ public class YumiUNativeAd {
                     return;
                 }
 
+                if (mAdOptions == null) {
+                    Log.d(TAG, "cannot found style options.");
+                    return;
+                }
+
                 NativeContent nativeContent = mNativeContents.get(uniqueId);
                 if (nativeContent == null) {
                     Log.d(TAG, "cannot fillViews without content.");
@@ -157,7 +188,10 @@ public class YumiUNativeAd {
                 LayoutParams titleLayout = new LayoutParams(titleWidth, titleHeight);
                 titleLayout.leftMargin = titleX - containerX;
                 titleLayout.topMargin = titleY - containerY;
-                titleView.setTextSize(COMPLEX_UNIT_PX, titleHeight - TEXT_SIZE_DELTA);
+                titleView.setGravity(Gravity.CENTER_VERTICAL);
+                titleView.setTextSize(mAdOptions.getTitleSize());
+                titleView.setTextColor(mAdOptions.getTitleColor());
+                titleView.setBackgroundColor(mAdOptions.getTitleBackgroundColor());
                 titleView.setEllipsize(TextUtils.TruncateAt.END);
                 titleView.setIncludeFontPadding(false);
                 if (!TextUtils.isEmpty(nativeContent.getTitle())) {
@@ -169,7 +203,7 @@ public class YumiUNativeAd {
                 LayoutParams iconLayout = new LayoutParams(iconWidth, iconHeight);
                 iconLayout.leftMargin = iconX - containerX;
                 iconLayout.topMargin = iconY - containerY;
-                iconView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                iconView.setScaleType(mAdOptions.getIconScaleType());
                 if (nativeContent.getIcon() != null) {
                     iconView.setImageDrawable(nativeContent.getIcon().getDrawable());
                 } else {
@@ -181,7 +215,8 @@ public class YumiUNativeAd {
                 LayoutParams imgLayout = new LayoutParams(imgWidth, imgHeight);
                 imgLayout.leftMargin = imgX - containerX;
                 imgLayout.topMargin = imgY - containerY;
-                imgView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                imgView.setBackgroundColor(0xffff0000);
+                imgView.setScaleType(mAdOptions.getCoverImageScaleType());
                 if (nativeContent.getCoverImage() != null) {
                     imgView.setImageDrawable(nativeContent.getCoverImage().getDrawable());
                 } else {
@@ -189,15 +224,17 @@ public class YumiUNativeAd {
                 }
                 adView.addView(imgView, imgLayout);
 
-                TextView actionView = new Button(adView.getContext());
+                TextView actionView = new TextView(adView.getContext());
                 LayoutParams actionLayout = new LayoutParams(actionWidth, actionHeight);
                 actionLayout.leftMargin = actionX - containerX;
                 actionLayout.topMargin = actionY - containerY;
-                actionView.setPadding(0, 0, 0, 0);
-                actionView.setTextSize(14);
+                actionView.setGravity(Gravity.CENTER);
+                actionView.setTextSize(mAdOptions.getCtaSize());
+                actionView.setTextColor(mAdOptions.getCtaColor());
+                actionView.setEllipsize(TextUtils.TruncateAt.END);
+                actionView.setBackgroundColor(mAdOptions.getCtaBackgroundColor());
                 actionView.setIncludeFontPadding(false);
-                actionView.setBackgroundColor(0xff33ff33);
-                if (nativeContent.getCallToAction() == null) {
+                if (TextUtils.isEmpty(nativeContent.getCallToAction())) {
                     actionView.setVisibility(View.GONE);
                 } else {
                     actionView.setText(nativeContent.getCallToAction());
@@ -208,7 +245,9 @@ public class YumiUNativeAd {
                 LayoutParams descLayout = new LayoutParams(descWidth, descHeight);
                 descLayout.leftMargin = descX - containerX;
                 descLayout.topMargin = descY - containerY;
-                descView.setTextSize(COMPLEX_UNIT_PX, descHeight - TEXT_SIZE_DELTA);
+                descView.setTextSize(mAdOptions.getDescSize());
+                descView.setTextColor(mAdOptions.getDescColor());
+                descView.setBackgroundColor(mAdOptions.getDescBackgroundColor());
                 descView.setEllipsize(TextUtils.TruncateAt.END);
                 descView.setIncludeFontPadding(false);
                 if (!TextUtils.isEmpty(nativeContent.getDesc())) {
