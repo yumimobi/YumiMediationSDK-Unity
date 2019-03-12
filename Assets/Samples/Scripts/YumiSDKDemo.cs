@@ -145,6 +145,11 @@ public class YumiSDKDemo : MonoBehaviour
 
         if (GUI.Button(new Rect(40, 474, btnWidth, 120), "Show Native Scen", myButtonStyle))
         {
+            if (this.bannerView != null)
+            {
+                this.bannerView.Hide();
+
+            }
             SceneManager.LoadScene("YumiNativeScene");
 
         }
