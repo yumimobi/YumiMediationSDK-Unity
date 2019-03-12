@@ -205,7 +205,7 @@ public class YumiUNativeAd {
 
                 if (nativeContent.getHasVideoContent() && hasHardwareAcceleration(mUnityPlayerActivity)) {
                     FrameLayout videoContainer = new FrameLayout(mUnityPlayerActivity);
-                    LayoutParams videoLayout = new LayoutParams(-2, imgHeight);
+                    LayoutParams videoLayout = new LayoutParams(imgWidth, imgHeight);
                     videoLayout.leftMargin = imgX - containerX;
                     videoLayout.topMargin = imgY - containerY;
                     adView.addView(videoContainer, videoLayout);
