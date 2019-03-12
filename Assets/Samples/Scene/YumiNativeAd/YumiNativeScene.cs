@@ -71,12 +71,13 @@ public class YumiNativeScene : MonoBehaviour
             nativeAd.OnAdClick += HandleNativeAdClicked;
         }
 
+        UnregisterNativeViews();
+
         nativeAd.LoadNativeAd(1);
     }
 
-    public void RegisterNativeViews()
+    private void RegisterNativeViews()
     {
-        statusText.text = "RegisterNativeViews";
 
         Dictionary<NativeElemetType, Transform> elementsDictionary = new Dictionary<NativeElemetType, Transform>();
         elementsDictionary.Add(NativeElemetType.PANEL, adPanel.transform);
@@ -92,7 +93,8 @@ public class YumiNativeScene : MonoBehaviour
 
     public void ShowAd()
     {
-        statusText.text = "ShowAd";
+        statusText.text = "RegisterNativeViews and ShowAd";
+        RegisterNativeViews();
         if (nativeAd.IsAdInvalidated(yumiNativeData))
         {
             statusText.text = "Native Data is invalidated";
@@ -109,6 +111,7 @@ public class YumiNativeScene : MonoBehaviour
 
     public void UnregisterNativeViews()
     {
+       
         statusText.text = "UnregisterNativeViews";
         nativeAd.UnregisterView(yumiNativeData);
         yumiNativeData = new YumiNativeData();
@@ -121,8 +124,11 @@ public class YumiNativeScene : MonoBehaviour
     // Next button
     public void NextScene()
     {
-        this.nativeAd.UnregisterView(yumiNativeData);
-        this.nativeAd.DestroyNativeAd();
+        if(nativeAd != null){
+            this.nativeAd.UnregisterView(yumiNativeData);
+            this.nativeAd.DestroyNativeAd();
+        }
+
         SceneManager.LoadScene("YumiScene");
 
     }

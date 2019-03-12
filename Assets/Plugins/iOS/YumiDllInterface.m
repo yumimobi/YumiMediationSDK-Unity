@@ -14,6 +14,7 @@
 #import "YumiDebugCenter.h"
 #import "YumiNative.h"
 #import "YumiAdBridgeTool.h"
+#import <YumiMediationSDK/YumiTest.h>
 
 /// Returns an NSString copying the characters from |bytes|, a C array of UTF8-encoded bytes.
 /// Returns nil if |bytes| is NULL.
@@ -171,6 +172,10 @@ void PresentDebugCenter(const char * bannerPlacementID, const char * interstitia
     YumiDebugCenter *debugcenter = [[YumiDebugCenter alloc] init];
     
     [debugcenter presentWithBannerPlacementID:YumiStringFromUTF8String(bannerPlacementID) interstitialPlacementID:YumiStringFromUTF8String(interstitialPlacementID) videoPlacementID:YumiStringFromUTF8String(videoPlacementID) nativePlacementID:YumiStringFromUTF8String(nativePlacementID) channelID:YumiStringFromUTF8String(channelID) versionID:YumiStringFromUTF8String(versionID)];
+}
+
+void EnableTestMode(){
+    [YumiTest enableTestMode];
 }
 
 #pragma  mark: native  method

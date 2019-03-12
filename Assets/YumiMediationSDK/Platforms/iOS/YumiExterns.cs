@@ -88,6 +88,8 @@ namespace YumiMediationSDK.iOS
         [DllImport("__Internal")]
         internal static extern void PresentDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string nativePlacementID, string channelID, string versionID);
 
+        [DllImport("__Internal")]
+        internal static extern void EnableTestMode();
 
         #endregion
         #region native ad
