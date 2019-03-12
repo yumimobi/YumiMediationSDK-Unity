@@ -64,9 +64,7 @@ public class YumiNativeScene : MonoBehaviour
         statusText.text = "LoadAd";
         if (nativeAd == null)
         {
-            YumiNativeAdOptions options = new NativeAdOptionsBuilder()
-                .setCoverImageScaleType(ScaleType.SCALE_TO_FILL)
-                .Build();
+            YumiNativeAdOptions options = new NativeAdOptionsBuilder().Build();
 
             nativeAd = new YumiNativeAd(NativePlacementId, ChannelId, GameVersionId, options);
 
@@ -81,7 +79,7 @@ public class YumiNativeScene : MonoBehaviour
     public void RegisterNativeViews()
     {
         statusText.text = "RegisterNativeViews";
-      
+
         Dictionary<NativeElemetType, Transform> elementsDictionary = new Dictionary<NativeElemetType, Transform>();
         elementsDictionary.Add(NativeElemetType.PANEL, adPanel.transform);
         elementsDictionary.Add(NativeElemetType.TITLE, title.transform);
@@ -149,6 +147,7 @@ public class YumiNativeScene : MonoBehaviour
         statusText.text = "HandleNativeAdLoaded";
         yumiNativeData = args.nativeData[0];
     }
+
     public void HandleNativeAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args)
     {
         statusText.text = "HandleNativeAdFailedToLoad: " + args.Message;
