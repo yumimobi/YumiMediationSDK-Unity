@@ -51,6 +51,7 @@
     
     YumiMediationNativeModel *model = [self getCurrentNativeModel:nativeId];
     if (!model) {
+        NSLog(@"model is nil ,can't register");
         return ;
     }
     
@@ -71,7 +72,10 @@
         weakSelf.nativeAdView.titleLab.text = model.title;
         weakSelf.nativeAdView.descLab.text = model.desc;
         weakSelf.nativeAdView.actLab.text = model.callToAction;
-        weakSelf.nativeAdView.mediaView.image = model.coverImage.image;
+        if (!model.hasVideoContent) {
+            weakSelf.nativeAdView.mediaView.image = model.coverImage.image;
+        }
+        
         weakSelf.nativeAdView.iconView.image = model.icon.image;
         
         [weakSelf.nativeAd registerViewForInteraction:weakSelf.nativeAdView
