@@ -38,6 +38,12 @@ public class YumiSDKDemo : MonoBehaviour
         InterstitialsPlacementId = YumiMediationSDKSetting.InterstitialPlacementId();
         BannerPlacementId = YumiMediationSDKSetting.BannerPlacementId();
         NativeAdPlacementId = YumiMediationSDKSetting.NativeAdPlacementId();
+
+        debugCenter = new YumiDebugCenter();
+        if (YumiMediationSDKSetting.GetDebugMode)
+        {
+            debugCenter.ChangeToTestServer();
+        }
     }
 
     void OnGUI()
