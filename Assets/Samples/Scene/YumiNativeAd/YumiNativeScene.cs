@@ -13,19 +13,10 @@ public class YumiNativeScene : MonoBehaviour
 {
     //private NativeAd nativeAd;
     private YumiNativeAd nativeAd;
-#if UNITY_ANDROID
-    private String NativePlacementId = "aezbo9zd";
-    private String GameVersionId = "";
-    private String ChannelId = "";
-#elif UNITY_IOS
-    private String NativePlacementId = "atb3ke1i";
-    private String GameVersionId = "";
-    private String ChannelId = "";
-#else
-    private String NativePlacementId = "";
-    private String GameVersionId = "";
-    private String ChannelId = "";
-#endif
+
+    private string NativePlacementId = YumiMediationSDKSetting.NativeAdPlacementId();
+    private string GameVersionId = YumiMediationSDKSetting.GetGameVersion;
+    private string ChannelId = YumiMediationSDKSetting.ChannelId();
 
     // UI elements in scene
     public Text statusText;
