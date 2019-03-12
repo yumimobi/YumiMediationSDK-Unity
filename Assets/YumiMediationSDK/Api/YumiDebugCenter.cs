@@ -15,11 +15,14 @@ namespace YumiMediationSDK.Api
                 "BuildDebugCenterClient",
                 BindingFlags.Static | BindingFlags.Public);
             this.client = (IYumiDebugCenterClient)method.Invoke(null, null);
-           
         }
-        public void PresentYumiMediationDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string channelID, string versionID){
-            this.client.CallYumiMediationDebugCenter(bannerPlacementID,interstitialPlacementID,videoPlacementID,channelID,versionID);
+        public void PresentYumiMediationDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string nativePlacementID, string channelID, string versionID){
+            this.client.CallYumiMediationDebugCenter(bannerPlacementID,interstitialPlacementID,videoPlacementID, nativePlacementID, channelID,versionID);
         }
 
+        public void ChangeToTestServer()
+        {
+            client.ChangeToTestServer();
+        }
     }
 }

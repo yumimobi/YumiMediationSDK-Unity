@@ -1,10 +1,14 @@
 package com.zplay.unity.adsyumi;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView;
@@ -184,6 +188,7 @@ public class YumiUNativeAd {
                     titleView.setText(nativeContent.getTitle());
                 }
                 adView.addView(titleView, titleLayout);
+                adView.setTitleView(titleView);
 
                 ImageView iconView = new ImageView(adView.getContext());
                 LayoutParams iconLayout = new LayoutParams(iconWidth, iconHeight);
@@ -196,19 +201,29 @@ public class YumiUNativeAd {
                     Log.d(TAG, "icon image view is null");
                 }
                 adView.addView(iconView, iconLayout);
+                adView.setIconView(iconView);
 
-                final ImageView imgView = new ImageView(adView.getContext());
-                LayoutParams imgLayout = new LayoutParams(imgWidth, imgHeight);
-                imgLayout.leftMargin = imgX - containerX;
-                imgLayout.topMargin = imgY - containerY;
-                imgView.setBackgroundColor(0xffff0000);
-                imgView.setScaleType(mAdOptions.getCoverImageScaleType());
-                if (nativeContent.getCoverImage() != null) {
-                    imgView.setImageDrawable(nativeContent.getCoverImage().getDrawable());
+                if (nativeContent.getHasVideoContent() && hasHardwareAcceleration(mUnityPlayerActivity)) {
+                    FrameLayout videoContainer = new FrameLayout(mUnityPlayerActivity);
+                    LayoutParams videoLayout = new LayoutParams(imgWidth, imgHeight);
+                    videoLayout.leftMargin = imgX - containerX;
+                    videoLayout.topMargin = imgY - containerY;
+                    adView.addView(videoContainer, videoLayout);
+                    adView.setMediaLayout(videoContainer);
                 } else {
-                    Log.d(TAG, "cover image view is null");
+                    final ImageView imgView = new ImageView(adView.getContext());
+                    LayoutParams imgLayout = new LayoutParams(imgWidth, imgHeight);
+                    imgLayout.leftMargin = imgX - containerX;
+                    imgLayout.topMargin = imgY - containerY;
+                    imgView.setScaleType(mAdOptions.getCoverImageScaleType());
+                    if (nativeContent.getCoverImage() != null) {
+                        imgView.setImageDrawable(nativeContent.getCoverImage().getDrawable());
+                    } else {
+                        Log.d(TAG, "cover image view is null");
+                    }
+                    adView.addView(imgView, imgLayout);
+                    adView.setCoverImageView(imgView);
                 }
-                adView.addView(imgView, imgLayout);
 
                 TextView actionView = new TextView(adView.getContext());
                 LayoutParams actionLayout = new LayoutParams(actionWidth, actionHeight);
@@ -226,6 +241,7 @@ public class YumiUNativeAd {
                     actionView.setText(nativeContent.getCallToAction());
                 }
                 adView.addView(actionView, actionLayout);
+                adView.setCallToActionView(actionView);
 
                 TextView descView = new TextView(adView.getContext());
                 LayoutParams descLayout = new LayoutParams(descWidth, descHeight);
@@ -240,11 +256,6 @@ public class YumiUNativeAd {
                     descView.setText(nativeContent.getDesc());
                 }
                 adView.addView(descView, descLayout);
-
-                adView.setTitleView(titleView);
-                adView.setIconView(iconView);
-                adView.setCoverImageView(imgView);
-                adView.setCallToActionView(actionView);
                 adView.setDescView(descView);
 
                 adView.setNativeAd(nativeContent);
@@ -255,6 +266,31 @@ public class YumiUNativeAd {
                 mNativeViews.put(uniqueId, adPlaceHolder);
             }
         });
+    }
+
+    // https://stackoverflow.com/a/18595681/7785373
+    private static boolean hasHardwareAcceleration(Activity activity) {
+        // Has HW acceleration been enabled manually in the current window?
+        Window window = activity.getWindow();
+        if (window != null) {
+            if ((window.getAttributes().flags
+                    & WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED) != 0) {
+                return true;
+            }
+        }
+
+        // Has HW acceleration been enabled in the manifest?
+        try {
+            ActivityInfo info = activity.getPackageManager().getActivityInfo(
+                    activity.getComponentName(), 0);
+            if ((info.flags & ActivityInfo.FLAG_HARDWARE_ACCELERATED) != 0) {
+                return true;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e("Chrome", "getActivityInfo(self) should not fail");
+        }
+
+        return false;
     }
 
     public String getTitle(String uniqueId) {

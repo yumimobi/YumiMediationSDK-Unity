@@ -14,11 +14,12 @@ public class YumiSDKDemo : MonoBehaviour
     private YumiRewardVideoAd rewardVideoAd;
     private YumiDebugCenter debugCenter;
 
-    private String BannerPlacementId = "";
-    private String RewardedVideoPlacementId = "";
-    private String InterstitialsPlacementId = "";
-    private String GameVersionId = "";
-    private String ChannelId = "";
+    private string BannerPlacementId = "";
+    private string RewardedVideoPlacementId = "";
+    private string InterstitialsPlacementId = "";
+    private string NativeAdPlacementId = "";
+    private string GameVersionId = "";
+    private string ChannelId = "";
 
     private bool IsSmartBanner;
 
@@ -36,6 +37,9 @@ public class YumiSDKDemo : MonoBehaviour
         RewardedVideoPlacementId = YumiMediationSDKSetting.RewardVideoPlacementId();
         InterstitialsPlacementId = YumiMediationSDKSetting.InterstitialPlacementId();
         BannerPlacementId = YumiMediationSDKSetting.BannerPlacementId();
+        NativeAdPlacementId = YumiMediationSDKSetting.NativeAdPlacementId();
+
+        debugCenter = new YumiDebugCenter();
     }
 
     void OnGUI()
@@ -170,7 +174,7 @@ public class YumiSDKDemo : MonoBehaviour
                     this.rewardVideoAd.DestroyRewardVideo();
                 }
 
-                this.debugCenter.PresentYumiMediationDebugCenter(BannerPlacementId, InterstitialsPlacementId, RewardedVideoPlacementId, ChannelId, GameVersionId);
+                this.debugCenter.PresentYumiMediationDebugCenter(BannerPlacementId, InterstitialsPlacementId, RewardedVideoPlacementId, NativeAdPlacementId, ChannelId, GameVersionId);
             }
         }
 
