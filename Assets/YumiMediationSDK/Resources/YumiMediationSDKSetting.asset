@@ -14,10 +14,10 @@ MonoBehaviour:
   DebugMode: 1
   GameVersion: 
   Android_ChannelId: 
-  Android_RewardedVideoPlacementId: dbhjvh61
-  Android_InterstitialsPlacementId: ux0jk1ou
-  Android_BannerPlacementId: c6c6kh4m
-  Android_NativeAdPlacementId: aezbo9zd
+  Android_RewardedVideoPlacementId: ew9hyvl4
+  Android_InterstitialsPlacementId: 56ubk22h
+  Android_BannerPlacementId: uz852t89
+  Android_NativeAdPlacementId: dt62rndy
   IOS_ChannelId: 
   IOS_RewardedVideoPlacementId: 5xmpgti4
   IOS_InterstitialsPlacementId: onkkeg5i
