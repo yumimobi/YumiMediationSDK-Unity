@@ -14,9 +14,9 @@ public class YumiNativeScene : MonoBehaviour
     //private NativeAd nativeAd;
     private YumiNativeAd nativeAd;
 
-    private string NativePlacementId = YumiMediationSDKSetting.NativeAdPlacementId();
-    private string GameVersionId = YumiMediationSDKSetting.GetGameVersion;
-    private string ChannelId = YumiMediationSDKSetting.ChannelId();
+    private string NativePlacementId = "";
+    private string GameVersionId = "";
+    private string ChannelId = "";
 
     // UI elements in scene
     public Text statusText;
@@ -38,6 +38,13 @@ public class YumiNativeScene : MonoBehaviour
     void Awake()
     {
         Logger.Log("Native ad ready to load.");
+    }
+
+    void Start()
+    {
+        NativePlacementId = YumiMediationSDKSetting.NativeAdPlacementId();
+        GameVersionId = YumiMediationSDKSetting.GetGameVersion;
+        ChannelId = YumiMediationSDKSetting.ChannelId();
     }
 
     void OnDestroy()

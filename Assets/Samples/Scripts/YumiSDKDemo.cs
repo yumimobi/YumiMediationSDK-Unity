@@ -40,10 +40,6 @@ public class YumiSDKDemo : MonoBehaviour
         NativeAdPlacementId = YumiMediationSDKSetting.NativeAdPlacementId();
 
         debugCenter = new YumiDebugCenter();
-        if (YumiMediationSDKSetting.GetDebugMode)
-        {
-            debugCenter.ChangeToTestServer();
-        }
     }
 
     void OnGUI()
