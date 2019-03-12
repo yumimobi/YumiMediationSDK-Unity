@@ -121,8 +121,11 @@ public class YumiNativeScene : MonoBehaviour
     // Next button
     public void NextScene()
     {
-        this.nativeAd.UnregisterView(yumiNativeData);
-        this.nativeAd.DestroyNativeAd();
+        if(nativeAd != null){
+            this.nativeAd.UnregisterView(yumiNativeData);
+            this.nativeAd.DestroyNativeAd();
+        }
+
         SceneManager.LoadScene("YumiScene");
 
     }
