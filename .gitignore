@@ -54,3 +54,8 @@ crashlytics-build.properties
 # VS code settings
 *.project
 *.settings
+
+# not tracker android sdk aar file
+Assets/Plugins/Android/javax.*
+Assets/Plugins/Android/com.*
+Assets/Plugins/Android/android.*
