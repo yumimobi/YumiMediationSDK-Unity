@@ -44,6 +44,8 @@ static const char **cStringArrayCopy(NSArray *array) {
     return stringArray;
 }
 
+static CGFloat iPhonePlusHeight = 736.0;
+
 #pragma mark: banner method
 /// Creates a full-width BannerView in the current orientation. Returns a reference to the
 /// YumiBannerView.
@@ -237,6 +239,10 @@ void RegisterAssetViewsForInteraction(
                                            int ctaViewX, int ctaViewY, int ctaViewWidth, int ctaViewHeight, int titleX, int titleY, int titleWidth, int titleHeight,int descX, int descY, int descWidth, int descHeight){
     // adapte iphone size with screen scale
     CGFloat scale = [UIScreen mainScreen].scale;
+    NSLog(@"[UIScreen mainScreen].scale = %f,",scale);
+    if ([UIScreen mainScreen].bounds.size.height == iPhonePlusHeight) {
+        scale = 2.6; // 6/7/8 plus的实际像素比是2.6。 屏幕宽高414:736  物理像素1080:1920
+    }
     CGFloat adViewTop = adViewY/scale;
     CGFloat adViewLeft = adViewX / scale;
     
