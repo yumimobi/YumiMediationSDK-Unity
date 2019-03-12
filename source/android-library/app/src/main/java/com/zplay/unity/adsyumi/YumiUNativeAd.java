@@ -394,7 +394,10 @@ public class YumiUNativeAd {
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                hideView(uniqueId);
+                View adView = mNativeViews.get(uniqueId);
+                if (adView != null) {
+                    adView.setVisibility(View.GONE);
+                }
                 mNativeContents.remove(uniqueId);
                 mNativeViews.remove(uniqueId);
             }
