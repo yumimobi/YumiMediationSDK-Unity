@@ -37,7 +37,7 @@ namespace YumiMediationSDK.Api
             this.client.LoadRewardVideoAd(placementId,channelId,versionId);
         }
 
-        // Determines whether the interstitial has loaded.
+        // Determines whether the RewardVideo has loaded.
         public bool IsRewardVideoReady()
         {
             return this.client.IsRewardVideoReady();
