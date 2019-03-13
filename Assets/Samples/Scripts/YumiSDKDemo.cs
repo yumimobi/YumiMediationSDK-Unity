@@ -143,13 +143,9 @@ public class YumiSDKDemo : MonoBehaviour
 
         //native
 
-        if (GUI.Button(new Rect(40, 474, btnWidth, 120), "Show Native Scen", myButtonStyle))
+        if (GUI.Button(new Rect(40, 474, btnWidth, 120), "Show Native Scene", myButtonStyle))
         {
-            if (this.bannerView != null)
-            {
-                this.bannerView.Hide();
-
-            }
+            destroyAds();
             SceneManager.LoadScene("YumiNativeScene");
 
         }
@@ -164,27 +160,29 @@ public class YumiSDKDemo : MonoBehaviour
                 }
 
                 //Destroy ad
-
-                if (this.bannerView != null)
-                {
-                    this.bannerView.Hide();
-
-                }
-                if (this.interstitialAd != null)
-                {
-                    this.interstitialAd.DestroyInterstitial();
-                }
-                if (this.rewardVideoAd != null)
-                {
-                    this.rewardVideoAd.DestroyRewardVideo();
-                }
-
+                destroyAds();
                 this.debugCenter.PresentYumiMediationDebugCenter(BannerPlacementId, InterstitialsPlacementId, RewardedVideoPlacementId, NativeAdPlacementId, ChannelId, GameVersionId);
             }
         }
-
-
     }
+
+    private void destroyAds()
+    {
+        if (bannerView != null)
+        {
+            bannerView.Destroy();
+
+        }
+        if (interstitialAd != null)
+        {
+            interstitialAd.DestroyInterstitial();
+        }
+        if (rewardVideoAd != null)
+        {
+            rewardVideoAd.DestroyRewardVideo();
+        }
+    }
+
     #region Banner callback handlers
 
     public void HandleAdLoaded(object sender, EventArgs args)

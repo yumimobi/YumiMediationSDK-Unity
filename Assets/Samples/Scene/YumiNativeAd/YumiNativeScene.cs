@@ -111,7 +111,6 @@ public class YumiNativeScene : MonoBehaviour
 
     public void UnregisterNativeViews()
     {
-       
         statusText.text = "UnregisterNativeViews";
         nativeAd.UnregisterView(yumiNativeData);
         yumiNativeData = new YumiNativeData();
