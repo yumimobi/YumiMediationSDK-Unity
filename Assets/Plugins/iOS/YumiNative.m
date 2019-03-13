@@ -8,6 +8,9 @@
 #import "YumiNative.h"
 #import "YumiNativeBridgeView.h"
 
+
+static NSString *yumiFBBridgeDummyUrl = @"yumi facebook dummy url";
+
 @interface YumiNative()<YumiMediationNativeAdDelegate>
 
 @property (nonatomic) NSMutableDictionary<NSString *,YumiMediationNativeModel *>  *nativeADDataMapping;
@@ -134,10 +137,16 @@
 }
 - (NSString *)getIconUrl:(NSString *)uniqueId{
     YumiMediationNativeModel *model = [self getCurrentNativeModel:uniqueId];
+    if ([model.thirdparty isKindOfClass:NSClassFromString(@"YumiMediationNativeAdapterFacebook")] && !model.icon.imageURL) {
+        return yumiFBBridgeDummyUrl;
+    }
     return [NSString stringWithFormat:@"%@",model.icon.imageURL];
 }
 - (NSString *)getCoverImageUrl:(NSString *)uniqueId{
     YumiMediationNativeModel *model = [self getCurrentNativeModel:uniqueId];
+    if ([model.thirdparty isKindOfClass:NSClassFromString(@"YumiMediationNativeAdapterFacebook")] && !model.coverImage.imageURL) {
+        return yumiFBBridgeDummyUrl;
+    }
     return [NSString stringWithFormat:@"%@",model.coverImage.imageURL];
 }
 - (NSString *)getPrice:(NSString *)uniqueId{
