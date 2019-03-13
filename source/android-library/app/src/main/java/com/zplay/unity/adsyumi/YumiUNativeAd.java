@@ -31,7 +31,7 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 public class YumiUNativeAd {
     private static final String TAG = "YumiUNativeAd";
 
-    private static final String FAKE_URL = "http://www.fakeurl.com";
+    private static final String FAKE_URL = "http://www.facebook.com";
 
     private static final String FACEBOOK_NAME = "Facebook";
 
