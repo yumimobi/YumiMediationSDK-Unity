@@ -9,7 +9,7 @@
 #import "YumiNativeBridgeView.h"
 
 
-static NSString *yumiFBBridgeDummyUrl = @"yumi facebook dummy url";
+static NSString *yumiFBBridgeDummyUrl = @"http://www.facebook.com";
 
 @interface YumiNative()<YumiMediationNativeAdDelegate>
 
