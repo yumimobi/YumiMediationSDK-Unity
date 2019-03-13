@@ -96,6 +96,7 @@
     if (!_actLab) {
         _actLab = [[UILabel alloc] init];
         _actLab.numberOfLines = 0;
+        _actLab.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_actLab];
     }
     return _actLab;
