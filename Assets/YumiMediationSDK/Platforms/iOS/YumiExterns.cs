@@ -6,19 +6,26 @@ using System.Runtime.InteropServices;
 
 namespace YumiMediationSDK.iOS
 {
+    internal enum YumiMediationAdViewBannerSize
+    {
+
+        /// iPhone and iPod Touch ad size. Typically 320x50.
+        kYumiMediationAdViewBanner320x50 = 1 << 0,
+        // Leaderboard size for the iPad. Typically 728x90.
+        kYumiMediationAdViewBanner728x90 = 1 << 1,
+        // Represents the fixed banner ad size - 300pt by 250pt.
+        kYumiMediationAdViewBanner300x250 = 1 << 2,
+        /// An ad size that spans the full width of the application in portrait orientation. The height is
+        /// typically 50 pixels on an iPhone/iPod UI, and 90 pixels tall on an iPad UI.
+        kYumiMediationAdViewSmartBannerPortrait = 1 << 3,
+        /// An ad size that spans the full width of the application in landscape orientation. The height is
+        /// typically 32 pixels on an iPhone/iPod UI, and 90 pixels tall on an iPad UI.
+        kYumiMediationAdViewSmartBannerLandscape = 1 << 4
+
+    }
     public class YumiExterns
     {
-        #region banner 
-
-        public enum YumiMediationAdViewBannerSize
-        {
-            /// iPhone and iPod Touch ad size. Typically 320x50.
-            kYumiMediationAdViewBanner320x50 = 1 << 0,
-            // Leaderboard size for the iPad. Typically 728x90.
-            kYumiMediationAdViewBanner728x90 = 1 << 1,
-            // Represents the fixed banner ad size - 300pt by 250pt.
-            kYumiMediationAdViewBanner300x250 = 1 << 2
-        }
+        #region banner
 
         [DllImport("__Internal")]
         internal static extern void YumiRelease(IntPtr obj);
@@ -36,6 +43,8 @@ namespace YumiMediationSDK.iOS
         internal static extern void DestroyBannerView(IntPtr bannerView);
         [DllImport("__Internal")]
         internal static extern void SetBannerAdSize(IntPtr bannerView, YumiMediationAdViewBannerSize bannerSize);
+        [DllImport("__Internal")]
+        internal static extern void DisableAutoRefresh(IntPtr bannerView);
         [DllImport("__Internal")]
         internal static extern void SetBannerCallbacks(
            IntPtr bannerView,
