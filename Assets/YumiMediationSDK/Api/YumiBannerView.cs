@@ -7,8 +7,9 @@ namespace YumiMediationSDK.Api
     public class YumiBannerView
     {
         private IYumiBannerClient client;
+        private YumiBannerViewOptions bannerOptions;
         // Creates a BannerView and adds it to the view hierarchy.
-        public YumiBannerView(string placementId, string channelId, string versionId, YumiAdPosition adPosition)
+        public YumiBannerView(string placementId, string channelId, string versionId, YumiBannerViewOptions bannerOptions)
         {
             Type yumiAdsClientFactory = Type.GetType(
                 "YumiMediationSDK.YumiAdsClientFactory,Assembly-CSharp");
@@ -16,21 +17,23 @@ namespace YumiMediationSDK.Api
                 "BuildBannerClient",
                 BindingFlags.Static | BindingFlags.Public);
             this.client = (IYumiBannerClient)method.Invoke(null, null);
-            client.CreateBannerView(placementId,channelId,versionId,adPosition);
+            this.bannerOptions = bannerOptions;
+            client.CreateBannerView(placementId,channelId,versionId, bannerOptions);
 
             ConfigureBannerEvents();
         }
 
+        // Ad event fired when the banner ad has loaded.
         public event EventHandler<EventArgs> OnAdLoaded;
         // Ad event fired when the banner ad has failed to load.
         public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
         // Ad event fired when the banner ad is click.
         public event EventHandler<EventArgs> OnAdClick;
 
-        // Loads an ad into the BannerView.
-        public void LoadAd(bool isSmart)
+       // Loads an ad into the BannerView.
+        public void LoadAd()
         {
-            client.LoadAd(isSmart);
+            client.LoadAd(bannerOptions.isSmart);
         }
         // Hides the BannerView from the screen.
         public void Hide()
@@ -77,6 +80,12 @@ namespace YumiMediationSDK.Api
             };
 
 
+        }
+        
+        [Obsolete("LoadAd(bool isSmart) is deprecated, please use LoadAd() instead.", true)]
+        public void LoadAd(bool isSmart)
+        {
+            client.LoadAd(isSmart);
         }
     }
 }
