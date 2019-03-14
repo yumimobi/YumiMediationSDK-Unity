@@ -65,7 +65,8 @@ public class YumiSDKDemo : MonoBehaviour
 
             if (this.bannerView == null)
             {
-                this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionId, YumiAdPosition.Bottom);
+                YumiBannerViewOptions bannerOptions = new YumiBannerViewOptionsBuilder().Build();
+                this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionId, bannerOptions);
                 // banner add ad event
                 this.bannerView.OnAdLoaded += this.HandleAdLoaded;
                 this.bannerView.OnAdFailedToLoad += HandleAdFailedToLoad;
@@ -73,7 +74,7 @@ public class YumiSDKDemo : MonoBehaviour
             }
 
 
-            this.bannerView.LoadAd(IsSmartBanner);
+            this.bannerView.LoadAd();
             this.bannerView.Show();
 
         }
