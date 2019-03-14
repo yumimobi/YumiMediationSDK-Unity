@@ -19,8 +19,8 @@ namespace YumiMediationSDK.Api
             }
         }
 
-        // 
-        public YumiRewardVideoAd(){
+        // Creates a Singleton YumiRewardVideoAd.
+        private YumiRewardVideoAd(){
             Type yumiAdsClientFactory = Type.GetType(
                 "YumiMediationSDK.YumiAdsClientFactory,Assembly-CSharp");
             MethodInfo method = yumiAdsClientFactory.GetMethod(
@@ -31,26 +31,26 @@ namespace YumiMediationSDK.Api
 
             ConfigureRewardVideoEvents();
         }
-        //Creates a Singleton YumiRewardVideoAd.
-        public void LoadRewardVideoAd(string placementId, string channelId, string versionId)
+        // Initiates the ad request, should only be called once as early as possible.
+        public void LoadAd(string placementId, string channelId, string versionId)
         {
             this.client.LoadRewardVideoAd(placementId,channelId,versionId);
         }
 
         // Determines whether the RewardVideo has loaded.
-        public bool IsRewardVideoReady()
+        public bool IsReady()
         {
             return this.client.IsRewardVideoReady();
         }
 
         // play the RewardVideo.
-        public void PlayRewardVideo()
+        public void Play()
         {
             this.client.PlayRewardVideo();
         }
 
         // Destroys an RewardVideo.
-        public void DestroyRewardVideo()
+        public void Destroy()
         {
             this.client.DestroyRewardVideo();
         }
