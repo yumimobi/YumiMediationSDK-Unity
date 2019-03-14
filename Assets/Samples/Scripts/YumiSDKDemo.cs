@@ -122,23 +122,23 @@ public class YumiSDKDemo : MonoBehaviour
 
             if (this.rewardVideoAd != null)
             {
-                this.rewardVideoAd.DestroyRewardVideo();
+                this.rewardVideoAd.Destroy();
             }
-            this.rewardVideoAd = new YumiRewardVideoAd();
+            this.rewardVideoAd = YumiRewardVideoAd.Instance;
             this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
             this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
             this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
             this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
 
-            this.rewardVideoAd.LoadRewardVideoAd(RewardedVideoPlacementId, ChannelId, GameVersionId);
+            this.rewardVideoAd.LoadAd(RewardedVideoPlacementId, ChannelId, GameVersionId);
         }
 
         if (GUI.Button(new Rect(40 + btnWidth + 10, 344, btnWidth, 120), "play video", myButtonStyle))
         {
 
-            if (this.rewardVideoAd.IsRewardVideoReady())
+            if (this.rewardVideoAd.IsReady())
             {
-                this.rewardVideoAd.PlayRewardVideo();
+                this.rewardVideoAd.Play();
             }
         }
 
@@ -180,7 +180,7 @@ public class YumiSDKDemo : MonoBehaviour
         }
         if (rewardVideoAd != null)
         {
-            rewardVideoAd.DestroyRewardVideo();
+            rewardVideoAd.Destroy();
         }
     }
 
