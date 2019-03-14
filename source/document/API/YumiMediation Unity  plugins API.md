@@ -7,7 +7,18 @@
 1. 初始化构造方法：
 
    ```c#
-   public YumiBannerView(string placementId, string channelId, string versionId, YumiAdPosition adPosition)
+   public YumiBannerView(string placementId, string channelId, string versionId, YumiBannerViewOptions bannerOptions)
+   ```
+   YumiBannerViewOptions 可以配置如下信息：
+
+   ```c#
+   // banner position in supview
+   internal YumiAdPosition adPosition;
+   internal YumiBannerAdSize bannerSize;
+   // If isSmart is set to YES, it will render screen-width banner ads on any screen size across different devices in either orientation.
+   internal bool isSmart;
+   // Disable auto refresh for the YumiMediationBannerView instance.
+   internal bool disableAutoRefresh;
    ```
 
 2. 请求 Banner
@@ -37,7 +48,7 @@
 6. 回调方法
 
    ```c#
-   //Ad event fired when the banner ad has loaded.
+   // Ad event fired when the banner ad has loaded.
    public event EventHandler<EventArgs> OnAdLoaded;
    // Ad event fired when the banner ad has failed to load.
    public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
@@ -56,19 +67,19 @@
 2. 判断 Interstitial 是否准备好
 
    ```c#
-   public bool IsInterstitialReady()
+   public bool IsReady()
    ```
 
 3. 展示 Interstitial
 
    ```c#
-   public void ShowInterstitial()
+   public void Show()
    ```
 
 4. 销毁 Interstitial
 
    ```c#
-   public void DestroyInterstitial()
+   public void Destroy()
    ```
 
 5. 回调方法
@@ -90,31 +101,31 @@
 1. 初始化构造方法(单例对象)
 
    ```c#
-   public YumiRewardVideoAd()
+   public static YumiRewardVideoAd Instance
    ```
 
 2. 请求 Reward video
 
    ```C#
-   public void LoadRewardVideoAd(string placementId, string channelId, string versionId)
+   public void LoadAd(string placementId, string channelId, string versionId)
    ```
 
 3. 判断 Reward video 是否准备好
 
    ```c#
-   public bool IsRewardVideoReady()
+   public bool IsReady()
    ```
 
 4. 播放 Reward video
 
    ```c#
-   public void PlayRewardVideo()
+   public void Play()
    ```
 
 5. 销毁 Reward video
 
    ```c#
-   public void DestroyRewardVideo()
+   public void Destroy()
    ```
 
 6. 回调方法
@@ -153,7 +164,7 @@
 2. 请求 Native
 
    ```c#
-   public void LoadNativeAd(int adCount)
+   public void LoadAd(int adCount)
    ```
 
 3. 注册（添加） Unity 展示元素 
@@ -200,7 +211,7 @@
 8. 销毁 Native
 
    ```c#
-   public void DestroyNativeAd()
+   public void Destroy()
    ```
 
 9. 回调方法
@@ -235,57 +246,57 @@
 
 10. 原生注册展示实例代码
 
-   ```c#
-   // 当前显示的广告元素，来源于OnNativeAdLoaded
-   private YumiNativeData yumiNativeData;
+  ```c#
+  // 当前显示的广告元素，来源于OnNativeAdLoaded
+  private YumiNativeData yumiNativeData;
 
-   // must register native views
-   private void RegisterNativeViews()
-       {
+  // must register native views
+  private void RegisterNativeViews()
+      {
 
-           Dictionary<NativeElemetType, Transform> elementsDictionary = new Dictionary<NativeElemetType, Transform>();
-           elementsDictionary.Add(NativeElemetType.PANEL, adPanel.transform);
-           elementsDictionary.Add(NativeElemetType.TITLE, title.transform);
-           elementsDictionary.Add(NativeElemetType.DESCRIPTION, body.transform);
-           elementsDictionary.Add(NativeElemetType.ICON, iconImage.transform);
-           elementsDictionary.Add(NativeElemetType.COVER_IMAGE, mediaView.transform);
-           elementsDictionary.Add(NativeElemetType.CALL_TO_ACTION, callToActionButton.transform);
+          Dictionary<NativeElemetType, Transform> elementsDictionary = new Dictionary<NativeElemetType, Transform>();
+          elementsDictionary.Add(NativeElemetType.PANEL, adPanel.transform);
+          elementsDictionary.Add(NativeElemetType.TITLE, title.transform);
+          elementsDictionary.Add(NativeElemetType.DESCRIPTION, body.transform);
+          elementsDictionary.Add(NativeElemetType.ICON, iconImage.transform);
+          elementsDictionary.Add(NativeElemetType.COVER_IMAGE, mediaView.transform);
+          elementsDictionary.Add(NativeElemetType.CALL_TO_ACTION, callToActionButton.transform);
 
-           nativeAd.RegisterGameObjectsForInteraction(yumiNativeData, gameObject, elementsDictionary);
+          nativeAd.RegisterGameObjectsForInteraction(yumiNativeData, gameObject, elementsDictionary);
 
-       }
+      }
 
-   public void ShowAd()
-       {
-          // RegisterNativeViews and ShowAd
-           RegisterNativeViews();
-           if (nativeAd.IsAdInvalidated(yumiNativeData))
-           {
-               statusText.text = "Native Data is invalidated";
-               return;
-           }
-           nativeAd.ShowView(yumiNativeData);
-       }
+  public void ShowAd()
+      {
+         // RegisterNativeViews and ShowAd
+          RegisterNativeViews();
+          if (nativeAd.IsAdInvalidated(yumiNativeData))
+          {
+              statusText.text = "Native Data is invalidated";
+              return;
+          }
+          nativeAd.ShowView(yumiNativeData);
+      }
 
-   // OnNativeAdLoaded 原生数据返回 List<YumiNativeData>
-   public void HandleNativeAdLoaded(object sender, YumiNativeToLoadEventArgs args)
-       {
-           Logger.Log("HandleNativeAdLoaded event opened");
-           if (nativeAd == null)
-           {
-               statusText.text = "nativeAd is null";
-               return;
-           }
+  // OnNativeAdLoaded 原生数据返回 List<YumiNativeData>
+  public void HandleNativeAdLoaded(object sender, YumiNativeToLoadEventArgs args)
+      {
+          Logger.Log("HandleNativeAdLoaded event opened");
+          if (nativeAd == null)
+          {
+              statusText.text = "nativeAd is null";
+              return;
+          }
 
-           if (args == null || args.nativeData == null || args.nativeData.Count == 0)
-           {
-               statusText.text = "nativeAd data not found.";
-               return;
-           }
-           statusText.text = "HandleNativeAdLoaded";
-           yumiNativeData = args.nativeData[0];
-       }
-   ```
+          if (args == null || args.nativeData == null || args.nativeData.Count == 0)
+          {
+              statusText.text = "nativeAd data not found.";
+              return;
+          }
+          statusText.text = "HandleNativeAdLoaded";
+          yumiNativeData = args.nativeData[0];
+      }
+  ```
 
 11. Unity 展示广告区域如下所示
 
