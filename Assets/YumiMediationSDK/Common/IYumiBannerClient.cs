@@ -13,7 +13,7 @@ namespace YumiMediationSDK.Common
         event EventHandler<EventArgs> OnAdClick;
     
         // Creates a banner view and adds it to the view hierarchy.
-        void CreateBannerView(string placementId, string channelId, string versionId, YumiAdPosition adPosition);
+        void CreateBannerView(string placementId, string channelId, string versionId, YumiBannerViewOptions bannerOptions);
 
         // Requests a new ad for the banner view.
         void LoadAd(bool isSmart);
