@@ -29,7 +29,7 @@ namespace YumiMediationSDK.Api
         internal AdAttribution adAttribution = new AdAttribution
         {
             AdOptionsPosition = AdOptionViewPosition.TOP_LEFT,
-            text = "Ad",
+            text = " Ad ",
             textColor = 0xff222222,
             backgroundColor = 0x11eeeeee,
             textSize = 8,
