@@ -3,6 +3,7 @@ namespace YumiMediationSDK.Api
 {
     public class YumiBannerViewOptions
     {
+        // banner position in supview
         internal YumiAdPosition adPosition;
         internal YumiBannerAdSize bannerSize;
         // If isSmart is set to YES, it will render screen-width banner ads on any screen size across different devices in either orientation.
