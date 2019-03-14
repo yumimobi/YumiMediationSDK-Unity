@@ -94,7 +94,7 @@ public class YumiSDKDemo : MonoBehaviour
 
             if (this.interstitialAd != null)
             {
-                this.interstitialAd.DestroyInterstitial();
+                this.interstitialAd.Destroy();
             }
 
             this.interstitialAd = new YumiInterstitialAd(InterstitialsPlacementId, ChannelId, GameVersionId);
@@ -109,9 +109,9 @@ public class YumiSDKDemo : MonoBehaviour
         if (GUI.Button(new Rect(40 + btnWidth + 10, 214, btnWidth, 120), "present interstital", myButtonStyle))
         {
 
-            if (this.interstitialAd.IsInterstitialReady())
+            if (this.interstitialAd.IsReady())
             {
-                this.interstitialAd.ShowInterstitial();
+                this.interstitialAd.Show();
             }
 
         }
@@ -176,7 +176,7 @@ public class YumiSDKDemo : MonoBehaviour
         }
         if (interstitialAd != null)
         {
-            interstitialAd.DestroyInterstitial();
+            interstitialAd.Destroy();
         }
         if (rewardVideoAd != null)
         {
