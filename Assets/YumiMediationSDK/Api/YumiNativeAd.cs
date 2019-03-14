@@ -10,7 +10,7 @@ namespace YumiMediationSDK.Api
     {
         private IYumiNativeClient client;
         private YumiNativeAdOptions options;
-
+        // Creates an nativeAd
         public YumiNativeAd(string placementId, string channelId, string versionId, YumiNativeAdOptions options)
         {
             client = YumiAdsClientFactory.BuildNativeClient();
@@ -19,18 +19,19 @@ namespace YumiMediationSDK.Api
 
             ConfigureNativeEvents();
         }
-        // load native ad
-        public void LoadNativeAd(int adCount)
+        // Loads native ad
+        public void LoadAd(int adCount)
         {
             this.client.LoadAd(adCount);
         }
 
         // Destroys native ad object.
-        public void DestroyNativeAd()
+        public void Destroy()
         {
             this.client.DestroyNativeAd();
-        }
 
+        }
+        // This is a method to associate a YumiNativeData with the ad assets gameobject you will use to display the native ads.
         public void RegisterGameObjectsForInteraction(YumiNativeData data, GameObject gameObject, Dictionary<NativeElemetType, Transform> elements)
         {
             if (gameObject == null)
@@ -57,36 +58,36 @@ namespace YumiMediationSDK.Api
 
             client.RegisterGameObjectsForInteraction(data, gameObject, elements);
         }
-
+        // Determines whether nativeAd data is invalidated, if invalidated please reload
         public bool IsAdInvalidated(YumiNativeData nativeData)
         {
             return client.IsAdInvalidated(nativeData);
         }
-
+        // Show nativeAd data associate view 
         public void ShowView(YumiNativeData nativeData)
         {
             client.ShowView(nativeData);
         }
-
+        // Hide nativeAd data associate view 
         public void HideView(YumiNativeData nativeData)
         {
             client.HideView(nativeData);
         }
-
+        // Unregister nativeAd data associate view,remove it from supview
         public void UnregisterView(YumiNativeData nativeData)
         {
             this.client.UnregisterView(nativeData);
         }
 
         #region IYumiNativeClient event
-        // Ad event fired when the native ad has been received.
+        // Ad event fired when the native ad has loaded.
         public event EventHandler<YumiNativeToLoadEventArgs> OnNativeAdLoaded;
         // Ad event fired when the native ad has failed to load.
         public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
         // Ad event fired when the native ad is click.
         public event EventHandler<EventArgs> OnAdClick;
         #endregion
-        //回调
+
         private void ConfigureNativeEvents()
         {
             this.client.OnNativeAdLoaded += (sender, args) =>
