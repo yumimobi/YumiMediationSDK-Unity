@@ -73,7 +73,7 @@ public class YumiNativeScene : MonoBehaviour
 
         UnregisterNativeViews();
 
-        nativeAd.LoadNativeAd(1);
+        nativeAd.LoadAd(1);
     }
 
     private void RegisterNativeViews()
@@ -125,7 +125,7 @@ public class YumiNativeScene : MonoBehaviour
     {
         if(nativeAd != null){
             this.nativeAd.UnregisterView(yumiNativeData);
-            this.nativeAd.DestroyNativeAd();
+            this.nativeAd.Destroy();
         }
 
         SceneManager.LoadScene("YumiScene");
