@@ -45,4 +45,6 @@
 
 - (void)setBannerAdSize:(YumiMediationAdViewBannerSize)bannerSize;
 
+- (void)disableAutoRefresh;
+
 @end
