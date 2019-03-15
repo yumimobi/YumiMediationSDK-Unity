@@ -37,7 +37,8 @@ namespace YumiMediationSDK.Common
 #pragma warning restore 67
         // banner method
         // Creates a banner view and adds it to the view hierarchy.
-        public void CreateBannerView(string placementId, string channelId, string versionId, YumiAdPosition adPosition){
+        public void CreateBannerView(string placementId, string channelId, string versionId, YumiBannerViewOptions bannerOptions)
+        {
             Logger.LogError("Dummy : create banner");
         }
 

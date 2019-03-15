@@ -79,6 +79,13 @@
     }
     self.bannerView.bannerSize = bannerSize;
 }
+- (void)disableAutoRefresh{
+    if (!self.bannerView) {
+        [self printLogIfError];
+        return;
+    }
+    [self.bannerView disableAutoRefresh];
+}
 - (void)printLogIfError{
     NSLog(@"YumiMobileAdsPlugin: BannerView is nil. Ignoring ad request.");
 }

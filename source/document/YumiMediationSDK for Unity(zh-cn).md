@@ -1,28 +1,39 @@
-* [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
-   * [概述](#概述)
-   * [下载 YumiMediationSDK Unity 插件](#下载-yumimediationsdk-unity-插件)
-   * [导入 YumiMediationSDK Unity 插件](#导入-yumimediationsdk-unity-插件)
-   * [集成 YumiMediationSDK](#集成-yumimediationsdk)
-      * [部署 iOS 项目](#部署-ios-项目)
-      * [部署 Android 项目](#部署-android-项目)
-   * [选择广告形式](#选择广告形式)
-      * [Banner](#banner)
-         * [初始化 Banner](#初始化-banner)
-         * [请求 Banner](#请求-banner)
-         * [隐藏 Banner](#隐藏-banner)
-         * [显示隐藏的 Banner](#显示隐藏的-banner)
-      * [Interstitial](#interstitial)
-         * [初始化及请求插屏](#初始化及请求插屏)
-         * [展示 Interstitial](#展示-interstitial)
-         * [销毁 Interstitial](#销毁-interstitial)
-      * [Rewarded Video](#rewarded-video)
-         * [初始化及请求视频](#初始化及请求视频)
-         * [判断视频是否准备好](#判断视频是否准备好)
-         * [展示 Rewarded Video](#展示-rewarded-video)
-         * [销毁 Rewarded Video](#销毁-rewarded-video)
-   * [调试模式](#调试模式)
-      * [调用调试模式](#调用调试模式)
-   * [常见问题](#常见问题)
+- [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
+  * [概述](#概述)
+  * [下载 YumiMediationSDK Unity 插件](#下载-YumiMediationSDK-Unity-插件)
+  * [导入 YumiMediationSDK Unity 插件](#导入-YumiMediationSDK-Unity-插件)
+  * [集成 YumiMediationSDK](#集成-YumiMediationSDK)
+    + [部署 iOS 项目](#部署-iOS-项目)
+    + [部署 Android 项目](#部署-Android-项目)
+  * [选择广告形式](#选择广告形式)
+    + [Banner](#banner)
+      - [初始化 Banner](#初始化-banner)
+      - [请求 Banner](#请求-banner)
+      - [隐藏 Banner](#隐藏-banner)
+      - [显示隐藏的 Banner](#显示隐藏的-banner)
+      - [销毁 Banner](#销毁-banner)
+    + [Interstitial](#interstitial)
+      - [初始化及请求插屏](#初始化及请求插屏)
+      - [展示 Interstitial](#展示-interstitial)
+      - [销毁 Interstitial](#销毁-interstitial)
+    + [Rewarded Video](#rewarded-video)
+      - [初始化及请求视频](#初始化及请求视频)
+      - [判断视频是否准备好](#判断视频是否准备好)
+      - [展示 Rewarded Video](#展示-rewarded-video)
+    + [Native](#native)
+      - [初始化 Native](#初始化-native)
+      - [请求 Native](#请求-native)
+      - [创建原生广告布局](#创建原生广告布局)
+      - [使用广告元数据注册布局](#使用广告元数据注册布局)
+      - [展示 Native View](展示-native-view)
+      - [隐藏 Native View](#隐藏-native-view)
+      - [移除 Native View](#移除-native-view)
+      - [销毁 Native](#销毁-native)
+  * [调试模式](#调试模式)
+    + [调用调试模式](#调用调试模式)
+  * [常见问题](#常见问题)
+
+
 # YumiMediationSDK for Unity
 
 ## 概述
@@ -188,8 +199,10 @@ public class YumiSDKDemo : MonoBehaviour
     #else
       string bannerPlacementId = "unexpected_platform";
     #endif
-   
-    this.bannerView = new YumiBannerView( bannerPlacementId, channelId, gameVersionId, YumiAdPosition.Bottom );
+    
+    // YumiBannerViewOptions 可以配置 Banner 位置、大小、是否自适应和是否自刷新
+    YumiBannerViewOptions bannerOptions = new YumiBannerViewOptionsBuilder().Build();
+    this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionId, bannerOptions);
 
     /* banner add ad event */
     this.bannerView.OnAdLoaded    += this.HandleAdLoaded;
@@ -221,10 +234,7 @@ public class YumiSDKDemo : MonoBehaviour
 #### 请求 Banner
 
 ```C#
-//如果设置 isSmartBanner 为 true ,YumiMediationBannerView 将会自动根据设备的尺寸进行适配（目前只有 iOS 支持 isSmart = true）
-//banner 广告位会自动填充，您无需重复调用
-bool IsSmartBanner = false;
-this.bannerView.LoadAd(IsSmartBanner); 
+this.bannerView.LoadAd(); 
 ```
 
 #### 隐藏 Banner
@@ -237,6 +247,12 @@ this.bannerView.Hide();
 
 ```C#
 this.bannerView.Show();
+```
+
+####  销毁 Banner
+
+```c#
+this.bannerView.Destroy();
 ```
 
 ### Interstitial
@@ -295,19 +311,19 @@ public class YumiSDKDemo : MonoBehaviour
 
 #### 展示 Interstitial
 
-建议先调用```this.interstitialAd.IsInterstitialReady()```判断插屏是否准备好
+建议先调用```this.interstitialAd.IsReady()```判断插屏是否准备好
 
 ```C#
- if(this.interstitialAd.IsInterstitialReady())
+ if(this.interstitialAd.IsReady())
  {
-  this.interstitialAd.ShowInterstitial();
+  this.interstitialAd.Show();
  }
 ```
 
 #### 销毁 Interstitial
 
 ```c#
-this.interstitialAd.DestroyInterstitial();
+this.interstitialAd.Destroy();
 ```
 
 ### Rewarded Video
@@ -335,13 +351,13 @@ public class YumiSDKDemo : MonoBehaviour
     # else
 	  string rewardVideoPlacementId = "unexpected_platform";
     #endif
-    this.rewardVideoAd = new YumiRewardVideoAd();
+    this.rewardVideoAd = YumiRewardVideoAd.Instance;
     this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
     this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
     this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
     this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
     // load ad
-    this.rewardVideoAd.LoadRewardVideoAd(rewardVideoPlacementId, channelId, gameVersionId);
+    this.rewardVideoAd.LoadAd(rewardVideoPlacementId, channelId, gameVersionId);
   }
   
   #region reward video callback handlers
@@ -368,22 +384,205 @@ public class YumiSDKDemo : MonoBehaviour
 #### 判断视频是否准备好
 
 ```c#
- this.rewardVideoAd.IsRewardVideoReady();
+ this.rewardVideoAd.IsReady();
 ```
 
 #### 展示 Rewarded Video
 
 ```c#
- if(this.rewardVideoAd.IsRewardVideoReady())
+ if(this.rewardVideoAd.IsReady())
  {
-  this.rewardVideoAd.PlayRewardVideo();
+  this.rewardVideoAd.Play();
  } 
 ```
 
-#### 销毁 Rewarded Video
+### Native
+
+#### 初始化 Native
 
 ```c#
-this.rewardVideoAd.DestroyRewardVideo();
+using UnityEngine;
+using UnityEngine.UI;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using YumiMediationSDK.Api;
+using YumiMediationSDK.Common;
+
+public class YumiNativeScene : MonoBehaviour
+{
+    private YumiNativeAd nativeAd;
+    private YumiNativeData yumiNativeData;
+   // UI elements in scene
+    [Header("Text:")]
+    public Text title;
+    public Text body;
+    [Header("Images:")]
+    public GameObject mediaView;
+    public GameObject iconImage;
+    [Header("Buttons:")]
+    // This doesn't be a button - it can also be an image
+    public Button callToActionButton;
+
+    // ad panel
+    public GameObject adPanel;
+  
+    void Start()
+    {
+        this.InitNativeAd();
+    }
+    private void InitNativeAd()
+    {
+        string gameVersionId = "YOUR_VERSION_ID";
+        string channelId = "YOUR_CHANNEL_ID";
+        #if UNITY_ANDROID
+        string nativePlacementId = "YOUR_NATIVE_PLACEMENT_ID_ANDROID";
+        #elif UNITY_IOS
+        string nativePlacementId = "YOUR_NATIVE_PLACEMENT_ID_IOS";
+        #else
+        string nativePlacementId = "unexpected_platform";
+        #endif
+        YumiNativeAdOptions options = new NativeAdOptionsBuilder().Build();
+        this.nativeAd = new YumiNativeAd(nativePlacementId, channelId, gameVersionId, options);
+        //callBack
+        this.nativeAd.OnNativeAdLoaded += HandleNativeAdLoaded;
+        this.nativeAd.OnAdFailedToLoad += HandleNativeAdFailedToLoad;
+        this.nativeAd.OnAdClick += HandleNativeAdClicked;
+    }
+    #region native call back handles
+    public void HandleNativeAdLoaded(object sender, YumiNativeToLoadEventArgs args)
+    {
+        Logger.Log("HandleNativeAdLoaded event opened");
+        if (nativeAd == null)
+        {
+            Logger.Log("nativeAd is null");
+            return;
+        }
+
+        if (args == null || args.nativeData == null || args.nativeData.Count == 0)
+        {
+            Logger.Log("nativeAd data not found.");
+            return;
+        }
+        // args.nativeData is nativeAd data
+      	yumiNativeData = args.nativeData[0];
+    }
+    public void HandleNativeAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args)
+    {
+        Logger.Log("HandleNativeAdFailedToLoad event received with message: " + args.Message);
+    }
+    public void HandleNativeAdClicked(object sender, EventArgs args)
+    {
+        Logger.Log("HandleNativeAdClicked");
+    }
+
+    #endregion
+}
+```
+
+YumiNativeAdOptions 可以配置原生广告显示的样式，参数详情如下：
+
+```c#
+internal AdOptionViewPosition adChoiseViewPosition;// AdOptionViewPosition ：       TOP_LEFT,TOP_RIGHT,BOTTOM_LEFT,BOTTOM_RIGHT
+internal AdAttribution adAttribution;//AdAttribution ：AdOptionsPosition、text、textColor、backgroundColor、textSize、hide
+internal TextOptions titleTextOptions;//TextOptions ：textSize，textColor，backgroundColor
+internal TextOptions descTextOptions;
+internal TextOptions callToActionTextOptions;
+internal ScaleType iconScaleType;
+internal ScaleType coverImageScaleType; // ScaleType: SCALE_TO_FILL、SCALE_ASPECT_FIT 、 SCALE_ASPECT_FILL
+```
+
+#### 请求 Native
+
+```c#
+int adCount = 1;//adCount is your request ad count
+this.nativeAd.LoadAd(adCount);
+```
+
+#### 创建原生广告布局
+
+```c#
+public class YumiNativeScene : MonoBehaviour
+  {
+    private YumiNativeAd nativeAd;
+   // UI elements in scene
+    [Header("Text:")]
+    public Text title;
+    public Text body;
+    [Header("Images:")]
+    public GameObject mediaView;
+    public GameObject iconImage;
+    [Header("Buttons:")]
+    // This doesn't be a button - it can also be an image
+    public Button callToActionButton;
+  	/// ...
+  }
+
+```
+
+以下说明这些元素如何与编辑器中的视图关联：
+
+![image](./resources/nativeAd.png)
+
+#### 使用广告元数据注册布局
+
+```C#
+public class YumiNativeScene : MonoBehaviour
+{
+  private YumiNativeAd nativeAd;
+  private YumiNativeData yumiNativeData;
+ // ...
+  private void RegisterNativeViews()
+    {
+
+        Dictionary<NativeElemetType, Transform> elementsDictionary = new Dictionary<NativeElemetType, Transform>();
+        elementsDictionary.Add(NativeElemetType.PANEL, adPanel.transform);
+        elementsDictionary.Add(NativeElemetType.TITLE, title.transform);
+        elementsDictionary.Add(NativeElemetType.DESCRIPTION, body.transform);
+        elementsDictionary.Add(NativeElemetType.ICON, iconImage.transform);
+        elementsDictionary.Add(NativeElemetType.COVER_IMAGE, mediaView.transform);
+        elementsDictionary.Add(NativeElemetType.CALL_TO_ACTION, callToActionButton.transform);
+		//This is a method to associate a YumiNativeData with the ad assets gameobject you will use to display the native ads.
+        this.nativeAd.RegisterGameObjectsForInteraction(yumiNativeData, gameObject, elementsDictionary);
+
+    }
+
+}
+```
+
+#### 展示 Native View
+
+```C#
+// Determines whether nativeAd data is invalidated, if invalidated please reload
+if (this.nativeAd.IsAdInvalidated(yumiNativeData))
+  {
+      Logger.Log("Native Data is invalidated");
+      return;
+  }
+  this.nativeAd.ShowView(yumiNativeData);
+```
+
+注意：显示广告前，您必须注册布局并检查广告是否已经无效。
+
+#### 隐藏 Native View
+
+```c#
+this.nativeAd.HideView(yumiNativeData);//Hide nativeAd data associate view 
+```
+
+#### 移除 Native View
+
+```c#
+this.nativeAd.UnregisterView(yumiNativeData);
+```
+
+此方法的作用：从屏幕上移除当前广告视图，断开 View 和 广告元数据的注册。在显示一个新广告时，请先调用这个方法。
+
+#### 销毁 Native
+
+```c#
+this.nativeAd.Destroy();
 ```
 
 ## 调试模式
@@ -406,7 +605,7 @@ public class YumiSDKDemo : MonoBehaviour
             this.debugCenter = new YumiDebugCenter();
         }
 // 注意：填写的广告位信息要区分iOS和Android
-        this.debugCenter.PresentYumiMediationDebugCenter("YOUR_BANNER_PLACEMENT_ID", "YOUR_INTERSTITIAL_PLACEMENT_ID", "YOUR_REWARDVIDEO_PLACEMENT_ID", "YOUR_CHANNEL_ID", "YOUR_VERSION_ID");
+        this.debugCenter.PresentYumiMediationDebugCenter("YOUR_BANNER_PLACEMENT_ID", "YOUR_INTERSTITIAL_PLACEMENT_ID", "YOUR_REWARDVIDEO_PLACEMENT_ID", "YOUR_NATIVE_PLACEMENT_ID","YOUR_CHANNEL_ID", "YOUR_VERSION_ID");
     }
 }
 ```

@@ -65,7 +65,8 @@ public class YumiSDKDemo : MonoBehaviour
 
             if (this.bannerView == null)
             {
-                this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionId, YumiAdPosition.Bottom);
+                YumiBannerViewOptions bannerOptions = new YumiBannerViewOptionsBuilder().Build();
+                this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionId, bannerOptions);
                 // banner add ad event
                 this.bannerView.OnAdLoaded += this.HandleAdLoaded;
                 this.bannerView.OnAdFailedToLoad += HandleAdFailedToLoad;
@@ -73,7 +74,7 @@ public class YumiSDKDemo : MonoBehaviour
             }
 
 
-            this.bannerView.LoadAd(IsSmartBanner);
+            this.bannerView.LoadAd();
             this.bannerView.Show();
 
         }
@@ -91,26 +92,24 @@ public class YumiSDKDemo : MonoBehaviour
         if (GUI.Button(new Rect(40, 214, btnWidth, 120), "request interstital", myButtonStyle))
         {
 
-            if (this.interstitialAd != null)
+            if (this.interstitialAd == null)
             {
-                this.interstitialAd.DestroyInterstitial();
-            }
-
-            this.interstitialAd = new YumiInterstitialAd(InterstitialsPlacementId, ChannelId, GameVersionId);
-            // add interstitial event 
-            this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
-            this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
-            this.interstitialAd.OnAdClicked += HandleInterstitialAdClicked;
-            this.interstitialAd.OnAdClosed += HandleInterstitialAdClosed;
+                this.interstitialAd = new YumiInterstitialAd(InterstitialsPlacementId, ChannelId, GameVersionId);
+                // add interstitial event 
+                this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
+                this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
+                this.interstitialAd.OnAdClicked += HandleInterstitialAdClicked;
+                this.interstitialAd.OnAdClosed += HandleInterstitialAdClosed;
+            }       
 
         }
 
         if (GUI.Button(new Rect(40 + btnWidth + 10, 214, btnWidth, 120), "present interstital", myButtonStyle))
         {
 
-            if (this.interstitialAd.IsInterstitialReady())
+            if (this.interstitialAd.IsReady())
             {
-                this.interstitialAd.ShowInterstitial();
+                this.interstitialAd.Show();
             }
 
         }
@@ -119,25 +118,25 @@ public class YumiSDKDemo : MonoBehaviour
         if (GUI.Button(new Rect(40, 344, btnWidth, 120), "Load video", myButtonStyle))
         {
 
-            if (this.rewardVideoAd != null)
+            if (this.rewardVideoAd == null)
             {
-                this.rewardVideoAd.DestroyRewardVideo();
+                this.rewardVideoAd = YumiRewardVideoAd.Instance;
+                this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
+                this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
+                this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
+                this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
             }
-            this.rewardVideoAd = new YumiRewardVideoAd();
-            this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
-            this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
-            this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
-            this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
+           
 
-            this.rewardVideoAd.LoadRewardVideoAd(RewardedVideoPlacementId, ChannelId, GameVersionId);
+            this.rewardVideoAd.LoadAd(RewardedVideoPlacementId, ChannelId, GameVersionId);
         }
 
         if (GUI.Button(new Rect(40 + btnWidth + 10, 344, btnWidth, 120), "play video", myButtonStyle))
         {
 
-            if (this.rewardVideoAd.IsRewardVideoReady())
+            if (this.rewardVideoAd.IsReady())
             {
-                this.rewardVideoAd.PlayRewardVideo();
+                this.rewardVideoAd.Play();
             }
         }
 
@@ -171,15 +170,16 @@ public class YumiSDKDemo : MonoBehaviour
         if (bannerView != null)
         {
             bannerView.Destroy();
-
+            bannerView = null;
         }
         if (interstitialAd != null)
         {
-            interstitialAd.DestroyInterstitial();
+            interstitialAd.Destroy();
+            interstitialAd = null;
         }
         if (rewardVideoAd != null)
         {
-            rewardVideoAd.DestroyRewardVideo();
+            rewardVideoAd = null;
         }
     }
 

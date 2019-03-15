@@ -73,6 +73,10 @@ void SetBannerAdSize(YumiTypeBannerRef bannerView,YumiMediationAdViewBannerSize 
     YumiBanner *internalBanner = (__bridge YumiBanner *)bannerView;
     [internalBanner setBannerAdSize:bannerSize];
 }
+void DisableAutoRefresh(YumiTypeBannerRef bannerView){
+    YumiBanner *internalBanner = (__bridge YumiBanner *)bannerView;
+    [internalBanner disableAutoRefresh];
+}
 /// Sets the banner callback methods to be invoked during banner ad events.
 void SetBannerCallbacks(
                         YumiTypeBannerRef bannerView,
