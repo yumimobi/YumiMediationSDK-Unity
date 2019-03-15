@@ -49,12 +49,7 @@ namespace YumiMediationSDK.Api
             this.client.PlayRewardVideo();
         }
 
-        // Destroys an RewardVideo.
-        public void Destroy()
-        {
-            this.client.DestroyRewardVideo();
-        }
-
+       
         // Ad event fired when the reward based video ad is opened.
         public event EventHandler<EventArgs> OnAdOpening;
         // Ad event fired when the reward based video ad has started playing.
@@ -98,6 +93,13 @@ namespace YumiMediationSDK.Api
             };
 
 
+        }
+
+        [Obsolete("Destroy is deprecated.", true)]
+        //Destroys an RewardVideo.
+        public void Destroy()
+        {
+            this.client.DestroyRewardVideo();
         }
 
     }
