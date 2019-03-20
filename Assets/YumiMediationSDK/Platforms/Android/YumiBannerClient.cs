@@ -26,11 +26,14 @@ namespace YumiMediationSDK.Android
 #region implement IYumiBannerClient
 
         // Creates a banner view and adds it to the view hierarchy.
-        public void CreateBannerView(string placementId, string channelId, string versionId, YumiAdPosition adPosition)
+		public void CreateBannerView(string placementId, string channelId, string versionId, YumiBannerViewOptions bannerOptions)
         {
+			bool isAuto = !bannerOptions.disableAutoRefresh;
+			int adSize = (int)bannerOptions.bannerSize;
+
             this.bannerView.Call(
                     "create",
-                new object[3] { placementId, channelId, versionId });
+				new object[5] { placementId, channelId, versionId, isAuto, adSize});
         }
 
         // Requests a new ad for the banner view.

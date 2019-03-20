@@ -29,6 +29,8 @@ public class YumiUBanner {
      */
     private YumiUBannerListener mUnityListener;
 
+    private int adSizeCode;
+
     public YumiUBanner(Activity activity, YumiUBannerListener listener) {
         this.mUnityPlayerActivity = activity;
         this.mUnityListener = listener;
@@ -37,8 +39,11 @@ public class YumiUBanner {
     /**
      * Creates an view  to hold banner ads.
      */
-    public void create(final String placementId, final String channelId,final String versionId) {
+    public void create(final String placementId, final String channelId, final String versionId, final boolean isAuto, final int adSizeCode) {
         Log.d(TAG, "create banner");
+        Log.d(TAG, "banner isAuto : " + isAuto + ",adSize : " + adSizeCode);
+        this.adSizeCode = adSizeCode;
+
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
 
             @Override
@@ -107,7 +112,7 @@ public class YumiUBanner {
                         }
                     }
                 };
-                bannerAdView = new YumiBanner((Activity) mUnityPlayerActivity, placementId, true);
+                bannerAdView = new YumiBanner((Activity) mUnityPlayerActivity, placementId, isAuto);
 
                 // setChannelID . (Recommend)
                 bannerAdView.setChannelID(channelId);
@@ -175,8 +180,25 @@ public class YumiUBanner {
 
                     if (zplay_view == null){
                         setBannerContentView(isSmart);
+                        AdSize adSize;
+                        switch (adSizeCode){
+                            case 0:
+                                adSize = AdSize.BANNER_SIZE_320X50;
+                                break;
+                            case 1:
+                                adSize = AdSize.BANNER_SIZE_728X90;
+                                break;
+                            case 3:
+                            case 4:
+                                adSize = AdSize.BANNER_SIZE_SMART;
+                                break;
+                            default:
+                                adSize = AdSize.BANNER_SIZE_AUTO;
+                                break;
+                        }
+                        Log.d(TAG, "adSize: " + adSize);
                         // setBannerContainer
-                        bannerAdView.setBannerContainer(zplay_view, AdSize.BANNER_SIZE_AUTO, isSmart);
+                        bannerAdView.setBannerContainer(zplay_view, adSize, isSmart);
                     }
 
                     bannerAdView.requestYumiBanner();
