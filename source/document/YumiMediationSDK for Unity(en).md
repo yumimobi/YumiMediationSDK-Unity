@@ -170,7 +170,7 @@ Android dependencies：
         </repositories>
 </androidPackages>
 ```
-e.g., Delete  ```admob```，Delete ```<androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.1" />``` .
+e.g., Delete  ```admob```，Delete ```<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.0" />``` .
 
 ## Select an ad format
 
@@ -434,10 +434,6 @@ public class YumiSDKDemo : MonoBehaviour
 
 Reference Android official solution，[Click to view](https://developer.android.com/studio/build/multidex)
 
-**2.Google play-services version 15.0.0 or higher**
-
-If your version of Google play-services is above 15.0.0, please download the new admob adapter instead of 
-**Assets/Plugins/Editor/Android/com.yumimobi.ads.mediation.admob-3.4.1.aar** 。[Download](http://adsdk.yumimobi.com/Android/Android_Adapters/3.4.1/yumi_adapter_admob_v3.4.1(For_GooglePlayService_version_15_and_above).aar)。
 
 **3.Test ad placementIDs**
 
