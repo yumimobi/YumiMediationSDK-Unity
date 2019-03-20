@@ -50,13 +50,40 @@ namespace YumiMediationSDK.iOS
 
 
 #region IYumiBannerClient implement 
-        public void CreateBannerView(string placementId, string channelId, string versionId, YumiAdPosition adPosition)
+        public void CreateBannerView(string placementId, string channelId, string versionId, YumiBannerViewOptions bannerOptions)
         {
             // A new GCHandle that protects the object from garbage collection. This GCHandle must be released with Free() when it is no longer needed.
             this.bannerClientPtr = (IntPtr)GCHandle.Alloc(this);
 
-            this.BannerViewPtr = YumiExterns.InitYumiBannerAd(this.bannerClientPtr, placementId, channelId, versionId, (int)adPosition);
+            this.BannerViewPtr = YumiExterns.InitYumiBannerAd(this.bannerClientPtr, placementId, channelId, versionId, (int)bannerOptions.adPosition);
 
+            //config banner 
+            if(bannerOptions.disableAutoRefresh)
+            {
+                YumiExterns.DisableAutoRefresh(BannerViewPtr);
+            }
+
+            YumiMediationAdViewBannerSize bannerSize = YumiMediationAdViewBannerSize.kYumiMediationAdViewBanner320x50;
+            switch (bannerOptions.bannerSize)
+            {
+                case YumiBannerAdSize.YUMI_BANNER_AD_SIZE_320x50:
+                    bannerSize = YumiMediationAdViewBannerSize.kYumiMediationAdViewBanner320x50;
+                    break;
+                case YumiBannerAdSize.YUMI_BANNER_AD_SIZE_728x90:
+                    bannerSize = YumiMediationAdViewBannerSize.kYumiMediationAdViewBanner728x90;
+                    break;
+                case YumiBannerAdSize.YUMI_BANNER_AD_SIZE_300x250:
+                    bannerSize = YumiMediationAdViewBannerSize.kYumiMediationAdViewBanner300x250;
+                    break;
+                case YumiBannerAdSize.YUMI_BANNER_AD_SIZE_SMART_PORTRAIT:
+                    bannerSize = YumiMediationAdViewBannerSize.kYumiMediationAdViewSmartBannerPortrait;
+                    break;
+                case YumiBannerAdSize.YUMI_BANNER_AD_SIZE_SMART_LANDSCAPE:
+                    bannerSize = YumiMediationAdViewBannerSize.kYumiMediationAdViewSmartBannerLandscape;
+                    break;
+            }
+
+            YumiExterns.SetBannerAdSize(BannerViewPtr, bannerSize);
             YumiExterns.SetBannerCallbacks(
                 this.BannerViewPtr,
                 BannerDidReceiveAdCallback,

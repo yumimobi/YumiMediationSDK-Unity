@@ -9,7 +9,7 @@ namespace YumiMediationSDK.Common
     {
 
         private const string settingsAssetName = "YumiMediationSDKSetting";
-		private const string settingsPath = "YumiMediationSDK/Resources";
+        private const string settingsPath = "YumiMediationSDK/Resources";
         private const string settingsAssetExtension = ".asset";
 
         private static YumiMediationSDKSetting instance;
@@ -31,6 +31,8 @@ namespace YumiMediationSDK.Common
         private string Android_InterstitialsPlacementId = "";
         [SerializeField]
         private string Android_BannerPlacementId = "";
+        [SerializeField]
+        private string Android_NativeAdPlacementId = "";
 
 
         [Header("IOS")]
@@ -42,10 +44,12 @@ namespace YumiMediationSDK.Common
         private string IOS_InterstitialsPlacementId = "";
         [SerializeField]
         private string IOS_BannerPlacementId = "";
+        [SerializeField]
+        private string IOS_NativeAdPlacementId = "";
 
         [Header("Banner Self-adaptation")]
         [SerializeField]
-        private bool AutomaticAdaptionBanner; 
+        private bool AutomaticAdaptionBanner;
 
 
         //Debug 
@@ -73,7 +77,7 @@ namespace YumiMediationSDK.Common
                         string properPath = Path.Combine(Application.dataPath, settingsPath);
                         if (!Directory.Exists(properPath))
                         {
-							UnityEditor.AssetDatabase.CreateFolder("Assets/YumiMediationSDK", "Resources");
+                            UnityEditor.AssetDatabase.CreateFolder("Assets/YumiMediationSDK", "Resources");
                         }
 
                         string fullPath = Path.Combine(Path.Combine("Assets", settingsPath),
@@ -90,27 +94,24 @@ namespace YumiMediationSDK.Common
         {
 #if UNITY_ANDROID
             return Instance.Android_BannerPlacementId;
-
 #elif UNITY_IOS
             return  Instance.IOS_BannerPlacementId;
 #else
-                return "unknown";
+            return "unknown";
 #endif
-
         }
+
         public static string InterstitialPlacementId()
         {
 #if UNITY_ANDROID
             return Instance.Android_InterstitialsPlacementId;
-
-
 #elif UNITY_IOS
             return  Instance.IOS_InterstitialsPlacementId;
 #else
-                return "unknown";
+            return "unknown";
 #endif
-
         }
+
         public static string RewardVideoPlacementId()
         {
 #if UNITY_ANDROID
@@ -119,21 +120,30 @@ namespace YumiMediationSDK.Common
 #elif UNITY_IOS
             return  Instance.IOS_RewardedVideoPlacementId;
 #else
-                return "unknown";
+            return "unknown";
 #endif
-
         }
+
+        public static string NativeAdPlacementId()
+        {
+#if UNITY_ANDROID
+            return Instance.Android_NativeAdPlacementId;
+#elif UNITY_IOS
+            return  Instance.IOS_NativeAdPlacementId;
+#else
+            return "unknown";
+#endif
+        }
+
         public static string ChannelId()
         {
 #if UNITY_ANDROID
             return Instance.Android_ChannelId;
-
 #elif UNITY_IOS
             return  Instance.IOS_ChannelId;
 #else
-                return "unknown";
+            return "unknown";
 #endif
-
         }
 
 #if UNITY_EDITOR
@@ -142,7 +152,7 @@ namespace YumiMediationSDK.Common
         {
             Logger.Log("HandleYumiMediationSDKSettings");
             UnityEditor.Selection.activeObject = Instance;
-			
+
         }
 #endif
     }

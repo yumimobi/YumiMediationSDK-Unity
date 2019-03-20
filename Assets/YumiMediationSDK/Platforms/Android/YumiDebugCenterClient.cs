@@ -13,13 +13,18 @@ namespace YumiMediationSDK.Android
             AndroidJavaClass playerClass = new AndroidJavaClass(YumiUtils.UnityActivityClassName);
             AndroidJavaObject activity =
                     playerClass.GetStatic<AndroidJavaObject>("currentActivity");
-            this.debugcenter = new AndroidJavaObject(
+            debugcenter = new AndroidJavaObject(
                 YumiUtils.DebugCenterClassName, activity);
         }
 
-        public void CallYumiMediationDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string channelID, string versionID){
-            this.debugcenter.Call("presentDebugCenter",
-                                  new object[5] { bannerPlacementID,interstitialPlacementID,videoPlacementID, channelID, versionID });
+        public void CallYumiMediationDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string nativePlacementID, string channelID, string versionID)
+        {
+            debugcenter.Call("presentDebugCenter", bannerPlacementID, interstitialPlacementID, videoPlacementID, nativePlacementID, channelID, versionID);
+        }
+
+        public void ChangeToTestServer()
+        {
+            debugcenter.Call("changeToTestServer");
         }
     }
 }

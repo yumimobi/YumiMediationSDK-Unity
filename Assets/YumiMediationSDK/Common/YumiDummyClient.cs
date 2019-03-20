@@ -1,9 +1,11 @@
 ﻿using System;
 using YumiMediationSDK.Api;
+using UnityEngine;
+using System.Collections.Generic;
 
 namespace YumiMediationSDK.Common
 {
-    public class YumiDummyClient : IYumiBannerClient,IYumiInterstitialClient,IYumiRewardVideoClient,IYumiDebugCenterClient
+    public class YumiDummyClient : IYumiBannerClient,IYumiInterstitialClient,IYumiRewardVideoClient,IYumiDebugCenterClient, IYumiNativeClient
     {
         public YumiDummyClient()
         {
@@ -29,10 +31,14 @@ namespace YumiMediationSDK.Common
         // Ad event fired when the interstitial ad is clicked.
         public event EventHandler<EventArgs> OnAdClicked;
 
+        //native re
+        public event EventHandler<YumiNativeToLoadEventArgs> OnNativeAdLoaded;
+
 #pragma warning restore 67
         // banner method
         // Creates a banner view and adds it to the view hierarchy.
-        public void CreateBannerView(string placementId, string channelId, string versionId, YumiAdPosition adPosition){
+        public void CreateBannerView(string placementId, string channelId, string versionId, YumiBannerViewOptions bannerOptions)
+        {
             Logger.LogError("Dummy : create banner");
         }
 
@@ -102,10 +108,68 @@ namespace YumiMediationSDK.Common
         public void DestroyRewardVideo(){
             Logger.LogError("Dummy: DestroyRewardVideo");
         }
-        public void CallYumiMediationDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string channelID, string versionID)
+        public void CallYumiMediationDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string nativePlamentID, string channelID, string versionID)
         {
             Logger.LogError("Dummy: CallYumiMediationDebugCenter");
         }
 
+        public void ChangeToTestServer()
+        {
+            Logger.LogError("Dummy: ChangeYumiMode ");
+        }
+
+        // native ad
+        // Creates a native ad
+
+        public void CreateNativeAd(string placementId, string channelId, string versionId, YumiNativeAdOptions options)
+        {
+            Logger.LogError("Dummy: call CreateNativeAd");
+        }
+
+        public void LoadAd(int adCount)
+        {
+            Logger.LogError("Dummy: call LoadAd");
+        }
+
+        public void ReportImpression(YumiNativeData nativeData)
+        {
+            Logger.LogError("Dummy: call ReportImpression");
+        }
+
+        public void ReportClick(YumiNativeData nativeData)
+        {
+            Logger.LogError("Dummy: call ReportClick");
+        }
+
+        public void DestroyNativeAd()
+        {
+            Logger.LogError("Dummy: call DestroyNativeAd");
+        }
+
+        public void RegisterGameObjectsForInteraction(YumiNativeData yumiNaitveData, GameObject gameObject, Dictionary<NativeElemetType, Transform> elements)
+        {
+            Logger.LogError("Dummy: call RegisterGameObjectsForInteraction");
+        }
+
+        public bool IsAdInvalidated(YumiNativeData nativeData)
+        {
+            Logger.LogError("Dummy: call IsAdInvalidated");
+            return false;
+        }
+
+        public void ShowView(YumiNativeData nativeData)
+        {
+            Logger.LogError("Dummy: call ShowView");
+        }
+
+        public void HideView(YumiNativeData nativeData)
+        {
+            Logger.LogError("Dummy: call HideView");
+        }
+
+        public void UnregisterView(YumiNativeData nativeData)
+        {
+            Logger.LogError("Dummy: call UnregisterView");
+        }
     }
 }

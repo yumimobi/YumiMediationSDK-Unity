@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
+using UnityEngine.SceneManagement;
 
 public class YumiSDKDemo : MonoBehaviour
 {
@@ -13,13 +14,15 @@ public class YumiSDKDemo : MonoBehaviour
     private YumiRewardVideoAd rewardVideoAd;
     private YumiDebugCenter debugCenter;
 
-    private String BannerPlacementId = "";
-    private String RewardedVideoPlacementId = "";
-    private String InterstitialsPlacementId = "";
-    private String GameVersionId = "";
-    private String ChannelId = "";
+    private string BannerPlacementId = "";
+    private string RewardedVideoPlacementId = "";
+    private string InterstitialsPlacementId = "";
+    private string NativeAdPlacementId = "";
+    private string GameVersionId = "";
+    private string ChannelId = "";
 
     private bool IsSmartBanner;
+
 
     void Start()
     {
@@ -34,6 +37,9 @@ public class YumiSDKDemo : MonoBehaviour
         RewardedVideoPlacementId = YumiMediationSDKSetting.RewardVideoPlacementId();
         InterstitialsPlacementId = YumiMediationSDKSetting.InterstitialPlacementId();
         BannerPlacementId = YumiMediationSDKSetting.BannerPlacementId();
+        NativeAdPlacementId = YumiMediationSDKSetting.NativeAdPlacementId();
+
+        debugCenter = new YumiDebugCenter();
     }
 
     void OnGUI()
@@ -56,52 +62,54 @@ public class YumiSDKDemo : MonoBehaviour
 
         if (GUI.Button(new Rect(40, 84, btnWidth, 120), "request banner", myButtonStyle))
         {
-          
-            if(this.bannerView == null)
+
+            if (this.bannerView == null)
             {
-                this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionId, YumiAdPosition.Bottom);
+                YumiBannerViewOptions bannerOptions = new YumiBannerViewOptionsBuilder().Build();
+                this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionId, bannerOptions);
                 // banner add ad event
                 this.bannerView.OnAdLoaded += this.HandleAdLoaded;
                 this.bannerView.OnAdFailedToLoad += HandleAdFailedToLoad;
                 this.bannerView.OnAdClick += HandleAdClicked;
-             }
+            }
 
-           
-            this.bannerView.LoadAd(IsSmartBanner);
+
+            this.bannerView.LoadAd();
             this.bannerView.Show();
 
         }
         //remove banner
         if (GUI.Button(new Rect(40 + btnWidth + 10, 84, btnWidth, 120), "hide banner", myButtonStyle))
         {
-            if(this.bannerView != null){
+            if (this.bannerView != null)
+            {
                 this.bannerView.Hide();
-        }
+            }
 
         }
 
         //Yumi interstital
         if (GUI.Button(new Rect(40, 214, btnWidth, 120), "request interstital", myButtonStyle))
         {
-        
-            if(this.interstitialAd != null){
-                this.interstitialAd.DestroyInterstitial();
-            }
 
-            this.interstitialAd = new YumiInterstitialAd(InterstitialsPlacementId, ChannelId,GameVersionId);
-            // add interstitial event 
-            this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
-            this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
-            this.interstitialAd.OnAdClicked += HandleInterstitialAdClicked;
-            this.interstitialAd.OnAdClosed += HandleInterstitialAdClosed;
+            if (this.interstitialAd == null)
+            {
+                this.interstitialAd = new YumiInterstitialAd(InterstitialsPlacementId, ChannelId, GameVersionId);
+                // add interstitial event 
+                this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
+                this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
+                this.interstitialAd.OnAdClicked += HandleInterstitialAdClicked;
+                this.interstitialAd.OnAdClosed += HandleInterstitialAdClosed;
+            }       
 
         }
 
         if (GUI.Button(new Rect(40 + btnWidth + 10, 214, btnWidth, 120), "present interstital", myButtonStyle))
         {
 
-            if(this.interstitialAd.IsInterstitialReady()){
-                this.interstitialAd.ShowInterstitial();
+            if (this.interstitialAd.IsReady())
+            {
+                this.interstitialAd.Show();
             }
 
         }
@@ -109,57 +117,72 @@ public class YumiSDKDemo : MonoBehaviour
         //Yumi video
         if (GUI.Button(new Rect(40, 344, btnWidth, 120), "Load video", myButtonStyle))
         {
-           
-            if(this.rewardVideoAd != null){
-                this.rewardVideoAd.DestroyRewardVideo();
-            }
-            this.rewardVideoAd = new YumiRewardVideoAd();
-            this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
-            this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
-            this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
-            this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
 
-            this.rewardVideoAd.LoadRewardVideoAd(RewardedVideoPlacementId,ChannelId,GameVersionId);
+            if (this.rewardVideoAd == null)
+            {
+                this.rewardVideoAd = YumiRewardVideoAd.Instance;
+                this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
+                this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
+                this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
+                this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
+            }
+           
+
+            this.rewardVideoAd.LoadAd(RewardedVideoPlacementId, ChannelId, GameVersionId);
         }
 
         if (GUI.Button(new Rect(40 + btnWidth + 10, 344, btnWidth, 120), "play video", myButtonStyle))
         {
 
-            if(this.rewardVideoAd.IsRewardVideoReady()){
-                this.rewardVideoAd.PlayRewardVideo();
+            if (this.rewardVideoAd.IsReady())
+            {
+                this.rewardVideoAd.Play();
             }
         }
-        if(YumiMediationSDKSetting.GetDebugMode)
+
+        //native
+
+        if (GUI.Button(new Rect(40, 474, btnWidth, 120), "Show Native Scene", myButtonStyle))
         {
-            if (GUI.Button(new Rect(40, 474, btnWidth, 120), "Call DebugCenter", myButtonStyle))
+            destroyAds();
+            SceneManager.LoadScene("YumiNativeScene");
+
+        }
+
+        if (YumiMediationSDKSetting.GetDebugMode)
+        {
+            if (GUI.Button(new Rect(40, 594, btnWidth, 120), "Call DebugCenter", myButtonStyle))
             {
-                if(this.debugCenter == null)
+                if (this.debugCenter == null)
                 {
                     this.debugCenter = new YumiDebugCenter();
                 }
 
                 //Destroy ad
-
-                if (this.bannerView != null)
-                {
-                    this.bannerView.Hide();
-
-                }
-                if (this.interstitialAd != null)
-                {
-                    this.interstitialAd.DestroyInterstitial();
-                }
-                if (this.rewardVideoAd != null)
-                {
-                    this.rewardVideoAd.DestroyRewardVideo();
-                }
-
-                this.debugCenter.PresentYumiMediationDebugCenter(BannerPlacementId, InterstitialsPlacementId, RewardedVideoPlacementId, ChannelId, GameVersionId);
+                destroyAds();
+                this.debugCenter.PresentYumiMediationDebugCenter(BannerPlacementId, InterstitialsPlacementId, RewardedVideoPlacementId, NativeAdPlacementId, ChannelId, GameVersionId);
             }
         }
-
-
     }
+
+    private void destroyAds()
+    {
+        if (bannerView != null)
+        {
+            bannerView.Destroy();
+            bannerView = null;
+        }
+        if (interstitialAd != null)
+        {
+            interstitialAd.Destroy();
+            interstitialAd = null;
+        }
+        if (rewardVideoAd != null)
+        {
+            rewardVideoAd = null;
+        }
+    }
+
     #region Banner callback handlers
 
     public void HandleAdLoaded(object sender, EventArgs args)

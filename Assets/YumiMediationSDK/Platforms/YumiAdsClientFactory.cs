@@ -53,5 +53,17 @@ namespace YumiMediationSDK
                 return new YumiMediationSDK.Common.YumiDummyClient();
 #endif
         }
+         public static IYumiNativeClient BuildNativeClient()
+        {
+
+#if UNITY_ANDROID
+            return new YumiMediationSDK.Android.YumiNativeClient();
+           
+#elif UNITY_IOS
+            return new YumiMediationSDK.iOS.YumiNativeClient();
+#else
+                return new YumiMediationSDK.Common.YumiDummyClient();
+#endif
+        }
     }
 }

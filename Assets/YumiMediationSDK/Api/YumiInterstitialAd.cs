@@ -7,6 +7,7 @@ namespace YumiMediationSDK.Api
     public class YumiInterstitialAd
     {
         private IYumiInterstitialClient client;
+        // Creates an InterstitialAd and loads
         public YumiInterstitialAd(string placementId, string channelId, string versionId)
         {
             Type yumiAdsClientFactory = Type.GetType(
@@ -19,19 +20,20 @@ namespace YumiMediationSDK.Api
 
             ConfigureInterstitialEvents();
         }
-
-        public bool IsInterstitialReady(){
+        // Determines whether the InterstitialAd has loaded.
+        public bool IsReady(){
             return this.client.IsInterstitialReady();
         }
-
-        public void ShowInterstitial(){
+        // Displays the InterstitialAd.
+        public void Show(){
             this.client.ShowInterstitial();
         }
-
-        public void DestroyInterstitial(){
+        // Destroys the InterstitialAd.
+        public void Destroy(){
             this.client.DestroyInterstitial();
         }
 
+        // Ad event fired when the interstitial ad has loaded.
         public event EventHandler<EventArgs> OnAdLoaded;
         // Ad event fired when the interstitial ad has failed to load.
         public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
