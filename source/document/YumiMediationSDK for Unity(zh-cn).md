@@ -65,7 +65,7 @@
 
 Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android 和 iOS 应用上展示广告，无需编写 Java 或 Objective-C 代码。该插件提供了一个 C# 接口来请求广告。使用下面的链接下载插件的 Unity 包或在 GitHub 上查看其代码。
 
-[下载YumiMediationSDK Unity插件](https://adsdk.yumimobi.com/Unity/3.4.1.0/YumiMediationSDKPlugin_v3.4.1.0.unitypackage)
+[下载YumiMediationSDK Unity插件](https://adsdk.yumimobi.com/Unity/3.6.0/YumiMediationSDKPlugin_v3.6.0.unitypackage)
 
 [查看源码](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
@@ -92,25 +92,25 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 ```xml
 <iosPods>
 
-  <iosPod name="YumiMediationSDK" version="3.4.1" minTargetSdk="8.0" />
+  <iosPod name="YumiMediationSDK" version="3.6.0" minTargetSdk="8.0" />
  <!-- adapters -->
-  <iosPod name="YumiMediationAdapters/AdColony" version="3.4.1" />
-  <iosPod name="YumiMediationAdapters/AdMob" version="3.4.1" />
-  <iosPod name="YumiMediationAdapters/AppLovin" version="3.4.1" />
-  <iosPod name="YumiMediationAdapters/Baidu" version="3.4.1" />
-  <iosPod name="YumiMediationAdapters/Chartboost" version="3.4.1" />
-  <iosPod name="YumiMediationAdapters/Domob" version="3.4.1" />
-  <iosPod name="YumiMediationAdapters/Facebook" version="3.4.1" />
-  <iosPod name="YumiMediationAdapters/GDT" version="3.4.1" />
-  <iosPod name="YumiMediationAdapters/InMobi" version="3.4.1" />
-  <iosPod name="YumiMediationAdapters/IronSource" version="3.4.1" />
-  <iosPod name="YumiMediationAdapters/Unity" version="3.4.1" />
-  <iosPod name="YumiMediationAdapters/Vungle" version="3.4.1" />
-  <iosPod name="YumiMediationAdapters/Mintegral" version="3.4.1" />
-  <iosPod name="YumiMediationAdapters/OneWay" version="3.4.1" />
-  <iosPod name="YumiMediationAdapters/PlayableAds" version="3.4.1" />
+  <iosPod name="YumiMediationAdapters/AdColony" version="3.6.0" />
+  <iosPod name="YumiMediationAdapters/AdMob" version="3.6.0" />
+  <iosPod name="YumiMediationAdapters/AppLovin" version="3.6.0" />
+  <iosPod name="YumiMediationAdapters/Baidu" version="3.6.0" />
+  <iosPod name="YumiMediationAdapters/Chartboost" version="3.6.0" />
+  <iosPod name="YumiMediationAdapters/Domob" version="3.6.0" />
+  <iosPod name="YumiMediationAdapters/Facebook" version="3.6.0" />
+  <iosPod name="YumiMediationAdapters/GDT" version="3.6.0" />
+  <iosPod name="YumiMediationAdapters/InMobi" version="3.6.0" />
+  <iosPod name="YumiMediationAdapters/IronSource" version="3.6.0" />
+  <iosPod name="YumiMediationAdapters/Unity" version="3.6.0" />
+  <iosPod name="YumiMediationAdapters/Vungle" version="3.6.0" />
+  <iosPod name="YumiMediationAdapters/Mintegral" version="3.6.0" />
+  <iosPod name="YumiMediationAdapters/OneWay" version="3.6.0" />
+  <iosPod name="YumiMediationAdapters/PlayableAds" version="3.6.0" />
   <!-- debugCenter -->
-  <iosPod name="YumiMediationDebugCenter-iOS" version="3.4.1" />
+  <iosPod name="YumiMediationDebugCenter-iOS" version="3.6.0" />
 
     <sources>
       <source>https://github.com/CocoaPods/Specs</source>
@@ -118,7 +118,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 </iosPods>
 ```
 
-比如删除 ```AdMob``` ，直接删除 ``` <iosPod name="YumiMediationAdapters/AdMob" version="3.4.1" />```  即可。
+比如删除 ```AdMob``` ，直接删除 ``` <iosPod name="YumiMediationAdapters/AdMob" version="3.6.0" />```  即可。
 
 构建完成，打开 **xcworkspace** 工程。
 
@@ -134,29 +134,29 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ```xml
 <androidPackages>
-  <androidPackage spec="com.yumimobi.ads:mediation:3.4.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.4.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.4.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.4.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.4.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.4.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.4.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.4.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.4.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.4.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.4.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.4.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.4.1">
+  <androidPackage spec="com.yumimobi.ads:mediation:3.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.6.0">
       <repositories>
         <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
       </repositories>
   </androidPackage>
-  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.4.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.6.0" />
   
   <!--  If your app is only available in mainland China, use unity-china,else use unity.   -->
-  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.4.1" />
-  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.4.1" /> -->
+  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.6.0" />
+  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.6.0" /> -->
   
   <repositories>
       <repository>https://jcenter.bintray.com/</repository>
@@ -164,7 +164,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 </androidPackages>
 ```
 
-比如删除  ```admob```，直接删除 ```<androidPackage spec="com.yumimobi.ads.mediation:admob:3.4.1" />```  即可。
+比如删除  ```admob```，直接删除 ```<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.0" />```  即可。
 
 ## 选择广告形式
 
@@ -618,12 +618,12 @@ public class YumiSDKDemo : MonoBehaviour
 
 **2.Google play-services 版本 15.0.0 以上**
 
-如果您的 Google play-services 版本在15.0.0 以上，请下载新的 admob adapter 替换 **Assets/Plugins/Editor/Android/com.yumimobi.ads.mediation.admob-3.4.1.aar** 文件。[下载地址](http://adsdk.yumimobi.com/Android/Android_Adapters/3.4.1/yumi_adapter_admob_v3.4.1(For_GooglePlayService_version_15_and_above).aar)。
+如果您的 Google play-services 版本在15.0.0 以上，请下载新的 admob adapter 替换 **Assets/Plugins/Editor/Android/com.yumimobi.ads.mediation.admob-3.6.0.aar** 文件。[下载地址](http://adsdk.yumimobi.com/Android/Android_Adapters/3.6.0/yumi_adapter_admob_v3.6.0(For_GooglePlayService_version_15_and_above).aar)。
 
 **3.测试广告位**
 
-| 平台      | Banner   | Interstitial | Rewarded Video |
-| ------- | -------- | ------------ | -------------- |
-| iOS     | l6ibkpae | onkkeg5i     | 5xmpgti4       |
-| Android | uz852t89 | 56ubk22h     | ew9hyvl4       |
+| 平台      | Banner   | Interstitial | Rewarded Video | Native   |
+| ------- | -------- | ------------ | -------------- | -------- |
+| iOS     | l6ibkpae | onkkeg5i     | 5xmpgti4       | atb3ke1i |
+| Android | uz852t89 | 56ubk22h     | ew9hyvl4       | dt62rndy |
 
