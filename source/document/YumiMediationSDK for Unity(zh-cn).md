@@ -622,8 +622,8 @@ public class YumiSDKDemo : MonoBehaviour
 
 **3.测试广告位**
 
-| 平台      | Banner   | Interstitial | Rewarded Video |
-| ------- | -------- | ------------ | -------------- |
-| iOS     | l6ibkpae | onkkeg5i     | 5xmpgti4       |
-| Android | uz852t89 | 56ubk22h     | ew9hyvl4       |
+| 平台      | Banner   | Interstitial | Rewarded Video | Native   |
+| ------- | -------- | ------------ | -------------- | -------- |
+| iOS     | l6ibkpae | onkkeg5i     | 5xmpgti4       | atb3ke1i |
+| Android | uz852t89 | 56ubk22h     | ew9hyvl4       | dt62rndy |
 
