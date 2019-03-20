@@ -631,9 +631,6 @@ public class YumiSDKDemo : MonoBehaviour
 
 参考 Android 官方解决方案，[点击查看](https://developer.android.com/studio/build/multidex)
 
-**2.Google play-services 版本 15.0.0 以上**
-
-如果您的 Google play-services 版本在15.0.0 以上，请下载新的 admob adapter 替换 **Assets/Plugins/Editor/Android/com.yumimobi.ads.mediation.admob-3.6.0.aar** 文件。[下载地址](http://adsdk.yumimobi.com/Android/Android_Adapters/3.6.0/yumi_adapter_admob_v3.6.0(For_GooglePlayService_version_15_and_above).aar)。
 
 **3.测试广告位**
 
