@@ -499,13 +499,15 @@ public class YumiNativeScene : MonoBehaviour
 YumiNativeAdOptions 可以配置原生广告显示的样式，参数详情如下：
 
 ```c#
-internal AdOptionViewPosition adChoiseViewPosition;// AdOptionViewPosition ：       TOP_LEFT,TOP_RIGHT,BOTTOM_LEFT,BOTTOM_RIGHT
-internal AdAttribution adAttribution;//AdAttribution ：AdOptionsPosition、text、textColor、backgroundColor、textSize、hide
-internal TextOptions titleTextOptions;//TextOptions ：textSize，textColor，backgroundColor
+internal AdOptionViewPosition adChoiseViewPosition;//AdOptionViewPosition: TOP_LEFT,TOP_RIGHT,BOTTOM_LEFT,BOTTOM_RIGHT
+internal AdAttribution adAttribution;//AdAttribution: AdOptionsPosition、text、textColor、backgroundColor、textSize、hide
+//TextOptions: textSize，textColor，backgroundColor
+internal TextOptions titleTextOptions;
 internal TextOptions descTextOptions;
 internal TextOptions callToActionTextOptions;
+// ScaleType: SCALE_TO_FILL、SCALE_ASPECT_FIT 、 SCALE_ASPECT_FILL
 internal ScaleType iconScaleType;
-internal ScaleType coverImageScaleType; // ScaleType: SCALE_TO_FILL、SCALE_ASPECT_FIT 、 SCALE_ASPECT_FILL
+internal ScaleType coverImageScaleType;
 ```
 
 #### 请求 Native
@@ -547,10 +549,8 @@ public class YumiNativeScene : MonoBehaviour
 {
   private YumiNativeAd nativeAd;
   private YumiNativeData yumiNativeData;
- // ...
   private void RegisterNativeViews()
     {
-
         Dictionary<NativeElemetType, Transform> elementsDictionary = new Dictionary<NativeElemetType, Transform>();
         elementsDictionary.Add(NativeElemetType.PANEL, adPanel.transform);
         elementsDictionary.Add(NativeElemetType.TITLE, title.transform);
@@ -562,7 +562,6 @@ public class YumiNativeScene : MonoBehaviour
         this.nativeAd.RegisterGameObjectsForInteraction(yumiNativeData, gameObject, elementsDictionary);
 
     }
-
 }
 ```
 
