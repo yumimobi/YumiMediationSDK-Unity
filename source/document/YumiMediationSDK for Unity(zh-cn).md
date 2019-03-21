@@ -151,33 +151,31 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ```xml
 <androidPackages>
-  <androidPackage spec="com.yumimobi.ads:mediation:3.6.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.6.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.6.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.6.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.6.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.6.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.6.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.6.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.6.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.6.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.6.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.6.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.6.0">
-      <repositories>
-        <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
-      </repositories>
-  </androidPackage>
-  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.6.0" />
-  
-  <!--  If your app is only available in mainland China, use unity-china,else use unity.   -->
-  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.6.0" />
-  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.6.0" /> -->
-  
-  <repositories>
-      <repository>https://jcenter.bintray.com/</repository>
-  </repositories>
+        <androidPackage spec="com.yumimobi.ads:mediation:3.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.6.0">
+            <repositories>
+                <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
+            </repositories>
+        </androidPackage>
+        <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.6.0" />
+        <!--  If your app is only available in mainland China, use unity-china,else use Unity.   -->
+        <androidPackage spec="com.yumimobi.ads.mediation:unity:3.6.0" />
+       <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.6.0" />-->
+        <repositories>
+            <repository>https://jcenter.bintray.com/</repository>
+        </repositories>
 </androidPackages>
 ```
 
@@ -501,13 +499,15 @@ public class YumiNativeScene : MonoBehaviour
 YumiNativeAdOptions 可以配置原生广告显示的样式，参数详情如下：
 
 ```c#
-internal AdOptionViewPosition adChoiseViewPosition;// AdOptionViewPosition ：       TOP_LEFT,TOP_RIGHT,BOTTOM_LEFT,BOTTOM_RIGHT
-internal AdAttribution adAttribution;//AdAttribution ：AdOptionsPosition、text、textColor、backgroundColor、textSize、hide
-internal TextOptions titleTextOptions;//TextOptions ：textSize，textColor，backgroundColor
+internal AdOptionViewPosition adChoiseViewPosition;//AdOptionViewPosition: TOP_LEFT,TOP_RIGHT,BOTTOM_LEFT,BOTTOM_RIGHT
+internal AdAttribution adAttribution;//AdAttribution: AdOptionsPosition、text、textColor、backgroundColor、textSize、hide
+//TextOptions: textSize，textColor，backgroundColor
+internal TextOptions titleTextOptions;
 internal TextOptions descTextOptions;
 internal TextOptions callToActionTextOptions;
+// ScaleType: SCALE_TO_FILL、SCALE_ASPECT_FIT 、 SCALE_ASPECT_FILL
 internal ScaleType iconScaleType;
-internal ScaleType coverImageScaleType; // ScaleType: SCALE_TO_FILL、SCALE_ASPECT_FIT 、 SCALE_ASPECT_FILL
+internal ScaleType coverImageScaleType;
 ```
 
 #### 请求 Native
@@ -549,10 +549,8 @@ public class YumiNativeScene : MonoBehaviour
 {
   private YumiNativeAd nativeAd;
   private YumiNativeData yumiNativeData;
- // ...
   private void RegisterNativeViews()
     {
-
         Dictionary<NativeElemetType, Transform> elementsDictionary = new Dictionary<NativeElemetType, Transform>();
         elementsDictionary.Add(NativeElemetType.PANEL, adPanel.transform);
         elementsDictionary.Add(NativeElemetType.TITLE, title.transform);
@@ -564,7 +562,6 @@ public class YumiNativeScene : MonoBehaviour
         this.nativeAd.RegisterGameObjectsForInteraction(yumiNativeData, gameObject, elementsDictionary);
 
     }
-
 }
 ```
 
@@ -633,9 +630,6 @@ public class YumiSDKDemo : MonoBehaviour
 
 参考 Android 官方解决方案，[点击查看](https://developer.android.com/studio/build/multidex)
 
-**2.Google play-services 版本 15.0.0 以上**
-
-如果您的 Google play-services 版本在15.0.0 以上，请下载新的 admob adapter 替换 **Assets/Plugins/Editor/Android/com.yumimobi.ads.mediation.admob-3.6.0.aar** 文件。[下载地址](http://adsdk.yumimobi.com/Android/Android_Adapters/3.6.0/yumi_adapter_admob_v3.6.0(For_GooglePlayService_version_15_and_above).aar)。
 
 **3.测试广告位**
 
