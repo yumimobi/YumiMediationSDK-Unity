@@ -90,7 +90,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 如果你想要修改 YumiMediationSDK 依赖的库，请修改 **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml**  文件，iOS 依赖如下：
 
 ```xml
-<iosPods>
+    <iosPods>
         <iosPod name="YumiMediationSDK" version="3.6.0" minTargetSdk="8.0">
             <sources>
                 <source>https://github.com/CocoaPods/Specs</source>
@@ -429,7 +429,7 @@ public class YumiNativeScene : MonoBehaviour
 {
     private YumiNativeAd nativeAd;
     private YumiNativeData yumiNativeData;
-   // UI elements in scene
+    // UI elements in scene
     [Header("Text:")]
     public Text title;
     public Text body;
@@ -460,7 +460,7 @@ public class YumiNativeScene : MonoBehaviour
         #endif
         YumiNativeAdOptions options = new NativeAdOptionsBuilder().Build();
         this.nativeAd = new YumiNativeAd(nativePlacementId, channelId, gameVersionId, options);
-        //callBack
+        // callBack
         this.nativeAd.OnNativeAdLoaded += HandleNativeAdLoaded;
         this.nativeAd.OnAdFailedToLoad += HandleNativeAdFailedToLoad;
         this.nativeAd.OnAdClick += HandleNativeAdClicked;
@@ -513,7 +513,7 @@ internal ScaleType coverImageScaleType;
 #### 请求 Native
 
 ```c#
-int adCount = 1;//adCount is your request ad count
+int adCount = 1;// adCount is your request ad count
 this.nativeAd.LoadAd(adCount);
 ```
 
@@ -523,7 +523,7 @@ this.nativeAd.LoadAd(adCount);
 public class YumiNativeScene : MonoBehaviour
   {
     private YumiNativeAd nativeAd;
-   // UI elements in scene
+    // UI elements in scene
     [Header("Text:")]
     public Text title;
     public Text body;
@@ -558,7 +558,7 @@ public class YumiNativeScene : MonoBehaviour
         elementsDictionary.Add(NativeElemetType.ICON, iconImage.transform);
         elementsDictionary.Add(NativeElemetType.COVER_IMAGE, mediaView.transform);
         elementsDictionary.Add(NativeElemetType.CALL_TO_ACTION, callToActionButton.transform);
-		//This is a method to associate a YumiNativeData with the ad assets gameobject you will use to display the native ads.
+        // This is a method to associate a YumiNativeData with the ad assets gameobject you will use to display the native ads.
         this.nativeAd.RegisterGameObjectsForInteraction(yumiNativeData, gameObject, elementsDictionary);
 
     }
@@ -582,7 +582,7 @@ if (this.nativeAd.IsAdInvalidated(yumiNativeData))
 #### 隐藏 Native View
 
 ```c#
-this.nativeAd.HideView(yumiNativeData);//Hide nativeAd data associate view 
+this.nativeAd.HideView(yumiNativeData);// Hide nativeAd data associate view 
 ```
 
 #### 移除 Native View
@@ -618,7 +618,7 @@ public class YumiSDKDemo : MonoBehaviour
         {
             this.debugCenter = new YumiDebugCenter();
         }
-// 注意：填写的广告位信息要区分iOS和Android
+        // 注意：填写的广告位信息要区分iOS和Android
         this.debugCenter.PresentYumiMediationDebugCenter("YOUR_BANNER_PLACEMENT_ID", "YOUR_INTERSTITIAL_PLACEMENT_ID", "YOUR_REWARDVIDEO_PLACEMENT_ID", "YOUR_NATIVE_PLACEMENT_ID","YOUR_CHANNEL_ID", "YOUR_VERSION_ID");
     }
 }
@@ -631,7 +631,7 @@ public class YumiSDKDemo : MonoBehaviour
 参考 Android 官方解决方案，[点击查看](https://developer.android.com/studio/build/multidex)
 
 
-**3.测试广告位**
+**2.测试广告位**
 
 | 平台      | Banner   | Interstitial | Rewarded Video | Native   |
 | ------- | -------- | ------------ | -------------- | -------- |

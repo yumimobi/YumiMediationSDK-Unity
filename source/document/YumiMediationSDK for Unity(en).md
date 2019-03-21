@@ -80,7 +80,7 @@ The YumiMediationSDK Ads Unity plugin dependencies are listed in **Assets/YumiMe
 iOS dependencies：
 
 ```xml
-<iosPods>
+    <iosPods>
         <iosPod name="YumiMediationSDK" version="3.6.0" minTargetSdk="8.0">
             <sources>
                 <source>https://github.com/CocoaPods/Specs</source>
@@ -208,7 +208,7 @@ public class YumiSDKDemo : MonoBehaviour
    
     this.bannerView = new YumiBannerView( bannerPlacementId, channelId, gameVersionId, YumiAdPosition.Bottom );
 
-    /* banner add ad event */
+    // banner add ad event
     this.bannerView.OnAdLoaded    += this.HandleAdLoaded;
     this.bannerView.OnAdFailedToLoad  += HandleAdFailedToLoad;
     this.bannerView.OnAdClick   += HandleAdClicked;
@@ -422,7 +422,7 @@ public class YumiSDKDemo : MonoBehaviour
         {
             this.debugCenter = new YumiDebugCenter();
         }
-// Note: Fill in the ad slot information to distinguish between iOS and Android
+        // Note: Fill in the ad slot information to distinguish between iOS and Android
         this.debugCenter.PresentYumiMediationDebugCenter("YOUR_BANNER_PLACEMENT_ID", "YOUR_INTERSTITIAL_PLACEMENT_ID", "YOUR_REWARDVIDEO_PLACEMENT_ID", "YOUR_CHANNEL_ID", "YOUR_VERSION_ID");
     }
 }
@@ -435,7 +435,7 @@ public class YumiSDKDemo : MonoBehaviour
 Reference Android official solution，[Click to view](https://developer.android.com/studio/build/multidex)
 
 
-**3.Test ad placementIDs**
+**2.Test ad placementIDs**
 
 | Platform | Banner   | Interstitial | Rewarded Video |
 | -------- | -------- | ------------ | -------------- |
