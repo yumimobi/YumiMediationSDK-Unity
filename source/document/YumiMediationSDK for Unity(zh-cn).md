@@ -219,7 +219,7 @@ public class YumiSDKDemo : MonoBehaviour
     this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionId, bannerOptions);
 
     /* banner add ad event */
-    this.bannerView.OnAdLoaded    += this.HandleAdLoaded;
+    this.bannerView.OnAdLoaded    += HandleAdLoaded;
     this.bannerView.OnAdFailedToLoad  += HandleAdFailedToLoad;
     this.bannerView.OnAdClick   += HandleAdClicked;
   }
