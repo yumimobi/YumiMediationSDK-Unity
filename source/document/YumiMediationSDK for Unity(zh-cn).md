@@ -297,7 +297,7 @@ this.bannerView.Destroy();
   默认为 false。
   
   如果设置为 false，banner 会自动请求下一条广告，您无需重复调用 `this.bannerView.LoadAd(); `。
-  
+
   如果设置为 true，banner 不会进行下一次请求，您必须根据在恰当的时机再次调用 `this.bannerView.LoadAd();`。
 
 ### Interstitial
@@ -319,14 +319,15 @@ public class YumiSDKDemo : MonoBehaviour
     string gameVersionId = "YOUR_VERSION_ID";
     string channelId = "YOUR_CHANNEL_ID";
     #if UNITY_ANDROID
-	  string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_ANDROID";
+      string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_ANDROID";
     #elif UNITY_IOS
-	  string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_IOS";
+      string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_IOS";
     # else
-	  string interstitialPlacementId = "unexpected_platform";
+      string interstitialPlacementId = "unexpected_platform";
     #endif
     this.interstitialAd = new YumiInterstitialAd(interstitialPlacementId, channelId, gameVersionId);
-    // add interstitial event 
+
+    // add interstitial event
     this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
     this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
     this.interstitialAd.OnAdClicked += HandleInterstitialAdClicked;
