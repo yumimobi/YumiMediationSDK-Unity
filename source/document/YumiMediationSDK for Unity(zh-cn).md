@@ -299,7 +299,7 @@ this.bannerView.Destroy();
   
   如果设置为 false，banner 会自动请求下一条广告，您无需重复调用 `this.bannerView.LoadAd(); `。
 
-  如果设置为 true，banner 不会进行下一次请求，您必须根据在恰当的时机再次调用 `this.bannerView.LoadAd();`。
+  如果设置为 true，banner 不会进行下一次请求，您必须在恰当的时机再次调用 `this.bannerView.LoadAd();`。
 
 ### Interstitial
 
