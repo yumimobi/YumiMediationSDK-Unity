@@ -483,11 +483,11 @@ public class YumiNativeScene : MonoBehaviour
         string gameVersionId = "YOUR_VERSION_ID";
         string channelId = "YOUR_CHANNEL_ID";
         #if UNITY_ANDROID
-        string nativePlacementId = "YOUR_NATIVE_PLACEMENT_ID_ANDROID";
+          string nativePlacementId = "YOUR_NATIVE_PLACEMENT_ID_ANDROID";
         #elif UNITY_IOS
-        string nativePlacementId = "YOUR_NATIVE_PLACEMENT_ID_IOS";
+          string nativePlacementId = "YOUR_NATIVE_PLACEMENT_ID_IOS";
         #else
-        string nativePlacementId = "unexpected_platform";
+          string nativePlacementId = "unexpected_platform";
         #endif
         YumiNativeAdOptions options = new NativeAdOptionsBuilder().Build();
         this.nativeAd = new YumiNativeAd(nativePlacementId, channelId, gameVersionId, options);
@@ -527,11 +527,14 @@ public class YumiNativeScene : MonoBehaviour
 }
 ```
 
-YumiNativeAdOptions 可以配置原生广告显示的样式，参数详情如下：
+#### YumiNativeAdOptions
+`YumiNativeAdOptions` 是初始化 `YumiNativeAd` 的最后一个参数，可以配置原生广告显示的样式，参数详情如下：
 
 ```c#
-internal AdOptionViewPosition adChoiseViewPosition;//AdOptionViewPosition: TOP_LEFT,TOP_RIGHT,BOTTOM_LEFT,BOTTOM_RIGHT
-internal AdAttribution adAttribution;//AdAttribution: AdOptionsPosition、text、textColor、backgroundColor、textSize、hide
+//AdOptionViewPosition: TOP_LEFT,TOP_RIGHT,BOTTOM_LEFT,BOTTOM_RIGHT
+internal AdOptionViewPosition adChoiseViewPosition;
+//AdAttribution: AdOptionsPosition、text、textColor、backgroundColor、textSize、hide
+internal AdAttribution adAttribution;
 //TextOptions: textSize，textColor，backgroundColor
 internal TextOptions titleTextOptions;
 internal TextOptions descTextOptions;
@@ -544,7 +547,7 @@ internal ScaleType coverImageScaleType;
 #### 请求 Native
 
 ```c#
-int adCount = 1;// adCount is your request ad count
+int adCount = 1;// adCount: you can load more than one ad
 this.nativeAd.LoadAd(adCount);
 ```
 
@@ -608,7 +611,7 @@ if (this.nativeAd.IsAdInvalidated(yumiNativeData))
   this.nativeAd.ShowView(yumiNativeData);
 ```
 
-注意：显示广告前，您必须注册布局并检查广告是否已经无效。
+- 注意：显示广告前，您必须注册布局并检查广告是否已经无效。
 
 #### 隐藏 Native View
 
