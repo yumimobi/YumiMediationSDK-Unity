@@ -1,28 +1,39 @@
-    * [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
-        * [Summary](#summary)
-        * [Download the YumiMediationSDK Unity plugin](#download-the-yumimediationsdk-unity-plugin)
-        * [Import the YumiMediationSDK Unity plugin](#import-the-yumimediationsdk-unity-plugin)
-        * [Include the YumiMediationSDK](#include-the-yumimediationsdk)
-          * [Deploy iOS](#deploy-ios)
-          * [Deploy Android](#deploy-android)
-        * [Select an ad format](#select-an-ad-format)
-          * [Banner](#banner)
-              * [Initialize Banner](#initialize-banner)
-              * [Request Banner](#request-banner)
-              * [Hide Banner](#hide-banner)
-              * [Show Banner](#show-banner)
-          * [Interstitial](#interstitial)
-              * [Initialization and Interstitial request](#initialization-and-interstitial-request)
-              * [Show Interstitial](#show-interstitial)
-              * [Destroy Interstitial](#destroy-interstitial)
-          * [Reward Video](#reward-video)
-              * [Initialization and Reward Video request](#initialization-and-reward-video-request)
-              * [Determine if the video is ready](#determine-if-the-video-is-ready)
-              * [Show Rewarded Video](#show-rewarded-video)
-              * [Destroy Rewarded Video](#destroy-rewarded-video)
-        * [Debug Mode](#debug-mode)
-          * [Call Debug Mode](#call-debug-mode)
-        * [Common issues of developer](#common-issues-of-developer)
+   * [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
+      * [Summary](#summary)
+      * [Download the YumiMediationSDK Unity plugin](#download-the-yumimediationsdk-unity-plugin)
+      * [Import the YumiMediationSDK Unity plugin](#import-the-yumimediationsdk-unity-plugin)
+      * [Include the YumiMediationSDK](#include-the-yumimediationsdk)
+         * [Deploy iOS](#deploy-ios)
+         * [Deploy Android](#deploy-android)
+      * [Select an ad format](#select-an-ad-format)
+         * [Banner](#banner)
+            * [Initialize Banner](#initialize-banner)
+            * [Request Banner](#request-banner)
+            * [Hide Banner](#hide-banner)
+            * [Show Banner](#show-banner)
+            * [Destroy Banner](#destroy-banner)
+            * [YumiBannerViewOptions](#yumibannerviewoptions)
+         * [Interstitial](#interstitial)
+            * [Initialization and Interstitial request](#initialization-and-interstitial-request)
+            * [Show Interstitial](#show-interstitial)
+            * [Destroy Interstitial](#destroy-interstitial)
+         * [Reward Video](#reward-video)
+            * [Initialization and Reward Video request](#initialization-and-reward-video-request)
+            * [Determine if the video is ready](#determine-if-the-video-is-ready)
+            * [Show Rewarded Video](#show-rewarded-video)
+         * [Native Ad](#native-ad)
+            * [Init Native Ad](#init-native-ad)
+            * [YumiNativeAdOptions](#yuminativeadoptions)
+            * [Request Native](#request-native)
+            * [Create Your Native Ad Layout](#create-your-native-ad-layout)
+            * [Populating your Layout Using the Ad's Metadata](#populating-your-layout-using-the-ads-metadata)
+            * [Show Native Ad View](#show-native-ad-view)
+            * [Hide Native Ad View](#hide-native-ad-view)
+            * [Remove Native Ad View](#remove-native-ad-view)
+            * [Destroy Native Ad View](#destroy-native-ad-view)
+      * [Debug Mode](#debug-mode)
+         * [Call Debug Mode](#call-debug-mode)
+      * [Common issues of developer](#common-issues-of-developer)
 
 # YumiMediationSDK for Unity
 
@@ -32,7 +43,7 @@
 
    This documentation is intended for developers who want to integrate Yumimobi SDK in Unity products.
 
-2. Prerequisites
+2. Develop Environment
 
    - Unity 5.6 and above
 
@@ -60,7 +71,7 @@ The YumiMediationSDK Unity plugin enables Unity developers to easily serve Yumim
 
 ## Import the YumiMediationSDK Unity plugin
 
-Open your project in the Unity editor。Select**Assets> Import Package> Custom Package** and find the YumiMediationSDKPlugin.unitypackage file 有downloaded
+Open your project in the Unity editor. Select **Assets> Import Package> Custom Package** and find the YumiMediationSDKPlugin.unitypackage file that you downloaded.
 
 ![img](resources/01.png)
 
@@ -70,7 +81,7 @@ Make sure all of the files are selected and click **Import**.
 
 ## Include the YumiMediationSDK
 
-The YumiMediationSDK Unity plugin is distributed with the [Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver) 。This library is intended for use by any Unity plugin that requires access to Android specific libraries (e.g., AARs) or iOS CocoaPods. It provides Unity plugins the ability to declare dependencies, which are then automatically resolved and copied into your Unity project.
+The YumiMediationSDK Unity plugin is distributed with the [Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver). This library is intended for use by any Unity plugin that requires access to Android specific libraries (e.g., AARs) or iOS CocoaPods. It provides Unity plugins the ability to declare dependencies, which are then automatically resolved and copied into your Unity project.
 
 Follow the steps listed below to ensure your project includes the YumiMediationSDK Unity
 ### Deploy iOS 
@@ -126,21 +137,21 @@ iOS dependencies：
     </iosPods>
 ```
 
-e.g., Delete ```AdMob``` ，Delete ``` <iosPod name="YumiMediationAdapters/AdMob" version="3.6.0" />```  
+e.g., Delete `AdMob`, Delete `<iosPod name="YumiMediationAdapters/AdMob" version="3.6.0"></iosPod>`  
 
-Complete the above procedure，Open **xcworkspace** project.
+Complete the above procedure, Open **xcworkspace** project.
 
 **Note：Use CocoaPods to identify iOS dependencies. CocoaPods runs as a post-build process step.**
 
 ### Deploy Android 
 
-In the Unity editor, select **Assets> Play Services Resolver> Android Resolver>Force Resolve**。  The Unity Play Services Resolver library will copy the declared dependencies into the  **Assets/Plugins/Android** directory of your Unity app.
+In the Unity editor, select **Assets> Play Services Resolver> Android Resolver>Force Resolve**. The Unity Play Services Resolver library will copy the declared dependencies into the  **Assets/Plugins/Android** directory of your Unity app.
 
 ![img](resources/03.png)
 
-The YumiMediationSDK Ads Unity plugin dependencies are listed in **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml** .
+The YumiMediationSDK Ads Unity plugin dependencies are listed in **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml**.
 
-Android dependencies：
+Android dependencies:
 
 ```xml
 <androidPackages>
@@ -171,7 +182,7 @@ Android dependencies：
         </repositories>
 </androidPackages>
 ```
-e.g., Delete  ```admob```，Delete ```<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.0" />``` .
+e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.0" />`.
 
 ## Select an ad format
 
@@ -206,11 +217,14 @@ public class YumiSDKDemo : MonoBehaviour
     #else
       string bannerPlacementId = "unexpected_platform";
     #endif
-   
-    this.bannerView = new YumiBannerView( bannerPlacementId, channelId, gameVersionId, YumiAdPosition.Bottom );
 
-    // banner add ad event
-    this.bannerView.OnAdLoaded    += this.HandleAdLoaded;
+    // You can set the banner size & banner position & autoRefresh & IsSmart in YumiBannerViewOptions
+    // This file is described below.
+    YumiBannerViewOptions bannerOptions = new YumiBannerViewOptionsBuilder().Build();
+    this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionId, bannerOptions);
+
+    /* banner add ad event */
+    this.bannerView.OnAdLoaded    += HandleAdLoaded;
     this.bannerView.OnAdFailedToLoad  += HandleAdFailedToLoad;
     this.bannerView.OnAdClick   += HandleAdClicked;
   }
@@ -239,10 +253,7 @@ public class YumiSDKDemo : MonoBehaviour
 #### Request Banner
 
 ```C#
-//If you set isSmartBanner to true, YumiMediationBannerView will automatically adapt to the size of the device (only support iOS if isSmart is true).
-//the banner placement will auto refresh.You don't need to call this method repeatedly.
-bool IsSmartBanner = false;
-this.bannerView.LoadAd(IsSmartBanner); 
+this.bannerView.LoadAd();
 ```
 
 #### Hide Banner
@@ -257,10 +268,48 @@ this.bannerView.Hide();
 this.bannerView.Show();
 ```
 
+#### Destroy Banner
+
+```C#
+this.bannerView.Destroy();
+```
+
+#### YumiBannerViewOptions
+
+`YumiBannerViewOptions` is the last parameter to init `YumiBannerView`, you can set it in `YumiBannerViewOptions` file.
+
+- `AdPosition`
+
+  Set the position of the banner in the superview.
+
+  default is `BOTTOM`.
+  
+- `BannerSize`
+  
+  Set the banner size.
+
+  default:
+  - iPhone and iPod Touch ad size. Typically 320x50.
+  - Leaderboard size for the iPad. Typically 728x90.
+
+- `IsSmart`
+
+  Set the banner to automatically adapter the screen width.
+
+  default is `true`.
+
+- `DisableAutoRefresh`
+
+  default is `false`. banner will request next ad automatically.
+
+  if you set it to `true`, then you should call `this.bannerView.LoadAd();` by manual.
+
 ### Interstitial
 
 #### Initialization and Interstitial request
+
 The interstitial placement will auto cached.
+
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
@@ -276,14 +325,15 @@ public class YumiSDKDemo : MonoBehaviour
     string gameVersionId = "YOUR_VERSION_ID";
     string channelId = "YOUR_CHANNEL_ID";
     #if UNITY_ANDROID
-	  string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_ANDROID";
+      string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_ANDROID";
     #elif UNITY_IOS
-	  string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_IOS";
+      string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_IOS";
     # else
-	  string interstitialPlacementId = "unexpected_platform";
+      string interstitialPlacementId = "unexpected_platform";
     #endif
     this.interstitialAd = new YumiInterstitialAd(interstitialPlacementId, channelId, gameVersionId);
-    // add interstitial event 
+
+    // add interstitial event
     this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
     this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
     this.interstitialAd.OnAdClicked += HandleInterstitialAdClicked;
@@ -313,25 +363,27 @@ public class YumiSDKDemo : MonoBehaviour
 
 #### Show Interstitial
 
-It is recommended to call```this.interstitialAd.IsInterstitialReady()```to determine if the screen is ready.
+It is recommended to call `this.interstitialAd.IsReady()` to determine if the screen is ready.
 
 ```C#
- if(this.interstitialAd.IsInterstitialReady())
- {
-  this.interstitialAd.ShowInterstitial();
- }
+if(this.interstitialAd.IsReady())
+{
+  this.interstitialAd.Show();
+}
 ```
 
 #### Destroy Interstitial
 
 ```c#
-this.interstitialAd.DestroyInterstitial();
+this.interstitialAd.Destroy();
 ```
 
 ### Reward Video
 
 #### Initialization and Reward Video request
+
 The reward video placement will auto cached.
+
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
@@ -347,19 +399,19 @@ public class YumiSDKDemo : MonoBehaviour
     string gameVersionId = "YOUR_VERSION_ID";
     string channelId = "YOUR_CHANNEL_ID";
     #if UNITY_ANDROID
-	  string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_ANDROID";
+      string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_ANDROID";
     #elif UNITY_IOS
-	  string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_IOS";
+      string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_IOS";
     # else
-	  string rewardVideoPlacementId = "unexpected_platform";
+      string rewardVideoPlacementId = "unexpected_platform";
     #endif
-    this.rewardVideoAd = new YumiRewardVideoAd();
+    this.rewardVideoAd = YumiRewardVideoAd.Instance;
     this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
     this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
     this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
     this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
     // load ad
-    this.rewardVideoAd.LoadRewardVideoAd(rewardVideoPlacementId, channelId, gameVersionId);
+    this.rewardVideoAd.LoadAd(rewardVideoPlacementId, channelId, gameVersionId);
   }
   
   #region reward video callback handlers
@@ -386,27 +438,214 @@ public class YumiSDKDemo : MonoBehaviour
 #### Determine if the video is ready
 
 ```c#
- this.rewardVideoAd.IsRewardVideoReady();
+this.rewardVideoAd.IsReady();
 ```
 
 #### Show Rewarded Video
 
 ```c#
- if(this.rewardVideoAd.IsRewardVideoReady())
- {
-  this.rewardVideoAd.PlayRewardVideo();
- } 
+if(this.rewardVideoAd.IsReady())
+{
+  this.rewardVideoAd.Play();
+}
 ```
 
-#### Destroy Rewarded Video
 
-```c#
-this.rewardVideoAd.DestroyRewardVideo();
+### Native Ad
+
+#### Init Native Ad
+
+```C#
+using UnityEngine;
+using UnityEngine.UI;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using YumiMediationSDK.Api;
+using YumiMediationSDK.Common;
+
+public class YumiNativeScene : MonoBehaviour
+{
+    private YumiNativeAd nativeAd;
+    private YumiNativeData yumiNativeData;
+    // UI elements in scene
+    [Header("Text:")]
+    public Text title;
+    public Text body;
+    [Header("Images:")]
+    public GameObject mediaView;
+    public GameObject iconImage;
+    [Header("Buttons:")]
+    // This doesn't be a button - it can also be an image
+    public Button callToActionButton;
+
+    // ad panel
+    public GameObject adPanel;
+  
+    void Start()
+    {
+        this.InitNativeAd();
+    }
+    private void InitNativeAd()
+    {
+        string gameVersionId = "YOUR_VERSION_ID";
+        string channelId = "YOUR_CHANNEL_ID";
+        #if UNITY_ANDROID
+          string nativePlacementId = "YOUR_NATIVE_PLACEMENT_ID_ANDROID";
+        #elif UNITY_IOS
+          string nativePlacementId = "YOUR_NATIVE_PLACEMENT_ID_IOS";
+        #else
+          string nativePlacementId = "unexpected_platform";
+        #endif
+        YumiNativeAdOptions options = new NativeAdOptionsBuilder().Build();
+        this.nativeAd = new YumiNativeAd(nativePlacementId, channelId, gameVersionId, options);
+        // callBack
+        this.nativeAd.OnNativeAdLoaded += HandleNativeAdLoaded;
+        this.nativeAd.OnAdFailedToLoad += HandleNativeAdFailedToLoad;
+        this.nativeAd.OnAdClick += HandleNativeAdClicked;
+    }
+    #region native call back handles
+    public void HandleNativeAdLoaded(object sender, YumiNativeToLoadEventArgs args)
+    {
+        Logger.Log("HandleNativeAdLoaded event opened");
+        if (nativeAd == null)
+        {
+            Logger.Log("nativeAd is null");
+            return;
+        }
+
+        if (args == null || args.nativeData == null || args.nativeData.Count == 0)
+        {
+            Logger.Log("nativeAd data not found.");
+            return;
+        }
+        // args.nativeData is nativeAd data
+      	yumiNativeData = args.nativeData[0];
+    }
+    public void HandleNativeAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args)
+    {
+        Logger.Log("HandleNativeAdFailedToLoad event received with message: " + args.Message);
+    }
+    public void HandleNativeAdClicked(object sender, EventArgs args)
+    {
+        Logger.Log("HandleNativeAdClicked");
+    }
+
+    #endregion
+}
+```
+
+#### YumiNativeAdOptions
+
+`YumiNativeAdOptions` is the last parameter to init the `YumiNativeAd`, you can set the ad style by this.
+
+```C#
+// AdOptionViewPosition: TOP_LEFT,TOP_RIGHT,BOTTOM_LEFT,BOTTOM_RIGHT
+internal AdOptionViewPosition adChoiseViewPosition;
+// AdAttribution: AdOptionsPosition、text、textColor、backgroundColor、textSize、hide
+internal AdAttribution adAttribution;
+// TextOptions: textSize，textColor，backgroundColor
+internal TextOptions titleTextOptions;
+internal TextOptions descTextOptions;
+internal TextOptions callToActionTextOptions;
+// ScaleType: SCALE_TO_FILL、SCALE_ASPECT_FIT、SCALE_ASPECT_FILL
+internal ScaleType iconScaleType;
+internal ScaleType coverImageScaleType;
+```
+
+#### Request Native
+
+```C#
+int adCount = 1;// adCount: you can load more than one ad
+this.nativeAd.LoadAd(adCount);
+```
+
+#### Create Your Native Ad Layout
+
+```C#
+public class YumiNativeScene : MonoBehaviour
+  {
+    private YumiNativeAd nativeAd;
+    // UI elements in scene
+    [Header("Text:")]
+    public Text title;
+    public Text body;
+    [Header("Images:")]
+    public GameObject mediaView;
+    public GameObject iconImage;
+    [Header("Buttons:")]
+    // This doesn't be a button - it can also be an image
+    public Button callToActionButton;
+    /// ...
+  }
+```
+
+Here is how they can be associated with the views in the editor:
+
+![image](./resources/nativeAd.png)
+
+#### Populating Your Layout Using the Ad's Metadata
+
+```C#
+public class YumiNativeScene : MonoBehaviour
+{
+  private YumiNativeAd nativeAd;
+  private YumiNativeData yumiNativeData;
+  private void RegisterNativeViews()
+    {
+        Dictionary<NativeElemetType, Transform> elementsDictionary = new Dictionary<NativeElemetType, Transform>();
+        elementsDictionary.Add(NativeElemetType.PANEL, adPanel.transform);
+        elementsDictionary.Add(NativeElemetType.TITLE, title.transform);
+        elementsDictionary.Add(NativeElemetType.DESCRIPTION, body.transform);
+        elementsDictionary.Add(NativeElemetType.ICON, iconImage.transform);
+        elementsDictionary.Add(NativeElemetType.COVER_IMAGE, mediaView.transform);
+        elementsDictionary.Add(NativeElemetType.CALL_TO_ACTION, callToActionButton.transform);
+        // This is a method to associate a YumiNativeData with the ad assets gameobject you will use to display the native ads.
+        this.nativeAd.RegisterGameObjectsForInteraction(yumiNativeData, gameObject, elementsDictionary);
+
+    }
+}
+```
+
+#### Show Native Ad View
+
+You should check whether the ad has been invalidated before displaying it.
+
+```C#
+// Determines whether nativeAd data is invalidated, if invalidated please reload
+if (this.nativeAd.IsAdInvalidated(yumiNativeData))
+  {
+      Logger.Log("Native Data is invalidated");
+      return;
+  }
+  this.nativeAd.ShowView(yumiNativeData);
+```
+
+#### Hide Native Ad View
+
+```C#
+this.nativeAd.HideView(yumiNativeData);// Hide nativeAd data associate view
+```
+
+#### Remove Native Ad View
+
+Remove current native ad view from screen, and disconnect the native data from the view.
+If you want to display a new view by this layout, call this function first.
+
+```C#
+this.nativeAd.UnregisterView(yumiNativeData);
+```
+
+#### Destroy Native Ad View
+
+```C#
+this.nativeAd.Destroy();
 ```
 
 ## Debug Mode
 
-Please select debug mode if you want to test whether ad ruturn is available for an app. 
+Please select debug mode if you want to test whether ad is available. 
 
 ### Call Debug Mode
 

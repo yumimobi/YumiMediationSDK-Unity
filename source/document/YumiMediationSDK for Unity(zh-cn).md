@@ -289,7 +289,7 @@ this.bannerView.Destroy();
 
   默认为 true。
 
-  如果设置为 true，banner 会自适应屏幕宽度，高度根据比例自动变化。
+  如果设置为 true，banner 会自适应屏幕宽度。
 
   如果设置为 false，banner 会展示广告位自身尺寸。
 
