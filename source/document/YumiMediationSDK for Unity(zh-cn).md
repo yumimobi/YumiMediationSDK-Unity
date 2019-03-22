@@ -279,19 +279,25 @@ this.bannerView.Destroy();
 - `BannerSize`
 
   设置 banner 广告的尺寸。
-  在 iPhone 及 iPod Touch 上默认为 320 * 50
-  在 iPad 上默认为 728 * 90
+
+  在 iPhone 及 iPod Touch 上默认为 320 * 50。
+
+  在 iPad 上默认为 728 * 90。
 
 - `IsSmart`
 
   默认为 true。
+
   如果设置为 true，banner 会自适应屏幕宽度，高度根据比例自动变化。
+
   如果设置为 false，banner 会展示广告位自身尺寸。
 
 - `DisableAutoRefresh`
 
   默认为 false。
+  
   如果设置为 false，banner 会自动请求下一条广告，您无需重复调用 `this.bannerView.LoadAd(); `。
+  
   如果设置为 true，banner 不会进行下一次请求，您必须根据在恰当的时机再次调用 `this.bannerView.LoadAd();`。
 
 ### Interstitial
