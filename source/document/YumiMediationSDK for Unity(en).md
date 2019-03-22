@@ -630,6 +630,9 @@ this.nativeAd.HideView(yumiNativeData);// Hide nativeAd data associate view
 
 #### Remove Native Ad View
 
+Remove current native ad view from screen, and disconnect the native data from the view.
+If you want to display a new view by this layout, call this function first.
+
 ```C#
 this.nativeAd.UnregisterView(yumiNativeData);
 ```
