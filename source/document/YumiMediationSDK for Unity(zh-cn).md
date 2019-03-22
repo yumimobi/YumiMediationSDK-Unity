@@ -38,28 +38,24 @@
 
 ## 概述
 
-1.面向人群
+1. 面向人群
 
-本产品主要面向需要在 Unity 产品中接入玉米移动广告 SDK 的开发人员。
+   本产品主要面向需要在 Unity 产品中接入玉米移动广告 SDK 的开发人员。
 
-2.先决条件
+2. 先决条件
 
-- Unity 5.6 或更高版本
+   - Unity 5.6 或更高版本
+   - 部署 iOS
+     Xcode 7.0 或更高版本
+     iOS 8.0 或更高版本
 
+     [CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
 
-- 部署 iOS
+   - 部署 Android
 
-   Xcode 7.0 或更高版本
+     Android SDK： > 4.1 (API level 16)
 
-   iOS 8.0 或更高版本
-
-   [CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
-
-- 部署 Android
-
-  Android SDK： > 4.1 (API level 16)
-
-3.[Demo 获取地址](https://github.com/yumimobi/YumiMediationSDK-Unity)   
+3. [Demo 获取地址](https://github.com/yumimobi/YumiMediationSDK-Unity)   
 
 ## 下载 YumiMediationSDK Unity 插件
 
