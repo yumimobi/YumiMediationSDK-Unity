@@ -388,19 +388,19 @@ public class YumiSDKDemo : MonoBehaviour
     string gameVersionId = "YOUR_VERSION_ID";
     string channelId = "YOUR_CHANNEL_ID";
     #if UNITY_ANDROID
-	  string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_ANDROID";
+      string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_ANDROID";
     #elif UNITY_IOS
-	  string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_IOS";
+      string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_IOS";
     # else
-	  string rewardVideoPlacementId = "unexpected_platform";
+      string rewardVideoPlacementId = "unexpected_platform";
     #endif
-    this.rewardVideoAd = new YumiRewardVideoAd();
+    this.rewardVideoAd = YumiRewardVideoAd.Instance;
     this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
     this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
     this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
     this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
     // load ad
-    this.rewardVideoAd.LoadRewardVideoAd(rewardVideoPlacementId, channelId, gameVersionId);
+    this.rewardVideoAd.LoadAd(rewardVideoPlacementId, channelId, gameVersionId);
   }
   
   #region reward video callback handlers
@@ -427,22 +427,20 @@ public class YumiSDKDemo : MonoBehaviour
 #### Determine if the video is ready
 
 ```c#
- this.rewardVideoAd.IsRewardVideoReady();
+this.rewardVideoAd.IsReady();
 ```
 
 #### Show Rewarded Video
 
 ```c#
- if(this.rewardVideoAd.IsRewardVideoReady())
- {
-  this.rewardVideoAd.PlayRewardVideo();
- } 
+if(this.rewardVideoAd.IsReady())
+{
+  this.rewardVideoAd.Play();
+}
 ```
 
-#### Destroy Rewarded Video
+### Native Ad
 
-```c#
-this.rewardVideoAd.DestroyRewardVideo();
 ```
 
 ## Debug Mode
