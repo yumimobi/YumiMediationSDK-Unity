@@ -206,11 +206,14 @@ public class YumiSDKDemo : MonoBehaviour
     #else
       string bannerPlacementId = "unexpected_platform";
     #endif
-   
-    this.bannerView = new YumiBannerView( bannerPlacementId, channelId, gameVersionId, YumiAdPosition.Bottom );
 
-    // banner add ad event
-    this.bannerView.OnAdLoaded    += this.HandleAdLoaded;
+    // You can set the banner size & banner position & autoRefresh & IsSmart in YumiBannerViewOptions
+    // This file is described below.
+    YumiBannerViewOptions bannerOptions = new YumiBannerViewOptionsBuilder().Build();
+    this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionId, bannerOptions);
+
+    /* banner add ad event */
+    this.bannerView.OnAdLoaded    += HandleAdLoaded;
     this.bannerView.OnAdFailedToLoad  += HandleAdFailedToLoad;
     this.bannerView.OnAdClick   += HandleAdClicked;
   }
@@ -239,10 +242,7 @@ public class YumiSDKDemo : MonoBehaviour
 #### Request Banner
 
 ```C#
-//If you set isSmartBanner to true, YumiMediationBannerView will automatically adapt to the size of the device (only support iOS if isSmart is true).
-//the banner placement will auto refresh.You don't need to call this method repeatedly.
-bool IsSmartBanner = false;
-this.bannerView.LoadAd(IsSmartBanner); 
+this.bannerView.LoadAd();
 ```
 
 #### Hide Banner
@@ -257,10 +257,48 @@ this.bannerView.Hide();
 this.bannerView.Show();
 ```
 
+#### Destroy Banner
+
+```C#
+this.bannerView.Destroy();
+```
+
+#### YumiBannerViewOptions
+
+`YumiBannerViewOptions` is the last parameter to init `YumiBannerView`, you can set it in `YumiBannerViewOptions` file.
+
+- `AdPosition`
+
+  Set the position of the banner in the superview.
+
+  default is `BOTTOM`.
+  
+- `BannerSize`
+  
+  Set the banner size.
+
+  default:
+  - iPhone and iPod Touch ad size. Typically 320x50.
+  - Leaderboard size for the iPad. Typically 728x90.
+
+- `IsSmart`
+
+  Set the banner to automatically adapter the screen width.
+
+  default is `true`.
+
+- `DisableAutoRefresh`
+
+  default is `false`. banner will request next ad automatically.
+
+  if you set it to `true`, then you should call `this.bannerView.LoadAd();` by manual.
+
 ### Interstitial
 
 #### Initialization and Interstitial request
+
 The interstitial placement will auto cached.
+
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
