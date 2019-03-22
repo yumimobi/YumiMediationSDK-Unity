@@ -137,9 +137,9 @@ iOS dependencies：
     </iosPods>
 ```
 
-e.g., Delete `AdMob` ，Delete `<iosPod name="YumiMediationAdapters/AdMob" version="3.6.0"></iosPod>`  
+e.g., Delete `AdMob`, Delete `<iosPod name="YumiMediationAdapters/AdMob" version="3.6.0"></iosPod>`  
 
-Complete the above procedure，Open **xcworkspace** project.
+Complete the above procedure, Open **xcworkspace** project.
 
 **Note：Use CocoaPods to identify iOS dependencies. CocoaPods runs as a post-build process step.**
 
@@ -151,7 +151,7 @@ In the Unity editor, select **Assets> Play Services Resolver> Android Resolver>F
 
 The YumiMediationSDK Ads Unity plugin dependencies are listed in **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml**.
 
-Android dependencies：
+Android dependencies:
 
 ```xml
 <androidPackages>
@@ -182,7 +182,7 @@ Android dependencies：
         </repositories>
 </androidPackages>
 ```
-e.g., Delete  `admob`，Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.0" />`.
+e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.0" />`.
 
 ## Select an ad format
 
@@ -585,7 +585,7 @@ Here is how they can be associated with the views in the editor:
 
 ![image](./resources/nativeAd.png)
 
-#### Populating your Layout Using the Ad's Metadata
+#### Populating Your Layout Using the Ad's Metadata
 
 ```C#
 public class YumiNativeScene : MonoBehaviour
