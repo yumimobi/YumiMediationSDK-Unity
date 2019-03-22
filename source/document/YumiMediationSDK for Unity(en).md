@@ -642,7 +642,7 @@ this.nativeAd.Destroy();
 
 ## Debug Mode
 
-Please select debug mode if you want to test whether ad ruturn is available for an app. 
+Please select debug mode if you want to test whether ad is available. 
 
 ### Call Debug Mode
 
