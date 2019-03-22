@@ -12,6 +12,7 @@
             * [隐藏 Banner](#隐藏-banner)
             * [显示隐藏的 Banner](#显示隐藏的-banner)
             * [销毁 Banner](#销毁-banner)
+            * [YumiBannerViewOptions](#yumibannerviewoptions)
          * [Interstitial](#interstitial)
             * [初始化及请求插屏](#初始化及请求插屏)
             * [展示 Interstitial](#展示-interstitial)
@@ -273,25 +274,25 @@ this.bannerView.Destroy();
 
 - `AdPosition`
 
-设置 banner 广告位所处父视图的位置。默认为下方，居中显示。
+  设置 banner 广告位所处父视图的位置。默认为下方，居中显示。
 
 - `BannerSize`
 
-设置 banner 广告的尺寸。
-在 iPhone 及 iPod Touch 上默认为 320 * 50
-在 iPad 上默认为 728 * 90
+  设置 banner 广告的尺寸。
+  在 iPhone 及 iPod Touch 上默认为 320 * 50
+  在 iPad 上默认为 728 * 90
 
 - `IsSmart`
 
-默认为 true。
-如果设置为 true，banner 会自适应屏幕宽度，高度根据比例自动变化。
-如果设置为 false，banner 会展示广告位自身尺寸。
+  默认为 true。
+  如果设置为 true，banner 会自适应屏幕宽度，高度根据比例自动变化。
+  如果设置为 false，banner 会展示广告位自身尺寸。
 
 - `DisableAutoRefresh`
 
-默认为 false。
-如果设置为 false，banner 会自动请求下一条广告，您无需重复调用 `this.bannerView.LoadAd(); `。
-如果设置为 true，banner 不会进行下一次请求，您必须根据在恰当的时机再次调用 `this.bannerView.LoadAd();`。
+  默认为 false。
+  如果设置为 false，banner 会自动请求下一条广告，您无需重复调用 `this.bannerView.LoadAd(); `。
+  如果设置为 true，banner 不会进行下一次请求，您必须根据在恰当的时机再次调用 `this.bannerView.LoadAd();`。
 
 ### Interstitial
 
