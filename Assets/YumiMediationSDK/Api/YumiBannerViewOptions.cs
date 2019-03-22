@@ -44,9 +44,9 @@ namespace YumiMediationSDK.Api
     {
         /// iPhone and iPod Touch ad size. Typically 320x50.
         YUMI_BANNER_AD_SIZE_320x50,
-        // Leaderboard size for the iPad. Typically 728x90.
+        /// Leaderboard size for the iPad. Typically 728x90.
         YUMI_BANNER_AD_SIZE_728x90,
-        // Represents the fixed banner ad size - 300pt by 250pt.
+        /// Represents the fixed banner ad size - 300pt by 250pt.
         YUMI_BANNER_AD_SIZE_300x250,
         /// An ad size that spans the full width of the application in portrait orientation. The height is
         /// typically 50 pixels on an iPhone/iPod UI, and 90 pixels tall on an iPad UI.
