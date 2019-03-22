@@ -134,7 +134,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
     </iosPods>
 ```
 
-比如删除 ```AdMob``` ，直接删除 ``` <iosPod name="YumiMediationAdapters/AdMob" version="3.6.0" />```  即可。
+比如删除 `AdMob` ，直接删除 ` <iosPod name="YumiMediationAdapters/AdMob" version="3.6.0"></iosPod>`  即可。
 
 构建完成，打开 **xcworkspace** 工程。
 
@@ -178,7 +178,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 </androidPackages>
 ```
 
-比如删除  ```admob```，直接删除 ```<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.0" />```  即可。
+比如删除 `admob`，直接删除 `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.0" />` 即可。
 
 ## 选择广告形式
 
