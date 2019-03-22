@@ -1,65 +1,66 @@
-- [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
-  * [概述](#概述)
-  * [下载 YumiMediationSDK Unity 插件](#下载-YumiMediationSDK-Unity-插件)
-  * [导入 YumiMediationSDK Unity 插件](#导入-YumiMediationSDK-Unity-插件)
-  * [集成 YumiMediationSDK](#集成-YumiMediationSDK)
-    + [部署 iOS 项目](#部署-iOS-项目)
-    + [部署 Android 项目](#部署-Android-项目)
-  * [选择广告形式](#选择广告形式)
-    + [Banner](#banner)
-      - [初始化 Banner](#初始化-banner)
-      - [请求 Banner](#请求-banner)
-      - [隐藏 Banner](#隐藏-banner)
-      - [显示隐藏的 Banner](#显示隐藏的-banner)
-      - [销毁 Banner](#销毁-banner)
-    + [Interstitial](#interstitial)
-      - [初始化及请求插屏](#初始化及请求插屏)
-      - [展示 Interstitial](#展示-interstitial)
-      - [销毁 Interstitial](#销毁-interstitial)
-    + [Rewarded Video](#rewarded-video)
-      - [初始化及请求视频](#初始化及请求视频)
-      - [判断视频是否准备好](#判断视频是否准备好)
-      - [展示 Rewarded Video](#展示-rewarded-video)
-    + [Native](#native)
-      - [初始化 Native](#初始化-native)
-      - [请求 Native](#请求-native)
-      - [创建原生广告布局](#创建原生广告布局)
-      - [使用广告元数据注册布局](#使用广告元数据注册布局)
-      - [展示 Native View](展示-native-view)
-      - [隐藏 Native View](#隐藏-native-view)
-      - [移除 Native View](#移除-native-view)
-      - [销毁 Native](#销毁-native)
-  * [调试模式](#调试模式)
-    + [调用调试模式](#调用调试模式)
-  * [常见问题](#常见问题)
+   * [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
+      * [概述](#概述)
+      * [下载 YumiMediationSDK Unity 插件](#下载-yumimediationsdk-unity-插件)
+      * [导入 YumiMediationSDK Unity 插件](#导入-yumimediationsdk-unity-插件)
+      * [集成 YumiMediationSDK](#集成-yumimediationsdk)
+         * [部署 iOS 项目](#部署-ios-项目)
+         * [部署 Android 项目](#部署-android-项目)
+      * [选择广告形式](#选择广告形式)
+         * [Banner](#banner)
+            * [初始化 Banner](#初始化-banner)
+            * [请求 Banner](#请求-banner)
+            * [隐藏 Banner](#隐藏-banner)
+            * [显示隐藏的 Banner](#显示隐藏的-banner)
+            * [销毁 Banner](#销毁-banner)
+            * [YumiBannerViewOptions](#yumibannerviewoptions)
+         * [Interstitial](#interstitial)
+            * [初始化及请求插屏](#初始化及请求插屏)
+            * [展示 Interstitial](#展示-interstitial)
+            * [销毁 Interstitial](#销毁-interstitial)
+         * [Rewarded Video](#rewarded-video)
+            * [初始化及请求视频](#初始化及请求视频)
+            * [判断视频是否准备好](#判断视频是否准备好)
+            * [展示 Rewarded Video](#展示-rewarded-video)
+         * [Native](#native)
+            * [初始化 Native](#初始化-native)
+            * [YumiNativeAdOptions](#yuminativeadoptions) 
+            * [请求 Native](#请求-native)
+            * [创建原生广告布局](#创建原生广告布局)
+            * [使用广告元数据注册布局](#使用广告元数据注册布局)
+            * [展示 Native View](#展示-native-view)
+            * [隐藏 Native View](#隐藏-native-view)
+            * [移除 Native View](#移除-native-view)
+            * [销毁 Native](#销毁-native)
+      * [调试模式](#调试模式)
+         * [调用调试模式](#调用调试模式)
+      * [常见问题](#常见问题)
 
 
 # YumiMediationSDK for Unity
 
 ## 概述
 
-1.面向人群
+1. 面向人群
 
-本产品主要面向需要在 Unity 产品中接入玉米移动广告 SDK 的开发人员。
+   本产品主要面向需要在 Unity 产品中接入玉米移动广告 SDK 的开发人员。
 
-2.先决条件
+2. 先决条件
 
-- Unity 5.6 或更高版本
+   - Unity 5.6 或更高版本
 
+   - 部署 iOS
+     
+     Xcode 7.0 或更高版本
+     
+     iOS 8.0 或更高版本
 
-- 部署 iOS
+     [CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
 
-   Xcode 7.0 或更高版本
+   - 部署 Android
 
-   iOS 8.0 或更高版本
+     Android SDK： > 4.1 (API level 16)
 
-   [CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
-
-- 部署 Android
-
-  Android SDK： > 4.1 (API level 16)
-
-3.[Demo 获取地址](https://github.com/yumimobi/YumiMediationSDK-Unity)   
+3. [Demo 获取地址](https://github.com/yumimobi/YumiMediationSDK-Unity)   
 
 ## 下载 YumiMediationSDK Unity 插件
 
@@ -135,7 +136,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
     </iosPods>
 ```
 
-比如删除 ```AdMob``` ，直接删除 ``` <iosPod name="YumiMediationAdapters/AdMob" version="3.6.0" />```  即可。
+比如删除 `AdMob` ，直接删除 ` <iosPod name="YumiMediationAdapters/AdMob" version="3.6.0"></iosPod>`  即可。
 
 构建完成，打开 **xcworkspace** 工程。
 
@@ -179,7 +180,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 </androidPackages>
 ```
 
-比如删除  ```admob```，直接删除 ```<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.0" />```  即可。
+比如删除 `admob`，直接删除 `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.0" />` 即可。
 
 ## 选择广告形式
 
@@ -220,7 +221,7 @@ public class YumiSDKDemo : MonoBehaviour
     this.bannerView = new YumiBannerView(BannerPlacementId, ChannelId, GameVersionId, bannerOptions);
 
     /* banner add ad event */
-    this.bannerView.OnAdLoaded    += this.HandleAdLoaded;
+    this.bannerView.OnAdLoaded    += HandleAdLoaded;
     this.bannerView.OnAdFailedToLoad  += HandleAdFailedToLoad;
     this.bannerView.OnAdClick   += HandleAdClicked;
   }
@@ -269,6 +270,36 @@ this.bannerView.Show();
 ```c#
 this.bannerView.Destroy();
 ```
+#### YumiBannerViewOptions
+`YumiBannerViewOptions` 是初始化 `YumiBannerView` 时传入的最后一个参数，您可在 `YumiBannerViewOptions` 文件中进行设置：
+
+- `AdPosition`
+
+  设置 banner 广告位所处父视图的位置。默认为下方，居中显示。
+
+- `BannerSize`
+
+  设置 banner 广告的尺寸。
+
+  在 iPhone 及 iPod Touch 上默认为 320 * 50。
+
+  在 iPad 上默认为 728 * 90。
+
+- `IsSmart`
+
+  默认为 true。
+
+  如果设置为 true，banner 会自适应屏幕宽度，高度根据比例自动变化。
+
+  如果设置为 false，banner 会展示广告位自身尺寸。
+
+- `DisableAutoRefresh`
+
+  默认为 false。
+  
+  如果设置为 false，banner 会自动请求下一条广告，您无需重复调用 `this.bannerView.LoadAd(); `。
+
+  如果设置为 true，banner 不会进行下一次请求，您必须在恰当的时机再次调用 `this.bannerView.LoadAd();`。
 
 ### Interstitial
 
@@ -289,14 +320,15 @@ public class YumiSDKDemo : MonoBehaviour
     string gameVersionId = "YOUR_VERSION_ID";
     string channelId = "YOUR_CHANNEL_ID";
     #if UNITY_ANDROID
-	  string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_ANDROID";
+      string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_ANDROID";
     #elif UNITY_IOS
-	  string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_IOS";
+      string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_IOS";
     # else
-	  string interstitialPlacementId = "unexpected_platform";
+      string interstitialPlacementId = "unexpected_platform";
     #endif
     this.interstitialAd = new YumiInterstitialAd(interstitialPlacementId, channelId, gameVersionId);
-    // add interstitial event 
+
+    // add interstitial event
     this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
     this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
     this.interstitialAd.OnAdClicked += HandleInterstitialAdClicked;
@@ -326,7 +358,7 @@ public class YumiSDKDemo : MonoBehaviour
 
 #### 展示 Interstitial
 
-建议先调用```this.interstitialAd.IsReady()```判断插屏是否准备好
+建议先调用 `this.interstitialAd.IsReady()` 判断插屏是否准备好
 
 ```C#
  if(this.interstitialAd.IsReady())
@@ -360,11 +392,11 @@ public class YumiSDKDemo : MonoBehaviour
     string gameVersionId = "YOUR_VERSION_ID";
     string channelId = "YOUR_CHANNEL_ID";
     #if UNITY_ANDROID
-	  string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_ANDROID";
+      string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_ANDROID";
     #elif UNITY_IOS
-	  string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_IOS";
+      string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_IOS";
     # else
-	  string rewardVideoPlacementId = "unexpected_platform";
+      string rewardVideoPlacementId = "unexpected_platform";
     #endif
     this.rewardVideoAd = YumiRewardVideoAd.Instance;
     this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
@@ -452,11 +484,11 @@ public class YumiNativeScene : MonoBehaviour
         string gameVersionId = "YOUR_VERSION_ID";
         string channelId = "YOUR_CHANNEL_ID";
         #if UNITY_ANDROID
-        string nativePlacementId = "YOUR_NATIVE_PLACEMENT_ID_ANDROID";
+          string nativePlacementId = "YOUR_NATIVE_PLACEMENT_ID_ANDROID";
         #elif UNITY_IOS
-        string nativePlacementId = "YOUR_NATIVE_PLACEMENT_ID_IOS";
+          string nativePlacementId = "YOUR_NATIVE_PLACEMENT_ID_IOS";
         #else
-        string nativePlacementId = "unexpected_platform";
+          string nativePlacementId = "unexpected_platform";
         #endif
         YumiNativeAdOptions options = new NativeAdOptionsBuilder().Build();
         this.nativeAd = new YumiNativeAd(nativePlacementId, channelId, gameVersionId, options);
@@ -496,16 +528,20 @@ public class YumiNativeScene : MonoBehaviour
 }
 ```
 
-YumiNativeAdOptions 可以配置原生广告显示的样式，参数详情如下：
+#### YumiNativeAdOptions
+
+`YumiNativeAdOptions` 是初始化 `YumiNativeAd` 的最后一个参数，可以配置原生广告显示的样式，参数详情如下：
 
 ```c#
-internal AdOptionViewPosition adChoiseViewPosition;//AdOptionViewPosition: TOP_LEFT,TOP_RIGHT,BOTTOM_LEFT,BOTTOM_RIGHT
-internal AdAttribution adAttribution;//AdAttribution: AdOptionsPosition、text、textColor、backgroundColor、textSize、hide
-//TextOptions: textSize，textColor，backgroundColor
+// AdOptionViewPosition: TOP_LEFT,TOP_RIGHT,BOTTOM_LEFT,BOTTOM_RIGHT
+internal AdOptionViewPosition adChoiseViewPosition;
+// AdAttribution: AdOptionsPosition、text、textColor、backgroundColor、textSize、hide
+internal AdAttribution adAttribution;
+// TextOptions: textSize，textColor，backgroundColor
 internal TextOptions titleTextOptions;
 internal TextOptions descTextOptions;
 internal TextOptions callToActionTextOptions;
-// ScaleType: SCALE_TO_FILL、SCALE_ASPECT_FIT 、 SCALE_ASPECT_FILL
+// ScaleType: SCALE_TO_FILL、SCALE_ASPECT_FIT、SCALE_ASPECT_FILL
 internal ScaleType iconScaleType;
 internal ScaleType coverImageScaleType;
 ```
@@ -513,7 +549,7 @@ internal ScaleType coverImageScaleType;
 #### 请求 Native
 
 ```c#
-int adCount = 1;// adCount is your request ad count
+int adCount = 1;// adCount: you can load more than one ad
 this.nativeAd.LoadAd(adCount);
 ```
 
@@ -577,7 +613,7 @@ if (this.nativeAd.IsAdInvalidated(yumiNativeData))
   this.nativeAd.ShowView(yumiNativeData);
 ```
 
-注意：显示广告前，您必须注册布局并检查广告是否已经无效。
+- 注意：显示广告前，您必须注册布局并检查广告是否已经无效。
 
 #### 隐藏 Native View
 
@@ -633,7 +669,7 @@ public class YumiSDKDemo : MonoBehaviour
 
 **2.测试广告位**
 
-| 平台      | Banner   | Interstitial | Rewarded Video | Native   |
+| 平台    | Banner   | Interstitial | Rewarded Video | Native   |
 | ------- | -------- | ------------ | -------------- | -------- |
 | iOS     | l6ibkpae | onkkeg5i     | 5xmpgti4       | atb3ke1i |
 | Android | uz852t89 | 56ubk22h     | ew9hyvl4       | dt62rndy |
