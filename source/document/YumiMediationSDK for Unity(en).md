@@ -439,8 +439,194 @@ if(this.rewardVideoAd.IsReady())
 }
 ```
 
+
 ### Native Ad
 
+#### Init Native Ad
+
+```C#
+using UnityEngine;
+using UnityEngine.UI;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using YumiMediationSDK.Api;
+using YumiMediationSDK.Common;
+
+public class YumiNativeScene : MonoBehaviour
+{
+    private YumiNativeAd nativeAd;
+    private YumiNativeData yumiNativeData;
+    // UI elements in scene
+    [Header("Text:")]
+    public Text title;
+    public Text body;
+    [Header("Images:")]
+    public GameObject mediaView;
+    public GameObject iconImage;
+    [Header("Buttons:")]
+    // This doesn't be a button - it can also be an image
+    public Button callToActionButton;
+
+    // ad panel
+    public GameObject adPanel;
+  
+    void Start()
+    {
+        this.InitNativeAd();
+    }
+    private void InitNativeAd()
+    {
+        string gameVersionId = "YOUR_VERSION_ID";
+        string channelId = "YOUR_CHANNEL_ID";
+        #if UNITY_ANDROID
+          string nativePlacementId = "YOUR_NATIVE_PLACEMENT_ID_ANDROID";
+        #elif UNITY_IOS
+          string nativePlacementId = "YOUR_NATIVE_PLACEMENT_ID_IOS";
+        #else
+          string nativePlacementId = "unexpected_platform";
+        #endif
+        YumiNativeAdOptions options = new NativeAdOptionsBuilder().Build();
+        this.nativeAd = new YumiNativeAd(nativePlacementId, channelId, gameVersionId, options);
+        // callBack
+        this.nativeAd.OnNativeAdLoaded += HandleNativeAdLoaded;
+        this.nativeAd.OnAdFailedToLoad += HandleNativeAdFailedToLoad;
+        this.nativeAd.OnAdClick += HandleNativeAdClicked;
+    }
+    #region native call back handles
+    public void HandleNativeAdLoaded(object sender, YumiNativeToLoadEventArgs args)
+    {
+        Logger.Log("HandleNativeAdLoaded event opened");
+        if (nativeAd == null)
+        {
+            Logger.Log("nativeAd is null");
+            return;
+        }
+
+        if (args == null || args.nativeData == null || args.nativeData.Count == 0)
+        {
+            Logger.Log("nativeAd data not found.");
+            return;
+        }
+        // args.nativeData is nativeAd data
+      	yumiNativeData = args.nativeData[0];
+    }
+    public void HandleNativeAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args)
+    {
+        Logger.Log("HandleNativeAdFailedToLoad event received with message: " + args.Message);
+    }
+    public void HandleNativeAdClicked(object sender, EventArgs args)
+    {
+        Logger.Log("HandleNativeAdClicked");
+    }
+
+    #endregion
+}
+```
+
+#### YumiNativeAdOptions
+
+`YumiNativeAdOptions` is the last parameter to init the `YumiNativeAd`, you can set the ad style by this.
+
+```C#
+// AdOptionViewPosition: TOP_LEFT,TOP_RIGHT,BOTTOM_LEFT,BOTTOM_RIGHT
+internal AdOptionViewPosition adChoiseViewPosition;
+// AdAttribution: AdOptionsPosition、text、textColor、backgroundColor、textSize、hide
+internal AdAttribution adAttribution;
+// TextOptions: textSize，textColor，backgroundColor
+internal TextOptions titleTextOptions;
+internal TextOptions descTextOptions;
+internal TextOptions callToActionTextOptions;
+// ScaleType: SCALE_TO_FILL、SCALE_ASPECT_FIT、SCALE_ASPECT_FILL
+internal ScaleType iconScaleType;
+internal ScaleType coverImageScaleType;
+```
+
+#### Request Native
+
+```C#
+int adCount = 1;// adCount: you can load more than one ad
+this.nativeAd.LoadAd(adCount);
+```
+
+#### Create Your Native Ad Layout
+
+```C#
+public class YumiNativeScene : MonoBehaviour
+  {
+    private YumiNativeAd nativeAd;
+    // UI elements in scene
+    [Header("Text:")]
+    public Text title;
+    public Text body;
+    [Header("Images:")]
+    public GameObject mediaView;
+    public GameObject iconImage;
+    [Header("Buttons:")]
+    // This doesn't be a button - it can also be an image
+    public Button callToActionButton;
+    /// ...
+  }
+```
+
+Here is how they can be associated with the views in the editor:
+
+![image](./resources/nativeAd.png)
+
+#### Populating your Layout Using the Ad's Metadata
+
+```C#
+public class YumiNativeScene : MonoBehaviour
+{
+  private YumiNativeAd nativeAd;
+  private YumiNativeData yumiNativeData;
+  private void RegisterNativeViews()
+    {
+        Dictionary<NativeElemetType, Transform> elementsDictionary = new Dictionary<NativeElemetType, Transform>();
+        elementsDictionary.Add(NativeElemetType.PANEL, adPanel.transform);
+        elementsDictionary.Add(NativeElemetType.TITLE, title.transform);
+        elementsDictionary.Add(NativeElemetType.DESCRIPTION, body.transform);
+        elementsDictionary.Add(NativeElemetType.ICON, iconImage.transform);
+        elementsDictionary.Add(NativeElemetType.COVER_IMAGE, mediaView.transform);
+        elementsDictionary.Add(NativeElemetType.CALL_TO_ACTION, callToActionButton.transform);
+        // This is a method to associate a YumiNativeData with the ad assets gameobject you will use to display the native ads.
+        this.nativeAd.RegisterGameObjectsForInteraction(yumiNativeData, gameObject, elementsDictionary);
+
+    }
+}
+```
+
+#### Show Native Ad View
+
+You should check whether the ad has been invalidated before displaying it.
+
+```C#
+// Determines whether nativeAd data is invalidated, if invalidated please reload
+if (this.nativeAd.IsAdInvalidated(yumiNativeData))
+  {
+      Logger.Log("Native Data is invalidated");
+      return;
+  }
+  this.nativeAd.ShowView(yumiNativeData);
+```
+
+#### Hide Native Ad View
+
+```C#
+this.nativeAd.HideView(yumiNativeData);// Hide nativeAd data associate view
+```
+
+#### Remove Native Ad View
+
+```C#
+this.nativeAd.UnregisterView(yumiNativeData);
+```
+
+#### Destroy Native Ad View
+
+```C#
+this.nativeAd.Destroy();
 ```
 
 ## Debug Mode
