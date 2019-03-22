@@ -28,27 +28,27 @@
 
 ## Summary
 
+1. To Readers
 
-1.To Readers
+   This documentation is intended for developers who want to integrate Yumimobi SDK in Unity products.
 
-This documentation is intended for developers who want to integrate Yumimobi SDK in Unity products.
+2. Prerequisites
 
-2.Prerequisites
+   - Unity 5.6 and above
 
-- Unity 5.6 and above
-- To deploy to iOS
+   - To deploy to iOS
 
-  Xcode 7.0 or higher
+     Xcode 7.0 or higher
 
-  iOS 8.0 and above
+     iOS 8.0 and above
 
-  [CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
+     [CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
 
-- To deploy to Android
+   - To deploy to Android
 
-  Android SDK： > 4.1 (API level 16)
+     Android SDK： > 4.1 (API level 16)
 
-  [Demo ](https://github.com/yumimobi/YumiMediationSDK-Unity)   
+     [Demo ](https://github.com/yumimobi/YumiMediationSDK-Unity)   
 
 ## Download the YumiMediationSDK Unity plugin
 
