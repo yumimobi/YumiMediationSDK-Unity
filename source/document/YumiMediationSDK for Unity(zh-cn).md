@@ -357,7 +357,7 @@ public class YumiSDKDemo : MonoBehaviour
 
 #### 展示 Interstitial
 
-建议先调用```this.interstitialAd.IsReady()```判断插屏是否准备好
+建议先调用 `this.interstitialAd.IsReady()` 判断插屏是否准备好
 
 ```C#
  if(this.interstitialAd.IsReady())
@@ -391,11 +391,11 @@ public class YumiSDKDemo : MonoBehaviour
     string gameVersionId = "YOUR_VERSION_ID";
     string channelId = "YOUR_CHANNEL_ID";
     #if UNITY_ANDROID
-	  string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_ANDROID";
+      string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_ANDROID";
     #elif UNITY_IOS
-	  string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_IOS";
+      string rewardVideoPlacementId = "YOUR_REWARDVIDEO_PLACEMENT_ID_IOS";
     # else
-	  string rewardVideoPlacementId = "unexpected_platform";
+      string rewardVideoPlacementId = "unexpected_platform";
     #endif
     this.rewardVideoAd = YumiRewardVideoAd.Instance;
     this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
