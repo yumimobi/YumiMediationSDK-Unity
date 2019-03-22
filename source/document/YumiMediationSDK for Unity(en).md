@@ -32,7 +32,7 @@
 
    This documentation is intended for developers who want to integrate Yumimobi SDK in Unity products.
 
-2. Prerequisites
+2. Develop Environment
 
    - Unity 5.6 and above
 
@@ -60,7 +60,7 @@ The YumiMediationSDK Unity plugin enables Unity developers to easily serve Yumim
 
 ## Import the YumiMediationSDK Unity plugin
 
-Open your project in the Unity editor。Select**Assets> Import Package> Custom Package** and find the YumiMediationSDKPlugin.unitypackage file 有downloaded
+Open your project in the Unity editor. Select **Assets> Import Package> Custom Package** and find the YumiMediationSDKPlugin.unitypackage file that you downloaded.
 
 ![img](resources/01.png)
 
@@ -70,7 +70,7 @@ Make sure all of the files are selected and click **Import**.
 
 ## Include the YumiMediationSDK
 
-The YumiMediationSDK Unity plugin is distributed with the [Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver) 。This library is intended for use by any Unity plugin that requires access to Android specific libraries (e.g., AARs) or iOS CocoaPods. It provides Unity plugins the ability to declare dependencies, which are then automatically resolved and copied into your Unity project.
+The YumiMediationSDK Unity plugin is distributed with the [Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver). This library is intended for use by any Unity plugin that requires access to Android specific libraries (e.g., AARs) or iOS CocoaPods. It provides Unity plugins the ability to declare dependencies, which are then automatically resolved and copied into your Unity project.
 
 Follow the steps listed below to ensure your project includes the YumiMediationSDK Unity
 ### Deploy iOS 
@@ -126,7 +126,7 @@ iOS dependencies：
     </iosPods>
 ```
 
-e.g., Delete ```AdMob``` ，Delete ``` <iosPod name="YumiMediationAdapters/AdMob" version="3.6.0" />```  
+e.g., Delete `AdMob` ，Delete `<iosPod name="YumiMediationAdapters/AdMob" version="3.6.0"></iosPod>`  
 
 Complete the above procedure，Open **xcworkspace** project.
 
@@ -134,11 +134,11 @@ Complete the above procedure，Open **xcworkspace** project.
 
 ### Deploy Android 
 
-In the Unity editor, select **Assets> Play Services Resolver> Android Resolver>Force Resolve**。  The Unity Play Services Resolver library will copy the declared dependencies into the  **Assets/Plugins/Android** directory of your Unity app.
+In the Unity editor, select **Assets> Play Services Resolver> Android Resolver>Force Resolve**. The Unity Play Services Resolver library will copy the declared dependencies into the  **Assets/Plugins/Android** directory of your Unity app.
 
 ![img](resources/03.png)
 
-The YumiMediationSDK Ads Unity plugin dependencies are listed in **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml** .
+The YumiMediationSDK Ads Unity plugin dependencies are listed in **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml**.
 
 Android dependencies：
 
@@ -171,7 +171,7 @@ Android dependencies：
         </repositories>
 </androidPackages>
 ```
-e.g., Delete  ```admob```，Delete ```<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.0" />``` .
+e.g., Delete  `admob`，Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.0" />`.
 
 ## Select an ad format
 
