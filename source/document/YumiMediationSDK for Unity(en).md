@@ -314,14 +314,15 @@ public class YumiSDKDemo : MonoBehaviour
     string gameVersionId = "YOUR_VERSION_ID";
     string channelId = "YOUR_CHANNEL_ID";
     #if UNITY_ANDROID
-	  string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_ANDROID";
+      string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_ANDROID";
     #elif UNITY_IOS
-	  string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_IOS";
+      string interstitialPlacementId = "YOUR_INTERSTITIAL_PLACEMENT_ID_IOS";
     # else
-	  string interstitialPlacementId = "unexpected_platform";
+      string interstitialPlacementId = "unexpected_platform";
     #endif
     this.interstitialAd = new YumiInterstitialAd(interstitialPlacementId, channelId, gameVersionId);
-    // add interstitial event 
+
+    // add interstitial event
     this.interstitialAd.OnAdLoaded += HandleInterstitialAdLoaded;
     this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
     this.interstitialAd.OnAdClicked += HandleInterstitialAdClicked;
@@ -351,25 +352,27 @@ public class YumiSDKDemo : MonoBehaviour
 
 #### Show Interstitial
 
-It is recommended to call```this.interstitialAd.IsInterstitialReady()```to determine if the screen is ready.
+It is recommended to call `this.interstitialAd.IsReady()` to determine if the screen is ready.
 
 ```C#
- if(this.interstitialAd.IsInterstitialReady())
- {
-  this.interstitialAd.ShowInterstitial();
- }
+if(this.interstitialAd.IsReady())
+{
+  this.interstitialAd.Show();
+}
 ```
 
 #### Destroy Interstitial
 
 ```c#
-this.interstitialAd.DestroyInterstitial();
+this.interstitialAd.Destroy();
 ```
 
 ### Reward Video
 
 #### Initialization and Reward Video request
+
 The reward video placement will auto cached.
+
 ```C#
 using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
