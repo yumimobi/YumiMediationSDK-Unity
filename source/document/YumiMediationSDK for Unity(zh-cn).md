@@ -23,6 +23,7 @@
             * [展示 Rewarded Video](#展示-rewarded-video)
          * [Native](#native)
             * [初始化 Native](#初始化-native)
+            * [YumiNativeAdOptions](#yuminativeadoptions) 
             * [请求 Native](#请求-native)
             * [创建原生广告布局](#创建原生广告布局)
             * [使用广告元数据注册布局](#使用广告元数据注册布局)
@@ -528,6 +529,7 @@ public class YumiNativeScene : MonoBehaviour
 ```
 
 #### YumiNativeAdOptions
+
 `YumiNativeAdOptions` 是初始化 `YumiNativeAd` 的最后一个参数，可以配置原生广告显示的样式，参数详情如下：
 
 ```c#
