@@ -533,15 +533,15 @@ public class YumiNativeScene : MonoBehaviour
 `YumiNativeAdOptions` 是初始化 `YumiNativeAd` 的最后一个参数，可以配置原生广告显示的样式，参数详情如下：
 
 ```c#
-//AdOptionViewPosition: TOP_LEFT,TOP_RIGHT,BOTTOM_LEFT,BOTTOM_RIGHT
+// AdOptionViewPosition: TOP_LEFT,TOP_RIGHT,BOTTOM_LEFT,BOTTOM_RIGHT
 internal AdOptionViewPosition adChoiseViewPosition;
-//AdAttribution: AdOptionsPosition、text、textColor、backgroundColor、textSize、hide
+// AdAttribution: AdOptionsPosition、text、textColor、backgroundColor、textSize、hide
 internal AdAttribution adAttribution;
-//TextOptions: textSize，textColor，backgroundColor
+// TextOptions: textSize，textColor，backgroundColor
 internal TextOptions titleTextOptions;
 internal TextOptions descTextOptions;
 internal TextOptions callToActionTextOptions;
-// ScaleType: SCALE_TO_FILL、SCALE_ASPECT_FIT 、 SCALE_ASPECT_FILL
+// ScaleType: SCALE_TO_FILL、SCALE_ASPECT_FIT、SCALE_ASPECT_FILL
 internal ScaleType iconScaleType;
 internal ScaleType coverImageScaleType;
 ```
