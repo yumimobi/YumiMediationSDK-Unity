@@ -670,12 +670,7 @@ public class YumiSDKDemo : MonoBehaviour
 
 ## Common issues of developer 
 
-**1.Apps with more than 64K (65536) Android configuration methods**
-
-Reference Android official solution，[Click to view](https://developer.android.com/studio/build/multidex)
-
-
-**2.Test ad placementIDs**
+**1.Test ad placementIDs**
 
 | Platform | Banner   | Interstitial | Rewarded Video | Native   |
 | -------- | -------- | ------------ | -------------- | -------- |
