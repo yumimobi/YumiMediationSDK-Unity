@@ -662,12 +662,7 @@ public class YumiSDKDemo : MonoBehaviour
 
 ## 常见问题
 
-**1.Android 配置方法数超过 64K(65536) 的应用**
-
-参考 Android 官方解决方案，[点击查看](https://developer.android.com/studio/build/multidex)
-
-
-**2.测试广告位**
+**1.测试广告位**
 
 | 平台    | Banner   | Interstitial | Rewarded Video | Native   |
 | ------- | -------- | ------------ | -------------- | -------- |
