@@ -66,7 +66,7 @@
 
 Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android 和 iOS 应用上展示广告，无需编写 Java 或 Objective-C 代码。该插件提供了一个 C# 接口来请求广告。使用下面的链接下载插件的 Unity 包或在 GitHub 上查看其代码。
 
-[下载YumiMediationSDK Unity插件](https://adsdk.yumimobi.com/Unity/3.6.0/YumiMediationSDKPlugin_v3.6.0.unitypackage)
+[下载YumiMediationSDK Unity插件](https://adsdk.yumimobi.com/Unity/3.6.1/YumiMediationSDKPlugin_v3.6.1.unitypackage)
 
 [查看源码](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
@@ -92,51 +92,51 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ```xml
     <iosPods>
-        <iosPod name="YumiMediationSDK" version="3.6.0" minTargetSdk="8.0">
+        <iosPod name="YumiMediationSDK" version="3.6.1" minTargetSdk="8.0">
             <sources>
                 <source>https://github.com/CocoaPods/Specs</source>
             </sources>
         </iosPod>
         <!-- adapters -->
-        <iosPod name="YumiMediationAdapters/AdColony" version="3.6.0">
+        <iosPod name="YumiMediationAdapters/AdColony" version="3.6.1">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/AdMob" version="3.6.0">
+        <iosPod name="YumiMediationAdapters/AdMob" version="3.6.1">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/AppLovin" version="3.6.0">
+        <iosPod name="YumiMediationAdapters/AppLovin" version="3.6.1">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Baidu" version="3.6.0">
+        <iosPod name="YumiMediationAdapters/Baidu" version="3.6.1">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Chartboost" version="3.6.0">
+        <iosPod name="YumiMediationAdapters/Chartboost" version="3.6.1">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Domob" version="3.6.0">
+        <iosPod name="YumiMediationAdapters/Domob" version="3.6.1">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Facebook" version="3.6.0">
+        <iosPod name="YumiMediationAdapters/Facebook" version="3.6.1">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/GDT" version="3.6.0">
+        <iosPod name="YumiMediationAdapters/GDT" version="3.6.1">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/InMobi" version="3.6.0">
+        <iosPod name="YumiMediationAdapters/InMobi" version="3.6.1">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/IronSource" version="3.6.0">
+        <iosPod name="YumiMediationAdapters/IronSource" version="3.6.1">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Unity" version="3.6.0">
+        <iosPod name="YumiMediationAdapters/Unity" version="3.6.1">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Vungle" version="3.6.0">
+        <iosPod name="YumiMediationAdapters/Vungle" version="3.6.1">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Mintegral" version="3.6.0">
+        <iosPod name="YumiMediationAdapters/Mintegral" version="3.6.1">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/OneWay" version="3.6.0">
+        <iosPod name="YumiMediationAdapters/OneWay" version="3.6.1">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/ZplayAds" version="3.6.0">
+        <iosPod name="YumiMediationAdapters/ZplayAds" version="3.6.1">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/IQzone" version="3.6.0">
+        <iosPod name="YumiMediationAdapters/IQzone" version="3.6.1">
         </iosPod>
         <!-- debugCenter -->
-        <iosPod name="YumiMediationDebugCenter-iOS" version="3.6.0">
+        <iosPod name="YumiMediationDebugCenter-iOS" version="3.6.1">
         </iosPod>
     </iosPods>
 ```
 
-比如删除 `AdMob` ，直接删除 ` <iosPod name="YumiMediationAdapters/AdMob" version="3.6.0"></iosPod>`  即可。
+比如删除 `AdMob` ，直接删除 ` <iosPod name="YumiMediationAdapters/AdMob" version="3.6.1"></iosPod>`  即可。
 
 构建完成，打开 **xcworkspace** 工程。
 
