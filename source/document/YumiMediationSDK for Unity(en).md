@@ -663,7 +663,7 @@ public class YumiSDKDemo : MonoBehaviour
             this.debugCenter = new YumiDebugCenter();
         }
         // Note: Fill in the ad slot information to distinguish between iOS and Android
-        this.debugCenter.PresentYumiMediationDebugCenter("YOUR_BANNER_PLACEMENT_ID", "YOUR_INTERSTITIAL_PLACEMENT_ID", "YOUR_REWARDVIDEO_PLACEMENT_ID", "YOUR_CHANNEL_ID", "YOUR_VERSION_ID");
+        this.debugCenter.PresentYumiMediationDebugCenter("YOUR_BANNER_PLACEMENT_ID", "YOUR_INTERSTITIAL_PLACEMENT_ID", "YOUR_REWARDVIDEO_PLACEMENT_ID", "YOUR_NATIVE_PLACEMENT_ID","YOUR_CHANNEL_ID", "YOUR_VERSION_ID");
     }
 }
 ```
@@ -677,8 +677,8 @@ Reference Android official solution，[Click to view](https://developer.android.
 
 **2.Test ad placementIDs**
 
-| Platform | Banner   | Interstitial | Rewarded Video |
-| -------- | -------- | ------------ | -------------- |
-| iOS      | l6ibkpae | onkkeg5i     | 5xmpgti4       |
-| Android  | uz852t89 | 56ubk22h     | ew9hyvl4       |
+| Platform | Banner   | Interstitial | Rewarded Video | Native   |
+| -------- | -------- | ------------ | -------------- | -------- |
+| iOS      | l6ibkpae | onkkeg5i     | 5xmpgti4       | atb3ke1i |
+| Android  | uz852t89 | 56ubk22h     | ew9hyvl4       | dt62rndy |
 
