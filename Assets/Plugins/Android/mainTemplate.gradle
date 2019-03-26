@@ -18,14 +18,6 @@ allprojects {
         flatDir {
             dirs 'libs'
         }
-        maven {
-//          url 'https://adsdk.yumimobi.com/Android'
-//          非 dns 链接
-            url 'http://ad-sdk.oss-cn-beijing.aliyuncs.com/Android'
-        }
-
-        maven { url 'http://47.95.29.186:8081/artifactory/gradle-dev-local' }
-    }
 }
 
 apply plugin: 'com.android.application'
@@ -33,7 +25,6 @@ apply plugin: 'com.android.application'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:multidex:1.0.3'
-    implementation 'com.yumimobi.ads.mediation:iqzone:3.6.0'
 
 **DEPS**}
 
