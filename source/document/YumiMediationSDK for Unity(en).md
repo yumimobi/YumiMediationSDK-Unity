@@ -679,10 +679,43 @@ public class YumiSDKDemo : MonoBehaviour
 
 ## Common issues of developer 
 
-**1.Test ad placementIDs**
+### 1 Test ad placementIDs
 
 | Platform | Banner   | Interstitial | Rewarded Video | Native   |
 | -------- | -------- | ------------ | -------------- | -------- |
 | iOS      | l6ibkpae | onkkeg5i     | 5xmpgti4       | atb3ke1i |
 | Android  | uz852t89 | 56ubk22h     | ew9hyvl4       | dt62rndy |
 
+
+### 2 Android build failed
+#### 2.1 Failed to find Build Tools...
+```
+* What went wrong:
+A problem occurred configuring root project 'gradleOut'.
+> Failed to find Build Tools revision 29.0.0
+```
+**How to fix**
+
+Remove `buildToolsVersion '**BUILDTOOLS**'` in [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle).
+
+#### 2.2 No toolchains found...
+```
+* What went wrong:
+A problem occurred configuring root project 'gradleOut'.
+> No toolchains found in the NDK toolchains folder for ABI with prefix: mips64el-linux-android
+```
+**How to fix**
+
+Change the version of gradle plugin in [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle), for example, change `classpath 'com.android.tools.build:gradle:3.0.1'` to `classpath 'com.android.tools.build:gradle:3.2.1'`.
+
+#### 2.3 Failed to apply plugin...
+```
+* What went wrong:
+A problem occurred evaluating root project 'gradleOut'.
+> Failed to apply plugin [id 'com.android.application']
+   > Minimum supported Gradle version is 4.6. Current version is 4.2.1. If using the gradle wrapper, try editing the distributionUrl in
+```
+**How to fix(pick one of the follows)**
+
+1. upgrade gradle version to 4.6
+2. degrade gradle plugin to match gradle 4.2.1 version. you can check [this](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) to change the gradle plugin version in [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle), for example, change `classpath 'com.android.tools.build:gradle:x.x.x'` to `classpath 'com.android.tools.build:gradle:3.0.0+`.

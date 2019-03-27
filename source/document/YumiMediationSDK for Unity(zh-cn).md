@@ -671,10 +671,45 @@ public class YumiSDKDemo : MonoBehaviour
 
 ## 常见问题
 
-**1.测试广告位**
+### 1 测试广告位
 
 | 平台    | Banner   | Interstitial | Rewarded Video | Native   |
 | ------- | -------- | ------------ | -------------- | -------- |
 | iOS     | l6ibkpae | onkkeg5i     | 5xmpgti4       | atb3ke1i |
 | Android | uz852t89 | 56ubk22h     | ew9hyvl4       | dt62rndy |
 
+### 2 Android 打包失败
+#### 2.1 Failed to find Build Tools...
+```
+* What went wrong:
+A problem occurred configuring root project 'gradleOut'.
+> Failed to find Build Tools revision 29.0.0
+```
+
+**解决方法**
+
+从 [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle) 中删除 `buildToolsVersion '**BUILDTOOLS**'` 
+
+#### 2.2 No toolchains found...
+```
+* What went wrong:
+A problem occurred configuring root project 'gradleOut'.
+> No toolchains found in the NDK toolchains folder for ABI with prefix: mips64el-linux-android
+```
+
+**解决方法**
+
+修改 [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle) 中 gradle plugin 版本，如将 `classpath 'com.android.tools.build:gradle:3.0.1'` 修改为 `classpath 'com.android.tools.build:gradle:3.2.1'`。
+
+#### 2.3 Failed to apply plugin...
+```
+* What went wrong:
+A problem occurred evaluating root project 'gradleOut'.
+> Failed to apply plugin [id 'com.android.application']
+   > Minimum supported Gradle version is 4.6. Current version is 4.2.1. If using the gradle wrapper, try editing the distributionUrl in
+```
+
+**解决方法（以下方法任选一个即可）**
+
+1. 升级 gradle 版本至 4.6
+2. 降级 gradle plugin 版本至 gradle 4.2.1 对应的版本。对照 [Update Gradle](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) 文档可知需要将 [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle) 中 `classpath 'com.android.tools.build:gradle:x.x.x'` 修改为 `classpath 'com.android.tools.build:gradle:3.0.0+`
