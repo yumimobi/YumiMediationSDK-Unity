@@ -669,6 +669,12 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
+### 图示
+
+以 iOS 平台为例（Android 平台逻辑相同，UI 不同）。
+
+![img](resources/debug-1.png) ![img](resources/debug-2.png) ![img](resources/debug-3.png)
+
 ## 常见问题
 
 ### 1 测试广告位
