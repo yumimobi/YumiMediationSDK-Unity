@@ -35,6 +35,9 @@
          * [Call Debug Mode](#call-debug-mode)
          * [Sample](#sample) 
       * [Common issues of developer](#common-issues-of-developer)
+         * [TESTID](#TESTID)
+
+
 
 # YumiMediationSDK for Unity
 
@@ -696,12 +699,20 @@ Take the iOS platform as an example (the Android platform has the same logic but
 
 ## Common issues of developer 
 
-### 1 Test ad placementIDs
+### 1. TEST ID
+ 
 
-| Platform | Banner   | Interstitial | Rewarded Video | Native   |
-| -------- | -------- | ------------ | -------------- | -------- |
-| iOS      | l6ibkpae | onkkeg5i     | 5xmpgti4       | atb3ke1i |
-| Android  | uz852t89 | 56ubk22h     | ew9hyvl4       | dt62rndy |
+| OS      | Formats        | Slot(Placement) ID | Note                                                                                                                                          |
+| ------- | -------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android | Banner         | uz852t89           | YUMI,AdMob,APPlovin,Baidu,IQzone Use this test id, the above Network platform has ads                                                         |
+| Android | Interstitial   | 56ubk22h           | YUMI,AdMob,APPlovin,Baidu,IronSource,Inmobi,IQzone, untiy Ads，vungle, ZPLAYAds Use this test id, the above Network platform has ads          |
+| Android | Rewarded Video | ew9hyvl4           | YUMI,AdMob,APPlovin,GDTMob,IronSource,Inmobi,IQzone, untiy Ads，vungle, ZPLAYAdsUse this test id, the above Network platform has ads          |
+| Android | Native         | dt62rndy           | YUMI,AdMob,Baidu,GDTMob,Facebook Use this test id, the above Network platform has ads                                                         |
+| iOS     | Banner         | l6ibkpae           | YUMI,AdMob,APPlovin,Baidu,Facebook,GDTMob Use this test id, the above Network platform has ads                                                |
+| iOS     | Interstitial   | onkkeg5i           | YUMI,AdMob,Baidu,Chartboost,GDTMob,IronSource,Inmobi,IQzone, untiy Ads，vungle, ZPLAYAds Use this test id, the above Network platform has ads |
+| iOS     | Rewarded Video | 5xmpgti4           | YUMI,AdMob,Adcolony, APPlovin,IronSource,Inmobi,Mintegral, untiy Ads，vungle, ZPLAYAds Use this test id, the above Network platform has ads   |
+| iOS     | Native         | atb3ke1i           | YUMI,AdMob,Baidu,GDTMob,Facebook Use this test id, the above Network platform has ads                                                         |
+
 
 
 ### 2 Android build failed
