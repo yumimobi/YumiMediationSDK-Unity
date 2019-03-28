@@ -676,15 +676,15 @@ public class YumiSDKDemo : MonoBehaviour
 
 <div align="center"><img width="200" height="352" src="resources/debug-1.png"/></div>
 
-<p align="center" size=1>选择平台类型</p>
+*<p align="center" size=1>选择平台类型</p>*
 
 <div align="center"><img width="200" height="352" src="resources/debug-2.png"/></div>
 
-*<center><font size=1>选择单一平台进行调试<br>如果您需要的平台未在列表中，则代表此平台未添加至工程中<br>绿色平台为已添加至工程并且已配置<br>灰色平台为已添加至工程但未配置</font></center>*
+*<p align="center" size=1>选择单一平台进行调试<br>如果您需要的平台未在列表中，则代表此平台未添加至工程中<br>绿色平台为已添加至工程并且已配置<br>灰色平台为已添加至工程但未配置</p>*
 
 <div align="center"><img width="200" height="352" src="resources/debug-3.png"/></div>
 
-*<center><font size=1>选择广告类型，调试单一平台</font></center>*
+*<p align="center" size=1>选择广告类型，调试单一平台</p>*
 
 ## 常见问题
 
