@@ -677,6 +677,22 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
+### Sample
+
+Take the iOS platform as an example (the Android platform has the same logic but different UI).
+
+<div align="center"><img width="160" height="282" src="resources/debug-1.png"/></div>
+
+*<center><font size=1>Select platform integration category</font></center>*
+
+<div align="center"><img width="160" height="282" src="resources/debug-2.png"/></div>
+
+*<center><font size=1>Select single platform<br>If the platform you want is not in the list, it is not added to the project<br>The green platform is added to the project and configured<br>The grey platform is added to the project but not configured</font></center>*
+
+<div align="center"><img width="160" height="282" src="resources/debug-3.png"/></div>
+
+*<center><font size=1>Select the AD type and debug the single platform</font></center>*
+
 ## Common issues of developer 
 
 ### 1 Test ad placementIDs
