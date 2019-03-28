@@ -688,7 +688,7 @@ Take the iOS platform as an example (the Android platform has the same logic but
 
 <div align="center"><img width="160" height="282" src="resources/debug-2.png"/></div>
 
-*<p align="center" size=1>elect single platform<br>If the platform you want is not in the list, it is not added to the project<br>The green platform is added to the project and configured<br>The grey platform is added to the project but not configured</p>*
+*<p align="center" size=1>Select single platform<br>If the platform you want is not in the list, it is not added to the project<br>The green platform is added to the project and configured<br>The grey platform is added to the project but not configured</p>*
 
 <div align="center"><img width="160" height="282" src="resources/debug-3.png"/></div>
 
