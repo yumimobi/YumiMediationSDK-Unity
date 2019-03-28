@@ -33,6 +33,7 @@
             * [Destroy Native Ad View](#destroy-native-ad-view)
       * [Debug Mode](#debug-mode)
          * [Call Debug Mode](#call-debug-mode)
+         * [Sample](#sample) 
       * [Common issues of developer](#common-issues-of-developer)
 
 # YumiMediationSDK for Unity
