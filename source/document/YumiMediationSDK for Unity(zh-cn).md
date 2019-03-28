@@ -34,7 +34,9 @@
       * [调试模式](#调试模式)
          * [调用调试模式](#调用调试模式)
       * [常见问题](#常见问题)
-
+        *  [TESTID](#TESTID) 
+        *  [Android打包失败](#Android 打包失败)
+        
 
 # YumiMediationSDK for Unity
 
@@ -671,12 +673,20 @@ public class YumiSDKDemo : MonoBehaviour
 
 ## 常见问题
 
-### 1 测试广告位
+### 1. TEST ID
+ 
 
-| 平台    | Banner   | Interstitial | Rewarded Video | Native   |
-| ------- | -------- | ------------ | -------------- | -------- |
-| iOS     | l6ibkpae | onkkeg5i     | 5xmpgti4       | atb3ke1i |
-| Android | uz852t89 | 56ubk22h     | ew9hyvl4       | dt62rndy |
+| 系统    | 广告类型       | Slot(Placement) ID | 备注                                                                                                                                       |
+| ------- | -------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Android | Banner         | uz852t89           | YUMI,AdMob,APPlovin,Baidu,IQzone 使用此test id,以上Network平台可测试到对应平台广告                                                         |
+| Android | Interstitial   | 56ubk22h           | YUMI,AdMob,APPlovin,Baidu,IronSource,Inmobi,IQzone, untiy Ads，vungle, ZPLAYAds 使用此test id,以上Network平台可测试到对应平台广告          |
+| Android | Rewarded Video | ew9hyvl4           | YUMI,AdMob,APPlovin,GDTMob,IronSource,Inmobi,IQzone, untiy Ads，vungle, ZPLAYAds 使用此test id,以上Network平台可测试到对应平台广告         |
+| Android | Native         | dt62rndy           | YUMI,AdMob,Baidu,GDTMob,Facebook 使用此test id,以上Network平台可测试到对应平台广告                                                         |
+| iOS     | Banner         | l6ibkpae           | YUMI,AdMob,APPlovin,Baidu,Facebook,GDTMob  使用此test id,以上Network平台可测试到对应平台广告                                               |
+| iOS     | Interstitial   | onkkeg5i           | YUMI,AdMob,Baidu,Chartboost,GDTMob,IronSource,Inmobi,IQzone, untiy Ads，vungle, ZPLAYAds 使用此test id,以上Network平台可测试到对应平台广告 |
+| iOS     | Rewarded Video | 5xmpgti4           | YUMI,AdMob,Adcolony, APPlovin,IronSource,Inmobi,Mintegral, untiy Ads，vungle, ZPLAYAds 使用此test id,以上Network平台可测试到对应平台广告   |
+| iOS     | Native         | atb3ke1i           | YUMI,AdMob,Baidu,GDTMob,Facebook 使用此test id,以上Network平台可测试到对应平台广告                                                         |
+
 
 ### 2 Android 打包失败
 #### 2.1 Failed to find Build Tools...
