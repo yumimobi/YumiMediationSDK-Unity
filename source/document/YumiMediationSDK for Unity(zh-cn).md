@@ -35,8 +35,8 @@
          * [调用调试模式](#调用调试模式)
          * [图示](#图示) 
       * [常见问题](#常见问题)
-        *  [TESTID](#TESTID) 
-        *  [Android打包失败](#Android 打包失败)
+        *  [1 TEST ID](#1-TEST-ID) 
+        *  [2 Android打包失败](#2-Android-打包失败)
         
 
 # YumiMediationSDK for Unity
@@ -690,7 +690,7 @@ public class YumiSDKDemo : MonoBehaviour
 
 ## 常见问题
 
-### 1. TEST ID
+### 1 TEST ID
  
 
 | 系统    | 广告类型       | Slot(Placement) ID | 备注                                                                                                                                       |

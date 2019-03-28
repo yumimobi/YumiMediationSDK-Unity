@@ -35,7 +35,8 @@
          * [Call Debug Mode](#call-debug-mode)
          * [Sample](#sample) 
       * [Common issues of developer](#common-issues-of-developer)
-         * [TESTID](#TESTID)
+         * [1 TEST ID](#1-test-id)
+         * [2 Android build failed](#2-Android-build-failed)
 
 
 
@@ -699,7 +700,7 @@ Take the iOS platform as an example (the Android platform has the same logic but
 
 ## Common issues of developer 
 
-### 1. TEST ID
+### 1 TEST ID
  
 
 | OS      | Formats        | Slot(Placement) ID | Note                                                                                                                                          |
