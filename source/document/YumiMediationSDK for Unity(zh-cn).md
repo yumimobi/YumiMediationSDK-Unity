@@ -676,9 +676,7 @@ public class YumiSDKDemo : MonoBehaviour
 
 <div align="center"><img width="200" height="352" src="resources/debug-1.png"/></div>
 
-*<center><font size=1>选择平台类型</font></center>*
-
-<center>111</center>
+<p align="center" size=1>选择平台类型</p>
 
 <div align="center"><img width="200" height="352" src="resources/debug-2.png"/></div>
 
