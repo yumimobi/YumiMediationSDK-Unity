@@ -2,7 +2,7 @@
 
 ## Latest Version
 
-**v3.6.0**
+**v3.6.1**
 
 ## SDK Changelog
 [**SDK Changelog Untiy for iOS  (zh-cn)**](https://github.com/yumimobi/YumiMediationSDKDemo-Android/blob/master/SDK%20Changelog/iOS%20SDK%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97.md)
