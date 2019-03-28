@@ -678,6 +678,8 @@ public class YumiSDKDemo : MonoBehaviour
 
 *<center><font size=1>选择平台类型</font></center>*
 
+<center>111</center>
+
 <div align="center"><img width="200" height="352" src="resources/debug-2.png"/></div>
 
 *<center><font size=1>选择单一平台进行调试<br>如果您需要的平台未在列表中，则代表此平台未添加至工程中<br>绿色平台为已添加至工程并且已配置<br>灰色平台为已添加至工程但未配置</font></center>*
