@@ -705,14 +705,14 @@ Take the iOS platform as an example (the Android platform has the same logic but
 
 | OS      | Formats        | Slot(Placement) ID | Note                                                                                                                                          |
 | ------- | -------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android | Banner         | uz852t89           | YUMI,AdMob,APPlovin,Baidu,IQzone Use this test id, the above Network platform has ads                                                         |
-| Android | Interstitial   | 56ubk22h           | YUMI,AdMob,APPlovin,Baidu,IronSource,Inmobi,IQzone, untiy Ads，vungle, ZPLAYAds Use this test id, the above Network platform has ads          |
-| Android | Rewarded Video | ew9hyvl4           | YUMI,AdMob,APPlovin,GDTMob,IronSource,Inmobi,IQzone, untiy Ads，vungle, ZPLAYAdsUse this test id, the above Network platform has ads          |
-| Android | Native         | dt62rndy           | YUMI,AdMob,Baidu,GDTMob,Facebook Use this test id, the above Network platform has ads                                                         |
-| iOS     | Banner         | l6ibkpae           | YUMI,AdMob,APPlovin,Baidu,Facebook,GDTMob Use this test id, the above Network platform has ads                                                |
-| iOS     | Interstitial   | onkkeg5i           | YUMI,AdMob,Baidu,Chartboost,GDTMob,IronSource,Inmobi,IQzone, untiy Ads，vungle, ZPLAYAds Use this test id, the above Network platform has ads |
-| iOS     | Rewarded Video | 5xmpgti4           | YUMI,AdMob,Adcolony, APPlovin,IronSource,Inmobi,Mintegral, untiy Ads，vungle, ZPLAYAds Use this test id, the above Network platform has ads   |
-| iOS     | Native         | atb3ke1i           | YUMI,AdMob,Baidu,GDTMob,Facebook Use this test id, the above Network platform has ads                                                         |
+| Android | Banner         | uz852t89           | Using this test ID, you are able to get test ads which are from YUMI, AdMob, AppLovin, Baidu, IQzone                                                         |
+| Android | Interstitial   | 56ubk22h           | Using this test ID, you are able to get test ads which are form YUMI, AdMob, AppLovin, Baidu, IronSource, InMobi, IQzone, Unity Ads, Vungle, ZPLAYAds          |
+| Android | Rewarded Video | ew9hyvl4           | Using this test ID, you can get test ads which are from YUMI, AdMob, AppLovin, GDTMob, IronSource, InMobi, IQzone, Unity Ads, Vungle, ZPLAYAds          |
+| Android | Native         | dt62rndy           | You can get test ads which are from YUMI, AdMob, Baidu, GDTMob, Facebook                                                         |
+| iOS     | Banner         | l6ibkpae           | You can get test ads which are from YUMI, AdMob, AppLovin, Baidu, Facebook, GDTMob                                                |
+| iOS     | Interstitial   | onkkeg5i           | Using this test ID, you can get test ads which are from YUMI, AdMob, Baidu, Chartboost, GDTMob, IronSource, InMobi, IQzone, Unity Ads, Vungle, ZPLAYAds |
+| iOS     | Rewarded Video | 5xmpgti4           | Using this test ID, you can get test ads which are from YUMI, AdMob, AdColony, AppLovin, IronSource, InMobi, Mintegral, Unity Ads, Vungle, ZPLAYAds   |
+| iOS     | Native         | atb3ke1i           | Using this test ID, you can get test ads which are from YUMI, AdMob, Baidu, GDTMob, Facebook                                                        |
 
 
 
