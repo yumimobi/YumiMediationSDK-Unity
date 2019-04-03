@@ -30,7 +30,7 @@
         <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.6.1" />
         <!--  If your app is only available in mainland China, use unity-china,else use Unity.   -->
         <androidPackage spec="com.yumimobi.ads.mediation:unity:3.6.1" />
-        <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.6.0" />-->
+        <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.6.1" />-->
         <repositories>
             <repository>https://jcenter.bintray.com/</repository>
             <repository>https://maven.google.com/</repository>
