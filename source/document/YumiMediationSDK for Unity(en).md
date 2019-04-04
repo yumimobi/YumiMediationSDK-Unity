@@ -290,15 +290,15 @@ this.bannerView.Destroy();
 
 #### YumiBannerViewOptions
 
-`YumiBannerViewOptions` is the last parameter to init `YumiBannerView`, you can set it in `YumiBannerViewOptions` file.
+`YumiBannerViewOptions` is the last parameter to init `YumiBannerView`, you can get it in `YumiBannerViewOptions` file.
 
-- `AdPosition`
+- `adPosition`
 
   Set the position of the banner in the superview.
 
   default is `BOTTOM`.
   
-- `BannerSize`
+- `bannerSize`
   
   Set the banner size.
 
@@ -306,17 +306,33 @@ this.bannerView.Destroy();
   - iPhone and iPod Touch ad size. Typically 320x50.
   - Leaderboard size for the iPad. Typically 728x90.
 
-- `IsSmart`
+- `isSmart`
 
   Set the banner to automatically adapter the screen width.
 
   default is `true`.
 
-- `DisableAutoRefresh`
+- `disableAutoRefresh`
 
   default is `false`. banner will request next ad automatically.
 
   if you set it to `true`, then you should call `this.bannerView.LoadAd();` by manual.
+
+The default create `YumiBannerViewOptions` instance code:
+```C#
+YumiBannerViewOptions bannerOptions = new YumiBannerViewOptionsBuilder().Build();
+```
+
+The custom create `YumiBannerViewOptions` instance code:
+```C#
+YumiBannerViewOptionsBuilder builder = new YumiBannerViewOptionsBuilder();
+builder.setAdPosition(YumiAdPosition.TOP);
+builder.setSmartState(false);
+builder.setDisableAutoRefreshState(true);
+builder.setBannerSize(YumiBannerAdSize.YUMI_BANNER_AD_SIZE_320x50);
+
+YumiBannerViewOptions bannerOptions = new YumiBannerViewOptions(builder);
+```
 
 ### Interstitial
 
