@@ -314,12 +314,12 @@ this.bannerView.Destroy();
 
   如果设置为 true，banner 不会进行下一次请求，您必须在恰当的时机再次调用 `this.bannerView.LoadAd();`。
 
-默认 `YumiBannerViewOptions` 实例代码：
+默认创建 `YumiBannerViewOptions` 实例代码：
 ```C#
 YumiBannerViewOptions bannerOptions = new YumiBannerViewOptionsBuilder().Build();
 ```
 
-自定义 `YumiBannerViewOptions` 实例代码：
+自定义创建 `YumiBannerViewOptions` 实例代码：
 ```C#
 YumiBannerViewOptionsBuilder builder = new YumiBannerViewOptionsBuilder();
 builder.setAdPosition(YumiAdPosition.TOP);
