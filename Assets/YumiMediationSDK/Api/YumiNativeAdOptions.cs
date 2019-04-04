@@ -3,13 +3,13 @@ namespace YumiMediationSDK.Api
 {
     public class YumiNativeAdOptions
     {
-        internal AdOptionViewPosition adChoiseViewPosition;
-        internal AdAttribution adAttribution;
-        internal TextOptions titleTextOptions;
-        internal TextOptions descTextOptions;
-        internal TextOptions callToActionTextOptions;
-        internal ScaleType iconScaleType;
-        internal ScaleType coverImageScaleType;
+        public AdOptionViewPosition adChoiseViewPosition { get; private set; }
+        public AdAttribution adAttribution { get; private set; }
+        public TextOptions titleTextOptions { get; private set; }
+        public TextOptions descTextOptions { get; private set; }
+        public TextOptions callToActionTextOptions { get; private set; }
+        public ScaleType iconScaleType { get; private set; }
+        public ScaleType coverImageScaleType { get; private set; }
 
         internal YumiNativeAdOptions(NativeAdOptionsBuilder builder)
         {
@@ -145,7 +145,7 @@ namespace YumiMediationSDK.Api
         SCALE_ASPECT_FILL
     }
 
-    struct AdAttribution
+    public struct AdAttribution
     {
         internal AdOptionViewPosition AdOptionsPosition;
         internal string text;
@@ -162,7 +162,7 @@ namespace YumiMediationSDK.Api
         internal bool hide;
     }
 
-    struct TextOptions
+    public struct TextOptions
     {
         internal int textSize;
         internal uint textColor;
