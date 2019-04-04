@@ -4,12 +4,12 @@ namespace YumiMediationSDK.Api
     public class YumiBannerViewOptions
     {
         // banner position in supview
-        internal YumiAdPosition adPosition;
-        internal YumiBannerAdSize bannerSize;
+        public YumiAdPosition adPosition { get; private set; }
+        public YumiBannerAdSize bannerSize { get; private set; }
         // If isSmart is set to YES, it will render screen-width banner ads on any screen size across different devices in either orientation.
-        internal bool isSmart;
+        public bool isSmart { get; private set; }
         // Disable auto refresh for the YumiMediationBannerView instance.
-        internal bool disableAutoRefresh;
+        public bool disableAutoRefresh { get; private set; }
 
         internal YumiBannerViewOptions(YumiBannerViewOptionsBuilder builder)
         {
@@ -38,6 +38,28 @@ namespace YumiMediationSDK.Api
         {
             return new YumiBannerViewOptions(this);
         }
+
+        public YumiBannerViewOptionsBuilder setAdPosition(YumiAdPosition adPosition)
+        {
+            AdPosition = adPosition;
+            return this;
+        }
+        public YumiBannerViewOptionsBuilder setBannerSize(YumiBannerAdSize bannerSize)
+        {
+            BannerSize = bannerSize;
+            return this;
+        }
+        public YumiBannerViewOptionsBuilder setSmartState(bool isSmart)
+        {
+            IsSmart = isSmart;
+            return this;
+        }
+        public YumiBannerViewOptionsBuilder setDisableAutoRefreshState(bool disableAutoRefreshState)
+        {
+            DisableAutoRefresh = disableAutoRefreshState;
+            return this;
+        }
+
     }
 
     public enum YumiBannerAdSize
