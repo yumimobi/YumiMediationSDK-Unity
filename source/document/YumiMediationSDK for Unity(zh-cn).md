@@ -284,13 +284,13 @@ this.bannerView.Show();
 this.bannerView.Destroy();
 ```
 #### YumiBannerViewOptions
-`YumiBannerViewOptions` 是初始化 `YumiBannerView` 时传入的最后一个参数，您可在 `YumiBannerViewOptions` 文件中进行设置：
+`YumiBannerViewOptions` 是初始化 `YumiBannerView` 时传入的最后一个参数，您可在 `YumiBannerViewOptions` 文件中查看：
 
-- `AdPosition`
+- `adPosition`
 
   设置 banner 广告位所处父视图的位置。默认为下方，居中显示。
 
-- `BannerSize`
+- `bannerSize`
 
   设置 banner 广告的尺寸。
 
@@ -298,7 +298,7 @@ this.bannerView.Destroy();
 
   在 iPad 上默认为 728 * 90。
 
-- `IsSmart`
+- `isSmart`
 
   默认为 true。
 
@@ -306,13 +306,29 @@ this.bannerView.Destroy();
 
   如果设置为 false，banner 会展示广告位自身尺寸。
 
-- `DisableAutoRefresh`
+- `disableAutoRefresh`
 
   默认为 false。
   
   如果设置为 false，banner 会自动请求下一条广告，您无需重复调用 `this.bannerView.LoadAd(); `。
 
   如果设置为 true，banner 不会进行下一次请求，您必须在恰当的时机再次调用 `this.bannerView.LoadAd();`。
+
+默认 `YumiBannerViewOptions` 实例代码：
+```C#
+YumiBannerViewOptions bannerOptions = new YumiBannerViewOptionsBuilder().Build();
+```
+
+自定义 `YumiBannerViewOptions` 实例代码：
+```C#
+YumiBannerViewOptionsBuilder builder = new YumiBannerViewOptionsBuilder();
+builder.setAdPosition(YumiAdPosition.TOP);
+builder.setSmartState(false);
+builder.setDisableAutoRefreshState(true);
+builder.setBannerSize(YumiBannerAdSize.YUMI_BANNER_AD_SIZE_320x50);
+
+YumiBannerViewOptions bannerOptions = new YumiBannerViewOptions(builder);
+```
 
 ### Interstitial
 
