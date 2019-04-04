@@ -71,7 +71,7 @@
 
 The YumiMediationSDK Unity plugin enables Unity developers to easily serve Yumimobi Ads on Android and iOS apps without having to write Java or Objective-C code. The plugin provides a C# interface for requesting ads that is used by C# scripts in your Unity project. Use the links below to download the Unity package for the plugin or to take a look at its code on GitHub.
 
-[Download the YumiMediationSDK Unity plugin](https://adsdk.yumimobi.com/Unity/3.6.3/YumiMediationSDKPlugin_v3.6.3.1.unitypackage)
+[Download the YumiMediationSDK Unity plugin](https://adsdk.yumimobi.com/Unity/3.6.3/YumiMediationSDKPlugin_v3.6.3.2.unitypackage)
 
 [VIEW SOURCE](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
