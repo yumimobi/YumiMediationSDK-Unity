@@ -37,6 +37,7 @@
       * [常见问题](#常见问题)
         *  [1 TEST ID](#1-TEST-ID) 
         *  [2 Android打包失败](#2-Android-打包失败)
+        *  [3 运行时闪退](#3-运行时闪退)
         
 
 # YumiMediationSDK for Unity
@@ -756,3 +757,28 @@ A problem occurred evaluating root project 'gradleOut'.
 
 1. 升级 gradle 版本至 4.6
 2. 降级 gradle plugin 版本至 gradle 4.2.1 对应的版本。对照 [Update Gradle](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) 文档可知需要将 [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle) 中 `classpath 'com.android.tools.build:gradle:x.x.x'` 修改为 `classpath 'com.android.tools.build:gradle:3.0.0+`
+
+### 3 运行时闪退
+错误信息：
+```
+java.lang.RuntimeException: Unable to get provider com.google.android.gms.ads.MobileAdsInitProvider: java.lang.IllegalStateException: 
+  
+  ******************************************************************************
+  * The Google Mobile Ads SDK was initialized incorrectly. AdMob publishers    *
+  * should follow the instructions here: https://goo.gl/fQ2neu to add a valid  *
+  * App ID inside the AndroidManifest. Google Ad Manager publishers should     *
+  * follow instructions here: https://goo.gl/h17b6x.                           *
+  ******************************************************************************
+```
+解决方法，在 AndroidManifest.xml 中添加如下配置：
+```
+<manifest>
+  <application>
+    ...
+    <meta-data
+        android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+        android:value="true"/>
+    ...
+  </application>
+</manifest>
+```

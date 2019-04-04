@@ -37,6 +37,7 @@
       * [Common issues of developer](#common-issues-of-developer)
          * [1 TEST ID](#1-test-id)
          * [2 Android build failed](#2-Android-build-failed)
+         * [3 RuntimeException](#3-RuntimeException)
 
 
 
@@ -764,3 +765,28 @@ A problem occurred evaluating root project 'gradleOut'.
 
 1. upgrade gradle version to 4.6
 2. degrade gradle plugin to match gradle 4.2.1 version. you can check [this](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) to change the gradle plugin version in [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle), for example, change `classpath 'com.android.tools.build:gradle:x.x.x'` to `classpath 'com.android.tools.build:gradle:3.0.0+`.
+
+### 3 RuntimeException
+logcat information:
+```
+java.lang.RuntimeException: Unable to get provider com.google.android.gms.ads.MobileAdsInitProvider: java.lang.IllegalStateException: 
+  
+  ******************************************************************************
+  * The Google Mobile Ads SDK was initialized incorrectly. AdMob publishers    *
+  * should follow the instructions here: https://goo.gl/fQ2neu to add a valid  *
+  * App ID inside the AndroidManifest. Google Ad Manager publishers should     *
+  * follow instructions here: https://goo.gl/h17b6x.                           *
+  ******************************************************************************
+```
+update AndroidManifest.xml to dismiss the exception:
+```
+<manifest>
+  <application>
+    ...
+    <meta-data
+        android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+        android:value="true"/>
+    ...
+  </application>
+</manifest>
+```
