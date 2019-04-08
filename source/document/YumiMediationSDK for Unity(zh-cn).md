@@ -2,18 +2,39 @@
       * [1 概述](#1-概述)
       * [2 下载 YumiMediationSDK Unity 插件](#2-下载-yumimediationsdk-unity-插件)
       * [3 导入 YumiMediationSDK Unity 插件](#3-导入-yumimediationsdk-unity-插件)
-         * [3.1 初次导入](#31-初次导入)
+         * [3.1 首次导入](#31-首次导入)
          * [3.2 升级插件](#32-升级插件)
       * [4 集成 YumiMediationSDK](#4-集成-yumimediationsdk)
          * [4.1 部署 iOS 项目](#41-部署-ios-项目)
          * [4.2 部署 Android 项目](#42-部署-android-项目)
             * [4.2.1 常见问题一：64k 引用限制](#421-常见问题一64k-引用限制)
-            * [4.2.1 常见问题二： RuntimeException](#421-常见问题二-runtimeexception)
+            * [4.2.1 常见问题二：Admob SDK 初始化异常](#421-常见问题二admob-sdk-初始化异常)
       * [5 选择广告形式](#5-选择广告形式)
          * [5.1 Banner](#51-banner)
+            * [5.1.1 初始化 Banner](#511-初始化-banner)
+            * [5.1.2请求 Banner](#512请求-banner)
+            * [5.1.3 隐藏 Banner](#513-隐藏-banner)
+            * [5.1.4 显示隐藏的 Banner](#514-显示隐藏的-banner)
+            * [5.1.5 销毁 Banner](#515-销毁-banner)
+            * [5.1.6 YumiBannerViewOptions](#516-yumibannerviewoptions)
          * [5.2 Interstitial](#52-interstitial)
+            * [5.2.1 初始化及请求插屏](#521-初始化及请求插屏)
+            * [5.2.2 展示 Interstitial](#522-展示-interstitial)
+            * [5.2.3 销毁 Interstitial](#523-销毁-interstitial)
          * [5.3 Rewarded Video](#53-rewarded-video)
+            * [5.3.1 初始化及请求视频](#531-初始化及请求视频)
+            * [5.3.2 判断视频是否准备好](#532-判断视频是否准备好)
+            * [5.3.4 展示 Rewarded Video](#534-展示-rewarded-video)
          * [5.4 Native](#54-native)
+            * [5.4.1 初始化 Native](#541-初始化-native)
+            * [5.4.2 YumiNativeAdOptions](#542-yuminativeadoptions)
+            * [5.4.3 请求 Native](#543-请求-native)
+            * [5.4.4 创建原生广告布局](#544-创建原生广告布局)
+            * [5.4.5 使用广告元数据注册布局](#545-使用广告元数据注册布局)
+            * [5.4.6 展示 Native View](#546-展示-native-view)
+            * [5.4.7 隐藏 Native View](#547-隐藏-native-view)
+            * [5.4.8 移除 Native View](#548-移除-native-view)
+            * [5.4.9 销毁 Native](#549-销毁-native)
       * [6 调试模式](#6-调试模式)
          * [6.1 调用调试模式](#61-调用调试模式)
          * [6.2 图示](#62-图示)
@@ -216,8 +237,8 @@ dependencies {
 
 解决方案二：将项目导出 Android Studio 工程，然后根据 [规避 64K 限制](https://developer.android.com/studio/build/multidex#avoid) 方案解决。
 
-#### 4.2.1 常见问题二： RuntimeException
-添加 admob 或其它 SDK 引入 google-sevice-ads:17.0.0 及之上版本后运行时会出现闪退，错误日志如下：
+#### 4.2.1 常见问题二：Admob SDK 初始化异常
+添加 admob 或其它 SDK 引入 google-services-ads:17.0.0 及之上版本后运行时会出现闪退，错误日志如下：
 ```
 java.lang.RuntimeException: Unable to get provider com.google.android.gms.ads.MobileAdsInitProvider: java.lang.IllegalStateException: 
   
@@ -246,7 +267,7 @@ java.lang.RuntimeException: Unable to get provider com.google.android.gms.ads.Mo
 
 ### 5.1 Banner
 
-**初始化 Banner**
+#### 5.1.1 初始化 Banner
 
 ```c#
 using YumiMediationSDK.Api;
@@ -305,30 +326,30 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
-**请求 Banner**
+#### 5.1.2请求 Banner
 
 ```C#
 this.bannerView.LoadAd(); 
 ```
 
-**隐藏 Banner**
+#### 5.1.3 隐藏 Banner
 
 ```C#
 this.bannerView.Hide();
 ```
 
-**显示隐藏的 Banner**
+#### 5.1.4 显示隐藏的 Banner
 
 ```C#
 this.bannerView.Show();
 ```
 
-**销毁 Banner**
+#### 5.1.5 销毁 Banner
 
 ```c#
 this.bannerView.Destroy();
 ```
-**YumiBannerViewOptions**
+#### 5.1.6 YumiBannerViewOptions
 
 `YumiBannerViewOptions` 是初始化 `YumiBannerView` 时传入的最后一个参数，您可在 `YumiBannerViewOptions` 文件中查看：
 
@@ -378,7 +399,7 @@ YumiBannerViewOptions bannerOptions = new YumiBannerViewOptions(builder);
 
 ### 5.2 Interstitial
 
-**初始化及请求插屏**
+#### 5.2.1 初始化及请求插屏
 
 插屏广告位会自动加载下一条广告，您无需重复调用
 ```C#
@@ -432,7 +453,7 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
-**展示 Interstitial**
+#### 5.2.2 展示 Interstitial
 
 建议先调用 `this.interstitialAd.IsReady()` 判断插屏是否准备好
 
@@ -443,7 +464,7 @@ public class YumiSDKDemo : MonoBehaviour
  }
 ```
 
-**销毁 Interstitial**
+#### 5.2.3 销毁 Interstitial
 
 ```c#
 this.interstitialAd.Destroy();
@@ -451,7 +472,7 @@ this.interstitialAd.Destroy();
 
 ### 5.3 Rewarded Video
 
-**初始化及请求视频**
+#### 5.3.1 初始化及请求视频
 
 视频广告位会自动加载下一条广告，您无需重复调用。
 ```C#
@@ -505,13 +526,13 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
-**判断视频是否准备好**
+#### 5.3.2 判断视频是否准备好
 
 ```c#
  this.rewardVideoAd.IsReady();
 ```
 
-**展示 Rewarded Video**
+#### 5.3.4 展示 Rewarded Video
 
 ```c#
  if(this.rewardVideoAd.IsReady())
@@ -522,7 +543,7 @@ public class YumiSDKDemo : MonoBehaviour
 
 ### 5.4 Native
 
-**初始化 Native**
+#### 5.4.1 初始化 Native
 
 ```c#
 using UnityEngine;
@@ -605,7 +626,7 @@ public class YumiNativeScene : MonoBehaviour
 }
 ```
 
-**YumiNativeAdOptions**
+#### 5.4.2 YumiNativeAdOptions
 
 `YumiNativeAdOptions` 是初始化 `YumiNativeAd` 的最后一个参数，可以配置原生广告显示的样式，参数详情如下：
 
@@ -623,14 +644,14 @@ internal ScaleType iconScaleType;
 internal ScaleType coverImageScaleType;
 ```
 
-**请求 Native**
+#### 5.4.3 请求 Native
 
 ```c#
 int adCount = 1;// adCount: you can load more than one ad
 this.nativeAd.LoadAd(adCount);
 ```
 
-**创建原生广告布局**
+#### 5.4.4 创建原生广告布局
 
 ```c#
 public class YumiNativeScene : MonoBehaviour
@@ -655,7 +676,7 @@ public class YumiNativeScene : MonoBehaviour
 
 ![image](./resources/nativeAd.png)
 
-**使用广告元数据注册布局**
+#### 5.4.5 使用广告元数据注册布局
 
 ```C#
 public class YumiNativeScene : MonoBehaviour
@@ -678,7 +699,7 @@ public class YumiNativeScene : MonoBehaviour
 }
 ```
 
-**展示 Native View**
+#### 5.4.6 展示 Native View
 
 ```C#
 // Determines whether nativeAd data is invalidated, if invalidated please reload
@@ -692,13 +713,13 @@ if (this.nativeAd.IsAdInvalidated(yumiNativeData))
 
 - 注意：显示广告前，您必须注册布局并检查广告是否已经无效。
 
-**隐藏 Native View**
+#### 5.4.7 隐藏 Native View
 
 ```c#
 this.nativeAd.HideView(yumiNativeData);// Hide nativeAd data associate view 
 ```
 
-**移除 Native View**
+#### 5.4.8 移除 Native View
 
 ```c#
 this.nativeAd.UnregisterView(yumiNativeData);
@@ -706,7 +727,7 @@ this.nativeAd.UnregisterView(yumiNativeData);
 
 此方法的作用：从屏幕上移除当前广告视图，断开 View 和 广告元数据的注册。在显示一个新广告时，请先调用这个方法。
 
-**销毁 Native**
+#### 5.4.9 销毁 Native
 
 ```c#
 this.nativeAd.Destroy();

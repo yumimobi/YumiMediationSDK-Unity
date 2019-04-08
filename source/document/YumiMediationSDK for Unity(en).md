@@ -8,12 +8,33 @@
          * [4.1 Deploy iOS](#41-deploy-ios)
          * [4.2 Deploy Android](#42-deploy-android)
             * [4.2.1 FAQ1: the 64K reference limit](#421-faq1-the-64k-reference-limit)
-            * [4.2.2 FAQ2: RuntimeException](#422-faq2-runtimeexception)
+            * [4.2.2 FAQ2: Google Mobile Ads SDK was initialized incorrectly](#422-faq2-google-mobile-ads-sdk-was-initialized-incorrectly)
       * [5 Select an ad format](#5-select-an-ad-format)
          * [5.1 Banner](#51-banner)
+            * [5.1.1 Initialize Banner](#511-initialize-banner)
+            * [5.1.2 Request Banner](#512-request-banner)
+            * [5.1.3 Hide Banner](#513-hide-banner)
+            * [5.1.4 Show Banner](#514-show-banner)
+            * [5.1.5 Destroy Banner](#515-destroy-banner)
+            * [5.1.6 YumiBannerViewOptions](#516-yumibannerviewoptions)
          * [5.2 Interstitial](#52-interstitial)
+            * [5.2.1 Initialization and Interstitial request](#521-initialization-and-interstitial-request)
+            * [5.2.2 Show Interstitial](#522-show-interstitial)
+            * [5.2.3 Destroy Interstitial](#523-destroy-interstitial)
          * [5.3 Reward Video](#53-reward-video)
+            * [5.3.1 Initialization and Reward Video request](#531-initialization-and-reward-video-request)
+            * [5.3.2 Determine if the video is ready](#532-determine-if-the-video-is-ready)
+            * [5.3.3 Show Rewarded Video](#533-show-rewarded-video)
          * [5.4 Native Ad](#54-native-ad)
+            * [5.4.1 Init Native Ad](#541-init-native-ad)
+            * [5.4.2 YumiNativeAdOptions](#542-yuminativeadoptions)
+            * [5.4.3 Request Native](#543-request-native)
+            * [5.4.4 Create Your Native Ad Layout](#544-create-your-native-ad-layout)
+            * [5.4.5 Populating Your Layout Using the Ad's Metadata](#545-populating-your-layout-using-the-ads-metadata)
+            * [5.4.6 Show Native Ad View](#546-show-native-ad-view)
+            * [5.4.7 Hide Native Ad View](#547-hide-native-ad-view)
+            * [5.4.8 Remove Native Ad View](#548-remove-native-ad-view)
+            * [5.4.9 Destroy Native Ad View](#549-destroy-native-ad-view)
       * [6 Debug Mode](#6-debug-mode)
          * [6.1 Call Debug Mode](#61-call-debug-mode)
          * [6.2 Sample](#62-sample)
@@ -221,7 +242,7 @@ dependencies {
 
 Solution-B: Export Unity project to Android Studio project, then to [Avoid the 64K limit](https://developer.android.com/studio/build/multidex#avoid).
 
-#### 4.2.2 FAQ2: RuntimeException
+#### 4.2.2 FAQ2: Google Mobile Ads SDK was initialized incorrectly
 App crashes when running in very beginning. Crash log as below:
 ```
 java.lang.RuntimeException: Unable to get provider com.google.android.gms.ads.MobileAdsInitProvider: java.lang.IllegalStateException: 
@@ -254,7 +275,7 @@ The YumiMediationSDK is now included in your Unity app when deploying to either 
 
 ### 5.1 Banner
 
-**Initialize Banner**
+#### 5.1.1 Initialize Banner
 
 ```c#
 using YumiMediationSDK.Api;
@@ -314,31 +335,31 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
-**Request Banner**
+#### 5.1.2 Request Banner
 
 ```C#
 this.bannerView.LoadAd();
 ```
 
-**Hide Banner**
+#### 5.1.3 Hide Banner
 
 ```C#
 this.bannerView.Hide();
 ```
 
-**Show Banner**
+#### 5.1.4 Show Banner
 
 ```C#
 this.bannerView.Show();
 ```
 
-**Destroy Banner**
+#### 5.1.5 Destroy Banner
 
 ```C#
 this.bannerView.Destroy();
 ```
 
-**YumiBannerViewOptions**
+#### 5.1.6 YumiBannerViewOptions
 
 `YumiBannerViewOptions` is the last parameter to init `YumiBannerView`, you can get it in `YumiBannerViewOptions` file.
 
@@ -386,7 +407,7 @@ YumiBannerViewOptions bannerOptions = new YumiBannerViewOptions(builder);
 
 ### 5.2 Interstitial
 
-**Initialization and Interstitial request**
+#### 5.2.1 Initialization and Interstitial request
 
 The interstitial placement will auto cached.
 
@@ -441,7 +462,7 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
-**Show Interstitial**
+#### 5.2.2 Show Interstitial
 
 It is recommended to call `this.interstitialAd.IsReady()` to determine if the screen is ready.
 
@@ -452,7 +473,7 @@ if(this.interstitialAd.IsReady())
 }
 ```
 
-**Destroy Interstitial**
+#### 5.2.3 Destroy Interstitial
 
 ```c#
 this.interstitialAd.Destroy();
@@ -460,7 +481,7 @@ this.interstitialAd.Destroy();
 
 ### 5.3 Reward Video
 
-**Initialization and Reward Video request**
+#### 5.3.1 Initialization and Reward Video request
 
 The reward video placement will auto cached.
 
@@ -515,13 +536,13 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
-**Determine if the video is ready**
+#### 5.3.2 Determine if the video is ready
 
 ```c#
 this.rewardVideoAd.IsReady();
 ```
 
-**Show Rewarded Video**
+#### 5.3.3 Show Rewarded Video
 
 ```c#
 if(this.rewardVideoAd.IsReady())
@@ -533,7 +554,7 @@ if(this.rewardVideoAd.IsReady())
 
 ### 5.4 Native Ad
 
-**Init Native Ad**
+#### 5.4.1 Init Native Ad
 
 ```C#
 using UnityEngine;
@@ -616,7 +637,7 @@ public class YumiNativeScene : MonoBehaviour
 }
 ```
 
-**YumiNativeAdOptions**
+#### 5.4.2 YumiNativeAdOptions
 
 `YumiNativeAdOptions` is the last parameter to init the `YumiNativeAd`, you can set the ad style by this.
 
@@ -634,14 +655,14 @@ internal ScaleType iconScaleType;
 internal ScaleType coverImageScaleType;
 ```
 
-**Request Native**
+#### 5.4.3 Request Native
 
 ```C#
 int adCount = 1;// adCount: you can load more than one ad
 this.nativeAd.LoadAd(adCount);
 ```
 
-**Create Your Native Ad Layout**
+#### 5.4.4 Create Your Native Ad Layout
 
 ```C#
 public class YumiNativeScene : MonoBehaviour
@@ -665,7 +686,7 @@ Here is how they can be associated with the views in the editor:
 
 ![image](./resources/nativeAd.png)
 
-**Populating Your Layout Using the Ad's Metadata**
+#### 5.4.5 Populating Your Layout Using the Ad's Metadata
 
 ```C#
 public class YumiNativeScene : MonoBehaviour
@@ -688,7 +709,7 @@ public class YumiNativeScene : MonoBehaviour
 }
 ```
 
-**Show Native Ad View**
+#### 5.4.6 Show Native Ad View
 
 You should check whether the ad has been invalidated before displaying it.
 
@@ -702,13 +723,13 @@ if (this.nativeAd.IsAdInvalidated(yumiNativeData))
   this.nativeAd.ShowView(yumiNativeData);
 ```
 
-**Hide Native Ad View**
+#### 5.4.7 Hide Native Ad View
 
 ```C#
 this.nativeAd.HideView(yumiNativeData);// Hide nativeAd data associate view
 ```
 
-**Remove Native Ad View**
+#### 5.4.8 Remove Native Ad View
 
 Remove current native ad view from screen, and disconnect the native data from the view.
 If you want to display a new view by this layout, call this function first.
@@ -717,7 +738,7 @@ If you want to display a new view by this layout, call this function first.
 this.nativeAd.UnregisterView(yumiNativeData);
 ```
 
-**Destroy Native Ad View**
+#### 5.4.9 Destroy Native Ad View
 
 ```C#
 this.nativeAd.Destroy();
