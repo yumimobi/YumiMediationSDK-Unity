@@ -9,7 +9,7 @@
     - [4.2 部署 Android 项目](#42-%E9%83%A8%E7%BD%B2-android-%E9%A1%B9%E7%9B%AE)
       - [4.2.1 常见问题一：加载三方 SDK 时间过长](#421-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%80%E5%8A%A0%E8%BD%BD%E4%B8%89%E6%96%B9-sdk-%E6%97%B6%E9%97%B4%E8%BF%87%E9%95%BF)
       - [4.2.2 常见问题二：64k 引用限制](#422-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%BA%8C64k-%E5%BC%95%E7%94%A8%E9%99%90%E5%88%B6)
-      - [4.2.3 常见问题三：设置 Admob AD_MANAGER_APP](#423-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%89%E8%AE%BE%E7%BD%AE-admob-admanagerapp)
+      - [4.2.3 常见问题三：设置 Admob MANAGER](#423-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%89%E8%AE%BE%E7%BD%AE-admob-manager)
   - [5 选择广告形式](#5-%E9%80%89%E6%8B%A9%E5%B9%BF%E5%91%8A%E5%BD%A2%E5%BC%8F)
     - [5.1 Banner](#51-banner)
       - [5.1.1 初始化 Banner](#511-%E5%88%9D%E5%A7%8B%E5%8C%96-banner)
@@ -241,7 +241,7 @@ dependencies {
 
 解决方案二：将项目导出 Android Studio 工程，然后根据 [规避 64K 限制](https://developer.android.com/studio/build/multidex#avoid) 方案解决。
 
-#### 4.2.3 常见问题三：设置 Admob AD_MANAGER_APP
+#### 4.2.3 常见问题三：设置 Admob MANAGER
 添加 admob 或其它 SDK 引入 google-services-ads:17.0.0 及之上版本后运行时会出现闪退，错误日志如下：
 ```
 java.lang.RuntimeException: Unable to get provider com.google.android.gms.ads.MobileAdsInitProvider: java.lang.IllegalStateException: 
