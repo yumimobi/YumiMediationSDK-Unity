@@ -5,6 +5,8 @@
       * [4 Include the YumiMediationSDK](#4-include-the-yumimediationsdk)
          * [4.1 Deploy iOS](#41-deploy-ios)
          * [4.2 Deploy Android](#42-deploy-android)
+            * [4.2.1 FAQ1: the 64K reference limit](#421-faq1-the-64k-reference-limit)
+            * [4.2.2 FAQ2: RuntimeException](#422-faq2-runtimeexception)
       * [5 Select an ad format](#5-select-an-ad-format)
          * [5.1 Banner](#51-banner)
          * [5.2 Interstitial](#52-interstitial)
@@ -19,7 +21,6 @@
             * [7.2.1 Failed to find Build Tools...](#721-failed-to-find-build-tools)
             * [7.2.2 No toolchains found...](#722-no-toolchains-found)
             * [7.2.3 Failed to apply plugin...](#723-failed-to-apply-plugin)
-         * [7.3 RuntimeException](#73-runtimeexception)
 
 # YumiMediationSDK for Unity
 
@@ -51,7 +52,7 @@
 
 The YumiMediationSDK Unity plugin enables Unity developers to easily serve Yumimobi Ads on Android and iOS apps without having to write Java or Objective-C code. The plugin provides a C# interface for requesting ads that is used by C# scripts in your Unity project. Use the links below to download the Unity package for the plugin or to take a look at its code on GitHub.
 
-[Download the YumiMediationSDK Unity plugin](https://adsdk.yumimobi.com/Unity/3.6.3/YumiMediationSDKPlugin_v3.6.3.2.unitypackage)
+[Download the YumiMediationSDK Unity plugin](https://github.com/yumimobi/YumiMediationSDK-Unity/raw/master/YumiMediationSDKPlugin.unitypackage)
 
 [VIEW SOURCE](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
@@ -178,6 +179,69 @@ Android dependencies:
 </androidPackages>
 ```
 e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.1" />`.
+
+#### 4.2.1 FAQ1: the 64K reference limit
+You can use one of the following solutions to avoid the 64K reference limit:
+
+Solution-A: Modify AndroidManifest.xml and mainTemplate.gradle which located Unity project's Assets/Plugins/Android/, if there are no such files then copy from [here](https://raw.githubusercontent.com/yumimobi/YumiMediationSDK-Unity/master/Assets/Plugins/Android/AndroidManifest.xml) and [here](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/Assets/Plugins/Android/mainTemplate.gradle).
+
+AndroidManifest.xml
+```xml
+<manifest>
+  ...
+  <application
+      android:name="android.support.multidex.MultiDexApplication"
+      ...
+      >
+      ...
+  </application>
+  ...
+</manifest>
+```
+mainTemplate.gradle
+```groovy
+allprojects {
+  repositories {
+    google()
+    jcenter()
+    ...
+  }
+}
+dependencies {
+  ...
+  implementation 'com.android.support:multidex:1.0.3'
+  ...
+**DEPS**}
+```
+
+Solution-B: Export Unity project to Android Studio project, then to [Avoid the 64K limit](https://developer.android.com/studio/build/multidex#avoid).
+
+#### 4.2.2 FAQ2: RuntimeException
+App crashes when running in very beginning. Crash log as below:
+```
+java.lang.RuntimeException: Unable to get provider com.google.android.gms.ads.MobileAdsInitProvider: java.lang.IllegalStateException: 
+  
+  ******************************************************************************
+  * The Google Mobile Ads SDK was initialized incorrectly. AdMob publishers    *
+  * should follow the instructions here: https://goo.gl/fQ2neu to add a valid  *
+  * App ID inside the AndroidManifest. Google Ad Manager publishers should     *
+  * follow instructions here: https://goo.gl/h17b6x.                           *
+  ******************************************************************************
+```
+Add ```<meta-data>``` to AndroidManifest.xml to solve it:
+```xml
+<manifest>
+  <application>
+    ...
+    <meta-data
+        android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+        android:value="true"/>
+    ...
+  </application>
+</manifest>
+```
+
+This step is required as of Google Mobile Ads SDK version 17.0.0. Failure to add this ```<meta-data>``` tag results in a crash with the message: "The Google Mobile Ads SDK was initialized incorrectly.
 
 ## 5 Select an ad format
 
@@ -745,28 +809,3 @@ A problem occurred evaluating root project 'gradleOut'.
 
 1. upgrade gradle version to 4.6
 2. degrade gradle plugin to match gradle 4.2.1 version. you can check [this](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) to change the gradle plugin version in [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle), for example, change `classpath 'com.android.tools.build:gradle:x.x.x'` to `classpath 'com.android.tools.build:gradle:3.0.0+`.
-
-### 7.3 RuntimeException
-logcat information:
-```
-java.lang.RuntimeException: Unable to get provider com.google.android.gms.ads.MobileAdsInitProvider: java.lang.IllegalStateException: 
-  
-  ******************************************************************************
-  * The Google Mobile Ads SDK was initialized incorrectly. AdMob publishers    *
-  * should follow the instructions here: https://goo.gl/fQ2neu to add a valid  *
-  * App ID inside the AndroidManifest. Google Ad Manager publishers should     *
-  * follow instructions here: https://goo.gl/h17b6x.                           *
-  ******************************************************************************
-```
-update AndroidManifest.xml to dismiss the exception:
-```xml
-<manifest>
-  <application>
-    ...
-    <meta-data
-        android:name="com.google.android.gms.ads.AD_MANAGER_APP"
-        android:value="true"/>
-    ...
-  </application>
-</manifest>
-```

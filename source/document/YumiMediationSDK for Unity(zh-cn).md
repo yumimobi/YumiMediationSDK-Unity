@@ -5,6 +5,8 @@
       * [4 集成 YumiMediationSDK](#4-集成-yumimediationsdk)
          * [4.1 部署 iOS 项目](#41-部署-ios-项目)
          * [4.2 部署 Android 项目](#42-部署-android-项目)
+            * [4.2.1 常见问题一：64k 引用限制](#421-常见问题一64k-引用限制)
+            * [4.2.1 常见问题二： RuntimeException](#421-常见问题二-runtimeexception)
       * [5 选择广告形式](#5-选择广告形式)
          * [5.1 Banner](#51-banner)
          * [5.2 Interstitial](#52-interstitial)
@@ -19,7 +21,6 @@
             * [7.2.1 Failed to find Build Tools...](#721-failed-to-find-build-tools)
             * [7.2.2 No toolchains found...](#722-no-toolchains-found)
             * [7.2.3 Failed to apply plugin...](#723-failed-to-apply-plugin)
-         * [7.3 运行时闪退](#73-运行时闪退)
 
 # YumiMediationSDK for Unity
 
@@ -51,7 +52,7 @@
 
 Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android 和 iOS 应用上展示广告，无需编写 Java 或 Objective-C 代码。该插件提供了一个 C# 接口来请求广告。使用下面的链接下载插件的 Unity 包或在 GitHub 上查看其代码。
 
-[下载YumiMediationSDK Unity插件](https://adsdk.yumimobi.com/Unity/3.6.3/YumiMediationSDKPlugin_v3.6.3.2.unitypackage)
+[下载YumiMediationSDK Unity插件](https://github.com/yumimobi/YumiMediationSDK-Unity/raw/master/YumiMediationSDKPlugin.unitypackage)
 
 [查看源码](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
@@ -176,6 +177,64 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 比如删除 `admob`，直接删除 `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.1" />` 即可。
 
+#### 4.2.1 常见问题一：64k 引用限制
+添加过多三方 SDK 会导致 64k 引用限制问题，可以通过以下方式之一解决此问题：
+
+解决方案一：查看 Unity 工程 Assets/Plugins/Android/ 下是否有 AndroidManifest.xml 与 mainTemplate.gradle 文件，若没有则下载此文件并添加到 Assets/Plugins/Android/ 目录下，文件地址：[AndroidManifest.xml](https://raw.githubusercontent.com/yumimobi/YumiMediationSDK-Unity/master/Assets/Plugins/Android/AndroidManifest.xml)，[mainTemplate.gradle](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/Assets/Plugins/Android/mainTemplate.gradle)；如果有这两个文件，则修改 AndroidManifest.xml 文件，如下：
+```xml
+<manifest>
+  ...
+  <application
+      android:name="android.support.multidex.MultiDexApplication"
+      ...
+      >
+      ...
+  </application>
+  ...
+</manifest>
+```
+修改 mainTemplate.gradle 如下
+```groovy
+allprojects {
+  repositories {
+    google()
+    jcenter()
+    ...
+  }
+}
+dependencies {
+  ...
+  implementation 'com.android.support:multidex:1.0.3'
+  ...
+**DEPS**}
+```
+
+解决方案二：将项目导出 Android Studio 工程，然后根据 [规避 64K 限制](https://developer.android.com/studio/build/multidex#avoid) 方案解决。
+
+#### 4.2.1 常见问题二： RuntimeException
+添加 admob 或其它 SDK 引入 google-sevice-ads:17.0.0 及之上版本后运行时会出现闪退，错误日志如下：
+```
+java.lang.RuntimeException: Unable to get provider com.google.android.gms.ads.MobileAdsInitProvider: java.lang.IllegalStateException: 
+  
+  ******************************************************************************
+  * The Google Mobile Ads SDK was initialized incorrectly. AdMob publishers    *
+  * should follow the instructions here: https://goo.gl/fQ2neu to add a valid  *
+  * App ID inside the AndroidManifest. Google Ad Manager publishers should     *
+  * follow instructions here: https://goo.gl/h17b6x.                           *
+  ******************************************************************************
+```
+解决方法，在 AndroidManifest.xml 中添加如下配置：
+```xml
+<manifest>
+  <application>
+    ...
+    <meta-data
+        android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+        android:value="true"/>
+    ...
+  </application>
+</manifest>
+```
 ## 5 选择广告形式
 
 在部署到 Android 或 iOS 平台时，YumiMediationSDK 现在包含在 Unity 应用程序中。您现在已准备好实施广告。YumiMediationSDK 提供多种不同的广告格式，因此您可以选择最适合您的用户体验需求的广告格式。
@@ -741,28 +800,3 @@ A problem occurred evaluating root project 'gradleOut'.
 
 1. 升级 gradle 版本至 4.6
 2. 降级 gradle plugin 版本至 gradle 4.2.1 对应的版本。对照 [Update Gradle](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) 文档可知需要将 [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle) 中 `classpath 'com.android.tools.build:gradle:x.x.x'` 修改为 `classpath 'com.android.tools.build:gradle:3.0.0+`
-
-### 7.3 运行时闪退
-错误信息：
-```
-java.lang.RuntimeException: Unable to get provider com.google.android.gms.ads.MobileAdsInitProvider: java.lang.IllegalStateException: 
-  
-  ******************************************************************************
-  * The Google Mobile Ads SDK was initialized incorrectly. AdMob publishers    *
-  * should follow the instructions here: https://goo.gl/fQ2neu to add a valid  *
-  * App ID inside the AndroidManifest. Google Ad Manager publishers should     *
-  * follow instructions here: https://goo.gl/h17b6x.                           *
-  ******************************************************************************
-```
-解决方法，在 AndroidManifest.xml 中添加如下配置：
-```xml
-<manifest>
-  <application>
-    ...
-    <meta-data
-        android:name="com.google.android.gms.ads.AD_MANAGER_APP"
-        android:value="true"/>
-    ...
-  </application>
-</manifest>
-```
