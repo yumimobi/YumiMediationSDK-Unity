@@ -212,7 +212,7 @@ It maybe spend some time to resolving android dependencies when clicked Assets -
 #### 4.2.2 FAQ2: the 64K reference limit
 You can use one of the following solutions to avoid the 64K reference limit:
 
-Solution-A: Modify AndroidManifest.xml and mainTemplate.gradle which located Unity project's Assets/Plugins/Android/, if there are no such files then copy from [here](https://raw.githubusercontent.com/yumimobi/YumiMediationSDK-Unity/master/Assets/Plugins/Android/AndroidManifest.xml) and [here](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/Assets/Plugins/Android/mainTemplate.gradle).
+Solution-A: Modify AndroidManifest.xml and mainTemplate.gradle which located Unity project's Assets/Plugins/Android/, if there are no such files then copy from [AndroidManifest](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/Assets/Plugins/Android/AndroidManifest.xml) and [mainTemplate](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/Assets/Plugins/Android/mainTemplate.gradle).
 
 AndroidManifest.xml
 ```xml
