@@ -2,6 +2,8 @@
       * [1 概述](#1-概述)
       * [2 下载 YumiMediationSDK Unity 插件](#2-下载-yumimediationsdk-unity-插件)
       * [3 导入 YumiMediationSDK Unity 插件](#3-导入-yumimediationsdk-unity-插件)
+         * [3.1 初次导入](#31-初次导入)
+         * [3.2 升级插件](#32-升级插件)
       * [4 集成 YumiMediationSDK](#4-集成-yumimediationsdk)
          * [4.1 部署 iOS 项目](#41-部署-ios-项目)
          * [4.2 部署 Android 项目](#42-部署-android-项目)
@@ -57,7 +59,7 @@ Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android �
 [查看源码](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
 ## 3 导入 YumiMediationSDK Unity 插件
-
+### 3.1 首次导入
 在 Unity 编辑器中打开您的项目。选择**Assets> Import Package> Custom Package**，找到您下载的 YumiMediationSDKPlugin.unitypackage 文件。
 
 ![img](resources/01.png)
@@ -65,6 +67,9 @@ Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android �
 确保选中所有文件，然后单击 **Import**.
 
 ![img](resources/02.png)
+
+### 3.2 升级插件
+删除 Assets/YumiMediationSDK 目录，并按照 3.1 所述重新导入。
 
 ## 4 集成 YumiMediationSDK
 

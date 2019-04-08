@@ -2,6 +2,8 @@
       * [1 Summary](#1-summary)
       * [2 Download the YumiMediationSDK Unity plugin](#2-download-the-yumimediationsdk-unity-plugin)
       * [3 Import the YumiMediationSDK Unity plugin](#3-import-the-yumimediationsdk-unity-plugin)
+         * [3.1 First import](#31-first-import)
+         * [3.2 Update plugin](#32-update-plugin)
       * [4 Include the YumiMediationSDK](#4-include-the-yumimediationsdk)
          * [4.1 Deploy iOS](#41-deploy-ios)
          * [4.2 Deploy Android](#42-deploy-android)
@@ -57,7 +59,7 @@ The YumiMediationSDK Unity plugin enables Unity developers to easily serve Yumim
 [VIEW SOURCE](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
 ## 3 Import the YumiMediationSDK Unity plugin
-
+### 3.1 First import
 Open your project in the Unity editor. Select **Assets> Import Package> Custom Package** and find the YumiMediationSDKPlugin.unitypackage file that you downloaded.
 
 ![img](resources/01.png)
@@ -65,6 +67,9 @@ Open your project in the Unity editor. Select **Assets> Import Package> Custom P
 Make sure all of the files are selected and click **Import**.
 
 ![img](resources/02.png)
+
+### 3.2 Update plugin
+Delete the Assets/YumiMediationSDK directory, then reimport the plugin as the 3.1 section discussed.
 
 ## 4 Include the YumiMediationSDK
 
