@@ -242,29 +242,18 @@ dependencies {
 解决方案二：将项目导出 Android Studio 工程，然后根据 [规避 64K 限制](https://developer.android.com/studio/build/multidex#avoid) 方案解决。
 
 #### 4.2.3 常见问题三：设置 Admob MANAGER
-添加 admob 或其它 SDK 引入 google-services-ads:17.0.0 及之上版本后运行时会出现闪退，错误日志如下：
-```
-java.lang.RuntimeException: Unable to get provider com.google.android.gms.ads.MobileAdsInitProvider: java.lang.IllegalStateException: 
-  
-  ******************************************************************************
-  * The Google Mobile Ads SDK was initialized incorrectly. AdMob publishers    *
-  * should follow the instructions here: https://goo.gl/fQ2neu to add a valid  *
-  * App ID inside the AndroidManifest. Google Ad Manager publishers should     *
-  * follow instructions here: https://goo.gl/h17b6x.                           *
-  ******************************************************************************
-```
-解决方法，在 AndroidManifest.xml 中添加如下配置：
+通过在 AndroidManifest.xml 中添加以下 <meta-data> 标记，声明您的应用是 Ad Manager 应用。
 ```xml
 <manifest>
-  <application>
-    ...
-    <meta-data
-        android:name="com.google.android.gms.ads.AD_MANAGER_APP"
-        android:value="true"/>
-    ...
-  </application>
+    <application>
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true"/>
+    </application>
 </manifest>
 ```
+**重要提示**：自 Google 移动广告 SDK 17.0.0 版本开始，均须执行此步骤。如果未能添加此 <meta-data> 代码，将会导致崩溃，并显示以下消息："The Google Mobile Ads SDK was initialized incorrectly."
+
 ## 5 选择广告形式
 
 在部署到 Android 或 iOS 平台时，YumiMediationSDK 现在包含在 Unity 应用程序中。您现在已准备好实施广告。YumiMediationSDK 提供多种不同的广告格式，因此您可以选择最适合您的用户体验需求的广告格式。
