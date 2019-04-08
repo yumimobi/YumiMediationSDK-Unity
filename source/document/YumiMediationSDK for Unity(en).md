@@ -246,31 +246,17 @@ dependencies {
 Solution-B: Export Unity project to Android Studio project, then to [Avoid the 64K limit](https://developer.android.com/studio/build/multidex#avoid).
 
 #### 4.2.3 FAQ3: Set your AdMob app MANAGER
-App crashes when running in very beginning. Crash log as below:
-```
-java.lang.RuntimeException: Unable to get provider com.google.android.gms.ads.MobileAdsInitProvider: java.lang.IllegalStateException: 
-  
-  ******************************************************************************
-  * The Google Mobile Ads SDK was initialized incorrectly. AdMob publishers    *
-  * should follow the instructions here: https://goo.gl/fQ2neu to add a valid  *
-  * App ID inside the AndroidManifest. Google Ad Manager publishers should     *
-  * follow instructions here: https://goo.gl/h17b6x.                           *
-  ******************************************************************************
-```
-Add ```<meta-data>``` to AndroidManifest.xml to solve it:
+Declare that your app is an Ad Manager app by adding the following <meta-data> tag in your AndroidManifest.xml.
 ```xml
 <manifest>
   <application>
-    ...
     <meta-data
         android:name="com.google.android.gms.ads.AD_MANAGER_APP"
         android:value="true"/>
-    ...
   </application>
 </manifest>
 ```
-
-This step is required as of Google Mobile Ads SDK version 17.0.0. Failure to add this ```<meta-data>``` tag results in a crash with the message: "The Google Mobile Ads SDK was initialized incorrectly.
+**Important**: This step is required as of Google Mobile Ads SDK version 17.0.0. Failure to add this <meta-data> tag results in a crash with the message: "The Google Mobile Ads SDK was initialized incorrectly."
 
 ## 5 Select an ad format
 
