@@ -1,48 +1,54 @@
-   * [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
-      * [概述](#概述)
-      * [下载 YumiMediationSDK Unity 插件](#下载-yumimediationsdk-unity-插件)
-      * [导入 YumiMediationSDK Unity 插件](#导入-yumimediationsdk-unity-插件)
-      * [集成 YumiMediationSDK](#集成-yumimediationsdk)
-         * [部署 iOS 项目](#部署-ios-项目)
-         * [部署 Android 项目](#部署-android-项目)
-      * [选择广告形式](#选择广告形式)
-         * [Banner](#banner)
-            * [初始化 Banner](#初始化-banner)
-            * [请求 Banner](#请求-banner)
-            * [隐藏 Banner](#隐藏-banner)
-            * [显示隐藏的 Banner](#显示隐藏的-banner)
-            * [销毁 Banner](#销毁-banner)
-            * [YumiBannerViewOptions](#yumibannerviewoptions)
-         * [Interstitial](#interstitial)
-            * [初始化及请求插屏](#初始化及请求插屏)
-            * [展示 Interstitial](#展示-interstitial)
-            * [销毁 Interstitial](#销毁-interstitial)
-         * [Rewarded Video](#rewarded-video)
-            * [初始化及请求视频](#初始化及请求视频)
-            * [判断视频是否准备好](#判断视频是否准备好)
-            * [展示 Rewarded Video](#展示-rewarded-video)
-         * [Native](#native)
-            * [初始化 Native](#初始化-native)
-            * [YumiNativeAdOptions](#yuminativeadoptions) 
-            * [请求 Native](#请求-native)
-            * [创建原生广告布局](#创建原生广告布局)
-            * [使用广告元数据注册布局](#使用广告元数据注册布局)
-            * [展示 Native View](#展示-native-view)
-            * [隐藏 Native View](#隐藏-native-view)
-            * [移除 Native View](#移除-native-view)
-            * [销毁 Native](#销毁-native)
-      * [调试模式](#调试模式)
-         * [调用调试模式](#调用调试模式)
-         * [图示](#图示) 
-      * [常见问题](#常见问题)
-        *  [1 TEST ID](#1-TEST-ID) 
-        *  [2 Android打包失败](#2-Android-打包失败)
-        *  [3 运行时闪退](#3-运行时闪退)
-        
+- [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
+  - [1 概述](#1-%E6%A6%82%E8%BF%B0)
+  - [2 下载 YumiMediationSDK Unity 插件](#2-%E4%B8%8B%E8%BD%BD-yumimediationsdk-unity-%E6%8F%92%E4%BB%B6)
+  - [3 导入 YumiMediationSDK Unity 插件](#3-%E5%AF%BC%E5%85%A5-yumimediationsdk-unity-%E6%8F%92%E4%BB%B6)
+    - [3.1 首次导入](#31-%E9%A6%96%E6%AC%A1%E5%AF%BC%E5%85%A5)
+    - [3.2 升级插件](#32-%E5%8D%87%E7%BA%A7%E6%8F%92%E4%BB%B6)
+  - [4 集成 YumiMediationSDK](#4-%E9%9B%86%E6%88%90-yumimediationsdk)
+    - [4.1 部署 iOS 项目](#41-%E9%83%A8%E7%BD%B2-ios-%E9%A1%B9%E7%9B%AE)
+    - [4.2 部署 Android 项目](#42-%E9%83%A8%E7%BD%B2-android-%E9%A1%B9%E7%9B%AE)
+      - [4.2.1 常见问题一：加载三方 SDK 时间过长](#421-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%80%E5%8A%A0%E8%BD%BD%E4%B8%89%E6%96%B9-sdk-%E6%97%B6%E9%97%B4%E8%BF%87%E9%95%BF)
+      - [4.2.2 常见问题二：64k 引用限制](#422-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%BA%8C64k-%E5%BC%95%E7%94%A8%E9%99%90%E5%88%B6)
+      - [4.2.3 常见问题三：设置 Admob AD_MANAGER_APP](#423-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%89%E8%AE%BE%E7%BD%AE-admob-admanagerapp)
+  - [5 选择广告形式](#5-%E9%80%89%E6%8B%A9%E5%B9%BF%E5%91%8A%E5%BD%A2%E5%BC%8F)
+    - [5.1 Banner](#51-banner)
+      - [5.1.1 初始化 Banner](#511-%E5%88%9D%E5%A7%8B%E5%8C%96-banner)
+      - [5.1.2请求 Banner](#512%E8%AF%B7%E6%B1%82-banner)
+      - [5.1.3 隐藏 Banner](#513-%E9%9A%90%E8%97%8F-banner)
+      - [5.1.4 显示隐藏的 Banner](#514-%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F%E7%9A%84-banner)
+      - [5.1.5 销毁 Banner](#515-%E9%94%80%E6%AF%81-banner)
+      - [5.1.6 YumiBannerViewOptions](#516-yumibannerviewoptions)
+    - [5.2 Interstitial](#52-interstitial)
+      - [5.2.1 初始化及请求插屏](#521-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%8A%E8%AF%B7%E6%B1%82%E6%8F%92%E5%B1%8F)
+      - [5.2.2 展示 Interstitial](#522-%E5%B1%95%E7%A4%BA-interstitial)
+      - [5.2.3 销毁 Interstitial](#523-%E9%94%80%E6%AF%81-interstitial)
+    - [5.3 Rewarded Video](#53-rewarded-video)
+      - [5.3.1 初始化及请求视频](#531-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%8A%E8%AF%B7%E6%B1%82%E8%A7%86%E9%A2%91)
+      - [5.3.2 判断视频是否准备好](#532-%E5%88%A4%E6%96%AD%E8%A7%86%E9%A2%91%E6%98%AF%E5%90%A6%E5%87%86%E5%A4%87%E5%A5%BD)
+      - [5.3.4 展示 Rewarded Video](#534-%E5%B1%95%E7%A4%BA-rewarded-video)
+    - [5.4 Native](#54-native)
+      - [5.4.1 初始化 Native](#541-%E5%88%9D%E5%A7%8B%E5%8C%96-native)
+      - [5.4.2 YumiNativeAdOptions](#542-yuminativeadoptions)
+      - [5.4.3 请求 Native](#543-%E8%AF%B7%E6%B1%82-native)
+      - [5.4.4 创建原生广告布局](#544-%E5%88%9B%E5%BB%BA%E5%8E%9F%E7%94%9F%E5%B9%BF%E5%91%8A%E5%B8%83%E5%B1%80)
+      - [5.4.5 使用广告元数据注册布局](#545-%E4%BD%BF%E7%94%A8%E5%B9%BF%E5%91%8A%E5%85%83%E6%95%B0%E6%8D%AE%E6%B3%A8%E5%86%8C%E5%B8%83%E5%B1%80)
+      - [5.4.6 展示 Native View](#546-%E5%B1%95%E7%A4%BA-native-view)
+      - [5.4.7 隐藏 Native View](#547-%E9%9A%90%E8%97%8F-native-view)
+      - [5.4.8 移除 Native View](#548-%E7%A7%BB%E9%99%A4-native-view)
+      - [5.4.9 销毁 Native](#549-%E9%94%80%E6%AF%81-native)
+  - [6 调试模式](#6-%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F)
+    - [6.1 调用调试模式](#61-%E8%B0%83%E7%94%A8%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F)
+    - [6.2 图示](#62-%E5%9B%BE%E7%A4%BA)
+  - [7 常见问题](#7-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
+    - [7.1 TEST ID](#71-test-id)
+    - [7.2 Android 打包失败](#72-android-%E6%89%93%E5%8C%85%E5%A4%B1%E8%B4%A5)
+      - [7.2.1 Failed to find Build Tools...](#721-failed-to-find-build-tools)
+      - [7.2.2 No toolchains found...](#722-no-toolchains-found)
+      - [7.2.3 Failed to apply plugin...](#723-failed-to-apply-plugin)
 
 # YumiMediationSDK for Unity
 
-## 概述
+## 1 概述
 
 1. 面向人群
 
@@ -66,16 +72,16 @@
 
 3. [Demo 获取地址](https://github.com/yumimobi/YumiMediationSDK-Unity)   
 
-## 下载 YumiMediationSDK Unity 插件
+## 2 下载 YumiMediationSDK Unity 插件
 
 Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android 和 iOS 应用上展示广告，无需编写 Java 或 Objective-C 代码。该插件提供了一个 C# 接口来请求广告。使用下面的链接下载插件的 Unity 包或在 GitHub 上查看其代码。
 
-[下载YumiMediationSDK Unity插件](https://adsdk.yumimobi.com/Unity/3.6.3/YumiMediationSDKPlugin_v3.6.3.2.unitypackage)
+[下载YumiMediationSDK Unity插件](https://github.com/yumimobi/YumiMediationSDK-Unity/raw/master/YumiMediationSDKPlugin.unitypackage)
 
 [查看源码](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
-## 导入 YumiMediationSDK Unity 插件
-
+## 3 导入 YumiMediationSDK Unity 插件
+### 3.1 首次导入
 在 Unity 编辑器中打开您的项目。选择**Assets> Import Package> Custom Package**，找到您下载的 YumiMediationSDKPlugin.unitypackage 文件。
 
 ![img](resources/01.png)
@@ -84,11 +90,14 @@ Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android �
 
 ![img](resources/02.png)
 
-## 集成 YumiMediationSDK
+### 3.2 升级插件
+删除 Assets/YumiMediationSDK 目录，并按照 3.1 所述重新导入。
+
+## 4 集成 YumiMediationSDK
 
 YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver) 一起发布。这个库适用于任何需要访问 Android 特定库(例如 AARs )或 iOS CocoaPods 的 Unity 插件。它为 Unity 插件提供了声明依赖关系的能力，然后自动解析并复制到 Unity 项目中。请按照下面列出的步骤确保您的项目包含 YumiMediationSDK。
 
-### 部署 iOS 项目
+### 4.1 部署 iOS 项目
 
 将 YumiMediationSDK 集成到 Unity 项目中无需其他步骤。
 
@@ -146,7 +155,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 **注意：使用 CocoaPods 识别 iOS 依赖项。 CocoaPods 作为后期构建过程步骤运行。**
 
-### 部署 Android 项目
+### 4.2 部署 Android 项目
 
 在 Unity 编辑器中，选择 **Assets> Play Services Resolver> Android Resolver>Force Resolve**。 Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用程序的 **Assets/Plugins/Android** 目录中。
 
@@ -195,13 +204,74 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 比如删除 `admob`，直接删除 `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.1" />` 即可。
 
-## 选择广告形式
+#### 4.2.1 常见问题一：加载三方 SDK 时间过长
+执行 Android Resolver -> Resolve/Force resolve 时，插件会自动下载并导入相关 aar。如果添加多个平台，各平台依赖库版本不一致时插件会尝试自动解决依赖冲突，此过程可能耗时较长，请耐心等待。解决冲突时，尽量不要操作 Unity IDE，否则 Unity IDE 可能会出现卡死现象。
+
+#### 4.2.2 常见问题二：64k 引用限制
+添加过多三方 SDK 会导致 64k 引用限制问题，可以通过以下方式之一解决此问题：
+
+解决方案一：查看 Unity 工程 Assets/Plugins/Android/ 下是否有 AndroidManifest.xml 与 mainTemplate.gradle 文件，若没有则下载此文件并添加到 Assets/Plugins/Android/ 目录下，文件地址：[AndroidManifest.xml](https://raw.githubusercontent.com/yumimobi/YumiMediationSDK-Unity/master/Assets/Plugins/Android/AndroidManifest.xml)，[mainTemplate.gradle](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/Assets/Plugins/Android/mainTemplate.gradle)；如果有这两个文件，则修改 AndroidManifest.xml 文件，如下：
+```xml
+<manifest>
+  ...
+  <application
+      android:name="android.support.multidex.MultiDexApplication"
+      ...
+      >
+      ...
+  </application>
+  ...
+</manifest>
+```
+修改 mainTemplate.gradle 如下
+```groovy
+allprojects {
+  repositories {
+    google()
+    jcenter()
+    ...
+  }
+}
+dependencies {
+  ...
+  implementation 'com.android.support:multidex:1.0.3'
+  ...
+**DEPS**}
+```
+
+解决方案二：将项目导出 Android Studio 工程，然后根据 [规避 64K 限制](https://developer.android.com/studio/build/multidex#avoid) 方案解决。
+
+#### 4.2.3 常见问题三：设置 Admob AD_MANAGER_APP
+添加 admob 或其它 SDK 引入 google-services-ads:17.0.0 及之上版本后运行时会出现闪退，错误日志如下：
+```
+java.lang.RuntimeException: Unable to get provider com.google.android.gms.ads.MobileAdsInitProvider: java.lang.IllegalStateException: 
+  
+  ******************************************************************************
+  * The Google Mobile Ads SDK was initialized incorrectly. AdMob publishers    *
+  * should follow the instructions here: https://goo.gl/fQ2neu to add a valid  *
+  * App ID inside the AndroidManifest. Google Ad Manager publishers should     *
+  * follow instructions here: https://goo.gl/h17b6x.                           *
+  ******************************************************************************
+```
+解决方法，在 AndroidManifest.xml 中添加如下配置：
+```xml
+<manifest>
+  <application>
+    ...
+    <meta-data
+        android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+        android:value="true"/>
+    ...
+  </application>
+</manifest>
+```
+## 5 选择广告形式
 
 在部署到 Android 或 iOS 平台时，YumiMediationSDK 现在包含在 Unity 应用程序中。您现在已准备好实施广告。YumiMediationSDK 提供多种不同的广告格式，因此您可以选择最适合您的用户体验需求的广告格式。
 
-### Banner
+### 5.1 Banner
 
-#### 初始化 Banner
+#### 5.1.1 初始化 Banner
 
 ```c#
 using YumiMediationSDK.Api;
@@ -260,30 +330,31 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
-#### 请求 Banner
+#### 5.1.2请求 Banner
 
 ```C#
 this.bannerView.LoadAd(); 
 ```
 
-#### 隐藏 Banner
+#### 5.1.3 隐藏 Banner
 
 ```C#
 this.bannerView.Hide();
 ```
 
-#### 显示隐藏的 Banner
+#### 5.1.4 显示隐藏的 Banner
 
 ```C#
 this.bannerView.Show();
 ```
 
-####  销毁 Banner
+#### 5.1.5 销毁 Banner
 
 ```c#
 this.bannerView.Destroy();
 ```
-#### YumiBannerViewOptions
+#### 5.1.6 YumiBannerViewOptions
+
 `YumiBannerViewOptions` 是初始化 `YumiBannerView` 时传入的最后一个参数，您可在 `YumiBannerViewOptions` 文件中查看：
 
 - `adPosition`
@@ -330,9 +401,10 @@ builder.setBannerSize(YumiBannerAdSize.YUMI_BANNER_AD_SIZE_320x50);
 YumiBannerViewOptions bannerOptions = new YumiBannerViewOptions(builder);
 ```
 
-### Interstitial
+### 5.2 Interstitial
 
-#### 初始化及请求插屏
+#### 5.2.1 初始化及请求插屏
+
 插屏广告位会自动加载下一条广告，您无需重复调用
 ```C#
 using YumiMediationSDK.Api;
@@ -385,7 +457,7 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
-#### 展示 Interstitial
+#### 5.2.2 展示 Interstitial
 
 建议先调用 `this.interstitialAd.IsReady()` 判断插屏是否准备好
 
@@ -396,15 +468,16 @@ public class YumiSDKDemo : MonoBehaviour
  }
 ```
 
-#### 销毁 Interstitial
+#### 5.2.3 销毁 Interstitial
 
 ```c#
 this.interstitialAd.Destroy();
 ```
 
-### Rewarded Video
+### 5.3 Rewarded Video
 
-#### 初始化及请求视频
+#### 5.3.1 初始化及请求视频
+
 视频广告位会自动加载下一条广告，您无需重复调用。
 ```C#
 using YumiMediationSDK.Api;
@@ -457,13 +530,13 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
-#### 判断视频是否准备好
+#### 5.3.2 判断视频是否准备好
 
 ```c#
  this.rewardVideoAd.IsReady();
 ```
 
-#### 展示 Rewarded Video
+#### 5.3.4 展示 Rewarded Video
 
 ```c#
  if(this.rewardVideoAd.IsReady())
@@ -472,9 +545,9 @@ public class YumiSDKDemo : MonoBehaviour
  } 
 ```
 
-### Native
+### 5.4 Native
 
-#### 初始化 Native
+#### 5.4.1 初始化 Native
 
 ```c#
 using UnityEngine;
@@ -557,7 +630,7 @@ public class YumiNativeScene : MonoBehaviour
 }
 ```
 
-#### YumiNativeAdOptions
+#### 5.4.2 YumiNativeAdOptions
 
 `YumiNativeAdOptions` 是初始化 `YumiNativeAd` 的最后一个参数，可以配置原生广告显示的样式，参数详情如下：
 
@@ -575,14 +648,14 @@ internal ScaleType iconScaleType;
 internal ScaleType coverImageScaleType;
 ```
 
-#### 请求 Native
+#### 5.4.3 请求 Native
 
 ```c#
 int adCount = 1;// adCount: you can load more than one ad
 this.nativeAd.LoadAd(adCount);
 ```
 
-#### 创建原生广告布局
+#### 5.4.4 创建原生广告布局
 
 ```c#
 public class YumiNativeScene : MonoBehaviour
@@ -607,7 +680,7 @@ public class YumiNativeScene : MonoBehaviour
 
 ![image](./resources/nativeAd.png)
 
-#### 使用广告元数据注册布局
+#### 5.4.5 使用广告元数据注册布局
 
 ```C#
 public class YumiNativeScene : MonoBehaviour
@@ -630,7 +703,7 @@ public class YumiNativeScene : MonoBehaviour
 }
 ```
 
-#### 展示 Native View
+#### 5.4.6 展示 Native View
 
 ```C#
 // Determines whether nativeAd data is invalidated, if invalidated please reload
@@ -644,13 +717,13 @@ if (this.nativeAd.IsAdInvalidated(yumiNativeData))
 
 - 注意：显示广告前，您必须注册布局并检查广告是否已经无效。
 
-#### 隐藏 Native View
+#### 5.4.7 隐藏 Native View
 
 ```c#
 this.nativeAd.HideView(yumiNativeData);// Hide nativeAd data associate view 
 ```
 
-#### 移除 Native View
+#### 5.4.8 移除 Native View
 
 ```c#
 this.nativeAd.UnregisterView(yumiNativeData);
@@ -658,17 +731,17 @@ this.nativeAd.UnregisterView(yumiNativeData);
 
 此方法的作用：从屏幕上移除当前广告视图，断开 View 和 广告元数据的注册。在显示一个新广告时，请先调用这个方法。
 
-#### 销毁 Native
+#### 5.4.9 销毁 Native
 
 ```c#
 this.nativeAd.Destroy();
 ```
 
-## 调试模式
+## 6 调试模式
 
 如果您想调试平台 key 是否有广告返回，可选择调试模式。 
 
-### 调用调试模式
+### 6.1 调用调试模式
 
 ```C#
 using YumiMediationSDK.Api;
@@ -689,7 +762,7 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
-### 图示
+### 6.2 图示
 
 以 iOS 平台为例（Android 平台逻辑相同，UI 不同）。
 
@@ -705,9 +778,9 @@ public class YumiSDKDemo : MonoBehaviour
 
 *<p align="center" size=1>选择广告类型，调试单一平台</p>*
 
-## 常见问题
+## 7 常见问题
 
-### 1 TEST ID
+### 7.1 TEST ID
  
 
 | 系统    | 广告类型       | Slot(Placement) ID | 备注                                                                                                                                       |
@@ -722,8 +795,8 @@ public class YumiSDKDemo : MonoBehaviour
 | iOS     | Native         | atb3ke1i           | YUMI,AdMob,Baidu,GDTMob,Facebook 使用此test id,以上Network平台可测试到对应平台广告                                                         |
 
 
-### 2 Android 打包失败
-#### 2.1 Failed to find Build Tools...
+### 7.2 Android 打包失败
+#### 7.2.1 Failed to find Build Tools...
 ```
 * What went wrong:
 A problem occurred configuring root project 'gradleOut'.
@@ -734,7 +807,7 @@ A problem occurred configuring root project 'gradleOut'.
 
 从 [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle) 中删除 `buildToolsVersion '**BUILDTOOLS**'` 
 
-#### 2.2 No toolchains found...
+#### 7.2.2 No toolchains found...
 ```
 * What went wrong:
 A problem occurred configuring root project 'gradleOut'.
@@ -745,7 +818,7 @@ A problem occurred configuring root project 'gradleOut'.
 
 修改 [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle) 中 gradle plugin 版本，如将 `classpath 'com.android.tools.build:gradle:3.0.1'` 修改为 `classpath 'com.android.tools.build:gradle:3.2.1'`。
 
-#### 2.3 Failed to apply plugin...
+#### 7.2.3 Failed to apply plugin...
 ```
 * What went wrong:
 A problem occurred evaluating root project 'gradleOut'.
@@ -757,28 +830,3 @@ A problem occurred evaluating root project 'gradleOut'.
 
 1. 升级 gradle 版本至 4.6
 2. 降级 gradle plugin 版本至 gradle 4.2.1 对应的版本。对照 [Update Gradle](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) 文档可知需要将 [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle) 中 `classpath 'com.android.tools.build:gradle:x.x.x'` 修改为 `classpath 'com.android.tools.build:gradle:3.0.0+`
-
-### 3 运行时闪退
-错误信息：
-```
-java.lang.RuntimeException: Unable to get provider com.google.android.gms.ads.MobileAdsInitProvider: java.lang.IllegalStateException: 
-  
-  ******************************************************************************
-  * The Google Mobile Ads SDK was initialized incorrectly. AdMob publishers    *
-  * should follow the instructions here: https://goo.gl/fQ2neu to add a valid  *
-  * App ID inside the AndroidManifest. Google Ad Manager publishers should     *
-  * follow instructions here: https://goo.gl/h17b6x.                           *
-  ******************************************************************************
-```
-解决方法，在 AndroidManifest.xml 中添加如下配置：
-```xml
-<manifest>
-  <application>
-    ...
-    <meta-data
-        android:name="com.google.android.gms.ads.AD_MANAGER_APP"
-        android:value="true"/>
-    ...
-  </application>
-</manifest>
-```

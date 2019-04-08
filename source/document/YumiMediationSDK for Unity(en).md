@@ -1,49 +1,54 @@
-   * [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
-      * [Summary](#summary)
-      * [Download the YumiMediationSDK Unity plugin](#download-the-yumimediationsdk-unity-plugin)
-      * [Import the YumiMediationSDK Unity plugin](#import-the-yumimediationsdk-unity-plugin)
-      * [Include the YumiMediationSDK](#include-the-yumimediationsdk)
-         * [Deploy iOS](#deploy-ios)
-         * [Deploy Android](#deploy-android)
-      * [Select an ad format](#select-an-ad-format)
-         * [Banner](#banner)
-            * [Initialize Banner](#initialize-banner)
-            * [Request Banner](#request-banner)
-            * [Hide Banner](#hide-banner)
-            * [Show Banner](#show-banner)
-            * [Destroy Banner](#destroy-banner)
-            * [YumiBannerViewOptions](#yumibannerviewoptions)
-         * [Interstitial](#interstitial)
-            * [Initialization and Interstitial request](#initialization-and-interstitial-request)
-            * [Show Interstitial](#show-interstitial)
-            * [Destroy Interstitial](#destroy-interstitial)
-         * [Reward Video](#reward-video)
-            * [Initialization and Reward Video request](#initialization-and-reward-video-request)
-            * [Determine if the video is ready](#determine-if-the-video-is-ready)
-            * [Show Rewarded Video](#show-rewarded-video)
-         * [Native Ad](#native-ad)
-            * [Init Native Ad](#init-native-ad)
-            * [YumiNativeAdOptions](#yuminativeadoptions)
-            * [Request Native](#request-native)
-            * [Create Your Native Ad Layout](#create-your-native-ad-layout)
-            * [Populating your Layout Using the Ad's Metadata](#populating-your-layout-using-the-ads-metadata)
-            * [Show Native Ad View](#show-native-ad-view)
-            * [Hide Native Ad View](#hide-native-ad-view)
-            * [Remove Native Ad View](#remove-native-ad-view)
-            * [Destroy Native Ad View](#destroy-native-ad-view)
-      * [Debug Mode](#debug-mode)
-         * [Call Debug Mode](#call-debug-mode)
-         * [Sample](#sample) 
-      * [Common issues of developer](#common-issues-of-developer)
-         * [1 TEST ID](#1-test-id)
-         * [2 Android build failed](#2-Android-build-failed)
-         * [3 RuntimeException](#3-RuntimeException)
-
-
+- [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
+  - [1 Summary](#1-summary)
+  - [2 Download the YumiMediationSDK Unity plugin](#2-download-the-yumimediationsdk-unity-plugin)
+  - [3 Import the YumiMediationSDK Unity plugin](#3-import-the-yumimediationsdk-unity-plugin)
+    - [3.1 First import](#31-first-import)
+    - [3.2 Update plugin](#32-update-plugin)
+  - [4 Include the YumiMediationSDK](#4-include-the-yumimediationsdk)
+    - [4.1 Deploy iOS](#41-deploy-ios)
+    - [4.2 Deploy Android](#42-deploy-android)
+      - [4.2.1 FAQ1: Resolving Android Dependencies](#421-faq1-resolving-android-dependencies)
+      - [4.2.2 FAQ2: the 64K reference limit](#422-faq2-the-64k-reference-limit)
+      - [4.2.3 FAQ3: Set your AdMob app MANAGER](#423-faq3-set-your-admob-app-manager)
+  - [5 Select an ad format](#5-select-an-ad-format)
+    - [5.1 Banner](#51-banner)
+      - [5.1.1 Initialize Banner](#511-initialize-banner)
+      - [5.1.2 Request Banner](#512-request-banner)
+      - [5.1.3 Hide Banner](#513-hide-banner)
+      - [5.1.4 Show Banner](#514-show-banner)
+      - [5.1.5 Destroy Banner](#515-destroy-banner)
+      - [5.1.6 YumiBannerViewOptions](#516-yumibannerviewoptions)
+    - [5.2 Interstitial](#52-interstitial)
+      - [5.2.1 Initialization and Interstitial request](#521-initialization-and-interstitial-request)
+      - [5.2.2 Show Interstitial](#522-show-interstitial)
+      - [5.2.3 Destroy Interstitial](#523-destroy-interstitial)
+    - [5.3 Reward Video](#53-reward-video)
+      - [5.3.1 Initialization and Reward Video request](#531-initialization-and-reward-video-request)
+      - [5.3.2 Determine if the video is ready](#532-determine-if-the-video-is-ready)
+      - [5.3.3 Show Rewarded Video](#533-show-rewarded-video)
+    - [5.4 Native Ad](#54-native-ad)
+      - [5.4.1 Init Native Ad](#541-init-native-ad)
+      - [5.4.2 YumiNativeAdOptions](#542-yuminativeadoptions)
+      - [5.4.3 Request Native](#543-request-native)
+      - [5.4.4 Create Your Native Ad Layout](#544-create-your-native-ad-layout)
+      - [5.4.5 Populating Your Layout Using the Ad's Metadata](#545-populating-your-layout-using-the-ads-metadata)
+      - [5.4.6 Show Native Ad View](#546-show-native-ad-view)
+      - [5.4.7 Hide Native Ad View](#547-hide-native-ad-view)
+      - [5.4.8 Remove Native Ad View](#548-remove-native-ad-view)
+      - [5.4.9 Destroy Native Ad View](#549-destroy-native-ad-view)
+  - [6 Debug Mode](#6-debug-mode)
+    - [6.1 Call Debug Mode](#61-call-debug-mode)
+    - [6.2 Sample](#62-sample)
+  - [7 Common issues of developer](#7-common-issues-of-developer)
+    - [7.1 TEST ID](#71-test-id)
+    - [7.2 Android build failed](#72-android-build-failed)
+      - [7.2.1 Failed to find Build Tools...](#721-failed-to-find-build-tools)
+      - [7.2.2 No toolchains found...](#722-no-toolchains-found)
+      - [7.2.3 Failed to apply plugin...](#723-failed-to-apply-plugin)
 
 # YumiMediationSDK for Unity
 
-## Summary
+## 1 Summary
 
 1. To Readers
 
@@ -67,16 +72,16 @@
 
      [Demo ](https://github.com/yumimobi/YumiMediationSDK-Unity)   
 
-## Download the YumiMediationSDK Unity plugin
+## 2 Download the YumiMediationSDK Unity plugin
 
 The YumiMediationSDK Unity plugin enables Unity developers to easily serve Yumimobi Ads on Android and iOS apps without having to write Java or Objective-C code. The plugin provides a C# interface for requesting ads that is used by C# scripts in your Unity project. Use the links below to download the Unity package for the plugin or to take a look at its code on GitHub.
 
-[Download the YumiMediationSDK Unity plugin](https://adsdk.yumimobi.com/Unity/3.6.3/YumiMediationSDKPlugin_v3.6.3.2.unitypackage)
+[Download the YumiMediationSDK Unity plugin](https://github.com/yumimobi/YumiMediationSDK-Unity/raw/master/YumiMediationSDKPlugin.unitypackage)
 
 [VIEW SOURCE](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
-## Import the YumiMediationSDK Unity plugin
-
+## 3 Import the YumiMediationSDK Unity plugin
+### 3.1 First import
 Open your project in the Unity editor. Select **Assets> Import Package> Custom Package** and find the YumiMediationSDKPlugin.unitypackage file that you downloaded.
 
 ![img](resources/01.png)
@@ -85,12 +90,15 @@ Make sure all of the files are selected and click **Import**.
 
 ![img](resources/02.png)
 
-## Include the YumiMediationSDK
+### 3.2 Update plugin
+Delete the Assets/YumiMediationSDK directory, then reimport the plugin as the 3.1 section discussed.
+
+## 4 Include the YumiMediationSDK
 
 The YumiMediationSDK Unity plugin is distributed with the [Unity Play Services Resolver library](https://github.com/googlesamples/unity-jar-resolver). This library is intended for use by any Unity plugin that requires access to Android specific libraries (e.g., AARs) or iOS CocoaPods. It provides Unity plugins the ability to declare dependencies, which are then automatically resolved and copied into your Unity project.
 
 Follow the steps listed below to ensure your project includes the YumiMediationSDK Unity
-### Deploy iOS 
+### 4.1 Deploy iOS 
 
 No procedure are required to integrate the YumiMediationSDK into a Unity project.
 
@@ -149,7 +157,7 @@ Complete the above procedure, Open **xcworkspace** project.
 
 **Note：Use CocoaPods to identify iOS dependencies. CocoaPods runs as a post-build process step.**
 
-### Deploy Android 
+### 4.2 Deploy Android 
 
 In the Unity editor, select **Assets> Play Services Resolver> Android Resolver>Force Resolve**. The Unity Play Services Resolver library will copy the declared dependencies into the  **Assets/Plugins/Android** directory of your Unity app.
 
@@ -198,14 +206,79 @@ Android dependencies:
 </androidPackages>
 ```
 e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.1" />`.
+#### 4.2.1 FAQ1: Resolving Android Dependencies
+It maybe spend some time to resolving android dependencies when clicked Assets -> Play Services Resolver -> Android Resolver -> Resolve / Force Resolve. More androidPackages added and more time will be taken. When resolving conflicts, try not to use the Unity IDE, otherwise the Unity IDE may become stuck.
 
-## Select an ad format
+#### 4.2.2 FAQ2: the 64K reference limit
+You can use one of the following solutions to avoid the 64K reference limit:
+
+Solution-A: Modify AndroidManifest.xml and mainTemplate.gradle which located Unity project's Assets/Plugins/Android/, if there are no such files then copy from [here](https://raw.githubusercontent.com/yumimobi/YumiMediationSDK-Unity/master/Assets/Plugins/Android/AndroidManifest.xml) and [here](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/Assets/Plugins/Android/mainTemplate.gradle).
+
+AndroidManifest.xml
+```xml
+<manifest>
+  ...
+  <application
+      android:name="android.support.multidex.MultiDexApplication"
+      ...
+      >
+      ...
+  </application>
+  ...
+</manifest>
+```
+mainTemplate.gradle
+```groovy
+allprojects {
+  repositories {
+    google()
+    jcenter()
+    ...
+  }
+}
+dependencies {
+  ...
+  implementation 'com.android.support:multidex:1.0.3'
+  ...
+**DEPS**}
+```
+
+Solution-B: Export Unity project to Android Studio project, then to [Avoid the 64K limit](https://developer.android.com/studio/build/multidex#avoid).
+
+#### 4.2.3 FAQ3: Set your AdMob app MANAGER
+App crashes when running in very beginning. Crash log as below:
+```
+java.lang.RuntimeException: Unable to get provider com.google.android.gms.ads.MobileAdsInitProvider: java.lang.IllegalStateException: 
+  
+  ******************************************************************************
+  * The Google Mobile Ads SDK was initialized incorrectly. AdMob publishers    *
+  * should follow the instructions here: https://goo.gl/fQ2neu to add a valid  *
+  * App ID inside the AndroidManifest. Google Ad Manager publishers should     *
+  * follow instructions here: https://goo.gl/h17b6x.                           *
+  ******************************************************************************
+```
+Add ```<meta-data>``` to AndroidManifest.xml to solve it:
+```xml
+<manifest>
+  <application>
+    ...
+    <meta-data
+        android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+        android:value="true"/>
+    ...
+  </application>
+</manifest>
+```
+
+This step is required as of Google Mobile Ads SDK version 17.0.0. Failure to add this ```<meta-data>``` tag results in a crash with the message: "The Google Mobile Ads SDK was initialized incorrectly.
+
+## 5 Select an ad format
 
 The YumiMediationSDK is now included in your Unity app when deploying to either the Android or iOS platform. You're now ready to implement an ad. YumiMediationSDK offers a number of different ad formats, so you can choose the one that best fits your user experience needs.
 
-### Banner
+### 5.1 Banner
 
-#### Initialize Banner
+#### 5.1.1 Initialize Banner
 
 ```c#
 using YumiMediationSDK.Api;
@@ -265,31 +338,31 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
-#### Request Banner
+#### 5.1.2 Request Banner
 
 ```C#
 this.bannerView.LoadAd();
 ```
 
-#### Hide Banner
+#### 5.1.3 Hide Banner
 
 ```C#
 this.bannerView.Hide();
 ```
 
-#### Show Banner
+#### 5.1.4 Show Banner
 
 ```C#
 this.bannerView.Show();
 ```
 
-#### Destroy Banner
+#### 5.1.5 Destroy Banner
 
 ```C#
 this.bannerView.Destroy();
 ```
 
-#### YumiBannerViewOptions
+#### 5.1.6 YumiBannerViewOptions
 
 `YumiBannerViewOptions` is the last parameter to init `YumiBannerView`, you can get it in `YumiBannerViewOptions` file.
 
@@ -335,9 +408,9 @@ builder.setBannerSize(YumiBannerAdSize.YUMI_BANNER_AD_SIZE_320x50);
 YumiBannerViewOptions bannerOptions = new YumiBannerViewOptions(builder);
 ```
 
-### Interstitial
+### 5.2 Interstitial
 
-#### Initialization and Interstitial request
+#### 5.2.1 Initialization and Interstitial request
 
 The interstitial placement will auto cached.
 
@@ -392,7 +465,7 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
-#### Show Interstitial
+#### 5.2.2 Show Interstitial
 
 It is recommended to call `this.interstitialAd.IsReady()` to determine if the screen is ready.
 
@@ -403,15 +476,15 @@ if(this.interstitialAd.IsReady())
 }
 ```
 
-#### Destroy Interstitial
+#### 5.2.3 Destroy Interstitial
 
 ```c#
 this.interstitialAd.Destroy();
 ```
 
-### Reward Video
+### 5.3 Reward Video
 
-#### Initialization and Reward Video request
+#### 5.3.1 Initialization and Reward Video request
 
 The reward video placement will auto cached.
 
@@ -466,13 +539,13 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
-#### Determine if the video is ready
+#### 5.3.2 Determine if the video is ready
 
 ```c#
 this.rewardVideoAd.IsReady();
 ```
 
-#### Show Rewarded Video
+#### 5.3.3 Show Rewarded Video
 
 ```c#
 if(this.rewardVideoAd.IsReady())
@@ -482,9 +555,9 @@ if(this.rewardVideoAd.IsReady())
 ```
 
 
-### Native Ad
+### 5.4 Native Ad
 
-#### Init Native Ad
+#### 5.4.1 Init Native Ad
 
 ```C#
 using UnityEngine;
@@ -567,7 +640,7 @@ public class YumiNativeScene : MonoBehaviour
 }
 ```
 
-#### YumiNativeAdOptions
+#### 5.4.2 YumiNativeAdOptions
 
 `YumiNativeAdOptions` is the last parameter to init the `YumiNativeAd`, you can set the ad style by this.
 
@@ -585,14 +658,14 @@ internal ScaleType iconScaleType;
 internal ScaleType coverImageScaleType;
 ```
 
-#### Request Native
+#### 5.4.3 Request Native
 
 ```C#
 int adCount = 1;// adCount: you can load more than one ad
 this.nativeAd.LoadAd(adCount);
 ```
 
-#### Create Your Native Ad Layout
+#### 5.4.4 Create Your Native Ad Layout
 
 ```C#
 public class YumiNativeScene : MonoBehaviour
@@ -616,7 +689,7 @@ Here is how they can be associated with the views in the editor:
 
 ![image](./resources/nativeAd.png)
 
-#### Populating Your Layout Using the Ad's Metadata
+#### 5.4.5 Populating Your Layout Using the Ad's Metadata
 
 ```C#
 public class YumiNativeScene : MonoBehaviour
@@ -639,7 +712,7 @@ public class YumiNativeScene : MonoBehaviour
 }
 ```
 
-#### Show Native Ad View
+#### 5.4.6 Show Native Ad View
 
 You should check whether the ad has been invalidated before displaying it.
 
@@ -653,13 +726,13 @@ if (this.nativeAd.IsAdInvalidated(yumiNativeData))
   this.nativeAd.ShowView(yumiNativeData);
 ```
 
-#### Hide Native Ad View
+#### 5.4.7 Hide Native Ad View
 
 ```C#
 this.nativeAd.HideView(yumiNativeData);// Hide nativeAd data associate view
 ```
 
-#### Remove Native Ad View
+#### 5.4.8 Remove Native Ad View
 
 Remove current native ad view from screen, and disconnect the native data from the view.
 If you want to display a new view by this layout, call this function first.
@@ -668,17 +741,17 @@ If you want to display a new view by this layout, call this function first.
 this.nativeAd.UnregisterView(yumiNativeData);
 ```
 
-#### Destroy Native Ad View
+#### 5.4.9 Destroy Native Ad View
 
 ```C#
 this.nativeAd.Destroy();
 ```
 
-## Debug Mode
+## 6 Debug Mode
 
 Please select debug mode if you want to test whether ad is available. 
 
-### Call Debug Mode
+### 6.1 Call Debug Mode
 
 ```C#
 using YumiMediationSDK.Api;
@@ -699,7 +772,7 @@ public class YumiSDKDemo : MonoBehaviour
 }
 ```
 
-### Sample
+### 6.2 Sample
 
 Take the iOS platform as an example (the Android platform has the same logic but different UI).
 
@@ -715,9 +788,9 @@ Take the iOS platform as an example (the Android platform has the same logic but
 
 *<p align="center" size=1>Select the AD type and debug the single platform</p>*
 
-## Common issues of developer 
+## 7 Common issues of developer 
 
-### 1 TEST ID
+### 7.1 TEST ID
  
 
 | OS      | Formats        | Slot(Placement) ID | Note                                                                                                                                          |
@@ -733,8 +806,8 @@ Take the iOS platform as an example (the Android platform has the same logic but
 
 
 
-### 2 Android build failed
-#### 2.1 Failed to find Build Tools...
+### 7.2 Android build failed
+#### 7.2.1 Failed to find Build Tools...
 ```
 * What went wrong:
 A problem occurred configuring root project 'gradleOut'.
@@ -744,7 +817,7 @@ A problem occurred configuring root project 'gradleOut'.
 
 Remove `buildToolsVersion '**BUILDTOOLS**'` in [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle).
 
-#### 2.2 No toolchains found...
+#### 7.2.2 No toolchains found...
 ```
 * What went wrong:
 A problem occurred configuring root project 'gradleOut'.
@@ -754,7 +827,7 @@ A problem occurred configuring root project 'gradleOut'.
 
 Change the version of gradle plugin in [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle), for example, change `classpath 'com.android.tools.build:gradle:3.0.1'` to `classpath 'com.android.tools.build:gradle:3.2.1'`.
 
-#### 2.3 Failed to apply plugin...
+#### 7.2.3 Failed to apply plugin...
 ```
 * What went wrong:
 A problem occurred evaluating root project 'gradleOut'.
@@ -765,28 +838,3 @@ A problem occurred evaluating root project 'gradleOut'.
 
 1. upgrade gradle version to 4.6
 2. degrade gradle plugin to match gradle 4.2.1 version. you can check [this](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) to change the gradle plugin version in [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle), for example, change `classpath 'com.android.tools.build:gradle:x.x.x'` to `classpath 'com.android.tools.build:gradle:3.0.0+`.
-
-### 3 RuntimeException
-logcat information:
-```
-java.lang.RuntimeException: Unable to get provider com.google.android.gms.ads.MobileAdsInitProvider: java.lang.IllegalStateException: 
-  
-  ******************************************************************************
-  * The Google Mobile Ads SDK was initialized incorrectly. AdMob publishers    *
-  * should follow the instructions here: https://goo.gl/fQ2neu to add a valid  *
-  * App ID inside the AndroidManifest. Google Ad Manager publishers should     *
-  * follow instructions here: https://goo.gl/h17b6x.                           *
-  ******************************************************************************
-```
-update AndroidManifest.xml to dismiss the exception:
-```xml
-<manifest>
-  <application>
-    ...
-    <meta-data
-        android:name="com.google.android.gms.ads.AD_MANAGER_APP"
-        android:value="true"/>
-    ...
-  </application>
-</manifest>
-```
