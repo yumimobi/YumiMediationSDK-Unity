@@ -7,8 +7,9 @@
   - [4 Include the YumiMediationSDK](#4-include-the-yumimediationsdk)
     - [4.1 Deploy iOS](#41-deploy-ios)
     - [4.2 Deploy Android](#42-deploy-android)
-      - [4.2.1 FAQ1: the 64K reference limit](#421-faq1-the-64k-reference-limit)
-      - [4.2.2 FAQ2: Set your AdMob app MANAGER](#422-faq2-set-your-admob-app-manager)
+      - [4.2.1 FAQ1: Resolving Android Dependencies](#421-faq1-resolving-android-dependencies)
+      - [4.2.2 FAQ2: the 64K reference limit](#422-faq2-the-64k-reference-limit)
+      - [4.2.3 FAQ3: Set your AdMob app MANAGER](#423-faq3-set-your-admob-app-manager)
   - [5 Select an ad format](#5-select-an-ad-format)
     - [5.1 Banner](#51-banner)
       - [5.1.1 Initialize Banner](#511-initialize-banner)
@@ -205,8 +206,10 @@ Android dependencies:
 </androidPackages>
 ```
 e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.1" />`.
+#### 4.2.1 FAQ1: Resolving Android Dependencies
+It maybe spend some time to resolving android dependencies when clicked Assets -> Play Services Resolver -> Android Resolver -> Resolve / Force Resolve. More androidPackages added and more time will be taken. When resolving conflicts, try not to use the Unity IDE, otherwise the Unity IDE may become stuck.
 
-#### 4.2.1 FAQ1: the 64K reference limit
+#### 4.2.2 FAQ2: the 64K reference limit
 You can use one of the following solutions to avoid the 64K reference limit:
 
 Solution-A: Modify AndroidManifest.xml and mainTemplate.gradle which located Unity project's Assets/Plugins/Android/, if there are no such files then copy from [here](https://raw.githubusercontent.com/yumimobi/YumiMediationSDK-Unity/master/Assets/Plugins/Android/AndroidManifest.xml) and [here](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/Assets/Plugins/Android/mainTemplate.gradle).
@@ -242,7 +245,7 @@ dependencies {
 
 Solution-B: Export Unity project to Android Studio project, then to [Avoid the 64K limit](https://developer.android.com/studio/build/multidex#avoid).
 
-#### 4.2.2 FAQ2: Set your AdMob app MANAGER
+#### 4.2.3 FAQ3: Set your AdMob app MANAGER
 App crashes when running in very beginning. Crash log as below:
 ```
 java.lang.RuntimeException: Unable to get provider com.google.android.gms.ads.MobileAdsInitProvider: java.lang.IllegalStateException: 
