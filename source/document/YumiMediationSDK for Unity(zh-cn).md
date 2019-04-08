@@ -70,7 +70,7 @@
 
 Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android 和 iOS 应用上展示广告，无需编写 Java 或 Objective-C 代码。该插件提供了一个 C# 接口来请求广告。使用下面的链接下载插件的 Unity 包或在 GitHub 上查看其代码。
 
-[下载YumiMediationSDK Unity插件](https://adsdk.yumimobi.com/Unity/3.6.3/YumiMediationSDKPlugin_v3.6.3.1.unitypackage)
+[下载YumiMediationSDK Unity插件](https://adsdk.yumimobi.com/Unity/3.6.3/YumiMediationSDKPlugin_v3.6.3.2.unitypackage)
 
 [查看源码](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
@@ -284,13 +284,13 @@ this.bannerView.Show();
 this.bannerView.Destroy();
 ```
 #### YumiBannerViewOptions
-`YumiBannerViewOptions` 是初始化 `YumiBannerView` 时传入的最后一个参数，您可在 `YumiBannerViewOptions` 文件中进行设置：
+`YumiBannerViewOptions` 是初始化 `YumiBannerView` 时传入的最后一个参数，您可在 `YumiBannerViewOptions` 文件中查看：
 
-- `AdPosition`
+- `adPosition`
 
   设置 banner 广告位所处父视图的位置。默认为下方，居中显示。
 
-- `BannerSize`
+- `bannerSize`
 
   设置 banner 广告的尺寸。
 
@@ -298,7 +298,7 @@ this.bannerView.Destroy();
 
   在 iPad 上默认为 728 * 90。
 
-- `IsSmart`
+- `isSmart`
 
   默认为 true。
 
@@ -306,13 +306,29 @@ this.bannerView.Destroy();
 
   如果设置为 false，banner 会展示广告位自身尺寸。
 
-- `DisableAutoRefresh`
+- `disableAutoRefresh`
 
   默认为 false。
   
   如果设置为 false，banner 会自动请求下一条广告，您无需重复调用 `this.bannerView.LoadAd(); `。
 
   如果设置为 true，banner 不会进行下一次请求，您必须在恰当的时机再次调用 `this.bannerView.LoadAd();`。
+
+默认创建 `YumiBannerViewOptions` 实例代码：
+```C#
+YumiBannerViewOptions bannerOptions = new YumiBannerViewOptionsBuilder().Build();
+```
+
+自定义创建 `YumiBannerViewOptions` 实例代码：
+```C#
+YumiBannerViewOptionsBuilder builder = new YumiBannerViewOptionsBuilder();
+builder.setAdPosition(YumiAdPosition.TOP);
+builder.setSmartState(false);
+builder.setDisableAutoRefreshState(true);
+builder.setBannerSize(YumiBannerAdSize.YUMI_BANNER_AD_SIZE_320x50);
+
+YumiBannerViewOptions bannerOptions = new YumiBannerViewOptions(builder);
+```
 
 ### Interstitial
 
