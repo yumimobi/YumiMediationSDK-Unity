@@ -155,7 +155,8 @@ e.g., Delete `AdMob`, Delete `<iosPod name="YumiMediationAdapters/AdMob" version
 
 Complete the above procedure, Open **xcworkspace** project.
 
-**Note：Use CocoaPods to identify iOS dependencies. CocoaPods runs as a post-build process step.**
+**Note: Use CocoaPods to identify iOS dependencies. CocoaPods runs as a post-build process step.**
+**Note: CocoaPods will auto download the thirdparty network's SDK, you don't need add it by manual.**
 
 ### 4.2 Deploy Android 
 
@@ -206,6 +207,9 @@ Android dependencies:
 </androidPackages>
 ```
 e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.1" />`.
+
+**Note: Unity plugin will auto download the thirdparty network's SDK, you don't need add it by manual.**
+
 #### 4.2.1 FAQ1: Resolving Android Dependencies
 It maybe spend some time to resolving android dependencies when clicked Assets -> Play Services Resolver -> Android Resolver -> Resolve / Force Resolve. More androidPackages added and more time will be taken. When resolving conflicts, try not to use the Unity IDE, otherwise the Unity IDE may become stuck.
 
