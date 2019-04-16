@@ -154,6 +154,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 构建完成，打开 **xcworkspace** 工程。
 
 **注意：使用 CocoaPods 识别 iOS 依赖项。 CocoaPods 作为后期构建过程步骤运行。**
+**注意: CocoaPods 会自动引用第三方 SDK，您无需手动添加。**
 
 ### 4.2 部署 Android 项目
 
@@ -203,6 +204,8 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 ```
 
 比如删除 `admob`，直接删除 `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.1" />` 即可。
+
+**注意: Unity 插件会自动引用第三方广告 SDK，您无需手动添加。**
 
 #### 4.2.1 常见问题一：加载三方 SDK 时间过长
 执行 Android Resolver -> Resolve/Force resolve 时，插件会自动下载并导入相关 aar。如果添加多个平台，各平台依赖库版本不一致时插件会尝试自动解决依赖冲突，此过程可能耗时较长，请耐心等待。解决冲突时，尽量不要操作 Unity IDE，否则 Unity IDE 可能会出现卡死现象。
