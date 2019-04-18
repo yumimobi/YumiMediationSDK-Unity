@@ -92,7 +92,10 @@ Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android �
 ![img](resources/02.png)
 
 ### 3.2 升级插件
+
 删除 Assets/YumiMediationSDK 目录，并按照 3.1 所述重新导入。
+
+新版本插件将桥接文件 Assets/Plugins/Android/unity-plugin-library.jar 和 Assets/Plugins/iOS/* 转移到 Assets/YumiMediationSDK/../ 下，如果之前导入过这些桥接文件，请将其删除，否则会出现编译错误。
 
 ## 4 集成 YumiMediationSDK
 

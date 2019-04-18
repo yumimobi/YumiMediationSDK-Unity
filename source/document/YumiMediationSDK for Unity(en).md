@@ -92,7 +92,10 @@ Make sure all of the files are selected and click **Import**.
 ![img](resources/02.png)
 
 ### 3.2 Update plugin
+
 Delete the Assets/YumiMediationSDK directory, then reimport the plugin as the 3.1 section discussed.
+
+YumiMediationSDK Unity plugin has moved bridge files - Assets/Plugins/Android/unity-plugin-library.jar and Assets/Plugins/iOS/* - to Assets/YumiMediationSDK/../ . So if you imported those files before, you need delete them to avoid compilation error.
 
 ## 4 Include the YumiMediationSDK
 
