@@ -45,6 +45,7 @@
       - [7.2.1 Failed to find Build Tools...](#721-failed-to-find-build-tools)
       - [7.2.2 No toolchains found...](#722-no-toolchains-found)
       - [7.2.3 Failed to apply plugin...](#723-failed-to-apply-plugin)
+    - [7.3 android 9.0 适配](#73-android-90-%E9%80%82%E9%85%8D)
 
 # YumiMediationSDK for Unity
 
@@ -822,3 +823,6 @@ A problem occurred evaluating root project 'gradleOut'.
 
 1. 升级 gradle 版本至 4.6
 2. 降级 gradle plugin 版本至 gradle 4.2.1 对应的版本。对照 [Update Gradle](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) 文档可知需要将 [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle) 中 `classpath 'com.android.tools.build:gradle:x.x.x'` 修改为 `classpath 'com.android.tools.build:gradle:3.0.0+'`
+
+### 7.3 android 9.0 适配
+Mintegral Android SDK 暂不支持 Android 9.0 及以上操作系统，如果在 Android 9.0 系统出现的崩溃，可以通过将 targetSdkVersion 设置为 27 或删除 Mintegral 平台来解决该问题。

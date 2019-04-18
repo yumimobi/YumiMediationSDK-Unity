@@ -45,6 +45,7 @@
       - [7.2.1 Failed to find Build Tools...](#721-failed-to-find-build-tools)
       - [7.2.2 No toolchains found...](#722-no-toolchains-found)
       - [7.2.3 Failed to apply plugin...](#723-failed-to-apply-plugin)
+    - [7.3 Android 9.0 compatibility considerations](#73-android-90-compatibility-considerations)
 
 # YumiMediationSDK for Unity
 
@@ -828,3 +829,6 @@ A problem occurred evaluating root project 'gradleOut'.
 
 1. upgrade gradle version to 4.6
 2. degrade gradle plugin to match gradle 4.2.1 version. you can check [Update Gradle](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) to change the gradle plugin version in [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle), for example, change `classpath 'com.android.tools.build:gradle:x.x.x'` to `classpath 'com.android.tools.build:gradle:3.0.0+'`.
+
+### 7.3 Android 9.0 compatibility considerations
+At present, Mintegral platform the Android SDK does not support Android 9.0 or above. If the app crashes above Android 9.0. You can set targetSdkVersion to 27 or remove Mintegral platform to dissmiss the issue.
