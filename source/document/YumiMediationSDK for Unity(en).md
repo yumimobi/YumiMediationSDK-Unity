@@ -834,4 +834,6 @@ A problem occurred evaluating root project 'gradleOut'.
 2. degrade gradle plugin to match gradle 4.2.1 version. you can check [Update Gradle](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) to change the gradle plugin version in [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle), for example, change `classpath 'com.android.tools.build:gradle:x.x.x'` to `classpath 'com.android.tools.build:gradle:3.0.0+'`.
 
 ### 7.3 Android 9.0 compatibility considerations
-At present, Mintegral platform the Android SDK does not support Android 9.0 or above. If the app crashes above Android 9.0. You can set targetSdkVersion to 27 or remove Mintegral platform to dissmiss the issue.
+At present, Mintegral platform the Android SDK does not support Android9.0 or above. If the app crashes above Android9.0, you can solve by the ways below.
+
+1. Set targaetSDKveriosn to 27 or less
