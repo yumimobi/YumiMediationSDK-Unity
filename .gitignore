@@ -58,4 +58,8 @@ crashlytics-build.properties
 Assets/Plugins/Android/javax.*
 Assets/Plugins/Android/com.*
 Assets/Plugins/Android/android.*
+Packages/manifest.json
+ProjectSettings/ProjectVersion.txt
+ProjectSettings/VFXManager.asset
+ProjectSettings/EditorBuildSettings.asset
 .vscode
