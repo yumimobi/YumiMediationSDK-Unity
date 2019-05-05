@@ -501,7 +501,7 @@ public class YumiSDKDemo : MonoBehaviour
     this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
     this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
     this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
-    // load ad
+    // Initiates the ad request, should only be called once as early as possible.
     this.rewardVideoAd.LoadAd(rewardVideoPlacementId, channelId, gameVersionId);
   }
   
