@@ -39,6 +39,13 @@ typedef void (*YumiInterstitialDidFailToReceiveAdWithErrorCallback)(YumiTypeInte
 typedef void (*YumiInterstitialDidClickCallback)(YumiTypeInterstitialClientRef *interstitial);
 /// Callback for when an interstitial has just been closed.
 typedef void (*YumiInterstitialDidCloseCallback)(YumiTypeInterstitialClientRef *interstitial);
+// v4.0.0
+/// Callback for when an interstitial ad show fail
+typedef void (*YumiInterstitialDidFailToShowAdWithErrorCallback)(YumiTypeInterstitialClientRef *interstitial, const char *error);
+/// Callback for when an  interstitial has been opened
+typedef void (*YumiInterstitialDidOpenCallback)(YumiTypeInterstitialClientRef *interstitial);
+/// Callback for when an  interstitial has start playing.
+typedef void (*YumiInterstitialDidStartPlayingCallback)(YumiTypeInterstitialClientRef *interstitial);
 
 #pragma mark - RewardVideo ads
 /// Type representing a Unity RewardVideo client.
@@ -54,8 +61,20 @@ typedef void (*YumiRewardVideoDidStartPlayingCallback)(YumiTypeRewardVideoClient
 
 /// Callback for when an  rewardVideo ad has been reward
 typedef void (*YumiRewardVideoDidRewardCallback)(YumiTypeRewardVideoClientRef *rewardVideo);
-/// Callback for when an rewardVideo has just been closed.
-typedef void (*YumiRewardVideoDidCloseCallback)(YumiTypeRewardVideoClientRef *rewardVideo);
+
+// v4.0.0
+
+/// Callback for when an rewardVideo has been closed.
+typedef void (*YumiRewardVideoDidCloseCallback)(YumiTypeRewardVideoClientRef *rewardVideo, BOOL isRewarded);
+
+/// Callback for when an rewardVideo has just been load.
+typedef void (*YumiRewardVideoDidReceiveAdCallback)(YumiTypeRewardVideoClientRef *rewardVideo);
+/// Callback for when an rewardVideo ad request failed.
+typedef void (*YumiRewardVideoDidFailToReceiveAdWithErrorCallback)(YumiTypeRewardVideoClientRef *rewardVideo, const char *error);
+/// Callback for when an rewardVideo ad show fail
+typedef void (*YumiRewardVideoDidFailToShowAdWithErrorCallback)(YumiTypeRewardVideoClientRef *rewardVideo, const char *error);
+/// Callback for when an rewardVideo has been clicked.
+typedef void (*YumiRewardVideoDidClickAdCallback)(YumiTypeRewardVideoClientRef *rewardVideo);
 
 #pragma mark - native ads
 /// Type representing a Unity native client.
