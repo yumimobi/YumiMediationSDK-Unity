@@ -2,7 +2,9 @@
 
 namespace YumiMediationSDK.Api
 {
-    // Event that occurs when an ad fails to show.
+    /// <summary>
+    ///  Event that occurs when an ad fails to show.
+    /// </summary>
     public class YumiAdFailedToShowEventArgs : EventArgs
     {
         public string Message { get; set; }
