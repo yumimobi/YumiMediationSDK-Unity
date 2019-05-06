@@ -240,7 +240,7 @@ public class YumiSDKDemo : MonoBehaviour
     }
     public void HandleInterstitialAdStartPlaying(object sender, EventArgs args)
     {
-        Logger.Log("HandleInterstitialAdStartPlaying event StartPlayin");
+        Logger.Log("HandleInterstitialAdStartPlaying event StartPlaying ");
     }
 
     #endregion
@@ -262,7 +262,7 @@ public class YumiSDKDemo : MonoBehaviour
     }
     public void HandleRewardVideoAdClosed(object sender, YumiAdCloseEventArgs args)
     {
-        Logger.Log("HandleRewardVideoAdClosed Ad closed" + args.IsRewarded);
+        Logger.Log("HandleRewardVideoAdClosed Ad closed result is  " + args.IsRewarded);
     }
     public void HandleRewardVideoAdLoaded(object sender, EventArgs args)
     {
