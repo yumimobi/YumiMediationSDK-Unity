@@ -2,6 +2,7 @@
 using System;
 using YumiMediationSDK.Common;
 using System.Runtime.InteropServices;
+using YumiMediationSDK.Api;
 
 namespace YumiMediationSDK.iOS
 {
@@ -16,12 +17,18 @@ namespace YumiMediationSDK.iOS
 
         internal delegate void YumiRewardVideoDidStartPlayingCallback(IntPtr rewardVideo);
 
-        internal delegate void YumiRewardVideoDidCloseCallback(IntPtr rewardVideo);
+        internal delegate void YumiRewardVideoDidCloseCallback(IntPtr rewardVideo,bool isRewarded);
 
         internal delegate void YumiRewardVideoDidRewardCallback(IntPtr rewardVideo);
 
 #endregion
 
+        // Ad event fired when the reward based video ad has been received.
+        public event EventHandler<EventArgs> OnAdLoaded;
+        // Ad event fired when  the reward based video ad has failed to load.
+        public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
+        // Ad event fired when  the reward based video ad has failed to show.
+        public event EventHandler<YumiAdFailedToShowEventArgs> OnAdFailedToShow;
         // Ad event fired when the reward based video ad is opened.
         public event EventHandler<EventArgs> OnAdOpening;
         // Ad event fired when the reward based video ad has started playing.
@@ -29,7 +36,9 @@ namespace YumiMediationSDK.iOS
         // Ad event fired when the reward based video ad has rewarded the user.
         public event EventHandler<EventArgs> OnAdRewarded;
         // Ad event fired when the reward based video ad is closed.
-        public event EventHandler<EventArgs> OnAdClosed;
+        public event EventHandler<YumiAdCloseEventArgs> OnRewardVideoAdClosed;
+        // Ad event fired when the reward based video ad is clicked.
+        public event EventHandler<EventArgs> OnAdClicked;
 
         // This property should be used when setting the rewardBasedVideoPtr.
         private IntPtr RewardVideoPtr
@@ -128,12 +137,16 @@ namespace YumiMediationSDK.iOS
             }
         }
         [MonoPInvokeCallback(typeof(YumiRewardVideoDidCloseCallback))]
-        private static void RewardVideoDidCloseCallback(IntPtr rewardVideo)
+        private static void RewardVideoDidCloseCallback(IntPtr rewardVideo,bool isRewarded)
         {
             YumiRewardVideoClient client = IntPtrToRewardVideoClient(rewardVideo);
-            if (client.OnAdClosed != null)
+            if (client.OnRewardVideoAdClosed != null)
             {
-                client.OnAdClosed(client, EventArgs.Empty);
+                 YumiAdCloseEventArgs args = new YumiAdCloseEventArgs()
+                {
+                    IsRewarded = isRewarded
+                };
+                client.OnRewardVideoAdClosed(client, args);
             }
         }
 
