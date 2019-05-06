@@ -5,7 +5,12 @@ namespace YumiMediationSDK.Common
 {
     public interface IYumiRewardVideoClient
     {
-       
+        // Ad event fired when the reward based video ad has been received.
+        event EventHandler<EventArgs> OnAdLoaded;
+        // Ad event fired when  the reward based video ad has failed to load.
+        event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
+        // Ad event fired when  the reward based video ad has failed to show.
+        event EventHandler<YumiAdFailedToShowEventArgs> OnAdFailedToShow;
         // Ad event fired when the reward based video ad is opened.
         event EventHandler<EventArgs> OnAdOpening;
         // Ad event fired when the reward based video ad has started playing.
@@ -13,7 +18,9 @@ namespace YumiMediationSDK.Common
         // Ad event fired when the reward based video ad has rewarded the user.
         event EventHandler<EventArgs> OnAdRewarded;
         // Ad event fired when the reward based video ad is closed.
-        event EventHandler<EventArgs> OnAdClosed;
+        event EventHandler<YumiAdCloseEventArgs> OnAdClosed;
+        // Ad event fired when the reward based video ad is clicked.
+        event EventHandler<EventArgs> OnAdClicked;
 
         // Creates an RewardVideo.
         void CreateRewardVideoAd();
