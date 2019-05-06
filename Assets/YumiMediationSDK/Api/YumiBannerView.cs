@@ -29,11 +29,17 @@ namespace YumiMediationSDK.Api
             ConfigureBannerEvents();
          }
 
-        // Ad event fired when the banner ad has loaded.
+        /// <summary>
+        /// Occurs when the banner ad has loaded.
+        /// </summary>
         public event EventHandler<EventArgs> OnAdLoaded;
-        // Ad event fired when the banner ad has failed to load.
+        /// <summary>
+        /// Occurs  when the banner ad has failed to load.
+        /// </summary>
         public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
-        // Ad event fired when the banner ad is click.
+        /// <summary>
+        /// Occurs when the banner ad is click.
+        /// </summary>
         public event EventHandler<EventArgs> OnAdClick;
 
         /// <summary>
