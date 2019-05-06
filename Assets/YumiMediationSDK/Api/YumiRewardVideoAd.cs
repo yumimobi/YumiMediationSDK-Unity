@@ -49,7 +49,12 @@ namespace YumiMediationSDK.Api
             this.client.PlayRewardVideo();
         }
 
-       
+        // Ad event fired when the reward based video ad has been received.
+        public event EventHandler<EventArgs> OnAdLoaded;
+        // Ad event fired when  the reward based video ad has failed to load.
+        public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
+        // Ad event fired when  the reward based video ad has failed to show.
+        public event EventHandler<YumiAdFailedToShowEventArgs> OnAdFailedToShow;
         // Ad event fired when the reward based video ad is opened.
         public event EventHandler<EventArgs> OnAdOpening;
         // Ad event fired when the reward based video ad has started playing.
@@ -57,10 +62,33 @@ namespace YumiMediationSDK.Api
         // Ad event fired when the reward based video ad has rewarded the user.
         public event EventHandler<EventArgs> OnAdRewarded;
         // Ad event fired when the reward based video ad is closed.
-        public event EventHandler<EventArgs> OnAdClosed;
+        public event EventHandler<YumiAdCloseEventArgs> OnAdClosed;
+        // Ad event fired when the reward based video ad is clicked.
+        public event EventHandler<EventArgs> OnAdClicked;
 
         private void ConfigureRewardVideoEvents()
         {
+            this.client.OnAdLoaded += (sender, args) =>
+            {
+                if (this.OnAdLoaded != null)
+                {
+                    this.OnAdLoaded(this, args);
+                }
+            };
+            this.client.OnAdFailedToLoad += (sender, args) =>
+            {
+                if (this.OnAdFailedToLoad != null)
+                {
+                    this.OnAdFailedToLoad(this, args);
+                }
+            };
+            this.client.OnAdFailedToShow += (sender, args) =>
+            {
+                if (this.OnAdFailedToShow != null)
+                {
+                    this.OnAdFailedToShow(this, args);
+                }
+            };
             this.client.OnAdOpening += (sender, args) =>
             {
                 if (this.OnAdOpening != null)
@@ -68,7 +96,6 @@ namespace YumiMediationSDK.Api
                     this.OnAdOpening(this, args);
                 }
             };
-
             this.client.OnAdStartPlaying += (sender, args) =>
             {
                 if (this.OnAdStartPlaying != null)
@@ -76,7 +103,13 @@ namespace YumiMediationSDK.Api
                     this.OnAdStartPlaying(this, args);
                 }
             };
-
+            this.client.OnAdClicked += (sender, args) =>
+            {
+                if (this.OnAdClicked != null)
+                {
+                    this.OnAdClicked(this, args);
+                }
+            };
             this.client.OnAdRewarded += (sender, args) =>
             {
                 if (this.OnAdRewarded != null)
