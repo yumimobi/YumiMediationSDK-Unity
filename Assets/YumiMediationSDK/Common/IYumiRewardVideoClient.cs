@@ -18,7 +18,7 @@ namespace YumiMediationSDK.Common
         // Ad event fired when the reward based video ad has rewarded the user.
         event EventHandler<EventArgs> OnAdRewarded;
         // Ad event fired when the reward based video ad is closed.
-        event EventHandler<YumiAdCloseEventArgs> OnAdClosed;
+        event EventHandler<YumiAdCloseEventArgs> OnRewardVideoAdClosed;
         // Ad event fired when the reward based video ad is clicked.
         event EventHandler<EventArgs> OnAdClicked;
 
