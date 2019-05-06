@@ -63,3 +63,5 @@ ProjectSettings/ProjectVersion.txt
 ProjectSettings/VFXManager.asset
 ProjectSettings/EditorBuildSettings.asset
 .vscode
+ProjectSettings/*.asset
+ProjectSettings/*.txt
