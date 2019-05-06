@@ -27,10 +27,16 @@ namespace YumiMediationSDK.iOS
 
 
 #endregion
-
+        // Ad event fired when the interstitial ad has been received.
         public event EventHandler<EventArgs> OnAdLoaded;
         // Ad event fired when the interstitial ad has failed to load.
         public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
+        // Ad event fired when the interstitial ad has failed to show.
+        public event EventHandler<YumiAdFailedToShowEventArgs> OnAdFailedToShow;
+        // Ad event fired when the interstitial ad is opened.
+        public event EventHandler<EventArgs> OnAdOpening;
+        // Ad event fired when the interstitial ad has started playing.
+        public event EventHandler<EventArgs> OnAdStartPlaying;
         // Ad event fired when the interstitial ad is closed.
         public event EventHandler<EventArgs> OnAdClosed;
         // Ad event fired when the interstitial ad is clicked.
