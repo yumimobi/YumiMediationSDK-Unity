@@ -20,8 +20,15 @@ namespace YumiMediationSDK.iOS
         internal delegate void YumiRewardVideoDidCloseCallback(IntPtr rewardVideo,bool isRewarded);
 
         internal delegate void YumiRewardVideoDidRewardCallback(IntPtr rewardVideo);
+        // 4.0.0
+        internal delegate void YumiRewardVideoDidReceiveAdCallback(IntPtr interstitialClient);
+        internal delegate void YumiRewardVideoDidFailToReceiveAdWithErrorCallback(
+                IntPtr interstitialClient, string error);
+        internal delegate void YumiRewardVideoDidFailToShowAdWithErrorCallback(
+              IntPtr interstitialClient, string error);
+        internal delegate void YumiRewardVideoDidClickAdCallback(IntPtr interstitialClient);
 
-#endregion
+        #endregion
 
         // Ad event fired when the reward based video ad has been received.
         public event EventHandler<EventArgs> OnAdLoaded;
@@ -69,7 +76,11 @@ namespace YumiMediationSDK.iOS
                 RewardVideoDidOpenAdCallback,
                 RewardVideoDidStartPlayingCallback,
                 RewardVideoDidRewardCallback,
-                RewardVideoDidCloseCallback
+                RewardVideoDidCloseCallback,
+                RewardVideoDidReceiveAdCallback,
+                RewardVideoDidFailToReceiveAdWithErrorCallback,
+                RewardVideoDidFailToShowAdWithErrorCallback,
+                RewardVideoDidClickAdCallback
             );
         }
 
@@ -149,8 +160,53 @@ namespace YumiMediationSDK.iOS
                 client.OnRewardVideoAdClosed(client, args);
             }
         }
+        // v4.0.0
+        [MonoPInvokeCallback(typeof(YumiRewardVideoDidReceiveAdCallback))]
+        private static void RewardVideoDidReceiveAdCallback(IntPtr rewardVideo)
+        {
+            YumiRewardVideoClient client = IntPtrToRewardVideoClient(rewardVideo);
+            if (client.OnAdLoaded != null)
+            {
 
+                client.OnAdLoaded(client, EventArgs.Empty);
+            }
+        }
+        [MonoPInvokeCallback(typeof(YumiRewardVideoDidFailToReceiveAdWithErrorCallback))]
+        private static void RewardVideoDidFailToReceiveAdWithErrorCallback(IntPtr rewardVideo, string error)
+        {
+            YumiRewardVideoClient client = IntPtrToRewardVideoClient(rewardVideo);
+            if (client.OnAdFailedToLoad != null)
+            {
+                YumiAdFailedToLoadEventArgs args = new YumiAdFailedToLoadEventArgs()
+                {
+                    Message = error
+                };
+                client.OnAdFailedToLoad(client, args);
+            }
+        }
+        [MonoPInvokeCallback(typeof(YumiRewardVideoDidFailToShowAdWithErrorCallback))]
+        private static void RewardVideoDidFailToShowAdWithErrorCallback(IntPtr rewardVideo, string error)
+        {
+            YumiRewardVideoClient client = IntPtrToRewardVideoClient(rewardVideo);
+            if (client.OnAdFailedToShow != null)
+            {
+                YumiAdFailedToShowEventArgs args = new YumiAdFailedToShowEventArgs()
+                {
+                    Message = error
+                };
+                client.OnAdFailedToShow(client, args);
+            }
+        }
+        [MonoPInvokeCallback(typeof(YumiRewardVideoDidClickAdCallback))]
+        private static void RewardVideoDidClickAdCallback(IntPtr rewardVideo)
+        {
+            YumiRewardVideoClient client = IntPtrToRewardVideoClient(rewardVideo);
+            if (client.OnAdClicked != null)
+            {
 
+                client.OnAdClicked(client, EventArgs.Empty);
+            }
+        }
         private static YumiRewardVideoClient IntPtrToRewardVideoClient(
            IntPtr rewardVideoClient)
         {
