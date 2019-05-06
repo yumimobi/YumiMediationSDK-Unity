@@ -124,7 +124,7 @@ public class YumiSDKDemo : MonoBehaviour
                 this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
                 this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
                 this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
-                this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
+                this.rewardVideoAd.OnRewardVideoAdClosed += HandleRewardVideoAdClosed;
             }
            
 
@@ -241,9 +241,9 @@ public class YumiSDKDemo : MonoBehaviour
     {
         Logger.Log("HandleRewardVideoAdReward reward");
     }
-    public void HandleRewardVideoAdClosed(object sender, EventArgs args)
+    public void HandleRewardVideoAdClosed(object sender, YumiAdCloseEventArgs args)
     {
-        Logger.Log("HandleRewardVideoAdClosed Ad closed");
+        Logger.Log("HandleRewardVideoAdClosed Ad closed" + args.IsRewarded);
     }
 
 
