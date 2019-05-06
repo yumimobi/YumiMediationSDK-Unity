@@ -62,7 +62,7 @@ namespace YumiMediationSDK.Api
         // Ad event fired when the reward based video ad has rewarded the user.
         public event EventHandler<EventArgs> OnAdRewarded;
         // Ad event fired when the reward based video ad is closed.
-        public event EventHandler<YumiAdCloseEventArgs> OnAdClosed;
+        public event EventHandler<YumiAdCloseEventArgs> OnRewardVideoAdClosed;
         // Ad event fired when the reward based video ad is clicked.
         public event EventHandler<EventArgs> OnAdClicked;
 
@@ -117,11 +117,11 @@ namespace YumiMediationSDK.Api
                     this.OnAdRewarded(this, args);
                 }
             };
-            this.client.OnAdClosed += (sender, args) =>
+            this.client.OnRewardVideoAdClosed += (sender, args) =>
             {
-                if (this.OnAdClosed != null)
+                if (this.OnRewardVideoAdClosed != null)
                 {
-                    this.OnAdClosed(this, args);
+                    this.OnRewardVideoAdClosed(this, args);
                 }
             };
 
@@ -135,5 +135,8 @@ namespace YumiMediationSDK.Api
             this.client.DestroyRewardVideo();
         }
 
+        [Obsolete("Destroy is deprecated.", true)]
+        // Ad event fired when the reward based video ad is closed.
+        public event EventHandler<EventArgs> OnAdClosed;
     }
 }
