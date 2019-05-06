@@ -26,13 +26,21 @@
 @property(nonatomic, assign) YumiInterstitialDidReceiveAdCallback adReceivedCallback;
 
 /// The ad failed callback into Unity.
-@property(nonatomic, assign) YumiInterstitialDidFailToReceiveAdWithErrorCallback adFailedCallback;
+@property(nonatomic, assign) YumiInterstitialDidFailToReceiveAdWithErrorCallback adFailedToLoadCallback;
 
 /// The ad clicked callback into Unity.
 @property(nonatomic, assign) YumiInterstitialDidClickCallback adClickCallback;
 
-/// The did dismiss screen callback into Unity.
+/// The ad  did dismiss screen callback into Unity.
 @property(nonatomic, assign) YumiInterstitialDidCloseCallback adCloseCallback;
+// v4.0.0
+/// The ad  fail to show callback into Unity.
+@property(nonatomic, assign) YumiInterstitialDidFailToShowAdWithErrorCallback adFailToShowCallback;
+/// The ad did open  callback into Unity.
+@property(nonatomic, assign) YumiInterstitialDidOpenCallback adOpenedCallback;
+/// The ad did start playing callback into Unity.
+@property(nonatomic, assign) YumiInterstitialDidStartPlayingCallback adStartPlayingCallback;
+
 
 /// Returns YES if the interstitial is ready to be displayed.
 - (BOOL)isReady;

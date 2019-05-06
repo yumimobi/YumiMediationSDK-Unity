@@ -116,14 +116,19 @@ void SetInterstitiaCallbacks(YumiTypeInterstitialRef interstitial,
                              YumiInterstitialDidReceiveAdCallback adReceivedCallback,
                              YumiInterstitialDidFailToReceiveAdWithErrorCallback adFailCallback,
                              YumiInterstitialDidClickCallback adClickedCallback,
-                             YumiInterstitialDidCloseCallback adClosedCallback
+                             YumiInterstitialDidCloseCallback adClosedCallback,
+                        YumiInterstitialDidFailToShowAdWithErrorCallback adFailToShowCallback,
+                             YumiInterstitialDidOpenCallback adOpenedCallback,
+                             YumiInterstitialDidStartPlayingCallback adStartPlayingCallback
                              ){
     YumiInterstital *internalInterstitial = (__bridge YumiInterstital *)interstitial;
     internalInterstitial.adReceivedCallback = adReceivedCallback;
-    internalInterstitial.adFailedCallback = adFailCallback;
+    internalInterstitial.adFailedToLoadCallback = adFailCallback;
     internalInterstitial.adClickCallback = adClickedCallback;
     internalInterstitial.adCloseCallback = adClosedCallback;
-    
+    internalInterstitial.adFailToShowCallback = adFailToShowCallback;
+    internalInterstitial.adOpenedCallback =adOpenedCallback;
+    internalInterstitial.adStartPlayingCallback = adStartPlayingCallback;
 }
 
 #pragma mark - reward video
@@ -151,14 +156,21 @@ void SetRewardVideoCallbacks(YumiTypeRewardVideoRef rewardVideo,
                              YumiRewardVideoDidOpenAdCallback adOpenedCallback,
                              YumiRewardVideoDidStartPlayingCallback adStartPlaying,
                              YumiRewardVideoDidRewardCallback adRewardedCallback,
-                             YumiRewardVideoDidCloseCallback adClosedCallback
+                             YumiRewardVideoDidCloseCallback adClosedCallback,
+                             YumiRewardVideoDidReceiveAdCallback adReceivedCallback,
+                             YumiRewardVideoDidFailToReceiveAdWithErrorCallback adFailToLoadCallback,
+                             YumiRewardVideoDidFailToShowAdWithErrorCallback adFailToShowCallback,
+                             YumiRewardVideoDidClickAdCallback adClickCallBack
                              ){
     YumiRewardVideo *internalRewardVideo = (__bridge YumiRewardVideo *)rewardVideo;
     internalRewardVideo.adOpenedCallback = adOpenedCallback;
     internalRewardVideo.adStartPlayingCallback = adStartPlaying;
     internalRewardVideo.adRewardedCallback = adRewardedCallback;
     internalRewardVideo.adClosedCallback = adClosedCallback;
-    
+    internalRewardVideo.adReceivedCallback = adReceivedCallback;
+    internalRewardVideo.adFailToLoadCallback = adFailToLoadCallback;
+    internalRewardVideo.adFailToShowCallback = adFailToShowCallback;
+    internalRewardVideo.adClickCallBack = adClickCallBack;
 }
 
 #pragma mark - Other methods
