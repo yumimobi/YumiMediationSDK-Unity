@@ -16,7 +16,7 @@ namespace YumiMediationSDK.Common
         // Ad event fired when the interstitial ad has started playing.
         event EventHandler<EventArgs> OnAdStartPlaying;
         // Ad event fired when the interstitial ad is closed.
-        event EventHandler<YumiAdCloseEventArgs> OnAdClosed;
+        event EventHandler<EventArgs> OnAdClosed;
         // Ad event fired when the interstitial ad is clicked.
         event EventHandler<EventArgs> OnAdClicked;
 
