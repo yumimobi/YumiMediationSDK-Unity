@@ -68,7 +68,10 @@ namespace YumiMediationSDK.iOS
             YumiInterstitialClient.YumiInterstitialDidReceiveAdCallback adReceivedCallback,
             YumiInterstitialClient.YumiInterstitialDidFailToReceiveAdWithErrorCallback adFailedCallback,
             YumiInterstitialClient.YumiInterstitialDidClickCallback adClickedCallback,
-            YumiInterstitialClient.YumiInterstitialDidCloseCallback adClosedCallback);
+            YumiInterstitialClient.YumiInterstitialDidCloseCallback adClosedCallback,
+            YumiInterstitialClient.YumiInterstitialDidFailToShowAdWithErrorCallback adCFailToShowCallback,
+            YumiInterstitialClient.YumiInterstitialDidOpenCallback adOpenedCallback,
+            YumiInterstitialClient.YumiInterstitialDidStartPlayingCallback adStartPlayingCallback );
 
         #endregion
 
@@ -89,7 +92,11 @@ namespace YumiMediationSDK.iOS
             YumiRewardVideoClient.YumiRewardVideoDidOpenAdCallback adOpenedCallback,
             YumiRewardVideoClient.YumiRewardVideoDidStartPlayingCallback adStartPlayingCallback,
             YumiRewardVideoClient.YumiRewardVideoDidRewardCallback adRewardCallback,
-            YumiRewardVideoClient.YumiRewardVideoDidCloseCallback adClosedCallback);
+            YumiRewardVideoClient.YumiRewardVideoDidCloseCallback adClosedCallback,
+            YumiRewardVideoClient.YumiRewardVideoDidReceiveAdCallback adReceivedCallback,
+            YumiRewardVideoClient.YumiRewardVideoDidFailToReceiveAdWithErrorCallback adFailToLoadCallback,
+            YumiRewardVideoClient.YumiRewardVideoDidFailToShowAdWithErrorCallback adFailToShowCallback,
+            YumiRewardVideoClient.YumiRewardVideoDidClickAdCallback adClickCallBack);
 
         #endregion
         #region Debugcenter 

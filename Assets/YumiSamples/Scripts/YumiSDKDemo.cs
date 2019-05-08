@@ -100,6 +100,9 @@ public class YumiSDKDemo : MonoBehaviour
                 this.interstitialAd.OnAdFailedToLoad += HandleInterstitialAdFailedToLoad;
                 this.interstitialAd.OnAdClicked += HandleInterstitialAdClicked;
                 this.interstitialAd.OnAdClosed += HandleInterstitialAdClosed;
+                this.interstitialAd.OnAdFailedToShow += HandleInterstitialAdFailedToShow;
+                this.interstitialAd.OnAdOpening += HandleInterstitialAdOpened;
+                this.interstitialAd.OnAdStartPlaying += HandleInterstitialAdStartPlaying;
             }       
 
         }
@@ -124,7 +127,11 @@ public class YumiSDKDemo : MonoBehaviour
                 this.rewardVideoAd.OnAdOpening += HandleRewardVideoAdOpened;
                 this.rewardVideoAd.OnAdStartPlaying += HandleRewardVideoAdStartPlaying;
                 this.rewardVideoAd.OnAdRewarded += HandleRewardVideoAdReward;
-                this.rewardVideoAd.OnAdClosed += HandleRewardVideoAdClosed;
+                this.rewardVideoAd.OnRewardVideoAdClosed += HandleRewardVideoAdClosed;
+                this.rewardVideoAd.OnAdLoaded += HandleRewardVideoAdLoaded;
+                this.rewardVideoAd.OnAdFailedToLoad += HandleRewardVideoAdFailedToLoad;
+                this.rewardVideoAd.OnAdFailedToShow += HandleRewardVideoAdFailedToShow;
+                this.rewardVideoAd.OnAdClicked += HandleRewardVideoAdClicked;
             }
            
 
@@ -223,6 +230,18 @@ public class YumiSDKDemo : MonoBehaviour
         Logger.Log("HandleInterstitialAdClosed Ad closed");
     }
 
+    public void HandleInterstitialAdFailedToShow(object sender, YumiAdFailedToShowEventArgs args)
+    {
+        Logger.Log("HandleInterstitialAdFailedToShow event received with message: " + args.Message);
+    }
+    public void HandleInterstitialAdOpened(object sender, EventArgs args)
+    {
+        Logger.Log("HandleInterstitialAdOpened  ad opened ");
+    }
+    public void HandleInterstitialAdStartPlaying(object sender, EventArgs args)
+    {
+        Logger.Log("HandleInterstitialAdStartPlaying event StartPlaying ");
+    }
 
     #endregion
     #region reward video callback handlers
@@ -241,11 +260,28 @@ public class YumiSDKDemo : MonoBehaviour
     {
         Logger.Log("HandleRewardVideoAdReward reward");
     }
-    public void HandleRewardVideoAdClosed(object sender, EventArgs args)
+    public void HandleRewardVideoAdClosed(object sender, YumiAdCloseEventArgs args)
     {
-        Logger.Log("HandleRewardVideoAdClosed Ad closed");
+        Logger.Log("HandleRewardVideoAdClosed Ad closed result is  " + args.IsRewarded);
+    }
+    public void HandleRewardVideoAdLoaded(object sender, EventArgs args)
+    {
+        Logger.Log("HandleRewardVideoAdLoaded event received");
     }
 
+    public void HandleRewardVideoAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args)
+    {
+        Logger.Log("HandleRewardVideoAdFailedToLoad event received with message: " + args.Message);
+    }
+
+    public void HandleRewardVideoAdFailedToShow(object sender, YumiAdFailedToShowEventArgs args)
+    {
+        Logger.Log("HandleRewardVideoAdFailedToShow event with message: " + args.Message);
+    }
+    public void HandleRewardVideoAdClicked(object sender, EventArgs args)
+    {
+        Logger.Log("HandleRewardVideoAdClicked Clicked");
+    }
 
     #endregion
 }

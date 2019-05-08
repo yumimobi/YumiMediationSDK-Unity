@@ -53,17 +53,16 @@
 }
 
 /// Tells the delegate that the interstitial ad request failed.
-- (void)yumiMediationInterstitial:(YumiMediationInterstitial *)interstitial
-                 didFailWithError:(YumiMediationError *)error{
-    if (self.adFailedCallback) {
+- (void)yumiMediationInterstitial:(YumiMediationInterstitial *)interstitial didFailToLoadWithError:(YumiMediationError *)error{
+    if (self.adFailedToLoadCallback) {
         NSString *errorMsg = [NSString
                               stringWithFormat:@"Failed to receive ad with error: %@", [error localizedFailureReason]];
-        self.adFailedCallback(self.interstitialClientRef, [errorMsg cStringUsingEncoding:NSUTF8StringEncoding]);
+        self.adFailedToLoadCallback(self.interstitialClientRef, [errorMsg cStringUsingEncoding:NSUTF8StringEncoding]);
     }
 }
 
 /// Tells the delegate that the interstitial is to be animated off the screen.
-- (void)yumiMediationInterstitialWillDismissScreen:(YumiMediationInterstitial *)interstitial{
+- (void)yumiMediationInterstitialDidClosed:(YumiMediationInterstitial *)interstitial{
     if (self.adCloseCallback) {
         self.adCloseCallback(self.interstitialClientRef);
     }
@@ -75,5 +74,27 @@
         self.adClickCallback(self.interstitialClientRef);
     }
 }
+/// Tells the delegate that the interstitial ad failed to show.
+- (void)yumiMediationInterstitial:(YumiMediationInterstitial *)interstitial
+           didFailToShowWithError:(YumiMediationError *)error{
+    if (self.adFailToShowCallback) {
+        NSString *errorMsg = [NSString
+                              stringWithFormat:@"Failed to show ad with error: %@", [error localizedFailureReason]];
+        self.adFailToShowCallback(self.interstitialClientRef, [errorMsg cStringUsingEncoding:NSUTF8StringEncoding]);
+    }
+}
 
+/// Tells the delegate that the interstitial ad opened.
+- (void)yumiMediationInterstitialDidOpen:(YumiMediationInterstitial *)interstitial{
+    if (self.adOpenedCallback) {
+        self.adOpenedCallback(self.interstitialClientRef);
+    }
+}
+
+/// Tells the delegate that the interstitial ad start playing.
+- (void)yumiMediationInterstitialDidStartPlaying:(YumiMediationInterstitial *)interstitial{
+    if (self.adStartPlayingCallback) {
+        self.adStartPlayingCallback(self.interstitialClientRef);
+    }
+}
 @end

@@ -31,6 +31,16 @@
 
 /// The ad was closed callback into Unity.
 @property(nonatomic, assign) YumiRewardVideoDidCloseCallback adClosedCallback;
+// v4.0.0
+/// The ad was received callback into Unity.
+@property(nonatomic, assign)  YumiRewardVideoDidReceiveAdCallback adReceivedCallback;
+/// The ad was failed to load callback into Unity.
+@property(nonatomic, assign) YumiRewardVideoDidFailToReceiveAdWithErrorCallback adFailToLoadCallback;
+/// The ad  was failed to show callback into Unity.
+@property(nonatomic, assign)  YumiRewardVideoDidFailToShowAdWithErrorCallback adFailToShowCallback;
+/// The ad was clicked callback into Unity.
+@property(nonatomic, assign) YumiRewardVideoDidClickAdCallback adClickCallBack;
+
 
 /// load reward video
 - (void)loadAdWithPlacementID:(NSString *)placementID channelID:(NSString *)channelID versionID:(NSString *)versionID;

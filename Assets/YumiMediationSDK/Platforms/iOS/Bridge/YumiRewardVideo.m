@@ -53,6 +53,32 @@
 - (void)printLogIfError{
     NSLog(@"YumiMobileAdsPlugin: reward video is nil. Ignoring ad request.");
 }
+
+/// Tells the delegate that the video ad was received.
+- (void)yumiMediationVideoDidReceiveAd:(YumiMediationVideo *)video{
+    if (self.adReceivedCallback) {
+        self.adReceivedCallback(self.rewardVideoAdClient);
+    }
+}
+
+/// Tells the delegate that the video ad failed to load.
+- (void)yumiMediationVideo:(YumiMediationVideo *)video didFailToLoadWithError:(NSError *)error{
+    if (self.adFailToLoadCallback) {
+        NSString *errorMsg = [NSString
+                              stringWithFormat:@"Failed to receive ad with error: %@", [error localizedFailureReason]];
+        self.adFailToLoadCallback(self.rewardVideoAdClient, [errorMsg cStringUsingEncoding:NSUTF8StringEncoding]);
+    }
+}
+
+/// Tells the delegate that the video ad failed to show.
+- (void)yumiMediationVideo:(YumiMediationVideo *)video didFailToShowWithError:(NSError *)error{
+    if (self.adFailToShowCallback) {
+        NSString *errorMsg = [NSString
+                              stringWithFormat:@"Failed to show ad with error: %@", [error localizedFailureReason]];
+        self.adFailToShowCallback(self.rewardVideoAdClient, [errorMsg cStringUsingEncoding:NSUTF8StringEncoding]);
+    }
+}
+
 /// Tells the delegate that the video ad opened.
 - (void)yumiMediationVideoDidOpen:(YumiMediationVideo *)video{
     if (self.adOpenedCallback) {
@@ -68,9 +94,9 @@
 }
 
 /// Tells the delegate that the video ad closed.
-- (void)yumiMediationVideoDidClose:(YumiMediationVideo *)video{
+- (void)yumiMediationVideoDidClosed:(YumiMediationVideo *)video isRewarded:(BOOL)isRewarded{
     if (self.adClosedCallback) {
-        self.adClosedCallback(self.rewardVideoAdClient);
+        self.adClosedCallback(self.rewardVideoAdClient,isRewarded);
     }
 }
 
@@ -80,4 +106,11 @@
         self.adRewardedCallback(self.rewardVideoAdClient);
     }
 }
+/// Tells the delegate that the reward video ad has been clicked by the person.
+- (void)yumiMediationVideoDidClick:(YumiMediationVideo *)video{
+    if (self.adClickCallBack) {
+        self.adClickCallBack(self.rewardVideoAdClient);
+    }
+}
+
 @end
