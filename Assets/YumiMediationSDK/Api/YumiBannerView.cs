@@ -8,7 +8,13 @@ namespace YumiMediationSDK.Api
     {
         private IYumiBannerClient client;
         private YumiBannerViewOptions bannerOptions;
-        // Creates a BannerView and adds it to the view hierarchy.
+        /// <summary>
+        /// Creates a BannerView and adds it to the view hierarchy.
+        /// </summary>
+        /// <param name="placementId">Placement identifier.</param>
+        /// <param name="channelId">Channel identifier.</param>
+        /// <param name="versionId">Version identifier.</param>
+        /// <param name="bannerOptions">Banner options.</param>
         public YumiBannerView(string placementId, string channelId, string versionId, YumiBannerViewOptions bannerOptions)
         {
             Type yumiAdsClientFactory = Type.GetType(
@@ -21,33 +27,47 @@ namespace YumiMediationSDK.Api
             client.CreateBannerView(placementId,channelId,versionId, bannerOptions);
 
             ConfigureBannerEvents();
-        }
+         }
 
-        // Ad event fired when the banner ad has loaded.
+        /// <summary>
+        /// Occurs when the banner ad has loaded.
+        /// </summary>
         public event EventHandler<EventArgs> OnAdLoaded;
-        // Ad event fired when the banner ad has failed to load.
+        /// <summary>
+        /// Occurs  when the banner ad has failed to load.
+        /// </summary>
         public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
-        // Ad event fired when the banner ad is click.
+        /// <summary>
+        /// Occurs when the banner ad is click.
+        /// </summary>
         public event EventHandler<EventArgs> OnAdClick;
 
-       // Loads an ad into the BannerView.
+        /// <summary>
+        /// Loads an ad into the BannerView.
+        /// </summary>
         public void LoadAd()
         {
             client.LoadAd(bannerOptions.isSmart);
         }
-        // Hides the BannerView from the screen.
+        /// <summary>
+        /// Hides the BannerView from the screen.
+        /// </summary>
         public void Hide()
         {
             client.HideBannerView();
         }
 
-        // Shows the BannerView on the screen.
+        /// <summary>
+        /// Shows the BannerView on the screen.
+        /// </summary>
         public void Show()
         {
             client.ShowBannerView();
         }
 
-        // Destroys the BannerView.
+        /// <summary>
+        /// Destroys the BannerView.
+        /// </summary>
         public void Destroy()
         {
             client.DestroyBannerView();

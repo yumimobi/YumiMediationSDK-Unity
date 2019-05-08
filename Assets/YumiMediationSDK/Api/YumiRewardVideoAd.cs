@@ -10,7 +10,10 @@ namespace YumiMediationSDK.Api
 
 
         private static readonly YumiRewardVideoAd instance = new YumiRewardVideoAd();
-
+        /// <summary>
+        /// single YumiRewardVideoAd instance.
+        /// </summary>
+        /// <value>The instance.</value>
         public static YumiRewardVideoAd Instance
         {
             get
@@ -31,39 +34,65 @@ namespace YumiMediationSDK.Api
 
             ConfigureRewardVideoEvents();
         }
-        // Initiates the ad request, should only be called once as early as possible.
+        /// <summary>
+        /// Initiates the ad request, should only be called once as early as possible.
+        /// </summary>
+        /// <param name="placementId">Placement identifier.</param>
+        /// <param name="channelId">Channel identifier.</param>
+        /// <param name="versionId">Version identifier.</param>
         public void LoadAd(string placementId, string channelId, string versionId)
         {
             this.client.LoadRewardVideoAd(placementId,channelId,versionId);
         }
 
-        // Determines whether the RewardVideo has loaded.
+        /// <summary>
+        /// Determines whether the RewardVideo has loaded.
+        /// </summary>
+        /// <returns><c>true</c>, if RewardVideo has loaded, <c>false</c> otherwise.</returns>
         public bool IsReady()
         {
             return this.client.IsRewardVideoReady();
         }
 
-        // play the RewardVideo.
+        /// <summary>
+        /// play the RewardVideo.
+        /// </summary>
         public void Play()
         {
             this.client.PlayRewardVideo();
         }
 
-        // Ad event fired when the reward based video ad has been received.
+        /// <summary>
+        /// Occurs  when the reward based video ad has been received.
+        /// </summary>
         public event EventHandler<EventArgs> OnAdLoaded;
-        // Ad event fired when  the reward based video ad has failed to load.
+        /// <summary>
+        /// Occurs  when the reward based video ad has failed to load.
+        /// </summary>
         public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
-        // Ad event fired when  the reward based video ad has failed to show.
+        /// <summary>
+        /// Occurs when the reward based video ad has failed to show.
+        /// </summary>
         public event EventHandler<YumiAdFailedToShowEventArgs> OnAdFailedToShow;
-        // Ad event fired when the reward based video ad is opened.
+        /// <summary>
+        /// Occurs  when the reward based video ad is opened.
+        /// </summary>
         public event EventHandler<EventArgs> OnAdOpening;
-        // Ad event fired when the reward based video ad has started playing.
+        /// <summary>
+        /// Occurs when the reward based video ad has started playing.
+        /// </summary>
         public event EventHandler<EventArgs> OnAdStartPlaying;
-        // Ad event fired when the reward based video ad has rewarded the user.
+        /// <summary>
+        /// Occurs when the reward based video ad has rewarded the user.
+        /// </summary>
         public event EventHandler<EventArgs> OnAdRewarded;
-        // Ad event fired when the reward based video ad is closed.
+        /// <summary>
+        /// Occurs when the reward based video ad is closed.
+        /// </summary>
         public event EventHandler<YumiAdCloseEventArgs> OnRewardVideoAdClosed;
-        // Ad event fired when the reward based video ad is clicked.
+        /// <summary>
+        /// Occurs  when the reward based video ad is clicked.
+        /// </summary>
         public event EventHandler<EventArgs> OnAdClicked;
 
         private void ConfigureRewardVideoEvents()
@@ -135,7 +164,7 @@ namespace YumiMediationSDK.Api
             this.client.DestroyRewardVideo();
         }
 
-        [Obsolete("Destroy is deprecated.", true)]
+        [Obsolete("OnAdClosed is deprecated.", true)]
         // Ad event fired when the reward based video ad is closed.
         public event EventHandler<EventArgs> OnAdClosed;
     }

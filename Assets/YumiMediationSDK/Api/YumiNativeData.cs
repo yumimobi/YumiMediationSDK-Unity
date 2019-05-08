@@ -3,23 +3,41 @@ namespace YumiMediationSDK.Api
 {
     public struct YumiNativeData
     {
-        // native ad uniqueId 
+        /// <summary>
+        /// native ad uniqueId 
+        /// </summary>
         public string uniqueId;
-        // title 
+        /// <summary>
+        /// native ad title
+        /// </summary>
         public string title;
-        // ad description 
+        /// <summary>
+        ///  ad description 
+        /// </summary>
         public string desc;
-        // icon image url 
+        /// <summary>
+        /// icon image url 
+        /// </summary>
         public string iconURL;
-        // cover image url
+        /// <summary>
+        ///  cover image url
+        /// </summary>
         public string coverImageURL;
-        // price, for example "free"
+        /// <summary>
+        ///  price, for example "free"
+        /// </summary>
         public string price;
-        // rating (0 to 5).
+        /// <summary>
+        ///  rating (0 to 5).
+        /// </summary>
         public string starRating;
-        // call to action phrase of the ad, for example "download".
+        /// <summary>
+        ///  call to action phrase of the ad, for example "download".
+        /// </summary>
         public string callToAction;
-        // other data
+        /// <summary>
+        ///  other data
+        /// </summary>
         public string other;
     }
 }
