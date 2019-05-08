@@ -1,11 +1,10 @@
 package com.zplay.unity.adsyumi;
 
+import com.yumi.android.sdk.ads.publish.AdError;
 import com.yumi.android.sdk.ads.publish.YumiInterstitial;
-import com.yumi.android.sdk.ads.publish.enumbean.LayerErrorCode;
-import com.yumi.android.sdk.ads.publish.listener.IYumiInterstititalListener;
+import com.yumi.android.sdk.ads.publish.listener.IYumiInterstitialListener;
 import android.app.Activity;
 import android.util.Log;
-import com.yumi.android.sdk.ads.publish.enumbean.LayerErrorCode;
 
 public class YumiUInterstitial {
     private final String TAG = "zplayPluginActivity";
@@ -46,7 +45,7 @@ public class YumiUInterstitial {
                 interstitial = new YumiInterstitial(activity, placementId, true);
                 interstitial.setChannelID(channelId);
                 interstitial.setVersionName(versionId);
-                interstitial.setInterstitialEventListener(new IYumiInterstititalListener() {
+                interstitial.setInterstitialEventListener(new IYumiInterstitialListener() {
                     @Override
                     public void onInterstitialPrepared() {
                         Log.d(TAG, "interstitial has loaded");
@@ -64,11 +63,11 @@ public class YumiUInterstitial {
                     }
 
                     @Override
-                    public void onInterstitialPreparedFailed(LayerErrorCode layerErrorCode) {
-                        Log.d(TAG, "on interstitial load failed " + layerErrorCode);
+                    public void onInterstitialPreparedFailed(AdError adError) {
+                        Log.d(TAG, "on interstitial load failed " + adError);
                         isReady = false;
                         if (adListener != null) {
-                            final String errmsg = layerErrorCode.getMsg();
+                            final String errmsg = adError.getMsg();
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -82,7 +81,18 @@ public class YumiUInterstitial {
 
                     @Override
                     public void onInterstitialExposure() {
-
+                        Log.d(TAG, "on interstitial exposure");
+                        isReady = false;
+                        if (adListener != null) {
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (adListener != null) {
+                                        adListener.onAdOpening();
+                                    }
+                                }
+                            }).start();
+                        }
                     }
 
                     @Override
@@ -116,8 +126,36 @@ public class YumiUInterstitial {
                     }
 
                     @Override
-                    public void onInterstitialExposureFailed() {
+                    public void onInterstitialExposureFailed(AdError adError) {
+                        Log.d(TAG, "on interstitial exposure failed");
+                        isReady = false;
+                        if (adListener != null) {
+                            final String errmsg = adError.getMsg();
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (adListener != null) {
+                                        adListener.onAdFailedToShow(errmsg);
+                                    }
+                                }
+                            }).start();
+                        }
+                    }
 
+                    @Override
+                    public void onInterstitialStartPlaying() {
+                        Log.d(TAG, "on interstitial exposure failed");
+                        isReady = false;
+                        if (adListener != null) {
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (adListener != null) {
+                                        adListener.onAdStartPlaying();
+                                    }
+                                }
+                            }).start();
+                        }
                     }
                 });
 
