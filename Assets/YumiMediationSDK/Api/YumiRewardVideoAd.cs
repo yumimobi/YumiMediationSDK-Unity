@@ -164,7 +164,7 @@ namespace YumiMediationSDK.Api
             this.client.DestroyRewardVideo();
         }
 
-        [Obsolete("Destroy is deprecated.", true)]
+        [Obsolete("OnAdClosed is deprecated.", true)]
         // Ad event fired when the reward based video ad is closed.
         public event EventHandler<EventArgs> OnAdClosed;
     }
