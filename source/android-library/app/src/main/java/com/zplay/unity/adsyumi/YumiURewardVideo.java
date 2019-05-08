@@ -2,11 +2,8 @@ package com.zplay.unity.adsyumi;
 import android.app.Activity;
 import android.util.Log;
 
-import com.yumi.android.sdk.ads.publish.YumiInterstitial;
+import com.yumi.android.sdk.ads.publish.AdError;
 import com.yumi.android.sdk.ads.publish.YumiMedia;
-import com.yumi.android.sdk.ads.publish.enumbean.LayerErrorCode;
-import com.yumi.android.sdk.ads.publish.enumbean.MediaStatus;
-import com.yumi.android.sdk.ads.publish.listener.IYumiInterstititalListener;
 import com.yumi.android.sdk.ads.publish.listener.IYumiMediaListener;
 
 public class YumiURewardVideo {
@@ -49,8 +46,39 @@ public class YumiURewardVideo {
                 rewardVideo.setVersionName(versionId);
                 rewardVideo.setMediaEventListner(new IYumiMediaListener() {
                     @Override
+                    public void onMediaPrepared() {
+                        Log.d(TAG, "reward video has prepared");
+                        if (adListener != null) {
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (adListener != null) {
+                                        adListener.onAdLoaded();
+                                    }
+                                }
+                            }).start();
+                        }
+                    }
+
+                    @Override
+                    public void onMediaPreparedFailed(AdError adError) {
+                        Log.d(TAG, "reward video has prepared failed");
+                        if (adListener != null) {
+                            final String errmsg = adError.getMsg();
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (adListener != null) {
+                                        adListener.onAdFailedToLoad(errmsg);
+                                    }
+                                }
+                            }).start();
+                        }
+                    }
+
+                    @Override
                     public void onMediaExposure() {
-                        Log.d(TAG, "reward video has loaded");
+                        Log.d(TAG, "reward video has exposure");
                         if (adListener != null) {
                             new Thread(new Runnable() {
                                 @Override
@@ -58,8 +86,21 @@ public class YumiURewardVideo {
                                     if (adListener != null) {
                                         adListener.onAdOpening();
                                     }
-                                    if (adListener != null){
-                                        adListener.onAdStartPlaying();
+                                }
+                            }).start();
+                        }
+                    }
+
+                    @Override
+                    public void onMediaExposureFailed(AdError adError) {
+                        Log.d(TAG, "reward video exposure failed");
+                        if (adListener != null) {
+                            final String errmsg = adError.getMsg();
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (adListener != null) {
+                                        adListener.onAdFailedToShow(errmsg);
                                     }
                                 }
                             }).start();
@@ -68,18 +109,13 @@ public class YumiURewardVideo {
 
                     @Override
                     public void onMediaClicked() {
-
-                    }
-
-                    @Override
-                    public void onMediaClosed() {
-                        Log.d(TAG, "reward video has been closed ");
+                        Log.d(TAG, "reward video clicked");
                         if (adListener != null) {
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {
                                     if (adListener != null) {
-                                        adListener.onAdClosed();
+                                        adListener.onAdClicked();
                                     }
                                 }
                             }).start();
@@ -87,7 +123,22 @@ public class YumiURewardVideo {
                     }
 
                     @Override
-                    public void onMediaIncentived() {
+                    public void onMediaClosed(final boolean isRewarded) {
+                        Log.d(TAG, "reward video has been closed");
+                        if (adListener != null) {
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (adListener != null) {
+                                        adListener.onAdClosed(isRewarded);
+                                    }
+                                }
+                            }).start();
+                        }
+                    }
+
+                    @Override
+                    public void onMediaRewarded() {
                         Log.d(TAG, "reward video has been rewarded");
                         if (adListener != null) {
                             new Thread(new Runnable() {
@@ -100,6 +151,22 @@ public class YumiURewardVideo {
                             }).start();
                         }
                     }
+
+                    @Override
+                    public void onMediaStartPlaying() {
+                        Log.d(TAG, "reward video start playing");
+                        if (adListener != null) {
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (adListener != null){
+                                        adListener.onAdStartPlaying();
+                                    }
+                                }
+                            }).start();
+                        }
+                    }
+
                 });
 
                 rewardVideo.requestYumiMedia();
