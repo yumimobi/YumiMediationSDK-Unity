@@ -2,6 +2,7 @@
 
 using System;
 using YumiMediationSDK.Common;
+using YumiMediationSDK.Api;
 using UnityEngine;
 
 namespace YumiMediationSDK.Android
@@ -18,7 +19,12 @@ namespace YumiMediationSDK.Android
                 YumiUtils.RewardVideoClassName, activity, this);
         }
 
-
+        // Ad event fired when the reward based video ad has been received.
+        public event EventHandler<EventArgs> OnAdLoaded;
+        // Ad event fired when  the reward based video ad has failed to load.
+        public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
+        // Ad event fired when  the reward based video ad has failed to show.
+        public event EventHandler<YumiAdFailedToShowEventArgs> OnAdFailedToShow;
         // Ad event fired when the reward based video ad is opened.
         public event EventHandler<EventArgs> OnAdOpening;
         // Ad event fired when the reward based video ad has started playing.
@@ -26,7 +32,10 @@ namespace YumiMediationSDK.Android
         // Ad event fired when the reward based video ad has rewarded the user.
         public event EventHandler<EventArgs> OnAdRewarded;
         // Ad event fired when the reward based video ad is closed.
-        public event EventHandler<EventArgs> OnAdClosed;
+        public event EventHandler<YumiAdCloseEventArgs> OnRewardVideoAdClosed;
+        // Ad event fired when the reward based video ad is clicked.
+        public event EventHandler<EventArgs> OnAdClicked;
+
 
         #region implement IYumiRewardVideoClient 
 
@@ -66,6 +75,38 @@ namespace YumiMediationSDK.Android
 
         #region UnityRewardVideoAdListener call back 
 
+        public void onAdLoaded()
+        {
+            if (this.OnAdLoaded != null)
+            {
+                this.OnAdLoaded(this, EventArgs.Empty);
+            }
+        }
+
+        public void onAdFailedToLoad(string errorReason)
+        {
+            if (this.OnAdFailedToLoad != null)
+            {
+                YumiAdFailedToLoadEventArgs args = new YumiAdFailedToLoadEventArgs()
+                {
+                    Message = errorReason
+                };
+                this.OnAdFailedToLoad(this, args);
+            }
+        }
+
+        public void onAdFailedToShow(string errorReason)
+        {
+            if (this.OnAdFailedToShow != null)
+            {
+                YumiAdFailedToShowEventArgs args = new YumiAdFailedToShowEventArgs()
+                {
+                    Message = errorReason
+                };
+                this.OnAdFailedToShow(this, args);
+            }
+        }
+
         public void onAdOpening()
         {
             if (this.OnAdOpening != null)
@@ -87,13 +128,25 @@ namespace YumiMediationSDK.Android
                 this.OnAdRewarded(this, EventArgs.Empty);
             }
         }
-        public void onAdClosed()
+        public void onRewardVideoAdClosed(bool isRewarded)
         {
-            if (this.OnAdClosed != null)
+            if (this.OnRewardVideoAdClosed != null)
             {
-                this.OnAdClosed(this, EventArgs.Empty);
+                YumiAdCloseEventArgs args = new YumiAdCloseEventArgs()
+                {
+                    IsRewarded = isRewarded
+                };
+                this.OnRewardVideoAdClosed(this, args);
             }
         }
+        public void onAdClick()
+        {
+            if (this.OnAdClicked != null)
+            {
+                this.OnAdClicked(this, EventArgs.Empty);
+            }
+        }
+
         #endregion
     }
 }
