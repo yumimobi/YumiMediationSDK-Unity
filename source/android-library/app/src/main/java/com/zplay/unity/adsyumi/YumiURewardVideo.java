@@ -130,7 +130,7 @@ public class YumiURewardVideo {
                                 @Override
                                 public void run() {
                                     if (adListener != null) {
-                                        adListener.onAdClosed(isRewarded);
+                                        adListener.onRewardVideoAdClosed(isRewarded);
                                     }
                                 }
                             }).start();

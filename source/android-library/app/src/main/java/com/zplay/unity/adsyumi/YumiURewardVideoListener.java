@@ -6,7 +6,7 @@ public interface YumiURewardVideoListener {
     void onAdOpening();
     void onAdStartPlaying();
     void onAdRewarded();
-    void onAdClosed(boolean isRewarded);
+    void onRewardVideoAdClosed(boolean isRewarded);
     void onAdFailedToShow(String errorReason);
     void onAdClicked();
 
