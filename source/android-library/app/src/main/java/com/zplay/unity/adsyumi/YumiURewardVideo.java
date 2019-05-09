@@ -115,7 +115,7 @@ public class YumiURewardVideo {
                                 @Override
                                 public void run() {
                                     if (adListener != null) {
-                                        adListener.onAdClicked();
+                                        adListener.onAdClick();
                                     }
                                 }
                             }).start();

@@ -8,6 +8,6 @@ public interface YumiURewardVideoListener {
     void onAdRewarded();
     void onRewardVideoAdClosed(boolean isRewarded);
     void onAdFailedToShow(String errorReason);
-    void onAdClicked();
+    void onAdClick();
 
 }
