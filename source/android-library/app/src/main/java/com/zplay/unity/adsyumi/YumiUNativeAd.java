@@ -16,9 +16,9 @@ import android.widget.TextView;
 
 import com.yumi.android.sdk.ads.formats.YumiNativeAdOptions;
 import com.yumi.android.sdk.ads.formats.YumiNativeAdView;
+import com.yumi.android.sdk.ads.publish.AdError;
 import com.yumi.android.sdk.ads.publish.NativeContent;
 import com.yumi.android.sdk.ads.publish.YumiNative;
-import com.yumi.android.sdk.ads.publish.enumbean.LayerErrorCode;
 import com.yumi.android.sdk.ads.publish.listener.IYumiNativeListener;
 
 import java.util.HashMap;
@@ -103,9 +103,9 @@ public class YumiUNativeAd {
                     }
 
                     @Override
-                    public void onLayerFailed(LayerErrorCode layerErrorCode) {
+                    public void onLayerFailed(AdError adError) {
                         if (mNativeAdListener != null) {
-                            mNativeAdListener.onLayerFailed(layerErrorCode.toString());
+                            mNativeAdListener.onLayerFailed(adError.toString());
                         }
                     }
 
