@@ -262,6 +262,13 @@ public class YumiUNativeAd {
                 adPlaceHolder.addView(adView, adViewLayout);
                 mUnityPlayerActivity.addContentView(adPlaceHolder, adPlaceHolderLayout);
 
+                if(mNativeViews.containsKey(uniqueId)){
+                    if (mNativeViews.get(uniqueId) != null) {
+                        mNativeViews.get(uniqueId).setVisibility(View.GONE);
+                    }
+                    mNativeViews.remove(uniqueId);
+                }
+
                 adPlaceHolder.setVisibility(View.GONE);
                 mNativeViews.put(uniqueId, adPlaceHolder);
             }
