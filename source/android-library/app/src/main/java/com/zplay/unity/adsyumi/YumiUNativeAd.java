@@ -158,6 +158,12 @@ public class YumiUNativeAd {
                     return;
                 }
 
+                if(mNativeViews.containsKey(uniqueId)){
+                    if (mNativeViews.get(uniqueId) != null) {
+                        return;
+                    }
+                }
+
                 if (TextUtils.equals(FACEBOOK_NAME, nativeContent.getProviderName())) {
                     try {
                         nativeContent.getIcon().setUrl(FAKE_URL);
@@ -262,17 +268,11 @@ public class YumiUNativeAd {
                 adPlaceHolder.addView(adView, adViewLayout);
                 mUnityPlayerActivity.addContentView(adPlaceHolder, adPlaceHolderLayout);
 
-                if(mNativeViews.containsKey(uniqueId)){
-                    if (mNativeViews.get(uniqueId) != null) {
-                        mNativeViews.get(uniqueId).setVisibility(View.GONE);
-                    }
-                    mNativeViews.remove(uniqueId);
-                }
-
                 adPlaceHolder.setVisibility(View.GONE);
                 mNativeViews.put(uniqueId, adPlaceHolder);
             }
         });
+
     }
 
     // https://stackoverflow.com/a/18595681/7785373
