@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dependencies>
     <androidPackages>
-        <androidPackage spec="com.yumimobi.ads:mediation:4.0.0-alpha1">
+        <androidPackage spec="com.yumimobi.ads:mediation:4.0.0-alpha2">
         <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
         </androidPackage>
-        <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.0.0-alpha1">
+        <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.0.0-alpha2">
         <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
         </androidPackage>
-        <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.0.0-alpha1">
+        <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.0.0-alpha2">
         <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
         </androidPackage>
-        <androidPackage spec="com.yumimobi.ads.mediation:playableads:4.0.0-alpha1">
+        <androidPackage spec="com.yumimobi.ads.mediation:playableads:4.0.0-alpha2">
         <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
         </androidPackage>
-        <androidPackage spec="com.yumimobi.ads.mediation:admob:4.0.0-alpha1">
+        <androidPackage spec="com.yumimobi.ads.mediation:admob:4.0.0-alpha2">
         <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
         </androidPackage>
-        <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.0.0-alpha1">
+        <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.0.0-alpha2">
         <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
         </androidPackage>
-        <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.0.0-alpha1">
+        <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.0.0-alpha2">
         <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
         </androidPackage>
-        <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.0.0-alpha1">
+        <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.0.0-alpha2">
         <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
         </androidPackage>
-        <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.0.0-alpha1">
+        <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.0.0-alpha2">
         <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
         </androidPackage>
-        <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.0.0-alpha1">
+        <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.0.0-alpha2">
         <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
         </androidPackage>
-        <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.0.0-alpha1">
+        <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.0.0-alpha2">
         <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
         </androidPackage>
-        <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.0.0-alpha1">
+        <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.0.0-alpha2">
         <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
         </androidPackage>
-        <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.0.0-alpha1">
+        <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.0.0-alpha2">
         <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
         </androidPackage>
-        <androidPackage spec="com.yumimobi.ads.mediation:iqzone:4.0.0-alpha1">
+        <androidPackage spec="com.yumimobi.ads.mediation:iqzone:4.0.0-alpha2">
             <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
                 <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
@@ -75,24 +75,24 @@
             </repositories>
         </androidPackage>
         
-        <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.0.0-alpha1" >
+        <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.0.0-alpha2" >
             <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
                 <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
             </repositories>
         </androidPackage>
-        <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.0.0-alpha1">
+        <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.0.0-alpha2">
         <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
         </androidPackage>
         <!--  If your app is only available in mainland China, use unity-china,else use Unity.   -->
-        <androidPackage spec="com.yumimobi.ads.mediation:unity:4.0.0-alpha1">
+        <androidPackage spec="com.yumimobi.ads.mediation:unity:4.0.0-alpha2">
         <repositories>
                 <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             </repositories>
         </androidPackage>
-        <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:4.0.0-alpha1" />-->
+        <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:4.0.0-alpha2" />-->
         <repositories>
             <repository>http://47.95.29.186:8081/artifactory/gradle-dev-local/</repository>
             <repository>https://jcenter.bintray.com/</repository>
