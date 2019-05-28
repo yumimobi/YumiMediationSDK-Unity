@@ -105,51 +105,51 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ```xml
     <iosPods>
-        <iosPod name="YumiMediationSDK" version="3.6.3" minTargetSdk="8.0">
+        <iosPod name="YumiMediationSDK" version="3.6.4" minTargetSdk="8.0">
             <sources>
                 <source>https://github.com/CocoaPods/Specs</source>
             </sources>
         </iosPod>
         <!-- adapters -->
-        <iosPod name="YumiMediationAdapters/AdColony" version="3.6.3">
+        <iosPod name="YumiMediationAdapters/AdColony" version="3.6.4">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/AdMob" version="3.6.3">
+        <iosPod name="YumiMediationAdapters/AdMob" version="3.6.4">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/AppLovin" version="3.6.3">
+        <iosPod name="YumiMediationAdapters/AppLovin" version="3.6.4">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Baidu" version="3.6.3">
+        <iosPod name="YumiMediationAdapters/Baidu" version="3.6.4">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Chartboost" version="3.6.3">
+        <iosPod name="YumiMediationAdapters/Chartboost" version="3.6.4">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Domob" version="3.6.3">
+        <iosPod name="YumiMediationAdapters/Domob" version="3.6.4">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Facebook" version="3.6.3">
+        <iosPod name="YumiMediationAdapters/Facebook" version="3.6.4">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/GDT" version="3.6.3">
+        <iosPod name="YumiMediationAdapters/GDT" version="3.6.4">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/InMobi" version="3.6.3">
+        <iosPod name="YumiMediationAdapters/InMobi" version="3.6.4">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/IronSource" version="3.6.3">
+        <iosPod name="YumiMediationAdapters/IronSource" version="3.6.4">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Unity" version="3.6.3">
+        <iosPod name="YumiMediationAdapters/Unity" version="3.6.4">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Vungle" version="3.6.3">
+        <iosPod name="YumiMediationAdapters/Vungle" version="3.6.4">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Mintegral" version="3.6.3">
+        <iosPod name="YumiMediationAdapters/Mintegral" version="3.6.4">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/OneWay" version="3.6.3">
+        <iosPod name="YumiMediationAdapters/OneWay" version="3.6.4">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/ZplayAds" version="3.6.3">
+        <iosPod name="YumiMediationAdapters/ZplayAds" version="3.6.4">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/IQzone" version="3.6.3">
+        <iosPod name="YumiMediationAdapters/IQzone" version="3.6.4">
         </iosPod>
         <!-- debugCenter -->
-        <iosPod name="YumiMediationDebugCenter-iOS" version="3.6.3">
+        <iosPod name="YumiMediationDebugCenter-iOS" version="3.6.4">
         </iosPod>
     </iosPods>
 ```
 
-比如删除 `AdMob` ，直接删除 ` <iosPod name="YumiMediationAdapters/AdMob" version="3.6.3"></iosPod>`  即可。
+比如删除 `AdMob` ，直接删除 ` <iosPod name="YumiMediationAdapters/AdMob" version="3.6.4"></iosPod>`  即可。
 
 构建完成，打开 **xcworkspace** 工程。
 
