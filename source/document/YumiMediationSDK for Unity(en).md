@@ -145,6 +145,8 @@ iOS dependencies：
         </iosPod>
         <iosPod name="YumiMediationAdapters/IQzone" version="3.6.4">
         </iosPod>
+        <iosPod name="YumiMediationAdapters/BytedanceAds" version="3.6.4">
+        </iosPod>
         <!-- debugCenter -->
         <iosPod name="YumiMediationDebugCenter-iOS" version="3.6.4">
         </iosPod>
