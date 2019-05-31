@@ -158,6 +158,13 @@ public class YumiUNativeAd {
                     return;
                 }
 
+                if (mNativeViews.containsKey(uniqueId)) {
+                    if (mNativeViews.get(uniqueId) != null) {
+                        Log.d(TAG, "cannot fillViews uniqueId views is presence uniqueId: " + uniqueId);
+                        return;
+                    }
+                }
+
                 if (TextUtils.equals(FACEBOOK_NAME, nativeContent.getProviderName())) {
                     try {
                         nativeContent.getIcon().setUrl(FAKE_URL);
@@ -396,6 +403,7 @@ public class YumiUNativeAd {
             public void run() {
                 View adView = mNativeViews.get(uniqueId);
                 if (adView != null) {
+                    Log.d(TAG, "removeView: uniqueId ：" + uniqueId);
                     adView.setVisibility(View.GONE);
                 }
                 mNativeContents.remove(uniqueId);
@@ -406,18 +414,27 @@ public class YumiUNativeAd {
     }
 
     public void destroy() {
-        if (mNativeContents != null) {
-            mNativeContents.clear();
-        }
+        mUnityPlayerActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (mNativeContents != null) {
+                    mNativeContents.clear();
+                }
 
-        if (mNativeViews != null) {
-            mNativeViews.clear();
-        }
+                if (mNativeViews != null) {
+                    for (Map.Entry<String, View> entry : mNativeViews.entrySet()) {
+                        hideView(entry.getKey());
+                    }
+                    Log.d(TAG, "destroy: NativeViews clear ");
+                    mNativeViews.clear();
+                }
 
-        if (mNativeAd != null) {
-            mNativeAd.onDestroy();
-        }
-        mUnityPlayerActivity = null;
-        mNativeAdListener = null;
+                if (mNativeAd != null) {
+                    mNativeAd.onDestroy();
+                }
+                mUnityPlayerActivity = null;
+                mNativeAdListener = null;
+            }
+        });
     }
 }
