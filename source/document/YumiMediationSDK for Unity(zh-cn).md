@@ -1,51 +1,52 @@
 - [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
-  - [1 概述](#1-%E6%A6%82%E8%BF%B0)
-  - [2 下载 YumiMediationSDK Unity 插件](#2-%E4%B8%8B%E8%BD%BD-yumimediationsdk-unity-%E6%8F%92%E4%BB%B6)
-  - [3 导入 YumiMediationSDK Unity 插件](#3-%E5%AF%BC%E5%85%A5-yumimediationsdk-unity-%E6%8F%92%E4%BB%B6)
-    - [3.1 首次导入](#31-%E9%A6%96%E6%AC%A1%E5%AF%BC%E5%85%A5)
-    - [3.2 升级插件](#32-%E5%8D%87%E7%BA%A7%E6%8F%92%E4%BB%B6)
-  - [4 集成 YumiMediationSDK](#4-%E9%9B%86%E6%88%90-yumimediationsdk)
-    - [4.1 部署 iOS 项目](#41-%E9%83%A8%E7%BD%B2-ios-%E9%A1%B9%E7%9B%AE)
-    - [4.2 部署 Android 项目](#42-%E9%83%A8%E7%BD%B2-android-%E9%A1%B9%E7%9B%AE)
-      - [4.2.1 常见问题一：加载三方 SDK 时间过长](#421-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%80%E5%8A%A0%E8%BD%BD%E4%B8%89%E6%96%B9-sdk-%E6%97%B6%E9%97%B4%E8%BF%87%E9%95%BF)
-      - [4.2.2 常见问题二：64k 引用限制](#422-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%BA%8C64k-%E5%BC%95%E7%94%A8%E9%99%90%E5%88%B6)
-      - [4.2.3 常见问题三：设置 Admob MANAGER](#423-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%89%E8%AE%BE%E7%BD%AE-admob-manager)
-  - [5 选择广告形式](#5-%E9%80%89%E6%8B%A9%E5%B9%BF%E5%91%8A%E5%BD%A2%E5%BC%8F)
-    - [5.1 Banner](#51-banner)
-      - [5.1.1 初始化 Banner](#511-%E5%88%9D%E5%A7%8B%E5%8C%96-banner)
-      - [5.1.2请求 Banner](#512%E8%AF%B7%E6%B1%82-banner)
-      - [5.1.3 隐藏 Banner](#513-%E9%9A%90%E8%97%8F-banner)
-      - [5.1.4 显示隐藏的 Banner](#514-%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F%E7%9A%84-banner)
-      - [5.1.5 销毁 Banner](#515-%E9%94%80%E6%AF%81-banner)
-      - [5.1.6 YumiBannerViewOptions](#516-yumibannerviewoptions)
-    - [5.2 Interstitial](#52-interstitial)
-      - [5.2.1 初始化及请求插屏](#521-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%8A%E8%AF%B7%E6%B1%82%E6%8F%92%E5%B1%8F)
-      - [5.2.2 展示 Interstitial](#522-%E5%B1%95%E7%A4%BA-interstitial)
-      - [5.2.3 销毁 Interstitial](#523-%E9%94%80%E6%AF%81-interstitial)
-    - [5.3 Rewarded Video](#53-rewarded-video)
-      - [5.3.1 初始化及请求视频](#531-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%8A%E8%AF%B7%E6%B1%82%E8%A7%86%E9%A2%91)
-      - [5.3.2 判断视频是否准备好](#532-%E5%88%A4%E6%96%AD%E8%A7%86%E9%A2%91%E6%98%AF%E5%90%A6%E5%87%86%E5%A4%87%E5%A5%BD)
-      - [5.3.4 展示 Rewarded Video](#534-%E5%B1%95%E7%A4%BA-rewarded-video)
-    - [5.4 Native](#54-native)
-      - [5.4.1 初始化 Native](#541-%E5%88%9D%E5%A7%8B%E5%8C%96-native)
-      - [5.4.2 YumiNativeAdOptions](#542-yuminativeadoptions)
-      - [5.4.3 请求 Native](#543-%E8%AF%B7%E6%B1%82-native)
-      - [5.4.4 创建原生广告布局](#544-%E5%88%9B%E5%BB%BA%E5%8E%9F%E7%94%9F%E5%B9%BF%E5%91%8A%E5%B8%83%E5%B1%80)
-      - [5.4.5 使用广告元数据注册布局](#545-%E4%BD%BF%E7%94%A8%E5%B9%BF%E5%91%8A%E5%85%83%E6%95%B0%E6%8D%AE%E6%B3%A8%E5%86%8C%E5%B8%83%E5%B1%80)
-      - [5.4.6 展示 Native View](#546-%E5%B1%95%E7%A4%BA-native-view)
-      - [5.4.7 隐藏 Native View](#547-%E9%9A%90%E8%97%8F-native-view)
-      - [5.4.8 移除 Native View](#548-%E7%A7%BB%E9%99%A4-native-view)
-      - [5.4.9 销毁 Native](#549-%E9%94%80%E6%AF%81-native)
-  - [6 调试模式](#6-%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F)
-    - [6.1 调用调试模式](#61-%E8%B0%83%E7%94%A8%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F)
-    - [6.2 图示](#62-%E5%9B%BE%E7%A4%BA)
-  - [7 常见问题](#7-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
-    - [7.1 TEST ID](#71-test-id)
-    - [7.2 Android 打包失败](#72-android-%E6%89%93%E5%8C%85%E5%A4%B1%E8%B4%A5)
-      - [7.2.1 Failed to find Build Tools...](#721-failed-to-find-build-tools)
-      - [7.2.2 No toolchains found...](#722-no-toolchains-found)
-      - [7.2.3 Failed to apply plugin...](#723-failed-to-apply-plugin)
-
+    - [1 概述](#1-概述)
+    - [2 下载 YumiMediationSDK Unity 插件](#2-下载-yumimediationsdk-unity-插件)
+    - [3 导入 YumiMediationSDK Unity 插件](#3-导入-yumimediationsdk-unity-插件)
+         - [3.1 首次导入](#31-首次导入)
+         - [3.2 升级插件](#32-升级插件)
+    - [4 集成 YumiMediationSDK](#4-集成-yumimediationsdk)
+         - [4.1 部署 iOS 项目](#41-部署-ios-项目)
+         - [4.2 部署 Android 项目](#42-部署-android-项目)
+            - [4.2.1 常见问题一：加载三方 SDK 时间过长](#421-常见问题一加载三方-sdk-时间过长)
+            - [4.2.2 常见问题二：64k 引用限制](#422-常见问题二64k-引用限制)
+            - [4.2.3 常见问题三：设置 Admob MANAGER](#423-常见问题三设置-admob-manager)
+    - [5 选择广告形式](#5-选择广告形式)
+         - [5.1 Banner](#51-banner)
+            - [5.1.1 初始化 Banner](#511-初始化-banner)
+            - [5.1.2请求 Banner](#512请求-banner)
+            - [5.1.3 隐藏 Banner](#513-隐藏-banner)
+            - [5.1.4 显示隐藏的 Banner](#514-显示隐藏的-banner)
+            - [5.1.5 销毁 Banner](#515-销毁-banner)
+            - [5.1.6 YumiBannerViewOptions](#516-yumibannerviewoptions)
+         - [5.2 Interstitial](#52-interstitial)
+            - [5.2.1 初始化及请求插屏](#521-初始化及请求插屏)
+            - [5.2.2 展示 Interstitial](#522-展示-interstitial)
+            - [5.2.3 销毁 Interstitial](#523-销毁-interstitial)
+         - [5.3 Rewarded Video](#53-rewarded-video)
+            - [5.3.1 初始化及请求视频](#531-初始化及请求视频)
+            - [5.3.2 判断视频是否准备好](#532-判断视频是否准备好)
+            - [5.3.4 展示 Rewarded Video](#534-展示-rewarded-video)
+         - [5.4 Native](#54-native)
+            - [5.4.1 初始化 Native](#541-初始化-native)
+            - [5.4.2 YumiNativeAdOptions](#542-yuminativeadoptions)
+            - [5.4.3 请求 Native](#543-请求-native)
+            - [5.4.4 创建原生广告布局](#544-创建原生广告布局)
+            - [5.4.5 使用广告元数据注册布局](#545-使用广告元数据注册布局)
+            - [5.4.6 展示 Native View](#546-展示-native-view)
+            - [5.4.7 隐藏 Native View](#547-隐藏-native-view)
+            - [5.4.8 移除 Native View](#548-移除-native-view)
+            - [5.4.9 销毁 Native](#549-销毁-native)
+    - [6 调试模式](#6-调试模式)
+         - [6.1 调用调试模式](#61-调用调试模式)
+         - [6.2 图示](#62-图示)
+    - [7 常见问题](#7-常见问题)
+         - [7.1 TEST ID](#71-test-id)
+         - [7.2 Android 打包失败](#72-android-打包失败)
+            - [7.2.1 Failed to find Build Tools...](#721-failed-to-find-build-tools)
+            - [7.2.2 No toolchains found...](#722-no-toolchains-found)
+            - [7.2.3 Failed to apply plugin...](#723-failed-to-apply-plugin)
+         - [7.3 FAQ：](#73-faq)
+            - [7.3.1 Gdt(广点通)平台常见问题：](#731-gdt广点通平台常见问题)
 # YumiMediationSDK for Unity
 
 ## 1 概述
@@ -168,20 +169,20 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ```xml
 <androidPackages>
-  <androidPackage spec="com.yumimobi.ads:mediation:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:iqzone:3.6.1">
+  <androidPackage spec="com.yumimobi.ads:mediation:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:iqzone:3.6.2">
       <repositories>
           <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
           <repository>https://dl.bintray.com/yumimobi/ads/</repository>
@@ -189,15 +190,15 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
       </repositories>
   </androidPackage>
 
-  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.6.1" >
+  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.6.2" >
       <repositories>
           <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
       </repositories>
   </androidPackage>
-  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.6.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.6.2" />
   <!--  If your app is only available in mainland China, use unity-china,else use Unity.   -->
-  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.6.1" />
-  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.6.1" />-->
+  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.6.2" />
+  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.6.2" />-->
   <repositories>
       <repository>https://jcenter.bintray.com/</repository>
       <repository>https://maven.google.com/</repository>
@@ -205,7 +206,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 </androidPackages>
 ```
 
-比如删除 `admob`，直接删除 `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.1" />` 即可。
+比如删除 `admob`，直接删除 `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.2" />` 即可。
 
 **注意: Unity 插件会自动引用第三方广告 SDK，您无需手动添加。**
 
@@ -258,6 +259,7 @@ dependencies {
 </manifest>
 ```
 **重要提示**：自 Google 移动广告 SDK 17.0.0 版本开始，均须执行此步骤。如果未能添加此 <meta-data> 代码，将会导致崩溃，并显示以下消息："The Google Mobile Ads SDK was initialized incorrectly."
+
 
 ## 5 选择广告形式
 
@@ -824,3 +826,13 @@ A problem occurred evaluating root project 'gradleOut'.
 
 1. 升级 gradle 版本至 4.6
 2. 降级 gradle plugin 版本至 gradle 4.2.1 对应的版本。对照 [Update Gradle](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) 文档可知需要将 [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle) 中 `classpath 'com.android.tools.build:gradle:x.x.x'` 修改为 `classpath 'com.android.tools.build:gradle:3.0.0+'`
+
+### 7.3 FAQ：
+#### 7.3.1 Gdt(广点通)平台常见问题：
+1.接入Gdt(广点通)原生广告后，出现广点通原生广告视频显示不出来问题
+
+**解决方法**
+
+请确保你Unity项目的Assets/Plugins/Android/AndroidManifest.xml中的package:"xxx.xxx.xxx"名称和你Unity项目的package name "xxx.xxx.xxx"保持一致。如下图所示：
+<img src="resources\gdt1.png" alt="gdt1">
+

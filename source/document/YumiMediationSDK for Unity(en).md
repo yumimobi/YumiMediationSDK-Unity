@@ -1,50 +1,52 @@
 - [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
-  - [1 Summary](#1-summary)
-  - [2 Download the YumiMediationSDK Unity plugin](#2-download-the-yumimediationsdk-unity-plugin)
-  - [3 Import the YumiMediationSDK Unity plugin](#3-import-the-yumimediationsdk-unity-plugin)
-    - [3.1 First import](#31-first-import)
-    - [3.2 Update plugin](#32-update-plugin)
-  - [4 Include the YumiMediationSDK](#4-include-the-yumimediationsdk)
-    - [4.1 Deploy iOS](#41-deploy-ios)
-    - [4.2 Deploy Android](#42-deploy-android)
-      - [4.2.1 FAQ1: Resolving Android Dependencies](#421-faq1-resolving-android-dependencies)
-      - [4.2.2 FAQ2: the 64K reference limit](#422-faq2-the-64k-reference-limit)
-      - [4.2.3 FAQ3: Set your AdMob app MANAGER](#423-faq3-set-your-admob-app-manager)
-  - [5 Select an ad format](#5-select-an-ad-format)
-    - [5.1 Banner](#51-banner)
-      - [5.1.1 Initialize Banner](#511-initialize-banner)
-      - [5.1.2 Request Banner](#512-request-banner)
-      - [5.1.3 Hide Banner](#513-hide-banner)
-      - [5.1.4 Show Banner](#514-show-banner)
-      - [5.1.5 Destroy Banner](#515-destroy-banner)
-      - [5.1.6 YumiBannerViewOptions](#516-yumibannerviewoptions)
-    - [5.2 Interstitial](#52-interstitial)
-      - [5.2.1 Initialization and Interstitial request](#521-initialization-and-interstitial-request)
-      - [5.2.2 Show Interstitial](#522-show-interstitial)
-      - [5.2.3 Destroy Interstitial](#523-destroy-interstitial)
-    - [5.3 Reward Video](#53-reward-video)
-      - [5.3.1 Initialization and Reward Video request](#531-initialization-and-reward-video-request)
-      - [5.3.2 Determine if the video is ready](#532-determine-if-the-video-is-ready)
-      - [5.3.3 Show Rewarded Video](#533-show-rewarded-video)
-    - [5.4 Native Ad](#54-native-ad)
-      - [5.4.1 Init Native Ad](#541-init-native-ad)
-      - [5.4.2 YumiNativeAdOptions](#542-yuminativeadoptions)
-      - [5.4.3 Request Native](#543-request-native)
-      - [5.4.4 Create Your Native Ad Layout](#544-create-your-native-ad-layout)
-      - [5.4.5 Populating Your Layout Using the Ad's Metadata](#545-populating-your-layout-using-the-ads-metadata)
-      - [5.4.6 Show Native Ad View](#546-show-native-ad-view)
-      - [5.4.7 Hide Native Ad View](#547-hide-native-ad-view)
-      - [5.4.8 Remove Native Ad View](#548-remove-native-ad-view)
-      - [5.4.9 Destroy Native Ad View](#549-destroy-native-ad-view)
-  - [6 Debug Mode](#6-debug-mode)
-    - [6.1 Call Debug Mode](#61-call-debug-mode)
-    - [6.2 Sample](#62-sample)
-  - [7 Common issues of developer](#7-common-issues-of-developer)
-    - [7.1 TEST ID](#71-test-id)
-    - [7.2 Android build failed](#72-android-build-failed)
-      - [7.2.1 Failed to find Build Tools...](#721-failed-to-find-build-tools)
-      - [7.2.2 No toolchains found...](#722-no-toolchains-found)
-      - [7.2.3 Failed to apply plugin...](#723-failed-to-apply-plugin)
+    - [1 Summary](#1-summary)
+    - [2 Download the YumiMediationSDK Unity plugin](#2-download-the-yumimediationsdk-unity-plugin)
+    - [3 Import the YumiMediationSDK Unity plugin](#3-import-the-yumimediationsdk-unity-plugin)
+         - [3.1 First import](#31-first-import)
+         - [3.2 Update plugin](#32-update-plugin)
+    - [4 Include the YumiMediationSDK](#4-include-the-yumimediationsdk)
+         - [4.1 Deploy iOS](#41-deploy-ios)
+         - [4.2 Deploy Android](#42-deploy-android)
+            - [4.2.1 FAQ1: Resolving Android Dependencies](#421-faq1-resolving-android-dependencies)
+            - [4.2.2 FAQ2: the 64K reference limit](#422-faq2-the-64k-reference-limit)
+            - [4.2.3 FAQ3: Set your AdMob app MANAGER](#423-faq3-set-your-admob-app-manager)
+    - [5 Select an ad format](#5-select-an-ad-format)
+         - [5.1 Banner](#51-banner)
+            - [5.1.1 Initialize Banner](#511-initialize-banner)
+            - [5.1.2 Request Banner](#512-request-banner)
+            - [5.1.3 Hide Banner](#513-hide-banner)
+            - [5.1.4 Show Banner](#514-show-banner)
+            - [5.1.5 Destroy Banner](#515-destroy-banner)
+            - [5.1.6 YumiBannerViewOptions](#516-yumibannerviewoptions)
+         - [5.2 Interstitial](#52-interstitial)
+            - [5.2.1 Initialization and Interstitial request](#521-initialization-and-interstitial-request)
+            - [5.2.2 Show Interstitial](#522-show-interstitial)
+            - [5.2.3 Destroy Interstitial](#523-destroy-interstitial)
+         - [5.3 Reward Video](#53-reward-video)
+            - [5.3.1 Initialization and Reward Video request](#531-initialization-and-reward-video-request)
+            - [5.3.2 Determine if the video is ready](#532-determine-if-the-video-is-ready)
+            - [5.3.3 Show Rewarded Video](#533-show-rewarded-video)
+         - [5.4 Native Ad](#54-native-ad)
+            - [5.4.1 Init Native Ad](#541-init-native-ad)
+            - [5.4.2 YumiNativeAdOptions](#542-yuminativeadoptions)
+            - [5.4.3 Request Native](#543-request-native)
+            - [5.4.4 Create Your Native Ad Layout](#544-create-your-native-ad-layout)
+            - [5.4.5 Populating Your Layout Using the Ad's Metadata](#545-populating-your-layout-using-the-ads-metadata)
+            - [5.4.6 Show Native Ad View](#546-show-native-ad-view)
+            - [5.4.7 Hide Native Ad View](#547-hide-native-ad-view)
+            - [5.4.8 Remove Native Ad View](#548-remove-native-ad-view)
+            - [5.4.9 Destroy Native Ad View](#549-destroy-native-ad-view)
+    - [6 Debug Mode](#6-debug-mode)
+         - [6.1 Call Debug Mode](#61-call-debug-mode)
+         - [6.2 Sample](#62-sample)
+    - [7 Common issues of developer](#7-common-issues-of-developer)
+         - [7.1 TEST ID](#71-test-id)
+         - [7.2 Android build failed](#72-android-build-failed)
+            - [7.2.1 Failed to find Build Tools...](#721-failed-to-find-build-tools)
+            - [7.2.2 No toolchains found...](#722-no-toolchains-found)
+            - [7.2.3 Failed to apply plugin...](#723-failed-to-apply-plugin)
+         - [7.3 FAQ：](#73-faq)
+            - [7.3.1 Gdt(广点通) FAQ：](#731-gdt广点通-faq)
 
 # YumiMediationSDK for Unity
 
@@ -172,20 +174,20 @@ Android dependencies:
 
 ```xml
 <androidPackages>
-  <androidPackage spec="com.yumimobi.ads:mediation:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:iqzone:3.6.1">
+  <androidPackage spec="com.yumimobi.ads:mediation:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:iqzone:3.6.2">
       <repositories>
           <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
           <repository>https://dl.bintray.com/yumimobi/ads/</repository>
@@ -193,22 +195,22 @@ Android dependencies:
       </repositories>
   </androidPackage>
 
-  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.6.1" >
+  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.6.2" >
       <repositories>
           <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
       </repositories>
   </androidPackage>
-  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.6.1" />
+  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.6.2" />
   <!--  If your app is only available in mainland China, use unity-china,else use Unity.   -->
-  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.6.1" />
-  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.6.1" />-->
+  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.6.2" />
+  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.6.2" />-->
   <repositories>
       <repository>https://jcenter.bintray.com/</repository>
       <repository>https://maven.google.com/</repository>
   </repositories>
 </androidPackages>
 ```
-e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.1" />`.
+e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.2" />`.
 
 **Note: Unity plugin will auto download the thirdparty network's SDK, you don't need add it by manual.**
 
@@ -830,3 +832,12 @@ A problem occurred evaluating root project 'gradleOut'.
 
 1. upgrade gradle version to 4.6
 2. degrade gradle plugin to match gradle 4.2.1 version. you can check [Update Gradle](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) to change the gradle plugin version in [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle), for example, change `classpath 'com.android.tools.build:gradle:x.x.x'` to `classpath 'com.android.tools.build:gradle:3.0.0+'`.
+
+### 7.3 FAQ：
+#### 7.3.1 Gdt(广点通) FAQ：
+1.Gdt(广点通) platform Native ad con‘t show media Native Ad probleam
+
+**How to fix**
+
+Make sure that the package: "xxx.xxx.xxx" in the Assets/Plugins/Android/AndroidManifest.xml of your Unity project is consistent with the package name "xxx.xxx.xxx" of your Unity project. E.g：</span></p>
+<img src="resources\gdt1.png" alt="gdt1">
