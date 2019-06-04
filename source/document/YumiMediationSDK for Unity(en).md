@@ -174,20 +174,20 @@ Android dependencies:
 
 ```xml
 <androidPackages>
-  <androidPackage spec="com.yumimobi.ads:mediation:3.6.2" />
-  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.6.2" />
-  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.6.2" />
-  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.6.2" />
-  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.2" />
-  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.6.2" />
-  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.6.2" />
-  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.6.2" />
-  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.6.2" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.6.2" />
-  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.6.2" />
-  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.6.2" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.6.2" />
-  <androidPackage spec="com.yumimobi.ads.mediation:iqzone:3.6.2">
+  <androidPackage spec="com.yumimobi.ads:mediation:3.6.3" />
+  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.6.3" />
+  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.6.3" />
+  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.6.3" />
+  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.3" />
+  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.6.3" />
+  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.6.3" />
+  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.6.3" />
+  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.6.3" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.6.3" />
+  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.6.3" />
+  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.6.3" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.6.3" />
+  <androidPackage spec="com.yumimobi.ads.mediation:iqzone:3.6.3">
       <repositories>
           <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
           <repository>https://dl.bintray.com/yumimobi/ads/</repository>
@@ -195,22 +195,22 @@ Android dependencies:
       </repositories>
   </androidPackage>
 
-  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.6.2" >
+  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.6.3" >
       <repositories>
           <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
       </repositories>
   </androidPackage>
-  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.6.2" />
+  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.6.3" />
   <!--  If your app is only available in mainland China, use unity-china,else use Unity.   -->
-  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.6.2" />
-  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.6.2" />-->
+  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.6.3" />
+  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.6.3" />-->
   <repositories>
       <repository>https://jcenter.bintray.com/</repository>
       <repository>https://maven.google.com/</repository>
   </repositories>
 </androidPackages>
 ```
-e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.2" />`.
+e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.3" />`.
 
 **Note: Unity plugin will auto download the thirdparty network's SDK, you don't need add it by manual.**
 
