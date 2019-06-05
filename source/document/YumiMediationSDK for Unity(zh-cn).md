@@ -1,52 +1,55 @@
-- [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
-    - [1 概述](#1-概述)
-    - [2 下载 YumiMediationSDK Unity 插件](#2-下载-yumimediationsdk-unity-插件)
-    - [3 导入 YumiMediationSDK Unity 插件](#3-导入-yumimediationsdk-unity-插件)
-         - [3.1 首次导入](#31-首次导入)
-         - [3.2 升级插件](#32-升级插件)
-    - [4 集成 YumiMediationSDK](#4-集成-yumimediationsdk)
-         - [4.1 部署 iOS 项目](#41-部署-ios-项目)
-         - [4.2 部署 Android 项目](#42-部署-android-项目)
-            - [4.2.1 常见问题一：加载三方 SDK 时间过长](#421-常见问题一加载三方-sdk-时间过长)
-            - [4.2.2 常见问题二：64k 引用限制](#422-常见问题二64k-引用限制)
-            - [4.2.3 常见问题三：设置 Admob MANAGER](#423-常见问题三设置-admob-manager)
-    - [5 选择广告形式](#5-选择广告形式)
-         - [5.1 Banner](#51-banner)
-            - [5.1.1 初始化 Banner](#511-初始化-banner)
-            - [5.1.2请求 Banner](#512请求-banner)
-            - [5.1.3 隐藏 Banner](#513-隐藏-banner)
-            - [5.1.4 显示隐藏的 Banner](#514-显示隐藏的-banner)
-            - [5.1.5 销毁 Banner](#515-销毁-banner)
-            - [5.1.6 YumiBannerViewOptions](#516-yumibannerviewoptions)
-         - [5.2 Interstitial](#52-interstitial)
-            - [5.2.1 初始化及请求插屏](#521-初始化及请求插屏)
-            - [5.2.2 展示 Interstitial](#522-展示-interstitial)
-            - [5.2.3 销毁 Interstitial](#523-销毁-interstitial)
-         - [5.3 Rewarded Video](#53-rewarded-video)
-            - [5.3.1 初始化及请求视频](#531-初始化及请求视频)
-            - [5.3.2 判断视频是否准备好](#532-判断视频是否准备好)
-            - [5.3.4 展示 Rewarded Video](#534-展示-rewarded-video)
-         - [5.4 Native](#54-native)
-            - [5.4.1 初始化 Native](#541-初始化-native)
-            - [5.4.2 YumiNativeAdOptions](#542-yuminativeadoptions)
-            - [5.4.3 请求 Native](#543-请求-native)
-            - [5.4.4 创建原生广告布局](#544-创建原生广告布局)
-            - [5.4.5 使用广告元数据注册布局](#545-使用广告元数据注册布局)
-            - [5.4.6 展示 Native View](#546-展示-native-view)
-            - [5.4.7 隐藏 Native View](#547-隐藏-native-view)
-            - [5.4.8 移除 Native View](#548-移除-native-view)
-            - [5.4.9 销毁 Native](#549-销毁-native)
-    - [6 调试模式](#6-调试模式)
-         - [6.1 调用调试模式](#61-调用调试模式)
-         - [6.2 图示](#62-图示)
-    - [7 常见问题](#7-常见问题)
-         - [7.1 TEST ID](#71-test-id)
-         - [7.2 Android 打包失败](#72-android-打包失败)
-            - [7.2.1 Failed to find Build Tools...](#721-failed-to-find-build-tools)
-            - [7.2.2 No toolchains found...](#722-no-toolchains-found)
-            - [7.2.3 Failed to apply plugin...](#723-failed-to-apply-plugin)
-         - [7.3 FAQ：](#73-faq)
-            - [7.3.1 Gdt(广点通)平台常见问题：](#731-gdt广点通平台常见问题)
+   * [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
+      * [1 概述](#1-概述)
+      * [2 下载 YumiMediationSDK Unity 插件](#2-下载-yumimediationsdk-unity-插件)
+      * [3 导入 YumiMediationSDK Unity 插件](#3-导入-yumimediationsdk-unity-插件)
+         * [3.1 首次导入](#31-首次导入)
+         * [3.2 升级插件](#32-升级插件)
+      * [4 集成 YumiMediationSDK](#4-集成-yumimediationsdk)
+         * [4.1 部署 iOS 项目](#41-部署-ios-项目)
+         * [4.2 部署 Android 项目](#42-部署-android-项目)
+            * [4.2.1 常见问题一：加载三方 SDK 时间过长](#421-常见问题一加载三方-sdk-时间过长)
+            * [4.2.2 常见问题二：64k 引用限制](#422-常见问题二64k-引用限制)
+            * [4.2.3 常见问题三：设置 Admob MANAGER](#423-常见问题三设置-admob-manager)
+      * [5 选择广告形式](#5-选择广告形式)
+         * [5.1 Banner](#51-banner)
+            * [5.1.1 初始化 Banner](#511-初始化-banner)
+            * [5.1.2请求 Banner](#512请求-banner)
+            * [5.1.3 隐藏 Banner](#513-隐藏-banner)
+            * [5.1.4 显示隐藏的 Banner](#514-显示隐藏的-banner)
+            * [5.1.5 销毁 Banner](#515-销毁-banner)
+            * [5.1.6 YumiBannerViewOptions](#516-yumibannerviewoptions)
+         * [5.2 Interstitial](#52-interstitial)
+            * [5.2.1 初始化及请求插屏](#521-初始化及请求插屏)
+            * [5.2.2 展示 Interstitial](#522-展示-interstitial)
+            * [5.2.3 销毁 Interstitial](#523-销毁-interstitial)
+         * [5.3 Rewarded Video](#53-rewarded-video)
+            * [5.3.1 初始化及请求视频](#531-初始化及请求视频)
+            * [5.3.2 判断视频是否准备好](#532-判断视频是否准备好)
+            * [5.3.4 展示 Rewarded Video](#534-展示-rewarded-video)
+         * [5.4 Native](#54-native)
+            * [5.4.1 初始化 Native](#541-初始化-native)
+            * [5.4.2 YumiNativeAdOptions](#542-yuminativeadoptions)
+            * [5.4.3 请求 Native](#543-请求-native)
+            * [5.4.4 创建原生广告布局](#544-创建原生广告布局)
+            * [5.4.5 使用广告元数据注册布局](#545-使用广告元数据注册布局)
+            * [5.4.6 展示 Native View](#546-展示-native-view)
+            * [5.4.7 隐藏 Native View](#547-隐藏-native-view)
+            * [5.4.8 移除 Native View](#548-移除-native-view)
+            * [5.4.9 销毁 Native](#549-销毁-native)
+      * [6 调试模式](#6-调试模式)
+         * [6.1 调用调试模式](#61-调用调试模式)
+         * [6.2 图示](#62-图示)
+      * [7 常见问题](#7-常见问题)
+         * [7.1 TEST ID](#71-test-id)
+         * [7.2 Android 打包失败](#72-android-打包失败)
+            * [7.2.1 Failed to find Build Tools...](#721-failed-to-find-build-tools)
+            * [7.2.2 No toolchains found...](#722-no-toolchains-found)
+            * [7.2.3 Failed to apply plugin...](#723-failed-to-apply-plugin)
+         * [7.3 Gdt(广点通)平台常见问题：](#73-gdt广点通平台常见问题)
+            * [7.3.1 接入Gdt(广点通) 原生广告后，出现广点通原生广告视频显示不出来问题：](#731-接入gdt广点通-原生广告后出现广点通原生广告视频显示不出来问题)
+            * [7.3.2 Gdt(广点通) 平台请求不到广告问题：](#732-gdt广点通-平台请求不到广告问题)
+         * [7.4 Baidu 平台常见问题：](#74-baidu-平台常见问题)
+            * [7.4.1 Baidu 平台请求不到广告问题：](#741-baidu-平台请求不到广告问题)
 # YumiMediationSDK for Unity
 
 ## 1 概述
@@ -827,12 +830,35 @@ A problem occurred evaluating root project 'gradleOut'.
 1. 升级 gradle 版本至 4.6
 2. 降级 gradle plugin 版本至 gradle 4.2.1 对应的版本。对照 [Update Gradle](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) 文档可知需要将 [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle) 中 `classpath 'com.android.tools.build:gradle:x.x.x'` 修改为 `classpath 'com.android.tools.build:gradle:3.0.0+'`
 
-### 7.3 FAQ：
-#### 7.3.1 Gdt(广点通)平台常见问题：
-1.接入Gdt(广点通)原生广告后，出现广点通原生广告视频显示不出来问题
+### 7.3 Gdt(广点通)平台常见问题：
+#### 7.3.1 接入Gdt(广点通) 原生广告后，出现广点通原生广告视频显示不出来问题：
 
 **解决方法**
 
 请确保你Unity项目的Assets/Plugins/Android/AndroidManifest.xml中的package:"xxx.xxx.xxx"名称和你Unity项目的package name "xxx.xxx.xxx"保持一致。如下图所示：
 <img src="resources\gdt1.png" alt="gdt1">
 
+#### 7.3.2 Gdt(广点通) 平台请求不到广告问题：
+
+**解决方法**
+
+确认Gdt(广点通) 平台需要的权限已添加
+```
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />  
+<uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES"/>
+```
+
+### 7.4 Baidu 平台常见问题：
+
+#### 7.4.1 Baidu 平台请求不到广告问题：
+
+**解决办法**
+
+确认百度平台需要的权限已添加
+```
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+```
