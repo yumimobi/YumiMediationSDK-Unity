@@ -171,7 +171,7 @@ public class YumiUInterstitial {
             @Override
             public void run() {
                 if (interstitial != null){
-                    if (isReady){
+                    if (isReady()){
                         isReady = false;
                     }
                     interstitial.showInterstitial(false);
@@ -197,7 +197,11 @@ public class YumiUInterstitial {
      * Returns {@code True} if the interstitial has loaded.
      */
     public boolean isReady(){
-        return  isReady;
+        try{
+            return interstitial.isReady();
+        }catch (Exception e){
+            return  isReady;
+        }
     }
 
 }
