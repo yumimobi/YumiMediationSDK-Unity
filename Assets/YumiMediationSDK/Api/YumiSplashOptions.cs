@@ -11,13 +11,13 @@ namespace YumiMediationSDK.Api
         public int adFetchTime { get; private set; }
         /// <summary>
         /// the ad orientation.
+        /// default is YUMISPLASHORIENTATION_UNKNOWN.
         /// </summary>
-        /// <value>The ad orientation.</value>
         public YumiSplashOrientation adOrientation { get; private set; }
         /// <summary>
         /// the height of the ad bottom view.
+        /// bottom view's height should not exceed 15% of the screen height.
         /// </summary>
-        /// <value>The height of the ad bottom view.</value>
         public double adBottomViewHeight { get; private set; }
 
         internal YumiSplashOptions(YumiSplashOptionsBuilder builder)
