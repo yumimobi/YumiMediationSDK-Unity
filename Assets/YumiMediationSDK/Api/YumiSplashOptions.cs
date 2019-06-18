@@ -14,6 +14,11 @@ namespace YumiMediationSDK.Api
         /// </summary>
         /// <value>The ad orientation.</value>
         public YumiSplashOrientation adOrientation { get; private set; }
+        /// <summary>
+        /// the height of the ad bottom view.
+        /// </summary>
+        /// <value>The height of the ad bottom view.</value>
+        public double adBottomViewHeight { get; private set; }
 
         internal YumiSplashOptions(YumiSplashOptionsBuilder builder)
         {
@@ -28,10 +33,12 @@ namespace YumiMediationSDK.Api
         {
             adFetchTime = 3;
             adOrientation = YumiSplashOrientation.YUMISPLASHORIENTATION_UNKNOWN;
+            adBottomViewHeight = 0.0;
         }
 
         internal int adFetchTime { get; private set; }
         internal YumiSplashOrientation adOrientation { get; private set; }
+        internal double adBottomViewHeight { get; private set; }
 
         public YumiSplashOptions Build()
         {
@@ -55,6 +62,16 @@ namespace YumiMediationSDK.Api
         public YumiSplashOptionsBuilder setAdOrientation(YumiSplashOrientation orientation)
         {
             adOrientation = orientation;
+            return this;
+        }
+        /// <summary>
+        /// Sets the height of the ad bottom view.
+        /// </summary>
+        /// <returns>Builder instance.</returns>
+        /// <param name="height">Height.</param>
+        public YumiSplashOptionsBuilder setAdBottomViewHeight(double height)
+        {
+            adBottomViewHeight = height;
             return this;
         }
     }
