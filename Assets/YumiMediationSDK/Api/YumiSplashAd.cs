@@ -19,7 +19,7 @@ namespace YumiMediationSDK.Api
             Type yumiAdsClientFactory = Type.GetType(
                 "YumiMediationSDK.YumiAdsClientFactory,Assembly-CSharp");
             MethodInfo method = yumiAdsClientFactory.GetMethod(
-                "BuildBannerClient",
+                "BuildSplashClient",
                 BindingFlags.Static | BindingFlags.Public);
             this.client = (IYumiSplashClient)method.Invoke(null, null);
         
