@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace YumiMediationSDK.Common
 {
-    public class YumiDummyClient : IYumiBannerClient,IYumiInterstitialClient,IYumiRewardVideoClient,IYumiDebugCenterClient, IYumiNativeClient
+    public class YumiDummyClient : IYumiBannerClient,IYumiInterstitialClient,IYumiRewardVideoClient,IYumiDebugCenterClient, IYumiNativeClient, IYumiSplashClient
     {
         public YumiDummyClient()
         {
@@ -36,6 +36,10 @@ namespace YumiMediationSDK.Common
         public event EventHandler<EventArgs> OnAdRewarded;
         //native ad load 
         public event EventHandler<YumiNativeToLoadEventArgs> OnNativeAdLoaded;
+
+        // splash
+        // Ad event fired when the splash ad success to show 
+        public event EventHandler<EventArgs> OnAdSuccessToShow;
 
 #pragma warning restore 67
         // banner method
@@ -173,6 +177,22 @@ namespace YumiMediationSDK.Common
         public void UnregisterView(YumiNativeData nativeData)
         {
             Logger.LogError("Dummy: call UnregisterView");
+        }
+
+        // splash
+        // Creates an Splash.
+        public void CreateSplashAd(string placementId, string channelId, string versionId, YumiSplashOptions splashOptions)
+        {
+            Logger.LogError("Dummy: CreateSplashAd");
+        }
+        //load and show full screen splash
+        public void LoadAdAndShow()
+        {
+            Logger.LogError("Dummy: LoadAdAndShow");
+        }
+        public void DestroySplashAd()
+        {
+            Logger.LogError("Dummy: DestroySplashAd");
         }
     }
 }
