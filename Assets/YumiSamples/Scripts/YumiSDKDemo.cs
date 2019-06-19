@@ -12,17 +12,19 @@ public class YumiSDKDemo : MonoBehaviour
     private YumiBannerView bannerView;
     private YumiInterstitialAd interstitialAd;
     private YumiRewardVideoAd rewardVideoAd;
+    private YumiSplashAd splashAd;
+
     private YumiDebugCenter debugCenter;
 
     private string BannerPlacementId = "";
     private string RewardedVideoPlacementId = "";
     private string InterstitialsPlacementId = "";
     private string NativeAdPlacementId = "";
+    private string SplashPlacementId = "";
     private string GameVersionId = "";
     private string ChannelId = "";
 
     private bool IsSmartBanner;
-
 
     void Start()
     {
@@ -38,6 +40,7 @@ public class YumiSDKDemo : MonoBehaviour
         InterstitialsPlacementId = YumiMediationSDKSetting.InterstitialPlacementId();
         BannerPlacementId = YumiMediationSDKSetting.BannerPlacementId();
         NativeAdPlacementId = YumiMediationSDKSetting.NativeAdPlacementId();
+        SplashPlacementId = YumiMediationSDKSetting.SplashPlacementId();
 
         debugCenter = new YumiDebugCenter();
     }
@@ -155,10 +158,28 @@ public class YumiSDKDemo : MonoBehaviour
             SceneManager.LoadScene("YumiNativeScene");
 
         }
+        //splash
+
+        if (GUI.Button(new Rect(40, 594, btnWidth, 120), "Request Splash", myButtonStyle))
+        {
+            if (splashAd == null)
+            {
+
+                YumiSplashOptions splashOptions = new YumiSplashOptionsBuilder().Build();
+                splashAd = new YumiSplashAd(SplashPlacementId, ChannelId, GameVersionId, splashOptions);
+                // add splash event
+                splashAd.OnAdSuccessToShow += HandleSplashAdSuccssToShow;
+                splashAd.OnAdFailedToShow += HandleSplashAdFailToShow;
+                splashAd.OnAdClicked += HandleSplashAdClicked;
+                splashAd.OnAdClosed += HandleSplashAdClosed;
+            }
+
+            splashAd.LoadAdAndShow();
+        }
 
         if (YumiMediationSDKSetting.GetDebugMode)
         {
-            if (GUI.Button(new Rect(40, 594, btnWidth, 120), "Call DebugCenter", myButtonStyle))
+            if (GUI.Button(new Rect(40, 714, btnWidth, 120), "Call DebugCenter", myButtonStyle))
             {
                 if (this.debugCenter == null)
                 {
@@ -167,7 +188,7 @@ public class YumiSDKDemo : MonoBehaviour
 
                 //Destroy ad
                 destroyAds();
-                this.debugCenter.PresentYumiMediationDebugCenter(BannerPlacementId, InterstitialsPlacementId, RewardedVideoPlacementId, NativeAdPlacementId, ChannelId, GameVersionId);
+                this.debugCenter.PresentYumiMediationDebugCenter(BannerPlacementId, InterstitialsPlacementId, RewardedVideoPlacementId, NativeAdPlacementId, SplashPlacementId, ChannelId, GameVersionId);
             }
         }
     }
@@ -187,6 +208,11 @@ public class YumiSDKDemo : MonoBehaviour
         if (rewardVideoAd != null)
         {
             rewardVideoAd = null;
+        }
+        if (splashAd != null)
+        {
+            splashAd.DestroySplashAd();
+            splashAd = null;
         }
     }
 
@@ -281,6 +307,28 @@ public class YumiSDKDemo : MonoBehaviour
     public void HandleRewardVideoAdClicked(object sender, EventArgs args)
     {
         Logger.Log("HandleRewardVideoAdClicked Clicked");
+    }
+
+    #endregion
+    #region  splash callback handlers
+
+    public void HandleSplashAdSuccssToShow(object sender, EventArgs args)
+    {
+        Logger.Log("HandleSplashSuccssToShow event success to show");
+    }
+
+    public void HandleSplashAdFailToShow(object sender, YumiAdFailedToShowEventArgs args)
+    {
+        Logger.Log("HandleSplashAdFailToShow + fail error is =  " +  args.Message);
+    }
+
+    public void HandleSplashAdClicked(object sender, EventArgs args)
+    {
+        Logger.Log("HandleSplashAdClicked clicked");
+    }
+    public void HandleSplashAdClosed(object sender, EventArgs args)
+    {
+        Logger.Log("HandleSplashAdClosed Ad closed ");
     }
 
     #endregion
