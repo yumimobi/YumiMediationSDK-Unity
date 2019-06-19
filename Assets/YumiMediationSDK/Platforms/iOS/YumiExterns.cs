@@ -59,12 +59,12 @@ namespace YumiMediationSDK.iOS
         [DllImport("__Internal")]
         internal static extern IntPtr InitYumiInterstitial(IntPtr interstitial, string placementID, string channelID, string versionID);
         [DllImport("__Internal")]
-        internal static extern bool IsInterstitialReady(IntPtr interstitia);
+        internal static extern bool IsInterstitialReady(IntPtr interstitial);
         [DllImport("__Internal")]
-        internal static extern void PresentInterstitial(IntPtr interstitia);
+        internal static extern void PresentInterstitial(IntPtr interstitial);
         [DllImport("__Internal")]
         internal static extern void SetInterstitiaCallbacks(
-           IntPtr interstitia,
+           IntPtr interstitial,
             YumiInterstitialClient.YumiInterstitialDidReceiveAdCallback adReceivedCallback,
             YumiInterstitialClient.YumiInterstitialDidFailToReceiveAdWithErrorCallback adFailedCallback,
             YumiInterstitialClient.YumiInterstitialDidClickCallback adClickedCallback,
@@ -102,7 +102,7 @@ namespace YumiMediationSDK.iOS
         #region Debugcenter 
         // call debugcenter
         [DllImport("__Internal")]
-        internal static extern void PresentDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string nativePlacementID, string channelID, string versionID);
+        internal static extern void PresentDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string nativePlacementID,string splashPlacementID, string channelID, string versionID);
 
         [DllImport("__Internal")]
         internal static extern void EnableTestMode();
@@ -172,6 +172,27 @@ namespace YumiMediationSDK.iOS
             YumiNativeClient.YumiNativeAdDidFailToReceiveAdWithErrorCallback adFailedCallback,
             YumiNativeClient.YumiNativeAdDidClickCallback adClickedCallback
          );
+
+        #endregion
+
+        #region splash
+        [DllImport("__Internal")]
+        internal static extern IntPtr InitYumiSplash(IntPtr splash, string placementID, string channelID, string versionID);
+        [DllImport("__Internal")]
+        internal static extern void LoadAdAndShowWithBottomViewHeight(IntPtr splash, double height);
+        [DllImport("__Internal")]
+        internal static extern void SetSplashOrientation(IntPtr splash , int adOrientation);
+        [DllImport("__Internal")]
+        internal static extern void SetSplashFetchTime(IntPtr splash, int duration);
+
+        [DllImport("__Internal")]
+        internal static extern void SetSplashCallbacks(
+           IntPtr splash,
+           YumiSplashClient.YumiSplashDidSuccessToShowCallback adSuccessToShowCallBack,
+           YumiSplashClient.YumiSplashDidFailToShowCallback adFailToShowCallBack,
+           YumiSplashClient.YumiSplashDidClickCallback adClickCallBack,
+           YumiSplashClient.YumiSplashDidCloseCallback adCloseCallBack
+           );
 
         #endregion
     }
