@@ -51,7 +51,7 @@ public class YumiSplashScript : MonoBehaviour
 
     private void InputMainSence()
     {
-        SceneManager.LoadScene("YumiScene");
+        SceneManager.LoadScene("YumiMainDemoScene");
     }
     #region  splash callback handlers
 

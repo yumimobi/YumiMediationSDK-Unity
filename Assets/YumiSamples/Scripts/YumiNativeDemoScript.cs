@@ -128,7 +128,7 @@ public class YumiNativeDemoScript : MonoBehaviour
             this.nativeAd.Destroy();
         }
 
-        SceneManager.LoadScene("YumiScene");
+        SceneManager.LoadScene("YumiMainDemoScene");
 
     }
     #region native call back handles
