@@ -33,6 +33,8 @@ namespace YumiMediationSDK.Common
         private string Android_BannerPlacementId = "";
         [SerializeField]
         private string Android_NativeAdPlacementId = "";
+        [SerializeField]
+        private string Android_SplashPlacementId = "";
 
 
         [Header("IOS")]
@@ -46,6 +48,8 @@ namespace YumiMediationSDK.Common
         private string IOS_BannerPlacementId = "";
         [SerializeField]
         private string IOS_NativeAdPlacementId = "";
+        [SerializeField]
+        private string IOS_SplashPlacementId = "";
 
         [Header("Banner Self-adaptation")]
         [SerializeField]
@@ -127,14 +131,23 @@ namespace YumiMediationSDK.Common
         public static string NativeAdPlacementId()
         {
 #if UNITY_ANDROID
-            return Instance.Android_NativeAdPlacementId;
+            return Instance.Android_SplashPlacementId;
 #elif UNITY_IOS
             return  Instance.IOS_NativeAdPlacementId;
 #else
             return "unknown";
 #endif
         }
-
+        public static string SplashPlacementId()
+        {
+#if UNITY_ANDROID
+            return Instance.Android_SplashPlacementId;
+#elif UNITY_IOS
+            return Instance.IOS_SplashPlacementId;
+#else
+            return "unknown";
+#endif
+        }
         public static string ChannelId()
         {
 #if UNITY_ANDROID
