@@ -9,7 +9,7 @@ using YumiMediationSDK.Common;
 
 [RequireComponent(typeof(CanvasRenderer))]
 [RequireComponent(typeof(RectTransform))]
-public class YumiNativeScene : MonoBehaviour
+public class YumiNativeDemoScript : MonoBehaviour
 {
     //private NativeAd nativeAd;
     private YumiNativeAd nativeAd;

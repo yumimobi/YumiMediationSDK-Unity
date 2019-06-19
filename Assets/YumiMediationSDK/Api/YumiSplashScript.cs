@@ -4,7 +4,7 @@ using YumiMediationSDK.Common;
 using System;
 using UnityEngine.SceneManagement;
 
-public class YumiSplashBehaviour : MonoBehaviour
+public class YumiSplashScript : MonoBehaviour
 {
 
     private YumiSplashAd splashAd;

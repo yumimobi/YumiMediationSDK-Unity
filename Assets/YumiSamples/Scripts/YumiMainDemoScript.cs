@@ -6,7 +6,7 @@ using YumiMediationSDK.Api;
 using YumiMediationSDK.Common;
 using UnityEngine.SceneManagement;
 
-public class YumiSDKDemo : MonoBehaviour
+public class YumiMainDemoScript : MonoBehaviour
 {
 
     private YumiBannerView bannerView;
