@@ -115,7 +115,7 @@ namespace YumiMediationSDK.Common
         public void DestroyRewardVideo(){
             Logger.LogError("Dummy: DestroyRewardVideo");
         }
-        public void CallYumiMediationDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string nativePlamentID, string channelID, string versionID)
+        public void CallYumiMediationDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string nativePlamentID, string splashPplacementID, string channelID, string versionID)
         {
             Logger.LogError("Dummy: CallYumiMediationDebugCenter");
         }

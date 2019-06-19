@@ -28,8 +28,8 @@ namespace YumiMediationSDK.Api
         /// <param name="nativePlacementID">Native placement identifier.</param>
         /// <param name="channelID">Channel identifier.</param>
         /// <param name="versionID">Version identifier.</param>
-        public void PresentYumiMediationDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string nativePlacementID, string channelID, string versionID){
-            this.client.CallYumiMediationDebugCenter(bannerPlacementID,interstitialPlacementID,videoPlacementID, nativePlacementID, channelID,versionID);
+        public void PresentYumiMediationDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string nativePlacementID, string splashPlacementID, string channelID, string versionID){
+            this.client.CallYumiMediationDebugCenter(bannerPlacementID,interstitialPlacementID,videoPlacementID, nativePlacementID, splashPlacementID, channelID,versionID);
         }
         /// <summary>
         /// Changes to test server.
