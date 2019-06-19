@@ -152,7 +152,7 @@ public class YumiMainDemoScript : MonoBehaviour
         if (GUI.Button(new Rect(40, 474, btnWidth, 120), "Show Native Scene", myButtonStyle))
         {
             destroyAds();
-            SceneManager.LoadScene("YumiNativeScene");
+            SceneManager.LoadScene("YumiNativeDemoScene");
 
         }
         //splash
