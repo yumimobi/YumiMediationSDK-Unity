@@ -804,7 +804,7 @@ A problem occurred configuring root project 'gradleOut'.
 
 **解决方法**
 
-从 [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle) 中删除 `buildToolsVersion '**BUILDTOOLS**'` 
+从 [maintemplate](../../Assets/Plugins/Android/mainTemplate.gradle) 中删除 `buildToolsVersion '**BUILDTOOLS**'` 
 
 #### 7.2.2 No toolchains found...
 ```
@@ -815,7 +815,7 @@ A problem occurred configuring root project 'gradleOut'.
 
 **解决方法**
 
-修改 [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle) 中 gradle plugin 版本，如将 `classpath 'com.android.tools.build:gradle:3.0.1'` 修改为 `classpath 'com.android.tools.build:gradle:3.2.1'`。
+修改 [mainTemplate](../../Assets/Plugins/Android/mainTemplate.gradle) 中 gradle plugin 版本，如将 `classpath 'com.android.tools.build:gradle:3.0.1'` 修改为 `classpath 'com.android.tools.build:gradle:3.2.1'`。
 
 #### 7.2.3 Failed to apply plugin...
 ```
@@ -828,7 +828,7 @@ A problem occurred evaluating root project 'gradleOut'.
 **解决方法（以下方法任选一个即可）**
 
 1. 升级 gradle 版本至 4.6
-2. 降级 gradle plugin 版本至 gradle 4.2.1 对应的版本。对照 [Update Gradle](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) 文档可知需要将 [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle) 中 `classpath 'com.android.tools.build:gradle:x.x.x'` 修改为 `classpath 'com.android.tools.build:gradle:3.0.0+'`
+2. 降级 gradle plugin 版本至 gradle 4.2.1 对应的版本。对照 [Update Gradle](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) 文档可知需要将 [maintemplate](../../Assets/Plugins/Android/mainTemplate.gradle) 中 `classpath 'com.android.tools.build:gradle:x.x.x'` 修改为 `classpath 'com.android.tools.build:gradle:3.0.0+'`
 
 ### 7.3 Gdt(广点通)平台常见问题：
 #### 7.3.1 接入Gdt(广点通) 原生广告后，出现广点通原生广告视频显示不出来问题：
