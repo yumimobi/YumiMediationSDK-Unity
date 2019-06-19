@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using YumiMediationSDK.Api;
-using YumiMediationSDK.Common;
 using System;
 using UnityEngine.SceneManagement;
 
@@ -8,16 +7,12 @@ public class YumiSplashScript : MonoBehaviour
 {
 
     private YumiSplashAd splashAd;
-    private string SplashPlacementId = "";
+    private string SplashPlacementId = "pwmf5r42";
     private string GameVersionId = "";
     private string ChannelId = "";
 
     void Start()
     {
-        GameVersionId = YumiMediationSDKSetting.GetGameVersion;
-        ChannelId = YumiMediationSDKSetting.ChannelId();
-        SplashPlacementId = YumiMediationSDKSetting.SplashPlacementId();
-
         LoadSplash();
     }
 
@@ -34,9 +29,7 @@ public class YumiSplashScript : MonoBehaviour
     {
         if (splashAd == null)
         {
-
-            YumiSplashOptionsBuilder builder = new YumiSplashOptionsBuilder().setAdBottomViewHeight(100);
-            YumiSplashOptions splashOptions = new YumiSplashOptions(builder);
+            YumiSplashOptions splashOptions = new YumiSplashOptionsBuilder().Build();
 
             splashAd = new YumiSplashAd(SplashPlacementId, ChannelId, GameVersionId, splashOptions);
             // add splash event
