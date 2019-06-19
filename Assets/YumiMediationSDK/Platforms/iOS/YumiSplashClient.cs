@@ -55,7 +55,7 @@ namespace YumiMediationSDK.iOS
             this.splashOptions = splashOptions;
 
             YumiExterns.SetSplashFetchTime(SplashPtr, splashOptions.adFetchTime);
-            if (splashOptions.adOrientation != YumiSplashOrientation.YUMISPLASHORIENTATION_UNKNOWN)
+            if (splashOptions.adOrientation != YumiSplashOrientation.YUMISPLASHORIENTATION_UNKNOWN || splashOptions.adOrientation != YumiSplashOrientation.YUMISPLASHORIENTATION_PORTRAIT)
             {
                 YumiExterns.SetSplashOrientation(SplashPtr, (int)splashOptions.adOrientation);
             }

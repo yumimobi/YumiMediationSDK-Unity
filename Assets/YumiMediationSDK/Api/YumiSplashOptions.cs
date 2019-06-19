@@ -11,7 +11,8 @@ namespace YumiMediationSDK.Api
         public int adFetchTime { get; private set; }
         /// <summary>
         /// the ad orientation.
-        /// default is YUMISPLASHORIENTATION_UNKNOWN.
+        /// default is YUMISPLASHORIENTATION_PORTRAIT.
+        /// only admob support this method
         /// </summary>
         public YumiSplashOrientation adOrientation { get; private set; }
         /// <summary>
@@ -33,7 +34,7 @@ namespace YumiMediationSDK.Api
          public YumiSplashOptionsBuilder()
         {
             adFetchTime = 3;
-            adOrientation = YumiSplashOrientation.YUMISPLASHORIENTATION_UNKNOWN;
+            adOrientation = YumiSplashOrientation.YUMISPLASHORIENTATION_PORTRAIT;
             adBottomViewHeight = 0.0;
         }
 
@@ -47,6 +48,7 @@ namespace YumiMediationSDK.Api
         }
         /// <summary>
         /// Sets the ad fetch time.
+        /// default is 3s.
         /// </summary>
         /// <returns>Builder instance</returns>
         /// <param name="duration">Duration.</param>
@@ -57,6 +59,8 @@ namespace YumiMediationSDK.Api
         }
         /// <summary>
         /// Sets the ad orientation.
+        /// default is YUMISPLASHORIENTATION_PORTRAIT.
+        /// only admob support this method
         /// </summary>
         /// <returns>Builder instance.</returns>
         /// <param name="orientation">Orientation.</param>
@@ -67,6 +71,7 @@ namespace YumiMediationSDK.Api
         }
         /// <summary>
         /// Sets the height of the ad bottom view.
+        /// bottom view's height should not exceed 15% of the screen height.
         /// </summary>
         /// <returns>Builder instance.</returns>
         /// <param name="height">Height.</param>
