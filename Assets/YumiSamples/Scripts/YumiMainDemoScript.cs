@@ -161,8 +161,9 @@ public class YumiMainDemoScript : MonoBehaviour
         {
             if (splashAd == null)
             {
-
-                YumiSplashOptions splashOptions = new YumiSplashOptionsBuilder().Build();
+                YumiSplashOptionsBuilder builder = new YumiSplashOptionsBuilder().setAdBottomViewHeight(100);
+                YumiSplashOptions splashOptions = new YumiSplashOptions(builder);
+               
                 splashAd = new YumiSplashAd(SplashPlacementId, ChannelId, GameVersionId, splashOptions);
                 // add splash event
                 splashAd.OnAdSuccessToShow += HandleSplashAdSuccssToShow;
