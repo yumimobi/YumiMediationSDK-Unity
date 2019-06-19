@@ -24,6 +24,7 @@ namespace YumiMediationSDK.Api
         {
             adFetchTime = builder.adFetchTime;
             adOrientation = builder.adOrientation;
+            adBottomViewHeight = builder.adBottomViewHeight;
         }
     }
 
