@@ -24,8 +24,6 @@ public class YumiSDKDemo : MonoBehaviour
     private string GameVersionId = "";
     private string ChannelId = "";
 
-    private bool IsSmartBanner;
-
     void Start()
     {
         // Whether to display log log
@@ -33,7 +31,6 @@ public class YumiSDKDemo : MonoBehaviour
 
         //get ad info
         GameVersionId = YumiMediationSDKSetting.GetGameVersion;
-        IsSmartBanner = YumiMediationSDKSetting.GetAutomaticAdaptionBanner;
 
         ChannelId = YumiMediationSDKSetting.ChannelId();
         RewardedVideoPlacementId = YumiMediationSDKSetting.RewardVideoPlacementId();

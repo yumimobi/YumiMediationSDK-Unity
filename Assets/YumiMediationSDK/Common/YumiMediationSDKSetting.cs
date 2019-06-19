@@ -51,19 +51,11 @@ namespace YumiMediationSDK.Common
         [SerializeField]
         private string IOS_SplashPlacementId = "";
 
-        [Header("Banner Self-adaptation")]
-        [SerializeField]
-        private bool AutomaticAdaptionBanner;
-
-
         //Debug 
         public static bool GetDebugMode { get { return Instance.DebugMode; } }
 
         //Version
         public static string GetGameVersion { get { return Instance.GameVersion; } }
-
-        //Banner Self-adaptation
-        public static bool GetAutomaticAdaptionBanner { get { return instance.AutomaticAdaptionBanner; } }
 
         public static YumiMediationSDKSetting Instance
         {
