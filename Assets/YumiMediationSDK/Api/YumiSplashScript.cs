@@ -7,12 +7,20 @@ public class YumiSplashScript : MonoBehaviour
 {
 
     private YumiSplashAd splashAd;
-    private string SplashPlacementId = "pwmf5r42";
+    private string SplashPlacementId = "";
     private string GameVersionId = "";
     private string ChannelId = "";
 
     void Start()
     {
+
+#if UNITY_ANDROID
+      SplashPlacementId = "YOUR_SPLASH_PLACEMENT_ID_ANDROID";
+#elif UNITY_IOS
+        SplashPlacementId = "pwmf5r42";
+#else
+        SplashPlacementId = "unexpected_platform";
+#endif
         LoadSplash();
     }
 
