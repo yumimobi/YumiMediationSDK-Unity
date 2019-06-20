@@ -36,6 +36,11 @@
       - [5.4.7 隐藏 Native View](#547-%E9%9A%90%E8%97%8F-native-view)
       - [5.4.8 移除 Native View](#548-%E7%A7%BB%E9%99%A4-native-view)
       - [5.4.9 销毁 Native](#549-%E9%94%80%E6%AF%81-native)
+    - [5.5 Splash](#55-splash)
+      - [5.5.1 集成开屏广告](#551-集成开屏广告)
+      - [5.5.2 配置开屏广告](#552-配置开屏广告)
+      - [5.5.3 YumiSplashOptions](#553-YumiSplashOptions)
+      - [5.5.4 显示半屏广告](#554-显示半屏广告)
   - [6 调试模式](#6-%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F)
     - [6.1 调用调试模式](#61-%E8%B0%83%E7%94%A8%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F)
     - [6.2 图示](#62-%E5%9B%BE%E7%A4%BA)
@@ -733,6 +738,82 @@ this.nativeAd.UnregisterView(yumiNativeData);
 this.nativeAd.Destroy();
 ```
 
+### 5.5 Splash
+#### 5.5.1 集成开屏广告
+如果您的 APP 想要集成开屏广告形式，请把 `YumiSplashScene` 加到 **Scenes In Build** 的第一位。如下图所示：
+![image](./resources/splashScene.png)
+
+**建议您将 `YumiSplashScene` 的背景图片设置为您应用的 launchImage。**
+
+#### 5.5.2 配置开屏广告
+在 **YumiMediationSDK/Api/YumiSplashScript** 文件的 `void Start()` 方法中配置您的广告位信息
+```C#
+void Start()
+    {
+      #if UNITY_ANDROID
+        SplashPlacementId = "YOUR_SPLASH_PLACEMENT_ID_ANDROID";
+      #elif UNITY_IOS
+        SplashPlacementId = "YOUR_SPLASH_PLACEMENT_ID_IOS";
+      #else
+        SplashPlacementId = "unexpected_platform";
+      #endif
+      GameVersionId = "YOUR_GAME_VERSION";
+      ChannelId = "YOUR_CHANNEL_ID";
+      // ...
+    }
+```
+**注意：当开屏回调失败或者关闭时，请打开您的 APP SCENE **
+- 修改 `YOUR_MAIN_SCENE` 为您的主 Scene
+```C#
+  private void InputMainSence()
+    {
+        SceneManager.LoadScene("YOUR_MAIN_SCENE");
+    }
+```
+
+#### 5.5.3 YumiSplashOptions
+`YumiSplashOptions` 是初始化 `YumiSplashAd` 的最后一个参数，您可在 `YumiSplashOptions` 文件中查看：
+- `adFetchTime`
+
+  拉取广告超时时间，默认为3秒 。在该超时时间内，如果广告请求成功则展示广告，否则展示失败。
+
+- `adOrientation`
+
+  开屏广告方向。默认竖屏。只有 Admob 广告平台支持这个方法
+
+- `adBottomViewHeight`
+
+  广告底部视图的高度。广告底视图的高度不应超过屏幕高度的15％。
+
+
+默认创建 `YumiSplashOptions` 实例代码：
+```C#
+YumiSplashOptions splashOptions = new YumiSplashOptionsBuilder().Build();
+```
+
+自定义创建 `YumiSplashOptions` 实例代码：
+```C#
+YumiSplashOptionsBuilder builder = new YumiSplashOptionsBuilder();
+builder.setAdBottomViewHeight(100);
+builder.setAdFetchTime(3);
+builder.setAdOrientation(YumiSplashOrientation.YUMISPLASHORIENTATION_PORTRAIT);
+
+YumiSplashOptions splashOptions = new YumiSplashOptions(builder);
+```
+
+#### 5.5.4 显示半屏广告
+显示半屏广告，可允许您在 bottomView 位置展示应用 logo。请修改开屏的初始化代码
+```C#
+/// bottom view's height should not exceed 15% of the screen height.
+YumiSplashOptionsBuilder builder = new YumiSplashOptionsBuilder().setAdBottomViewHeight(100);
+YumiSplashOptions splashOptions = new YumiSplashOptions(builder);
+
+YumiSplashAd splashAd = new YumiSplashAd(SplashPlacementId, ChannelId, GameVersionId, splashOptions);
+
+// ...
+
+```
+
 ## 6 调试模式
 
 如果您想调试平台 key 是否有广告返回，可选择调试模式。 
@@ -753,7 +834,7 @@ public class YumiSDKDemo : MonoBehaviour
             this.debugCenter = new YumiDebugCenter();
         }
         // 注意：填写的广告位信息要区分iOS和Android
-        this.debugCenter.PresentYumiMediationDebugCenter("YOUR_BANNER_PLACEMENT_ID", "YOUR_INTERSTITIAL_PLACEMENT_ID", "YOUR_REWARDVIDEO_PLACEMENT_ID", "YOUR_NATIVE_PLACEMENT_ID","YOUR_CHANNEL_ID", "YOUR_VERSION_ID");
+        this.debugCenter.PresentYumiMediationDebugCenter("YOUR_BANNER_PLACEMENT_ID", "YOUR_INTERSTITIAL_PLACEMENT_ID", "YOUR_REWARDVIDEO_PLACEMENT_ID", "YOUR_NATIVE_PLACEMENT_ID","YOUR_SPLASH_PLACEMENT_ID","YOUR_CHANNEL_ID", "YOUR_VERSION_ID");
     }
 }
 ```
