@@ -746,23 +746,9 @@ this.nativeAd.Destroy();
 **建议您将 `YumiSplashScene` 的背景图片设置为您应用的 launchImage。**
 
 #### 5.5.2 配置开屏广告
-在 **YumiMediationSDK/Api/YumiSplashScene** 文件的 `void Start()` 方法中配置您的广告位信息
+在 **YumiMediationSDK/Api/YumiSplashScript** 文件的 `void Start()` 方法中配置您的广告位信息
 ```C#
-using UnityEngine;
-using YumiMediationSDK.Api;
-using System;
-using UnityEngine.SceneManagement;
-
-public class YumiSplashScript : MonoBehaviour
-{
-
-    private YumiSplashAd splashAd;
-
-    private string SplashPlacementId = "";
-    private string GameVersionId = "YOUR_GAME_VERSION";
-    private string ChannelId = "YOUR_CHANNEL_ID";
-
-    void Start()
+void Start()
     {
       #if UNITY_ANDROID
         SplashPlacementId = "YOUR_SPLASH_PLACEMENT_ID_ANDROID";
@@ -771,26 +757,10 @@ public class YumiSplashScript : MonoBehaviour
       #else
         SplashPlacementId = "unexpected_platform";
       #endif
-        LoadSplash();
+      GameVersionId = "YOUR_GAME_VERSION";
+      ChannelId = "YOUR_CHANNEL_ID";
+      // ...
     }
-
-    private void LoadSplash()
-    {
-        if (splashAd == null)
-        {
-            YumiSplashOptions splashOptions = new YumiSplashOptionsBuilder().Build();
-
-            splashAd = new YumiSplashAd(SplashPlacementId, ChannelId, GameVersionId, splashOptions);
-            // add splash event
-            splashAd.OnAdSuccessToShow += HandleSplashAdSuccssToShow;
-            splashAd.OnAdFailedToShow += HandleSplashAdFailToShow;
-            splashAd.OnAdClicked += HandleSplashAdClicked;
-            splashAd.OnAdClosed += HandleSplashAdClosed;
-        }
-
-        splashAd.LoadAdAndShow();
-    }
-}
 ```
 **注意：当开屏回调失败或者关闭时，请打开您的 APP SCENE **
 - 修改 `YOUR_MAIN_SCENE` 为您的主 Scene

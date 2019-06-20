@@ -755,23 +755,9 @@ Add the `YumiSplashScene` to **Scenes In Build**,If you want to integrated splas
 **Recommended: please set the background image of `YumiSplashScene` to your app's launchImage.**
 
 #### 5.5.2 Setup Ad Placement
-Configure your ad information in the `void Start()` method of the **YumiMediationSDK/Api/YumiSplashScene** file
+Configure your ad information in the `void Start()` method of the **YumiMediationSDK/Api/YumiSplashScript** file
 ```C#
-using UnityEngine;
-using YumiMediationSDK.Api;
-using System;
-using UnityEngine.SceneManagement;
-
-public class YumiSplashScript : MonoBehaviour
-{
-
-    private YumiSplashAd splashAd;
-
-    private string SplashPlacementId = "";
-    private string GameVersionId = "YOUR_GAME_VERSION";
-    private string ChannelId = "YOUR_CHANNEL_ID";
-
-    void Start()
+void Start()
     {
       #if UNITY_ANDROID
         SplashPlacementId = "YOUR_SPLASH_PLACEMENT_ID_ANDROID";
@@ -780,25 +766,10 @@ public class YumiSplashScript : MonoBehaviour
       #else
         SplashPlacementId = "unexpected_platform";
       #endif
-        LoadSplash();
+      GameVersionId = "YOUR_GAME_VERSION";
+      ChannelId = "YOUR_CHANNEL_ID";
+      // ...
     }
-    private void LoadSplash()
-    {
-        if (splashAd == null)
-        {
-            YumiSplashOptions splashOptions = new YumiSplashOptionsBuilder().Build();
-
-            splashAd = new YumiSplashAd(SplashPlacementId, ChannelId, GameVersionId, splashOptions);
-            // add splash event
-            splashAd.OnAdSuccessToShow += HandleSplashAdSuccssToShow;
-            splashAd.OnAdFailedToShow += HandleSplashAdFailToShow;
-            splashAd.OnAdClicked += HandleSplashAdClicked;
-            splashAd.OnAdClosed += HandleSplashAdClosed;
-        }
-
-        splashAd.LoadAdAndShow();
-    }
-}
 ```
 **Note: Open your APP SCENE when the splash ad call back close or fail to show **
 - Set `YOUR_MAIN_SCENE` is your main scene
