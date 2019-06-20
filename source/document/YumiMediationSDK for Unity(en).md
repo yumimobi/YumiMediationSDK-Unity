@@ -1,46 +1,56 @@
-- [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
-  - [1 Summary](#1-summary)
-  - [2 Download the YumiMediationSDK Unity plugin](#2-download-the-yumimediationsdk-unity-plugin)
-  - [3 Import the YumiMediationSDK Unity plugin](#3-import-the-yumimediationsdk-unity-plugin)
-    - [3.1 First import](#31-first-import)
-    - [3.2 Update plugin](#32-update-plugin)
-  - [4 Include the YumiMediationSDK](#4-include-the-yumimediationsdk)
-    - [4.1 Deploy iOS](#41-deploy-ios)
-    - [4.2 Deploy Android](#42-deploy-android)
-      - [4.2.1 FAQ1: Resolving Android Dependencies](#421-faq1-resolving-android-dependencies)
-      - [4.2.2 FAQ2: the 64K reference limit](#422-faq2-the-64k-reference-limit)
-      - [4.2.3 FAQ3: Set your AdMob app MANAGER](#423-faq3-set-your-admob-app-manager)
-  - [5 Select an ad format](#5-select-an-ad-format)
-    - [5.1 Banner](#51-banner)
-      - [5.1.1 Initialize Banner](#511-initialize-banner)
-      - [5.1.2 Request Banner](#512-request-banner)
-      - [5.1.3 Hide Banner](#513-hide-banner)
-      - [5.1.4 Show Banner](#514-show-banner)
-      - [5.1.5 Destroy Banner](#515-destroy-banner)
-      - [5.1.6 YumiBannerViewOptions](#516-yumibannerviewoptions)
-    - [5.2 Interstitial](#52-interstitial)
-      - [5.2.1 Initialization and Interstitial request](#521-initialization-and-interstitial-request)
-      - [5.2.2 Show Interstitial](#522-show-interstitial)
-      - [5.2.3 Destroy Interstitial](#523-destroy-interstitial)
-    - [5.3 Reward Video](#53-reward-video)
-      - [5.3.1 Initialization and Reward Video request](#531-initialization-and-reward-video-request)
-      - [5.3.2 Determine if the video is ready](#532-determine-if-the-video-is-ready)
-      - [5.3.3 Show Rewarded Video](#533-show-rewarded-video)
-    - [5.4 Native Ad](#54-native-ad)
-      - [5.4.1 Init Native Ad](#541-init-native-ad)
-      - [5.4.2 YumiNativeAdOptions](#542-yuminativeadoptions)
-      - [5.4.3 Request Native](#543-request-native)
-      - [5.4.4 Create Your Native Ad Layout](#544-create-your-native-ad-layout)
-      - [5.4.5 Populating Your Layout Using the Ad's Metadata](#545-populating-your-layout-using-the-ads-metadata)
-      - [5.4.6 Show Native Ad View](#546-show-native-ad-view)
-      - [5.4.7 Hide Native Ad View](#547-hide-native-ad-view)
-      - [5.4.8 Remove Native Ad View](#548-remove-native-ad-view)
-      - [5.4.9 Destroy Native Ad View](#549-destroy-native-ad-view)
-    - [5.5 Splash](#55-splash)
+- [YumiMediationSDK for Unity](#YumiMediationSDK-for-Unity)
+  - [1 Summary](#1-Summary)
+  - [2 Download the YumiMediationSDK Unity plugin](#2-Download-the-YumiMediationSDK-Unity-plugin)
+  - [3 Import the YumiMediationSDK Unity plugin](#3-Import-the-YumiMediationSDK-Unity-plugin)
+    - [3.1 First import](#31-First-import)
+    - [3.2 Update plugin](#32-Update-plugin)
+  - [4 Include the YumiMediationSDK](#4-Include-the-YumiMediationSDK)
+    - [4.1 Deploy iOS](#41-Deploy-iOS)
+    - [4.2 Deploy Android](#42-Deploy-Android)
+  - [5 Select an ad format](#5-Select-an-ad-format)
+    - [5.1 Banner](#51-Banner)
+      - [5.1.1 Initialize Banner](#511-Initialize-Banner)
+      - [5.1.2 Request Banner](#512-Request-Banner)
+      - [5.1.3 Hide Banner](#513-Hide-Banner)
+      - [5.1.4 Show Banner](#514-Show-Banner)
+      - [5.1.5 Destroy Banner](#515-Destroy-Banner)
+      - [5.1.6 YumiBannerViewOptions](#516-YumiBannerViewOptions)
+    - [5.2 Interstitial](#52-Interstitial)
+      - [5.2.1 Initialization and Interstitial request](#521-Initialization-and-Interstitial-request)
+      - [5.2.2 Show Interstitial](#522-Show-Interstitial)
+      - [5.2.3 Destroy Interstitial](#523-Destroy-Interstitial)
+    - [5.3 Reward Video](#53-Reward-Video)
+      - [5.3.1 Initialization and Reward Video request](#531-Initialization-and-Reward-Video-request)
+      - [5.3.2 Determine if the video is ready](#532-Determine-if-the-video-is-ready)
+      - [5.3.3 Show Rewarded Video](#533-Show-Rewarded-Video)
+    - [5.4 Native Ad](#54-Native-Ad)
+      - [5.4.1 Init Native Ad](#541-Init-Native-Ad)
+      - [5.4.2 YumiNativeAdOptions](#542-YumiNativeAdOptions)
+      - [5.4.3 Request Native](#543-Request-Native)
+      - [5.4.4 Create Your Native Ad Layout](#544-Create-Your-Native-Ad-Layout)
+      - [5.4.5 Populating Your Layout Using the Ad's Metadata](#545-Populating-Your-Layout-Using-the-Ads-Metadata)
+      - [5.4.6 Show Native Ad View](#546-Show-Native-Ad-View)
+      - [5.4.7 Hide Native Ad View](#547-Hide-Native-Ad-View)
+      - [5.4.8 Remove Native Ad View](#548-Remove-Native-Ad-View)
+      - [5.4.9 Destroy Native Ad View](#549-Destroy-Native-Ad-View)
+    - [5.5 Splash](#55-Splash)
       - [5.5.1 Prerequisites](#551-Prerequisites)
-      - [5.5.2 Setup Ad Placement](#552-Setup-ad-placement)
+      - [5.5.2 Setup Ad Placement](#552-Setup-Ad-Placement)
       - [5.5.3 YumiSplashOptions](#553-YumiSplashOptions)
-      - [5.5.4 Half Screen Ad](#554-half-screen-ad)
+      - [5.5.4 Half Screen Ad](#554-Half-Screen-Ad)
+  - [6 Debug Mode](#6-Debug-Mode)
+    - [6.1 Call Debug Mode](#61-Call-Debug-Mode)
+    - [6.2 Sample](#62-Sample)
+  - [7 Common issues of developer](#7-Common-issues-of-developer)
+    - [7.1 TEST ID](#71-TEST-ID)
+    - [7.2 Android build failed](#72-Android-build-failed)
+      - [7.2.1 Failed to find Build Tools...](#721-Failed-to-find-Build-Tools)
+      - [7.2.2 No toolchains found...](#722-No-toolchains-found)
+      - [7.2.3 Failed to apply plugin...](#723-Failed-to-apply-plugin)
+      - [7.2.4 Resolving Android Dependencies](#724-Resolving-Android-Dependencies)
+      - [7.2.5 the 64K reference limit](#725-the-64K-reference-limit)
+    - [7.3 Android 9.0 compatibility considerations](#73-Android-90-compatibility-considerations)
+      - [7.4 Set your AdMob app MANAGER (If you don't set, will meet a crash)](#74-Set-your-AdMob-app-MANAGER-If-you-dont-set-will-meet-a-crash)
 
   - [6 Debug Mode](#6-debug-mode)
     - [6.1 Call Debug Mode](#61-call-debug-mode)
@@ -219,58 +229,6 @@ Android dependencies:
 e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.1" />`.
 
 **Note: Unity plugin will auto download the thirdparty network's SDK, you don't need add it by manual.**
-
-#### 4.2.1 FAQ1: Resolving Android Dependencies
-It maybe spend some time to resolving android dependencies when clicked Assets -> Play Services Resolver -> Android Resolver -> Resolve / Force Resolve. More androidPackages added and more time will be taken. When resolving conflicts, try not to use the Unity IDE, otherwise the Unity IDE may become stuck.
-
-#### 4.2.2 FAQ2: the 64K reference limit
-You can use one of the following solutions to avoid the 64K reference limit:
-
-Solution-A: Modify AndroidManifest.xml and mainTemplate.gradle which located Unity project's Assets/Plugins/Android/, if there are no such files then copy from [AndroidManifest](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/Assets/Plugins/Android/AndroidManifest.xml) and [mainTemplate](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/Assets/Plugins/Android/mainTemplate.gradle).
-
-AndroidManifest.xml
-```xml
-<manifest>
-  ...
-  <application
-      android:name="android.support.multidex.MultiDexApplication"
-      ...
-      >
-      ...
-  </application>
-  ...
-</manifest>
-```
-mainTemplate.gradle
-```groovy
-allprojects {
-  repositories {
-    google()
-    jcenter()
-    ...
-  }
-}
-dependencies {
-  ...
-  implementation 'com.android.support:multidex:1.0.3'
-  ...
-**DEPS**}
-```
-
-Solution-B: Export Unity project to Android Studio project, then to [Avoid the 64K limit](https://developer.android.com/studio/build/multidex#avoid).
-
-#### 4.2.3 FAQ3: Set your AdMob app MANAGER
-Declare that your app is an Ad Manager app by adding the following <meta-data> tag in your AndroidManifest.xml.
-```xml
-<manifest>
-  <application>
-    <meta-data
-        android:name="com.google.android.gms.ads.AD_MANAGER_APP"
-        android:value="true"/>
-  </application>
-</manifest>
-```
-**Important**: This step is required as of Google Mobile Ads SDK version 17.0.0. Failure to add this <meta-data> tag results in a crash with the message: "The Google Mobile Ads SDK was initialized incorrectly."
 
 ## 5 Select an ad format
 
@@ -913,7 +871,50 @@ A problem occurred evaluating root project 'gradleOut'.
 1. upgrade gradle version to 4.6
 2. degrade gradle plugin to match gradle 4.2.1 version. you can check [Update Gradle](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) to change the gradle plugin version in [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle), for example, change `classpath 'com.android.tools.build:gradle:x.x.x'` to `classpath 'com.android.tools.build:gradle:3.0.0+'`.
 
+#### 7.2.4 Resolving Android Dependencies
+It maybe spend some time to resolving android dependencies when clicked Assets -> Play Services Resolver -> Android Resolver -> Resolve / Force Resolve. More androidPackages added and more time will be taken. When resolving conflicts, try not to use the Unity IDE, otherwise the Unity IDE may become stuck.
+
+#### 7.2.5 the 64K reference limit
+You can use one of the following solutions to avoid the 64K reference limit:
+
+Solution-A: Modify AndroidManifest.xml and mainTemplate.gradle which located Unity project's Assets/Plugins/Android/, if there are no such files then copy from [AndroidManifest](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/Assets/Plugins/Android/AndroidManifest.xml) and [mainTemplate](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/Assets/Plugins/Android/mainTemplate.gradle).
+
+AndroidManifest.xml
+```xml
+<manifest>
+  ...
+  <application
+      android:name="android.support.multidex.MultiDexApplication"
+      ...
+      >
+      ...
+  </application>
+  ...
+</manifest>
+```
+mainTemplate.gradle
+```groovy
+allprojects {
+  repositories {
+    google()
+    jcenter()
+    ...
+  }
+}
+dependencies {
+  ...
+  implementation 'com.android.support:multidex:1.0.3'
+  ...
+**DEPS**}
+```
+
+Solution-B: Export Unity project to Android Studio project, then to [Avoid the 64K limit](https://developer.android.com/studio/build/multidex#avoid).
+
 ### 7.3 Android 9.0 compatibility considerations
 At present, Mintegral platform the Android SDK does not support Android9.0 or above. If the app crashes above Android9.0, you can solve by the ways below.
 
-1. Set targaetSDKveriosn to 27 or less
+- Set targaetSDKveriosn to 27 or less
+
+#### 7.4 Set your AdMob app MANAGER (If you don't set, will meet a crash)
+- iOS update your info.plist 文件。[Admob document](https://developers.google.com/admob/ios/quick-start?hl=zh-cn) 
+- Android update your AndroidManifest.xml。[Admob document](https://developers.google.com/admob/android/quick-start?hl=zh-cn)
