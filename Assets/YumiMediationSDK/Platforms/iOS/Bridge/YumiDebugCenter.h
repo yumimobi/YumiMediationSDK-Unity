@@ -15,6 +15,7 @@
              interstitialPlacementID:(NSString *)interstitialPlacementID
                     videoPlacementID:(NSString *)videoPlacementID
                    nativePlacementID:(NSString *)nativePlacementID
+                    splashPlacementID:(NSString *)splashPlacementID
                            channelID:(NSString *)channelID
                            versionID:(NSString *)versionID;
 

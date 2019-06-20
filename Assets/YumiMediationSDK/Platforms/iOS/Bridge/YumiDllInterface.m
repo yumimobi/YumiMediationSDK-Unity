@@ -15,6 +15,7 @@
 #import "YumiNative.h"
 #import "YumiAdBridgeTool.h"
 #import <YumiMediationSDK/YumiTest.h>
+#import "YumiSplash.h"
 
 /// Returns an NSString copying the characters from |bytes|, a C array of UTF8-encoded bytes.
 /// Returns nil if |bytes| is NULL.
@@ -184,10 +185,11 @@ void YumiRelease(YumiTypeRef ref) {
 
 #pragma mark: debugcenter
 
-void PresentDebugCenter(const char * bannerPlacementID, const char * interstitialPlacementID, const char * videoPlacementID, const char * nativePlacementID,const char * channelID, const char * versionID){
+void PresentDebugCenter(const char * bannerPlacementID, const char * interstitialPlacementID, const char * videoPlacementID, const char * nativePlacementID,const char * splashPlacementID ,const char * channelID, const char * versionID){
     YumiDebugCenter *debugcenter = [[YumiDebugCenter alloc] init];
     
-    [debugcenter presentWithBannerPlacementID:YumiStringFromUTF8String(bannerPlacementID) interstitialPlacementID:YumiStringFromUTF8String(interstitialPlacementID) videoPlacementID:YumiStringFromUTF8String(videoPlacementID) nativePlacementID:YumiStringFromUTF8String(nativePlacementID) channelID:YumiStringFromUTF8String(channelID) versionID:YumiStringFromUTF8String(versionID)];
+    [debugcenter presentWithBannerPlacementID:YumiStringFromUTF8String(bannerPlacementID) interstitialPlacementID:YumiStringFromUTF8String(interstitialPlacementID) videoPlacementID:YumiStringFromUTF8String(videoPlacementID) nativePlacementID:YumiStringFromUTF8String(nativePlacementID)
+                            splashPlacementID:YumiStringFromUTF8String(splashPlacementID) channelID:YumiStringFromUTF8String(channelID) versionID:YumiStringFromUTF8String(versionID)];
 }
 
 void EnableTestMode(){
@@ -368,4 +370,43 @@ const char *YumiNativeAdBridgeGetOther(YumiTypeNativeAdRef nativeAd,const char *
 BOOL YumiNativeAdBridgeHasVideoContent(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
     YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
     return [internalNativeAd getHasVideoContent:YumiStringFromUTF8String(uniqueId)];
+}
+
+#pragma mark: Splash
+YumiTypeSplashAdRef InitYumiSplash(YumiTypeSplashClientRef *splashClient,const char * placementID, const char * channelID, const char * versionID){
+    
+    YumiSplash *splash = [[YumiSplash alloc] initWithSplashClientReference:splashClient placementID:YumiStringFromUTF8String(placementID) channelID:YumiStringFromUTF8String(channelID) versionID:YumiStringFromUTF8String(versionID)];
+    // save pointer
+    YumiObjectCache *cache = [YumiObjectCache sharedInstance];
+    [cache.references setObject:splash forKey:[splash yumi_referenceKey]];
+    return (__bridge YumiTypeSplashAdRef)splash;
+}
+void SetSplashOrientation(YumiTypeSplashAdRef splash , int adOrientation){
+    YumiSplash *internalSplash = (__bridge YumiSplash *)splash;
+    [internalSplash setInterfaceOrientation:adOrientation];
+}
+void SetSplashFetchTime(YumiTypeSplashAdRef splash , int adFetchDuration){
+    YumiSplash *internalSplash = (__bridge YumiSplash *)splash;
+    
+    [internalSplash setFetchTime:adFetchDuration];
+}
+
+void LoadAdAndShowWithBottomViewHeight(YumiTypeSplashAdRef splash , double height){
+    YumiSplash *internalSplash = (__bridge YumiSplash *)splash;
+    
+    [internalSplash loadAdAndShowWithBottomViewHeight:height];
+}
+
+void SetSplashCallbacks(YumiTypeSplashAdRef splash,
+                             YumiSplashAdSuccessToShowCallback adSuccessToShowCallBack,
+                            YumiSplashAdDidFailToShowWithErrorCallback adFailToShowCallBack,
+                            YumiSplashAdDidClickCallback adClickCallBack,
+                            YumiSplashAdDidCloseCallback adCloseCallBack){
+    YumiSplash *internalSplash = (__bridge YumiSplash *)splash;
+    
+    internalSplash.adSuccessToShowCallback = adSuccessToShowCallBack;
+    internalSplash.adFailToShowCallback = adFailToShowCallBack;
+    internalSplash.adClickCallback = adClickCallBack;
+    internalSplash.adCloseCallback = adCloseCallBack;
+    
 }

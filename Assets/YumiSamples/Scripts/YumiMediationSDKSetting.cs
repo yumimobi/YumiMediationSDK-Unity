@@ -33,6 +33,8 @@ namespace YumiMediationSDK.Common
         private string Android_BannerPlacementId = "";
         [SerializeField]
         private string Android_NativeAdPlacementId = "";
+        [SerializeField]
+        private string Android_SplashPlacementId = "";
 
 
         [Header("IOS")]
@@ -46,20 +48,14 @@ namespace YumiMediationSDK.Common
         private string IOS_BannerPlacementId = "";
         [SerializeField]
         private string IOS_NativeAdPlacementId = "";
-
-        [Header("Banner Self-adaptation")]
         [SerializeField]
-        private bool AutomaticAdaptionBanner;
-
+        private string IOS_SplashPlacementId = "";
 
         //Debug 
         public static bool GetDebugMode { get { return Instance.DebugMode; } }
 
         //Version
         public static string GetGameVersion { get { return Instance.GameVersion; } }
-
-        //Banner Self-adaptation
-        public static bool GetAutomaticAdaptionBanner { get { return instance.AutomaticAdaptionBanner; } }
 
         public static YumiMediationSDKSetting Instance
         {
@@ -127,14 +123,23 @@ namespace YumiMediationSDK.Common
         public static string NativeAdPlacementId()
         {
 #if UNITY_ANDROID
-            return Instance.Android_NativeAdPlacementId;
+            return Instance.Android_SplashPlacementId;
 #elif UNITY_IOS
             return  Instance.IOS_NativeAdPlacementId;
 #else
             return "unknown";
 #endif
         }
-
+        public static string SplashPlacementId()
+        {
+#if UNITY_ANDROID
+            return Instance.Android_SplashPlacementId;
+#elif UNITY_IOS
+            return Instance.IOS_SplashPlacementId;
+#else
+            return "unknown";
+#endif
+        }
         public static string ChannelId()
         {
 #if UNITY_ANDROID

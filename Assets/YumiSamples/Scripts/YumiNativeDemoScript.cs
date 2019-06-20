@@ -9,7 +9,7 @@ using YumiMediationSDK.Common;
 
 [RequireComponent(typeof(CanvasRenderer))]
 [RequireComponent(typeof(RectTransform))]
-public class YumiNativeScene : MonoBehaviour
+public class YumiNativeDemoScript : MonoBehaviour
 {
     //private NativeAd nativeAd;
     private YumiNativeAd nativeAd;
@@ -128,7 +128,7 @@ public class YumiNativeScene : MonoBehaviour
             this.nativeAd.Destroy();
         }
 
-        SceneManager.LoadScene("YumiScene");
+        SceneManager.LoadScene("YumiMainDemoScene");
 
     }
     #region native call back handles
