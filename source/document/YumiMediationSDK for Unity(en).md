@@ -36,6 +36,12 @@
       - [5.4.7 Hide Native Ad View](#547-hide-native-ad-view)
       - [5.4.8 Remove Native Ad View](#548-remove-native-ad-view)
       - [5.4.9 Destroy Native Ad View](#549-destroy-native-ad-view)
+    - [5.5 Splash](#55-splash)
+      - [5.5.1 Prerequisites](#551-Prerequisites)
+      - [5.5.2 Setup Ad Placement](#552-Setup-ad-placement)
+      - [5.5.3 YumiSplashOptions](#553-YumiSplashOptions)
+      - [5.5.4 Half Screen Ad](#554-half-screen-ad)
+
   - [6 Debug Mode](#6-debug-mode)
     - [6.1 Call Debug Mode](#61-call-debug-mode)
     - [6.2 Sample](#62-sample)
@@ -741,6 +747,141 @@ this.nativeAd.UnregisterView(yumiNativeData);
 this.nativeAd.Destroy();
 ```
 
+### 5.5 Splash
+#### 5.5.1 Prerequisites
+Add the `YumiSplashScene` to **Scenes In Build**,If you want to integrated splash ad.Here's how to add splash scene might look like:
+![image](./resources/splashScene.png)
+
+#### 5.5.2 Setup Ad Placement
+Configure your ad information in `YumiSplashScript`
+```C#
+using UnityEngine;
+using YumiMediationSDK.Api;
+using System;
+using UnityEngine.SceneManagement;
+
+public class YumiSplashScript : MonoBehaviour
+{
+
+    private YumiSplashAd splashAd;
+
+    private string SplashPlacementId = "";
+    private string GameVersionId = "YOUR_GAME_VERSION";
+    private string ChannelId = "YOUR_CHANNEL_ID";
+
+    void Start()
+    {
+      #if UNITY_ANDROID
+      SplashPlacementId = "YOUR_SPLASH_PLACEMENT_ID_ANDROID";
+      #elif UNITY_IOS
+        SplashPlacementId = "YOUR_SPLASH_PLACEMENT_ID_IOS";
+      #else
+        SplashPlacementId = "unexpected_platform";
+      #endif
+        LoadSplash();
+    }
+
+    public void Dispose()
+    {
+        if (splashAd != null)
+        {
+            splashAd.DestroySplashAd();
+            splashAd = null;
+        }
+    }
+
+    private void LoadSplash()
+    {
+        if (splashAd == null)
+        {
+            YumiSplashOptions splashOptions = new YumiSplashOptionsBuilder().Build();
+
+            splashAd = new YumiSplashAd(SplashPlacementId, ChannelId, GameVersionId, splashOptions);
+            // add splash event
+            splashAd.OnAdSuccessToShow += HandleSplashAdSuccssToShow;
+            splashAd.OnAdFailedToShow += HandleSplashAdFailToShow;
+            splashAd.OnAdClicked += HandleSplashAdClicked;
+            splashAd.OnAdClosed += HandleSplashAdClosed;
+        }
+
+        splashAd.LoadAdAndShow();
+    }
+
+    private void InputMainSence()
+    {
+        SceneManager.LoadScene("YOUR_MAIN_SCENE");
+    }
+    #region  splash callback handlers
+
+    public void HandleSplashAdSuccssToShow(object sender, EventArgs args)
+    {
+        Logger.Log("HandleSplashSuccssToShow event success to show");
+    }
+
+    public void HandleSplashAdFailToShow(object sender, YumiAdFailedToShowEventArgs args)
+    {
+       
+        Logger.Log("HandleSplashAdFailToShow + fail error is =  " + args.Message);
+        InputMainSence();
+    }
+
+    public void HandleSplashAdClicked(object sender, EventArgs args)
+    {
+        Logger.Log("HandleSplashAdClicked clicked");
+    }
+    public void HandleSplashAdClosed(object sender, EventArgs args)
+    {
+        Logger.Log("HandleSplashAdClosed Ad closed ");
+        InputMainSence();
+    }
+
+    #endregion
+}
+```
+**Note: Open your APP SCENE when the splash ad call back close or fail to show **
+- Set `YOUR_MAIN_SCENE` is your main scene
+
+#### 5.5.3 YumiSplashOptions
+`YumiSplashOptions` is the last parameter to init `YumiSplashAd`, you can get it in `YumiSplashOptions` file.
+- `adFetchTime`
+
+  fetch ad timeout duration , default 3s. During this timeout period, the ad is displayed if the ad request is successful, otherwise the impression fails.
+
+- `adOrientation`
+
+  splash ad orientation. only admob support this method
+
+- `adBottomViewHeight`
+
+  the height of the ad bottom view.bottom view's height should not exceed 15% of the screen height.
+
+The default create `YumiSplashOptions` instance code:
+```C#
+YumiSplashOptions splashOptions = new YumiSplashOptionsBuilder().Build();
+```
+The custom create `YumiSplashOptions` instance code:
+```C#
+YumiSplashOptionsBuilder builder = new YumiSplashOptionsBuilder();
+builder.setAdBottomViewHeight(100);
+builder.setAdFetchTime(3);
+builder.setAdOrientation(YumiSplashOrientation.YUMISPLASHORIENTATION_PORTRAIT);
+
+YumiSplashOptions splashOptions = new YumiSplashOptions(builder);
+```
+
+#### 5.5.4 Half Screen Ad
+Modify the initialization code of the splash ad
+```C#
+/// bottom view's height should not exceed 15% of the screen height.
+YumiSplashOptionsBuilder builder = new YumiSplashOptionsBuilder().setAdBottomViewHeight(100);
+YumiSplashOptions splashOptions = new YumiSplashOptions(builder);
+
+YumiSplashAd splashAd = new YumiSplashAd(SplashPlacementId, ChannelId, GameVersionId, splashOptions);
+
+// ...
+
+```
+
 ## 6 Debug Mode
 
 Please select debug mode if you want to test whether ad is available. 
@@ -761,7 +902,7 @@ public class YumiSDKDemo : MonoBehaviour
             this.debugCenter = new YumiDebugCenter();
         }
         // Note: Fill in the ad slot information to distinguish between iOS and Android
-        this.debugCenter.PresentYumiMediationDebugCenter("YOUR_BANNER_PLACEMENT_ID", "YOUR_INTERSTITIAL_PLACEMENT_ID", "YOUR_REWARDVIDEO_PLACEMENT_ID", "YOUR_NATIVE_PLACEMENT_ID","YOUR_CHANNEL_ID", "YOUR_VERSION_ID");
+        this.debugCenter.PresentYumiMediationDebugCenter("YOUR_BANNER_PLACEMENT_ID", "YOUR_INTERSTITIAL_PLACEMENT_ID", "YOUR_REWARDVIDEO_PLACEMENT_ID", "YOUR_NATIVE_PLACEMENT_ID","YOUR_SPLASH_PLACEMENT_ID","YOUR_CHANNEL_ID", "YOUR_VERSION_ID");
     }
 }
 ```
