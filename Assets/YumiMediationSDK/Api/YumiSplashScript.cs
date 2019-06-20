@@ -15,7 +15,7 @@ public class YumiSplashScript : MonoBehaviour
     {
 
 #if UNITY_ANDROID
-      SplashPlacementId = "YOUR_SPLASH_PLACEMENT_ID_ANDROID";
+        SplashPlacementId = "YOUR_SPLASH_PLACEMENT_ID_ANDROID";
 #elif UNITY_IOS
         SplashPlacementId = "pwmf5r42";
 #else
