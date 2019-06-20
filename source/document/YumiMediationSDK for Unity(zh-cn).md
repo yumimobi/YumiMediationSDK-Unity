@@ -716,8 +716,8 @@ void Start()
     }
 ```
 #### 5.5.3 处理回调
-当开屏回调失败或者关闭时，请打开您的 APP SCENE
-修改 `YOUR_MAIN_SCENE` 为您的主 Scene
+当开屏回调失败或者关闭时，请打开您的 APP SCENE。
+在如下方法中，修改 `YOUR_MAIN_SCENE` 为您 main scene 的名字。
 ```C#
   private void InputMainSence()
     {
