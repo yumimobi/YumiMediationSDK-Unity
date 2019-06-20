@@ -752,8 +752,10 @@ this.nativeAd.Destroy();
 Add the `YumiSplashScene` to **Scenes In Build**,If you want to integrated splash ad.Here's how to add splash scene might look like:
 ![image](./resources/splashScene.png)
 
+**Recommended: please set the background image of `YumiSplashScene` to your app's launchImage.**
+
 #### 5.5.2 Setup Ad Placement
-Configure your ad information in `YumiSplashScript`
+Configure your ad information in the `void Start()` method of the **YumiMediationSDK/Api/YumiSplashScene** file
 ```C#
 using UnityEngine;
 using YumiMediationSDK.Api;
@@ -772,7 +774,7 @@ public class YumiSplashScript : MonoBehaviour
     void Start()
     {
       #if UNITY_ANDROID
-      SplashPlacementId = "YOUR_SPLASH_PLACEMENT_ID_ANDROID";
+        SplashPlacementId = "YOUR_SPLASH_PLACEMENT_ID_ANDROID";
       #elif UNITY_IOS
         SplashPlacementId = "YOUR_SPLASH_PLACEMENT_ID_IOS";
       #else
@@ -780,16 +782,6 @@ public class YumiSplashScript : MonoBehaviour
       #endif
         LoadSplash();
     }
-
-    public void Dispose()
-    {
-        if (splashAd != null)
-        {
-            splashAd.DestroySplashAd();
-            splashAd = null;
-        }
-    }
-
     private void LoadSplash()
     {
         if (splashAd == null)
@@ -806,40 +798,16 @@ public class YumiSplashScript : MonoBehaviour
 
         splashAd.LoadAdAndShow();
     }
-
-    private void InputMainSence()
-    {
-        SceneManager.LoadScene("YOUR_MAIN_SCENE");
-    }
-    #region  splash callback handlers
-
-    public void HandleSplashAdSuccssToShow(object sender, EventArgs args)
-    {
-        Logger.Log("HandleSplashSuccssToShow event success to show");
-    }
-
-    public void HandleSplashAdFailToShow(object sender, YumiAdFailedToShowEventArgs args)
-    {
-       
-        Logger.Log("HandleSplashAdFailToShow + fail error is =  " + args.Message);
-        InputMainSence();
-    }
-
-    public void HandleSplashAdClicked(object sender, EventArgs args)
-    {
-        Logger.Log("HandleSplashAdClicked clicked");
-    }
-    public void HandleSplashAdClosed(object sender, EventArgs args)
-    {
-        Logger.Log("HandleSplashAdClosed Ad closed ");
-        InputMainSence();
-    }
-
-    #endregion
 }
 ```
 **Note: Open your APP SCENE when the splash ad call back close or fail to show **
 - Set `YOUR_MAIN_SCENE` is your main scene
+```C#
+    private void InputMainSence()
+    {
+        SceneManager.LoadScene("YOUR_MAIN_SCENE");
+    }
+```
 
 #### 5.5.3 YumiSplashOptions
 `YumiSplashOptions` is the last parameter to init `YumiSplashAd`, you can get it in `YumiSplashOptions` file.
@@ -870,7 +838,7 @@ YumiSplashOptions splashOptions = new YumiSplashOptions(builder);
 ```
 
 #### 5.5.4 Half Screen Ad
-Modify the initialization code of the splash ad
+Display a half-screen ad that allows you to display the app logo in the bottomView location. Please modify the initialization code of the splash ad
 ```C#
 /// bottom view's height should not exceed 15% of the screen height.
 YumiSplashOptionsBuilder builder = new YumiSplashOptionsBuilder().setAdBottomViewHeight(100);
