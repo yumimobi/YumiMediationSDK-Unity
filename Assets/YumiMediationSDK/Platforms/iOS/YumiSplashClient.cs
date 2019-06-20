@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_IOS
+using System;
 using YumiMediationSDK.Common;
 using YumiMediationSDK.Api;
 using System.Runtime.InteropServices;
@@ -143,3 +144,4 @@ namespace YumiMediationSDK.iOS
         #endregion
     }
 }
+#endif
