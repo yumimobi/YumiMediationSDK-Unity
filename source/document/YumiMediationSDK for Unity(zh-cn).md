@@ -743,8 +743,10 @@ this.nativeAd.Destroy();
 如果您的 APP 想要集成开屏广告形式，请把 `YumiSplashScene` 加到 **Scenes In Build** 的第一位。如下图所示：
 ![image](./resources/splashScene.png)
 
+**建议您将 `YumiSplashScene` 的背景图片设置为您应用的 launchImage。**
+
 #### 5.5.2 配置开屏广告
-在 `YumiSplashScript` 中配置您的广告信息
+在 **YumiMediationSDK/Api/YumiSplashScene** 文件的 `void Start()` 方法中配置您的广告位信息
 ```C#
 using UnityEngine;
 using YumiMediationSDK.Api;
@@ -763,22 +765,13 @@ public class YumiSplashScript : MonoBehaviour
     void Start()
     {
       #if UNITY_ANDROID
-      SplashPlacementId = "YOUR_SPLASH_PLACEMENT_ID_ANDROID";
+        SplashPlacementId = "YOUR_SPLASH_PLACEMENT_ID_ANDROID";
       #elif UNITY_IOS
         SplashPlacementId = "YOUR_SPLASH_PLACEMENT_ID_IOS";
       #else
         SplashPlacementId = "unexpected_platform";
       #endif
         LoadSplash();
-    }
-
-    public void Dispose()
-    {
-        if (splashAd != null)
-        {
-            splashAd.DestroySplashAd();
-            splashAd = null;
-        }
     }
 
     private void LoadSplash()
@@ -797,40 +790,16 @@ public class YumiSplashScript : MonoBehaviour
 
         splashAd.LoadAdAndShow();
     }
-
-    private void InputMainSence()
-    {
-        SceneManager.LoadScene("YOUR_MAIN_SCENE");
-    }
-    #region  splash callback handlers
-
-    public void HandleSplashAdSuccssToShow(object sender, EventArgs args)
-    {
-        Logger.Log("HandleSplashSuccssToShow event success to show");
-    }
-
-    public void HandleSplashAdFailToShow(object sender, YumiAdFailedToShowEventArgs args)
-    {
-       
-        Logger.Log("HandleSplashAdFailToShow + fail error is =  " + args.Message);
-        InputMainSence();
-    }
-
-    public void HandleSplashAdClicked(object sender, EventArgs args)
-    {
-        Logger.Log("HandleSplashAdClicked clicked");
-    }
-    public void HandleSplashAdClosed(object sender, EventArgs args)
-    {
-        Logger.Log("HandleSplashAdClosed Ad closed ");
-        InputMainSence();
-    }
-
-    #endregion
 }
 ```
 **注意：当开屏回调失败或者关闭时，请打开您的 APP SCENE **
 - 修改 `YOUR_MAIN_SCENE` 为您的主 Scene
+```C#
+  private void InputMainSence()
+    {
+        SceneManager.LoadScene("YOUR_MAIN_SCENE");
+    }
+```
 
 #### 5.5.3 YumiSplashOptions
 `YumiSplashOptions` 是初始化 `YumiSplashAd` 的最后一个参数，您可在 `YumiSplashOptions` 文件中查看：
@@ -863,7 +832,7 @@ YumiSplashOptions splashOptions = new YumiSplashOptions(builder);
 ```
 
 #### 5.5.4 显示半屏广告
-需要修改开屏的初始化代码
+显示半屏广告，可允许您在 bottomView 位置展示应用 logo。请修改开屏的初始化代码
 ```C#
 /// bottom view's height should not exceed 15% of the screen height.
 YumiSplashOptionsBuilder builder = new YumiSplashOptionsBuilder().setAdBottomViewHeight(100);
