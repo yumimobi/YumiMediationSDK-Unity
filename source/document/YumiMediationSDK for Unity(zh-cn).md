@@ -1,56 +1,57 @@
-- [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
+- [YumiMediationSDK for Unity](#YumiMediationSDK-for-Unity)
   - [1 概述](#1-%E6%A6%82%E8%BF%B0)
-  - [2 下载 YumiMediationSDK Unity 插件](#2-%E4%B8%8B%E8%BD%BD-yumimediationsdk-unity-%E6%8F%92%E4%BB%B6)
-  - [3 导入 YumiMediationSDK Unity 插件](#3-%E5%AF%BC%E5%85%A5-yumimediationsdk-unity-%E6%8F%92%E4%BB%B6)
+  - [2 下载 YumiMediationSDK Unity 插件](#2-%E4%B8%8B%E8%BD%BD-YumiMediationSDK-Unity-%E6%8F%92%E4%BB%B6)
+  - [3 导入 YumiMediationSDK Unity 插件](#3-%E5%AF%BC%E5%85%A5-YumiMediationSDK-Unity-%E6%8F%92%E4%BB%B6)
     - [3.1 首次导入](#31-%E9%A6%96%E6%AC%A1%E5%AF%BC%E5%85%A5)
     - [3.2 升级插件](#32-%E5%8D%87%E7%BA%A7%E6%8F%92%E4%BB%B6)
-  - [4 集成 YumiMediationSDK](#4-%E9%9B%86%E6%88%90-yumimediationsdk)
-    - [4.1 部署 iOS 项目](#41-%E9%83%A8%E7%BD%B2-ios-%E9%A1%B9%E7%9B%AE)
-    - [4.2 部署 Android 项目](#42-%E9%83%A8%E7%BD%B2-android-%E9%A1%B9%E7%9B%AE)
-      - [4.2.1 常见问题一：加载三方 SDK 时间过长](#421-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%80%E5%8A%A0%E8%BD%BD%E4%B8%89%E6%96%B9-sdk-%E6%97%B6%E9%97%B4%E8%BF%87%E9%95%BF)
-      - [4.2.2 常见问题二：64k 引用限制](#422-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%BA%8C64k-%E5%BC%95%E7%94%A8%E9%99%90%E5%88%B6)
-      - [4.2.3 常见问题三：设置 Admob MANAGER](#423-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%89%E8%AE%BE%E7%BD%AE-admob-manager)
+  - [4 集成 YumiMediationSDK](#4-%E9%9B%86%E6%88%90-YumiMediationSDK)
+    - [4.1 部署 iOS 项目](#41-%E9%83%A8%E7%BD%B2-iOS-%E9%A1%B9%E7%9B%AE)
+    - [4.2 部署 Android 项目](#42-%E9%83%A8%E7%BD%B2-Android-%E9%A1%B9%E7%9B%AE)
   - [5 选择广告形式](#5-%E9%80%89%E6%8B%A9%E5%B9%BF%E5%91%8A%E5%BD%A2%E5%BC%8F)
-    - [5.1 Banner](#51-banner)
-      - [5.1.1 初始化 Banner](#511-%E5%88%9D%E5%A7%8B%E5%8C%96-banner)
-      - [5.1.2请求 Banner](#512%E8%AF%B7%E6%B1%82-banner)
-      - [5.1.3 隐藏 Banner](#513-%E9%9A%90%E8%97%8F-banner)
-      - [5.1.4 显示隐藏的 Banner](#514-%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F%E7%9A%84-banner)
-      - [5.1.5 销毁 Banner](#515-%E9%94%80%E6%AF%81-banner)
-      - [5.1.6 YumiBannerViewOptions](#516-yumibannerviewoptions)
-    - [5.2 Interstitial](#52-interstitial)
+    - [5.1 Banner](#51-Banner)
+      - [5.1.1 初始化 Banner](#511-%E5%88%9D%E5%A7%8B%E5%8C%96-Banner)
+      - [5.1.2请求 Banner](#512%E8%AF%B7%E6%B1%82-Banner)
+      - [5.1.3 隐藏 Banner](#513-%E9%9A%90%E8%97%8F-Banner)
+      - [5.1.4 显示隐藏的 Banner](#514-%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F%E7%9A%84-Banner)
+      - [5.1.5 销毁 Banner](#515-%E9%94%80%E6%AF%81-Banner)
+      - [5.1.6 YumiBannerViewOptions](#516-YumiBannerViewOptions)
+    - [5.2 Interstitial](#52-Interstitial)
       - [5.2.1 初始化及请求插屏](#521-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%8A%E8%AF%B7%E6%B1%82%E6%8F%92%E5%B1%8F)
-      - [5.2.2 展示 Interstitial](#522-%E5%B1%95%E7%A4%BA-interstitial)
-      - [5.2.3 销毁 Interstitial](#523-%E9%94%80%E6%AF%81-interstitial)
-    - [5.3 Rewarded Video](#53-rewarded-video)
+      - [5.2.2 展示 Interstitial](#522-%E5%B1%95%E7%A4%BA-Interstitial)
+      - [5.2.3 销毁 Interstitial](#523-%E9%94%80%E6%AF%81-Interstitial)
+    - [5.3 Rewarded Video](#53-Rewarded-Video)
       - [5.3.1 初始化及请求视频](#531-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%8A%E8%AF%B7%E6%B1%82%E8%A7%86%E9%A2%91)
       - [5.3.2 判断视频是否准备好](#532-%E5%88%A4%E6%96%AD%E8%A7%86%E9%A2%91%E6%98%AF%E5%90%A6%E5%87%86%E5%A4%87%E5%A5%BD)
-      - [5.3.4 展示 Rewarded Video](#534-%E5%B1%95%E7%A4%BA-rewarded-video)
-    - [5.4 Native](#54-native)
-      - [5.4.1 初始化 Native](#541-%E5%88%9D%E5%A7%8B%E5%8C%96-native)
-      - [5.4.2 YumiNativeAdOptions](#542-yuminativeadoptions)
-      - [5.4.3 请求 Native](#543-%E8%AF%B7%E6%B1%82-native)
+      - [5.3.4 展示 Rewarded Video](#534-%E5%B1%95%E7%A4%BA-Rewarded-Video)
+    - [5.4 Native](#54-Native)
+      - [5.4.1 初始化 Native](#541-%E5%88%9D%E5%A7%8B%E5%8C%96-Native)
+      - [5.4.2 YumiNativeAdOptions](#542-YumiNativeAdOptions)
+      - [5.4.3 请求 Native](#543-%E8%AF%B7%E6%B1%82-Native)
       - [5.4.4 创建原生广告布局](#544-%E5%88%9B%E5%BB%BA%E5%8E%9F%E7%94%9F%E5%B9%BF%E5%91%8A%E5%B8%83%E5%B1%80)
       - [5.4.5 使用广告元数据注册布局](#545-%E4%BD%BF%E7%94%A8%E5%B9%BF%E5%91%8A%E5%85%83%E6%95%B0%E6%8D%AE%E6%B3%A8%E5%86%8C%E5%B8%83%E5%B1%80)
-      - [5.4.6 展示 Native View](#546-%E5%B1%95%E7%A4%BA-native-view)
-      - [5.4.7 隐藏 Native View](#547-%E9%9A%90%E8%97%8F-native-view)
-      - [5.4.8 移除 Native View](#548-%E7%A7%BB%E9%99%A4-native-view)
-      - [5.4.9 销毁 Native](#549-%E9%94%80%E6%AF%81-native)
-    - [5.5 Splash](#55-splash)
-      - [5.5.1 集成开屏广告](#551-集成开屏广告)
-      - [5.5.2 配置开屏广告](#552-配置开屏广告)
+      - [5.4.6 展示 Native View](#546-%E5%B1%95%E7%A4%BA-Native-View)
+      - [5.4.7 隐藏 Native View](#547-%E9%9A%90%E8%97%8F-Native-View)
+      - [5.4.8 移除 Native View](#548-%E7%A7%BB%E9%99%A4-Native-View)
+      - [5.4.9 销毁 Native](#549-%E9%94%80%E6%AF%81-Native)
+    - [5.5 Splash](#55-Splash)
+      - [5.5.1 集成开屏广告](#551-%E9%9B%86%E6%88%90%E5%BC%80%E5%B1%8F%E5%B9%BF%E5%91%8A)
+      - [5.5.2 配置开屏广告](#552-%E9%85%8D%E7%BD%AE%E5%BC%80%E5%B1%8F%E5%B9%BF%E5%91%8A)
+      - [5.5.3 处理回调](#553-%E5%A4%84%E7%90%86%E5%9B%9E%E8%B0%83)
       - [5.5.3 YumiSplashOptions](#553-YumiSplashOptions)
-      - [5.5.4 显示半屏广告](#554-显示半屏广告)
+      - [5.5.4 显示半屏广告](#554-%E6%98%BE%E7%A4%BA%E5%8D%8A%E5%B1%8F%E5%B9%BF%E5%91%8A)
   - [6 调试模式](#6-%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F)
     - [6.1 调用调试模式](#61-%E8%B0%83%E7%94%A8%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F)
     - [6.2 图示](#62-%E5%9B%BE%E7%A4%BA)
   - [7 常见问题](#7-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
-    - [7.1 TEST ID](#71-test-id)
-    - [7.2 Android 打包失败](#72-android-%E6%89%93%E5%8C%85%E5%A4%B1%E8%B4%A5)
-      - [7.2.1 Failed to find Build Tools...](#721-failed-to-find-build-tools)
-      - [7.2.2 No toolchains found...](#722-no-toolchains-found)
-      - [7.2.3 Failed to apply plugin...](#723-failed-to-apply-plugin)
+    - [7.1 TEST ID](#71-TEST-ID)
+    - [7.2 Android 打包失败](#72-Android-%E6%89%93%E5%8C%85%E5%A4%B1%E8%B4%A5)
+      - [7.2.1 Failed to find Build Tools...](#721-Failed-to-find-Build-Tools)
+      - [7.2.2 No toolchains found...](#722-No-toolchains-found)
+      - [7.2.3 Failed to apply plugin...](#723-Failed-to-apply-plugin)
+      - [7.2.4 加载三方 SDK 时间过长](#724-%E5%8A%A0%E8%BD%BD%E4%B8%89%E6%96%B9-SDK-%E6%97%B6%E9%97%B4%E8%BF%87%E9%95%BF)
+      - [7.2.5 64k 引用限制](#725-64k-%E5%BC%95%E7%94%A8%E9%99%90%E5%88%B6)
     - [7.3 android 9.0 适配](#73-android-90-%E9%80%82%E9%85%8D)
+    - [7.4 设置 Admob MANAGER (不设置此项应用启动会崩溃)](#74-%E8%AE%BE%E7%BD%AE-Admob-MANAGER-%E4%B8%8D%E8%AE%BE%E7%BD%AE%E6%AD%A4%E9%A1%B9%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E4%BC%9A%E5%B4%A9%E6%BA%83)
 
 # YumiMediationSDK for Unity
 
@@ -215,57 +216,6 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 比如删除 `admob`，直接删除 `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.1" />` 即可。
 
 **注意: Unity 插件会自动引用第三方广告 SDK，您无需手动添加。**
-
-#### 4.2.1 常见问题一：加载三方 SDK 时间过长
-执行 Android Resolver -> Resolve/Force resolve 时，插件会自动下载并导入相关 aar。如果添加多个平台，各平台依赖库版本不一致时插件会尝试自动解决依赖冲突，此过程可能耗时较长，请耐心等待。解决冲突时，尽量不要操作 Unity IDE，否则 Unity IDE 可能会出现卡死现象。
-
-#### 4.2.2 常见问题二：64k 引用限制
-添加过多三方 SDK 会导致 64k 引用限制问题，可以通过以下方式之一解决此问题：
-
-解决方案一：查看 Unity 工程 Assets/Plugins/Android/ 下是否有 AndroidManifest.xml 与 mainTemplate.gradle 文件，若没有则复制此文件并添加到 Assets/Plugins/Android/ 目录下，文件地址：[AndroidManifest.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/Assets/Plugins/Android/AndroidManifest.xml)，[mainTemplate.gradle](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/Assets/Plugins/Android/mainTemplate.gradle)；如果有这两个文件，则修改 AndroidManifest.xml 文件，如下：
-```xml
-<manifest>
-  ...
-  <application
-      android:name="android.support.multidex.MultiDexApplication"
-      ...
-      >
-      ...
-  </application>
-  ...
-</manifest>
-```
-修改 mainTemplate.gradle 如下
-```groovy
-allprojects {
-  repositories {
-    google()
-    jcenter()
-    ...
-  }
-}
-dependencies {
-  ...
-  implementation 'com.android.support:multidex:1.0.3'
-  ...
-**DEPS**}
-```
-
-解决方案二：将项目导出 Android Studio 工程，然后根据 [规避 64K 限制](https://developer.android.com/studio/build/multidex#avoid) 方案解决。
-
-#### 4.2.3 常见问题三：设置 Admob MANAGER
-通过在 AndroidManifest.xml 中添加以下 <meta-data> 标记，声明您的应用是 Ad Manager 应用。
-```xml
-<manifest>
-    <application>
-        <meta-data
-            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
-            android:value="true"/>
-    </application>
-</manifest>
-```
-**重要提示**：自 Google 移动广告 SDK 17.0.0 版本开始，均须执行此步骤。如果未能添加此 <meta-data> 代码，将会导致崩溃，并显示以下消息："The Google Mobile Ads SDK was initialized incorrectly."
-
 ## 5 选择广告形式
 
 在部署到 Android 或 iOS 平台时，YumiMediationSDK 现在包含在 Unity 应用程序中。您现在已准备好实施广告。YumiMediationSDK 提供多种不同的广告格式，因此您可以选择最适合您的用户体验需求的广告格式。
@@ -743,10 +693,11 @@ this.nativeAd.Destroy();
 如果您的 APP 想要集成开屏广告形式，请把 `YumiSplashScene` 加到 **Scenes In Build** 的第一位。如下图所示：
 ![image](./resources/splashScene.png)
 
-**建议您将 `YumiSplashScene` 的背景图片设置为您应用的 launchImage。**
+**Warning:** 
+建议您将 `YumiSplashScene` 的背景图片设置为您应用的 launchImage。
 
 #### 5.5.2 配置开屏广告
-在 **YumiMediationSDK/Api/YumiSplashScript** 文件的 `void Start()` 方法中配置您的广告位信息
+在 **YumiMediationSDK/Api/YumiSplashScript** 文件的 `void Start()` 方法中配置您的广告位信息。
 ```C#
 void Start()
     {
@@ -757,20 +708,21 @@ void Start()
       #else
         SplashPlacementId = "unexpected_platform";
       #endif
+      // 如无特殊需求，GameVersionId，ChannelId 可设置为空字符串。
       GameVersionId = "YOUR_GAME_VERSION";
       ChannelId = "YOUR_CHANNEL_ID";
       // ...
     }
 ```
-**注意：当开屏回调失败或者关闭时，请打开您的 APP SCENE **
-- 修改 `YOUR_MAIN_SCENE` 为您的主 Scene
+#### 5.5.3 处理回调
+当开屏回调失败或者关闭时，请打开您的 APP SCENE
+修改 `YOUR_MAIN_SCENE` 为您的主 Scene
 ```C#
   private void InputMainSence()
     {
         SceneManager.LoadScene("YOUR_MAIN_SCENE");
     }
 ```
-
 #### 5.5.3 YumiSplashOptions
 `YumiSplashOptions` 是初始化 `YumiSplashAd` 的最后一个参数，您可在 `YumiSplashOptions` 文件中查看：
 - `adFetchTime`
@@ -786,12 +738,12 @@ void Start()
   广告底部视图的高度。广告底视图的高度不应超过屏幕高度的15％。
 
 
-默认创建 `YumiSplashOptions` 实例代码：
+创建默认 `YumiSplashOptions` 实例代码：
 ```C#
 YumiSplashOptions splashOptions = new YumiSplashOptionsBuilder().Build();
 ```
 
-自定义创建 `YumiSplashOptions` 实例代码：
+创建自定义 `YumiSplashOptions` 实例代码：
 ```C#
 YumiSplashOptionsBuilder builder = new YumiSplashOptionsBuilder();
 builder.setAdBottomViewHeight(100);
@@ -802,7 +754,8 @@ YumiSplashOptions splashOptions = new YumiSplashOptions(builder);
 ```
 
 #### 5.5.4 显示半屏广告
-显示半屏广告，可允许您在 bottomView 位置展示应用 logo。请修改开屏的初始化代码
+显示半屏广告，可允许您在 bottomView 位置展示应用 logo。
+请修改开屏的初始化代码
 ```C#
 /// bottom view's height should not exceed 15% of the screen height.
 YumiSplashOptionsBuilder builder = new YumiSplashOptionsBuilder().setAdBottomViewHeight(100);
@@ -907,8 +860,49 @@ A problem occurred evaluating root project 'gradleOut'.
 
 1. 升级 gradle 版本至 4.6
 2. 降级 gradle plugin 版本至 gradle 4.2.1 对应的版本。对照 [Update Gradle](https://developer.android.com/studio/releases/gradle-plugin#updating-gradle) 文档可知需要将 [mainTemplet](../../Assets/Plugins/Android/mainTemplate.gradle) 中 `classpath 'com.android.tools.build:gradle:x.x.x'` 修改为 `classpath 'com.android.tools.build:gradle:3.0.0+'`
+#### 7.2.4 加载三方 SDK 时间过长
+执行 Android Resolver -> Resolve/Force resolve 时，插件会自动下载并导入相关 aar。如果添加多个平台，各平台依赖库版本不一致时插件会尝试自动解决依赖冲突，此过程可能耗时较长，请耐心等待。解决冲突时，尽量不要操作 Unity IDE，否则 Unity IDE 可能会出现卡死现象。
+
+#### 7.2.5 64k 引用限制
+添加过多三方 SDK 会导致 64k 引用限制问题，可以通过以下方式之一解决此问题：
+
+解决方案一：查看 Unity 工程 Assets/Plugins/Android/ 下是否有 AndroidManifest.xml 与 mainTemplate.gradle 文件，若没有则复制此文件并添加到 Assets/Plugins/Android/ 目录下，文件地址：[AndroidManifest.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/Assets/Plugins/Android/AndroidManifest.xml)，[mainTemplate.gradle](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/Assets/Plugins/Android/mainTemplate.gradle)；如果有这两个文件，则修改 AndroidManifest.xml 文件，如下：
+```xml
+<manifest>
+  ...
+  <application
+      android:name="android.support.multidex.MultiDexApplication"
+      ...
+      >
+      ...
+  </application>
+  ...
+</manifest>
+```
+修改 mainTemplate.gradle 如下
+```groovy
+allprojects {
+  repositories {
+    google()
+    jcenter()
+    ...
+  }
+}
+dependencies {
+  ...
+  implementation 'com.android.support:multidex:1.0.3'
+  ...
+**DEPS**}
+```
+
+解决方案二：将项目导出 Android Studio 工程，然后根据 [规避 64K 限制](https://developer.android.com/studio/build/multidex#avoid) 方案解决。
 
 ### 7.3 android 9.0 适配
 目前一些平台Android SDK暂不支持Android9.0以上操作系统，比如 Mintegral 平台，如果在Android9.0以上系统出现的崩溃，可以通过以下方法解决。
 
-1. 将targaetSDKveriosn设置为27或者27以下。
+- 将targaetSDKveriosn设置为27或者27以下。
+
+### 7.4 设置 Admob MANAGER (不设置此项应用启动会崩溃)
+- iOS 更新您的 info.plist 文件。[Admob 相关文档](https://developers.google.com/admob/ios/quick-start?hl=zh-cn) 
+- Android 更新您的 AndroidManifest.xml。[Admob 相关文档](https://developers.google.com/admob/android/quick-start?hl=zh-cn)
+
