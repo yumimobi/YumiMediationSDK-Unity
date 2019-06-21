@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace YumiMediationSDK.Common
 {
-    public class YumiDummyClient : IYumiBannerClient,IYumiInterstitialClient,IYumiRewardVideoClient,IYumiDebugCenterClient, IYumiNativeClient, IYumiSplashClient
+    public class YumiDummyClient : IYumiBannerClient,IYumiInterstitialClient,IYumiRewardVideoClient,IYumiDebugCenterClient, IYumiNativeClient, IYumiSplashClient, IYumiGDPRManagerClient
     {
         public YumiDummyClient()
         {
@@ -193,6 +193,16 @@ namespace YumiMediationSDK.Common
         public void DestroySplashAd()
         {
             Logger.LogError("Dummy: DestroySplashAd");
+        }
+        // gdpr
+        public void CreateGDPRManager()
+        {
+            Logger.LogError("Dummy: CreateGDPRManager");
+        }
+       
+        public void UpdateNetworksConsentStatus(YumiConsentStatus consentStatus)
+        {
+            Logger.LogError("Dummy: UpdateNetworksConsentStatus");
         }
     }
 }
