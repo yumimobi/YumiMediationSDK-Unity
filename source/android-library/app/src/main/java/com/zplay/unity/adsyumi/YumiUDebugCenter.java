@@ -36,4 +36,15 @@ public class YumiUDebugCenter {
             }
         });
     }
+
+    public void presentDebugCenter(final String bannerPlacementId, final String interstitialPlacementId, final String rewardVideoPlacementId, final String nativePlacementId, final String splashPlacementId, final String channelId, final String versionId) {
+        Log.d(TAG, "present debug center");
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                YumiSettings.startDebugging(YumiUDebugCenter.this.activity, bannerPlacementId, interstitialPlacementId, rewardVideoPlacementId, nativePlacementId, splashPlacementId, channelId, versionId);
+
+            }
+        });
+    }
 }
