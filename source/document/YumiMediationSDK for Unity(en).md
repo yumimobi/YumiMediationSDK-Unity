@@ -52,6 +52,9 @@
             * [7.2.5 the 64K reference limit](#725-the-64k-reference-limit)
          * [7.3 Android 9.0 compatibility considerations](#73-android-90-compatibility-considerations)
             * [7.4 Set your AdMob app MANAGER (If you don't set, will meet a crash)](#74-set-your-admob-app-manager-if-you-dont-set-will-meet-a-crash)
+      * [8 GDPR](#8-gdpr)
+         * [8.1 Set GDPR](#81-set-gdpr)
+         * [8.2 Networks informations](#82-networks-informations)
 
 # YumiMediationSDK for Unity
 
@@ -911,3 +914,61 @@ At present, Mintegral platform the Android SDK does not support Android9.0 or ab
 #### 7.4 Set your AdMob app MANAGER (If you don't set, will meet a crash)
 - iOS update your info.plist 文件。[Admob document](https://developers.google.com/admob/ios/quick-start?hl=zh-cn) 
 - Android update your AndroidManifest.xml。[Admob document](https://developers.google.com/admob/android/quick-start?hl=zh-cn)
+
+## 8 GDPR
+This documentation is provided for compliance with the European Union's General Data Protection Regulation (GDPR). 
+If you are collecting consent from your users, you can make use of APIs discussed below to inform YumiMediationSDK and some downstream consumers of this information. 
+Get more information, please visit our official website.
+
+### 8.1 Set GDPR
+
+```C#
+public enum YumiConsentStatus
+    {
+		/// <summary>
+		/// The user has granted consent for personalized ads.
+		/// </summary>
+		PERSONALIZED,
+
+		/// <summary>
+		/// The user has granted consent for non-personalized ads.
+		/// </summary>
+		NONPERSONALIZED,
+		/// <summary>
+		///  The user has neither granted nor declined consent for personalized or non-personalized ads.
+		/// </summary>
+		UNKNOWN
+
+	}
+```
+
+```C#
+// Your user's consent. In this case, the user has given consent to store and process personal information.
+YumiGDPRManager.Instance.UpdateNetworksConsentStatus(YumiConsentStatus.PERSONALIZED);
+```
+
+### 8.2 Networks informations
+Statistics start at YumiMediationSDK 4.1.0.
+Get more informationm, please visit our official website
+
+| Ad Network | GDPR Support | Note |
+| :----: | :--------:| :--: |
+| Unity  | yes |   |
+| Admob  | yes |   |
+| Mintegral | yes |   |
+| Adcolony  | yes |   |
+| IronSource  | yes |   |
+| Inneractive | yes |   |
+| Chartboost | yes |   |
+| InMobi | yes |   |
+| IQzone | yes |   |
+| Yumi | yes |   |
+| AppLovin  | yes |   |
+| Baidu  | no |   |
+| Facebook | no | Get more information, please visit Facebook website. |
+| Domob  | no |   |
+| GDT | no |   |
+| Vungle | no | setting in Vungle dashboard |
+| OneWay | no |   |
+| BytedanceAds | no |   |
+| ZplayAds  | no |   |
