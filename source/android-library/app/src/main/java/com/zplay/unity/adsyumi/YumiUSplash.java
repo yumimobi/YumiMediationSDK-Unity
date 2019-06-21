@@ -1,7 +1,6 @@
 package com.zplay.unity.adsyumi;
 
 import android.app.Activity;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
