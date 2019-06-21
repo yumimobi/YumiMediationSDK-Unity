@@ -19,6 +19,7 @@ namespace YumiMediationSDK.Android
         public const string NativeAdClassName = "com.zplay.unity.adsyumi.YumiUNativeAd";
         public const string SplashClassName = "com.zplay.unity.adsyumi.YumiUSplash";
         public const string DebugCenterClassName = "com.zplay.unity.adsyumi.YumiUDebugCenter";
+        public const string YumiSettingsClassName = "com.zplay.unity.adsyumi.YumiUSettings";
 
         public const string UnityBannerAdListenerClassName = "com.zplay.unity.adsyumi.YumiUBannerListener";
         public const string UnityInterstitialAdListenerClassName = "com.zplay.unity.adsyumi.YumiUInterstitialListener";
