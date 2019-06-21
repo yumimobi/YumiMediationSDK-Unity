@@ -1,4 +1,3 @@
-
    * [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
       * [1 Summary](#1-summary)
       * [2 Download the YumiMediationSDK Unity plugin](#2-download-the-yumimediationsdk-unity-plugin)
@@ -35,10 +34,11 @@
             * [5.4.8 Remove Native Ad View](#548-remove-native-ad-view)
             * [5.4.9 Destroy Native Ad View](#549-destroy-native-ad-view)
          * [5.5 Splash](#55-splash)
-            * [5.5.1 Prerequisites](#551-prerequisites)
-            * [5.5.2 Setup Ad Placement](#552-setup-ad-placement)
-            * [5.5.3 YumiSplashOptions](#553-yumisplashoptions)
-            * [5.5.4 Half Screen Ad](#554-half-screen-ad)
+            * [5.5.1 Import YumiSplashScene](#551-import-yumisplashscene)
+            * [5.5.2 Set Ad Placement](#552-set-ad-placement)
+            * [5.5.3 Handle Delegate](#553-handle-delegate)
+            * [5.5.4 YumiSplashOptions](#554-yumisplashoptions)
+            * [5.5.4 Show splash with bottom custom view](#554-show-splash-with-bottom-custom-view)
       * [6 Debug Mode](#6-debug-mode)
          * [6.1 Call Debug Mode](#61-call-debug-mode)
          * [6.2 Sample](#62-sample)
@@ -736,7 +736,7 @@ Replace `YOUR_MAIN_SCENE` with your main scene name.
 - `adFetchTime`
 
   Fetch ad timeout duration , default 3s. 
-  Over the deadline, sdk will return the `HandleSplashAdSuccssToShow` delegate, otherwise will return the `HandleSplashAdSuccssToShow` delegate,and display the splash ad.
+  Over the deadline, sdk will return the `HandleSplashAdFailToShow` delegate, otherwise will return the `HandleSplashAdSuccssToShow` delegate,and display the splash ad.
 
 - `adOrientation`
   Splash ad orientation. only Admob support this function.
