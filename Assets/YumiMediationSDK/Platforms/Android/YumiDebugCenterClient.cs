@@ -17,9 +17,9 @@ namespace YumiMediationSDK.Android
                 YumiUtils.DebugCenterClassName, activity);
         }
 
-        public void CallYumiMediationDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string nativePlacementID, string channelID, string versionID)
+        public void CallYumiMediationDebugCenter(string bannerPlacementID, string interstitialPlacementID, string videoPlacementID, string nativePlacementID,string splashPlacementID, string channelID, string versionID)
         {
-            debugcenter.Call("presentDebugCenter", bannerPlacementID, interstitialPlacementID, videoPlacementID, nativePlacementID, channelID, versionID);
+            debugcenter.Call("presentDebugCenter", bannerPlacementID, interstitialPlacementID, videoPlacementID, nativePlacementID, splashPlacementID, channelID, versionID);
         }
 
         public void ChangeToTestServer()
