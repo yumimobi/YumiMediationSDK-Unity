@@ -24,8 +24,14 @@ public class YumiMainDemoScript : MonoBehaviour
     private string GameVersionId = "";
     private string ChannelId = "";
 
+    // gdpr consent status
+    private string gdprBtnInfo;
+    private bool isPersonalized = false;
+
     void Start()
     {
+        // set gdpr button value
+        gdprBtnInfo = "GDPR Consent Status is unknown";
         // Whether to display log log
         Logger.SetDebug(true);
 
@@ -174,10 +180,25 @@ public class YumiMainDemoScript : MonoBehaviour
 
             splashAd.LoadAdAndShow();
         }
+        // gdpr test
+        if (GUI.Button(new Rect(40, 714, btnWidth * 2 , 120), gdprBtnInfo, myButtonStyle))
+        {
+            
+            isPersonalized = !isPersonalized;
+            if (isPersonalized)
+            {
+                YumiGDPRManager.Instance.UpdateNetworksConsentStatus(YumiConsentStatus.PERSONALIZED);
+                gdprBtnInfo = "GDPR Consent Status is personalized"; 
+            }
+            else {
+                YumiGDPRManager.Instance.UpdateNetworksConsentStatus(YumiConsentStatus.NONPERSONALIZED);
+                gdprBtnInfo = "GDPR Consent Status is non personalized";
+            }
+        }
 
         if (YumiMediationSDKSetting.GetDebugMode)
         {
-            if (GUI.Button(new Rect(40, 714, btnWidth, 120), "Call DebugCenter", myButtonStyle))
+            if (GUI.Button(new Rect(40, 834, btnWidth, 120), "Call DebugCenter", myButtonStyle))
             {
                 if (this.debugCenter == null)
                 {

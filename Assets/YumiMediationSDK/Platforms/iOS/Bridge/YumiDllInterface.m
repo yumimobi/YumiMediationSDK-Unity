@@ -16,6 +16,7 @@
 #import "YumiAdBridgeTool.h"
 #import <YumiMediationSDK/YumiTest.h>
 #import "YumiSplash.h"
+#import <YumiMediationSDK/YumiMediationGDPRManager.h>
 
 /// Returns an NSString copying the characters from |bytes|, a C array of UTF8-encoded bytes.
 /// Returns nil if |bytes| is NULL.
@@ -194,6 +195,11 @@ void PresentDebugCenter(const char * bannerPlacementID, const char * interstitia
 
 void EnableTestMode(){
     [YumiTest enableTestMode];
+}
+
+void UpdateNetworksConsentStatus(int consentStatus){
+    
+    [[YumiMediationGDPRManager sharedGDPRManager] updateNetworksConsentStatus:consentStatus];
 }
 
 #pragma  mark: native  method

@@ -195,6 +195,12 @@ namespace YumiMediationSDK.iOS
            );
 
         #endregion
+        #region gdpr
+
+        [DllImport("__Internal")]
+        internal static extern void UpdateNetworksConsentStatus(int consentStatus);
+
+        #endregion
     }
 }
 

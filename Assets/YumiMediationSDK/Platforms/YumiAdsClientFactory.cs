@@ -78,5 +78,18 @@ namespace YumiMediationSDK
                 return new YumiMediationSDK.Common.YumiDummyClient();
 #endif
         }
+
+        public static IYumiGDPRManagerClient BuildGDPRManagerClient()
+        {
+#if UNITY_ANDROID
+            return new YumiMediationSDK.Android.YumiGDPRManagerClient();
+
+#elif UNITY_IOS
+            return new YumiMediationSDK.iOS.YumiGDPRManagerClient();
+#else
+            return new YumiMediationSDK.Common.YumiDummyClient();
+#endif
+
+        }
     }
 }
