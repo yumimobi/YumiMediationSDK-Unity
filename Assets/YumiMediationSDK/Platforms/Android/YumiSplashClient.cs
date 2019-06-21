@@ -10,7 +10,6 @@ namespace YumiMediationSDK.Android
     public class YumiSplashClient : AndroidJavaProxy, IYumiSplashClient
     {
         private AndroidJavaObject splashAd;
-        private YumiSplashOptions splashOptions;
 
         public YumiSplashClient() : base(YumiUtils.UnitySplashListenerClassName)
         {
@@ -32,8 +31,7 @@ namespace YumiMediationSDK.Android
         #region implement IYumiSplashClient
         // Creates an Splash.
         public void CreateSplashAd(string placementId, string channelId, string versionId, YumiSplashOptions splashOptions) {
-            this.splashOptions = splashOptions;
-            
+                        
              this.splashAd.Call(
                     "create",
                 new object[5] { placementId, channelId, versionId , splashOptions.adFetchTime, splashOptions.adBottomViewHeight});
