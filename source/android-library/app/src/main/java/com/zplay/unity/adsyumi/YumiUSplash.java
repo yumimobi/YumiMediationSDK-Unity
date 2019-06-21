@@ -3,6 +3,7 @@ package com.zplay.unity.adsyumi;
 import android.app.Activity;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.yumi.android.sdk.ads.publish.AdError;
@@ -68,6 +69,7 @@ public class YumiUSplash {
                     @Override
                     public void onSplashAdFailToShow(final AdError error) {
                         Log.d(TAG, "on splash ad show fail" +  error);
+                        removeSplashView();
                         if (mUnityListener != null) {
                             new Thread(new Runnable() {
                                 @Override
@@ -98,6 +100,7 @@ public class YumiUSplash {
                     @Override
                     public void onSplashAdClosed() {
                         Log.d(TAG, "on splash ad closed");
+                        removeSplashView();
                         if (mUnityListener != null) {
                             new Thread(new Runnable() {
                                 @Override
@@ -117,10 +120,13 @@ public class YumiUSplash {
 
     public void loadAdAndShow(){
        activity.runOnUiThread(new Runnable() {
-           @Override
-           public void run() {
+               @Override
+               public void run() {
                Log.d(TAG, "splash loadAdAndShow");
                if(mYumiSplash != null){
+                   Log.d(TAG, "splash loadAdAndShow start");
+                   mSplashContainer.setVisibility(ViewGroup.VISIBLE);
+                   mSplashContainer.bringToFront();
                    mYumiSplash.loadAdAndShowInWindow();
                }
            }
@@ -136,26 +142,29 @@ public class YumiUSplash {
 
 
     private void createSplashContainer(Activity activity,final double adBottomViewHeight){
-
         try{
-        DisplayMetrics displayMetrics = activity.getResources()
-                .getDisplayMetrics();
-        int width = displayMetrics.widthPixels;
-        int height = displayMetrics.heightPixels;
+        mSplashContainer = new FrameLayout(activity);
+        Log.d(TAG, "create splashContainer");
 
-        if (null != mSplashContainer) {
-            mSplashContainer.removeAllViews();
-        } else {
-            mSplashContainer = new FrameLayout(activity);
-        }
-        Log.d(TAG, "splashContainer width : " + width);
-        Log.d(TAG, "splashContainer height : " + (int) (height - adBottomViewHeight));
-
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width, (int) (height - adBottomViewHeight));
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            params.bottomMargin = (int)adBottomViewHeight;
         activity.getWindow().addContentView(mSplashContainer, params);
-
+            mSplashContainer.bringToFront();
         }catch (Exception e){
             Log.e(TAG, "on createSplashContainer error : " + e);
         }
+    }
+
+    private void removeSplashView(){
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, "remove splash view");
+                if(mSplashContainer !=null){
+                    mSplashContainer.setVisibility(ViewGroup.GONE);
+                }
+            }
+        });
+
     }
 }
