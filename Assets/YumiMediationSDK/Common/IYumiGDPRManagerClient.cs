@@ -16,11 +16,19 @@ namespace YumiMediationSDK.Common
     }
     public enum YumiConsentStatus
     {
-        PERSONALIZED,
-        ///The user has granted consent for non-personalized ads.
-        NONPERSONALIZED,
-        /// The user has neither granted nor declined consent for personalized or non-personalized ads.
-        UNKNOWN
-    
-    }
+		/// <summary>
+		/// The user has granted consent for personalized ads.
+		/// </summary>
+		PERSONALIZED,
+
+		/// <summary>
+		/// The user has granted consent for non-personalized ads.
+		/// </summary>
+		NONPERSONALIZED,
+		/// <summary>
+		///  The user has neither granted nor declined consent for personalized or non-personalized ads.
+		/// </summary>
+		UNKNOWN
+
+	}
 }
