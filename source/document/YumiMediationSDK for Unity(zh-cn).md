@@ -156,6 +156,10 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
         </iosPod>
         <iosPod name="YumiMediationAdapters/IQzone" version="4.1.0">
         </iosPod>
+         <iosPod name="YumiMediationAdapters/BytedanceAds" version="4.1.0">
+        </iosPod>
+        <iosPod name="YumiMediationAdapters/InneractiveAdSDK" version="4.1.0">
+        </iosPod>
         <!-- debugCenter -->
         <iosPod name="YumiMediationDebugCenter-iOS" version="4.1.0">
         </iosPod>
