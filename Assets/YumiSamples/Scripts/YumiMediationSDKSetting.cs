@@ -123,7 +123,7 @@ namespace YumiMediationSDK.Common
         public static string NativeAdPlacementId()
         {
 #if UNITY_ANDROID
-            return Instance.Android_SplashPlacementId;
+            return Instance.Android_NativeAdPlacementId;
 #elif UNITY_IOS
             return  Instance.IOS_NativeAdPlacementId;
 #else

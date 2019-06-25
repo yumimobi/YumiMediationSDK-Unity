@@ -1,18 +1,19 @@
 fileFormatVersion: 2
-guid: 146fb1f1c7a148e0a45842341619f416
+guid: 092c4e1c4b7e456f9e13f5c34fc6cab8
 labels:
 - gvh
 - gvh_targets-editor
-- gvh_version-1.2.95.0
-timeCreated: 1541495158
-licenseType: Free
+- gvh_version-1.2.119.0
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
   iconMap: {}
   executionOrder: {}
+  defineConstraints: []
   isPreloaded: 0
   isOverridable: 0
+  isExplicitlyReferenced: 0
+  validateReferences: 1
   platformData:
   - first:
       Any: 

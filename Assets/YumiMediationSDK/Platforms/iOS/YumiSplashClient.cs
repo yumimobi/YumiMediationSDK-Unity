@@ -14,14 +14,14 @@ namespace YumiMediationSDK.iOS
 
         private YumiSplashOptions splashOptions;
 
-        #region Splash callback types
+#region Splash callback types
 
         internal delegate void YumiSplashDidSuccessToShowCallback(IntPtr splashClient);
         internal delegate void YumiSplashDidFailToShowCallback(IntPtr splashClient, string error);
         internal delegate void YumiSplashDidCloseCallback(IntPtr splashClient);
         internal delegate void YumiSplashDidClickCallback(IntPtr splashClient);
 
-        #endregion
+#endregion
 
         // This property should be used when setting the interstitialPtr.
         private IntPtr SplashPtr
@@ -38,7 +38,7 @@ namespace YumiMediationSDK.iOS
             }
         }
 
-        #region IYumiSplashClient implement 
+#region IYumiSplashClient implement 
         // Ad event fired when the splash ad success to show 
         public event EventHandler<EventArgs> OnAdSuccessToShow;
         // Ad event fired when the splash ad has failed to load.
@@ -90,9 +90,9 @@ namespace YumiMediationSDK.iOS
         {
             Dispose();
         }
-        #endregion
+#endregion
 
-        #region Splash callback methods
+#region Splash callback methods
 
         [MonoPInvokeCallback(typeof(YumiSplashDidSuccessToShowCallback))]
         private static void SplashDidSuccessToShowCallback(IntPtr splashClient)
@@ -141,7 +141,7 @@ namespace YumiMediationSDK.iOS
             GCHandle handle = (GCHandle)splashClient;
             return handle.Target as YumiSplashClient;
         }
-        #endregion
+#endregion
     }
 }
 #endif
