@@ -44,7 +44,7 @@ public class YumiURewardVideo {
                 rewardVideo = new  YumiMedia(activity,placementId);
                 rewardVideo.setChannelID(channelId);
                 rewardVideo.setVersionName(versionId);
-                rewardVideo.setMediaEventListner(new IYumiMediaListener() {
+                rewardVideo.setMediaEventListener(new IYumiMediaListener() {
                     @Override
                     public void onMediaPrepared() {
                         Log.d(TAG, "reward video has prepared");
