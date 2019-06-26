@@ -49,7 +49,7 @@ public class YumiUSplash {
                 mYumiSplash.setChannelID(channelId);
                 mYumiSplash.setVersionName(versionId);
                 mYumiSplash.setFetchTime(fetchTime);
-                mYumiSplash.setFlashListener(new IYumiSplashListener() {
+                mYumiSplash.setSplashListener(new IYumiSplashListener() {
                     @Override
                     public void onSplashAdSuccessToShow() {
                         Log.d(TAG, "on splash ad show success");
