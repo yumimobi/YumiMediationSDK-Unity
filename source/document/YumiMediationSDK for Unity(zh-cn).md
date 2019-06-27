@@ -51,11 +51,18 @@
             * [7.2.3 Failed to apply plugin...](#723-failed-to-apply-plugin)
             * [7.2.4 加载三方 SDK 时间过长](#724-加载三方-sdk-时间过长)
             * [7.2.5 64k 引用限制](#725-64k-引用限制)
+            * [7.2.6 点击 Android Resolver/Force Resolve选项加载SDK提示失败。](#726-点击-android-resolverforce-resolve选项加载sdk提示失败)
          * [7.3 android 9.0 适配](#73-android-90-适配)
          * [7.4 设置 Admob MANAGER (不设置此项应用启动会崩溃)](#74-设置-admob-manager-不设置此项应用启动会崩溃)
+         * [7.5 Gdt(广点通)平台常见问题：](#75-gdt广点通平台常见问题)
+            * [7.5.1 接入Gdt(广点通) 原生广告后，出现广点通原生广告视频显示不出来问题：](#751-接入gdt广点通-原生广告后出现广点通原生广告视频显示不出来问题)
+            * [7.5.2 Gdt(广点通) 平台请求不到广告问题：](#752-gdt广点通-平台请求不到广告问题)
+         * [7.6 Baidu 平台常见问题：](#76-baidu-平台常见问题)
+            * [7.6.1 Baidu 平台请求不到广告问题：](#761-baidu-平台请求不到广告问题)
       * [8 GDPR](#8-gdpr)
          * [8.1 设置 GDPR](#81-设置-gdpr)
-         * [8.2 支持 GDPR 的平台](#82-支持-gdpr-的平台)
+         * [8.2  支持 GDPR 的平台](#82--支持-gdpr-的平台)
+         
 # YumiMediationSDK for Unity
 
 ## 1 概述
@@ -86,7 +93,7 @@
 
 Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android 和 iOS 应用上展示广告，无需编写 Java 或 Objective-C 代码。该插件提供了一个 C# 接口来请求广告。使用下面的链接下载插件的 Unity 包或在 GitHub 上查看其代码。
 
-[下载YumiMediationSDK Unity插件](https://github.com/yumimobi/YumiMediationSDK-Unity/raw/master/YumiMediationSDKPlugin3.6.0-3.unitypackage)
+[下载YumiMediationSDK Unity插件](https://github.com/yumimobi/YumiMediationSDK-Unity/raw/master/YumiMediationSDKPlugin.unitypackage)
 
 [查看源码](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
@@ -104,7 +111,10 @@ Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android �
 
 删除 Assets/YumiMediationSDK 目录，并按照 3.1 所述重新导入。
 
+删除 Assets/PlayServicesResolver目录，并按照3.1所述重新导入。
+
 新版本插件将桥接文件 Assets/Plugins/Android/unity-plugin-library.jar 和 Assets/Plugins/iOS/* 转移到 Assets/YumiMediationSDK/../ 下，如果之前导入过这些桥接文件，请将其删除，否则会出现编译错误。
+
 
 ## 4 集成 YumiMediationSDK
 
@@ -183,20 +193,22 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ```xml
 <androidPackages>
-  <androidPackage spec="com.yumimobi.ads:mediation:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:iqzone:3.6.1">
+  <androidPackage spec="com.yumimobi.ads:mediation:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:playableads:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:admob:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.1.0"/>
+  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inneractive:4.1.0"/>
+  <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:iqzone:4.1.0">
       <repositories>
           <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
           <repository>https://dl.bintray.com/yumimobi/ads/</repository>
@@ -204,15 +216,13 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
       </repositories>
   </androidPackage>
 
-  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.6.1" >
+  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.1.0" >
       <repositories>
           <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
       </repositories>
   </androidPackage>
-  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.6.1" />
-  <!--  If your app is only available in mainland China, use unity-china,else use Unity.   -->
-  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.6.1" />
-  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.6.1" />-->
+  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:unity:4.1.0" />
   <repositories>
       <repository>https://jcenter.bintray.com/</repository>
       <repository>https://maven.google.com/</repository>
@@ -220,7 +230,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 </androidPackages>
 ```
 
-比如删除 `admob`，直接删除 `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.1" />` 即可。
+比如删除 `admob`，直接删除 `<androidPackage spec="com.yumimobi.ads.mediation:admob:4.1.0" />` 即可。
 
 **注意: Unity 插件会自动引用第三方广告 SDK，您无需手动添加。**
 ## 5 选择广告形式
@@ -948,6 +958,22 @@ dependencies {
 
 解决方案二：将项目导出 Android Studio 工程，然后根据 [规避 64K 限制](https://developer.android.com/studio/build/multidex#avoid) 方案解决。
 
+#### 7.2.6 点击 Android Resolver/Force Resolve选项加载SDK提示失败。
+点击 Assets/Play Services Resolver/Android Resolver/Force Resolve选项出现下面的报错日志：
+```
+stderr:
+Exception in thread "main" java.lang.RuntimeException: Timeout of 120000 reached waiting for exclusive access to file: /.gradle/wrapper/dists/gradle-5.1.1-bin/90y9l8txxfw1s2o6ctiqeruwn/gradle-5.1.1-bin.zip
+	at org.gradle.wrapper.ExclusiveFileAccessManager.access(ExclusiveFileAccessManager.java:61)
+	at org.gradle.wrapper.Install.createDist(Install.java:48)
+	at org.gradle.wrapper.WrapperExecutor.execute(WrapperExecutor.java:128)
+	at org.gradle.wrapper.GradleWrapperMain.main(GradleWrapperMain.java:61)
+```
+请检查你Unity项目中的Assets/Plugin/Android/mainTemplate.gradle文件是否存在，如果不存在，请添加mainTemplate.gradle文件
+
+使用Unity工具生成mainTemplate.gradle文件：
+
+<div align="center"><img height="352" src="resources/mainTemplate.png"/></div>
+
 ### 7.3 android 9.0 适配
 目前一些平台Android SDK暂不支持Android9.0以上操作系统，比如 Mintegral 平台，如果在Android9.0以上系统出现的崩溃，可以通过以下方法解决。
 
@@ -957,6 +983,38 @@ dependencies {
 - iOS 更新您的 info.plist 文件。[Admob 相关文档](https://developers.google.com/admob/ios/quick-start?hl=zh-cn) 
 - Android 更新您的 AndroidManifest.xml。[Admob 相关文档](https://developers.google.com/admob/android/quick-start?hl=zh-cn)
 
+### 7.5 Gdt(广点通)平台常见问题：
+#### 7.5.1 接入Gdt(广点通) 原生广告后，出现广点通原生广告视频显示不出来问题：
+
+**解决方法**
+
+请确保你Unity项目的Assets/Plugins/Android/AndroidManifest.xml中的package:"xxx.xxx.xxx"名称和你Unity项目的package name "xxx.xxx.xxx"保持一致。如下图所示：
+<img src="resources\gdt1.png" alt="gdt1">
+
+#### 7.5.2 Gdt(广点通) 平台请求不到广告问题：
+
+**解决方法**
+
+确认Gdt(广点通) 平台需要的权限已添加
+```
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />  
+<uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES"/>
+```
+
+### 7.6 Baidu 平台常见问题：
+
+#### 7.6.1 Baidu 平台请求不到广告问题：
+
+**解决办法**
+
+确认百度平台需要的权限已添加
+```
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+```
 ## 8 GDPR
 本文件是为遵守欧洲联盟的一般数据保护条例(GDPR)而提供的。
 自 YumiMediationSDK 4.1.0 起，如果您正在收集用户的信息，您可以使用下面提供的api将此信息通知给 YumiMediationSDK 和部分三方平台。

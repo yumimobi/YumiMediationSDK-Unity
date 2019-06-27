@@ -50,8 +50,14 @@
             * [7.2.3 Failed to apply plugin...](#723-failed-to-apply-plugin)
             * [7.2.4 Resolving Android Dependencies](#724-resolving-android-dependencies)
             * [7.2.5 the 64K reference limit](#725-the-64k-reference-limit)
+            * [7.2.6 Clicking the Android Resolver/Force Resolve option Android dependencies failed](#726-clicking-the-android-resolverforce-resolve-option-android-dependencies-failed)
          * [7.3 Android 9.0 compatibility considerations](#73-android-90-compatibility-considerations)
             * [7.4 Set your AdMob app MANAGER (If you don't set, will meet a crash)](#74-set-your-admob-app-manager-if-you-dont-set-will-meet-a-crash)
+         * [7.5 Gdt(广点通) platform FAQ：](#75-gdt广点通-platform-faq)
+            * [7.5.1 Gdt(广点通) platform Native ad con‘t show media Native Ad probleam：](#751-gdt广点通-platform-native-ad-cont-show-media-native-ad-probleam)
+            * [7.5.2 Gdt(广点通) platform ad No Fill probleam：](#752-gdt广点通-platform-ad-no-fill-probleam)
+         * [7.6 Baidu platform FAQ：](#76-baidu-platform-faq)
+            * [7.6.1 Baidu platform ad No Fill probleam：](#761-baidu-platform-ad-no-fill-probleam)
       * [8 GDPR](#8-gdpr)
          * [8.1 Set GDPR](#81-set-gdpr)
          * [8.2 Networks informations](#82-networks-informations)
@@ -86,7 +92,7 @@
 
 The YumiMediationSDK Unity plugin enables Unity developers to easily serve Yumimobi Ads on Android and iOS apps without having to write Java or Objective-C code. The plugin provides a C# interface for requesting ads that is used by C# scripts in your Unity project. Use the links below to download the Unity package for the plugin or to take a look at its code on GitHub.
 
-[Download the YumiMediationSDK Unity plugin](https://github.com/yumimobi/YumiMediationSDK-Unity/raw/master/YumiMediationSDKPlugin3.6.0-3.unitypackage)
+[Download the YumiMediationSDK Unity plugin](https://github.com/yumimobi/YumiMediationSDK-Unity/raw/master/YumiMediationSDKPlugin.unitypackage)
 
 [VIEW SOURCE](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
@@ -103,6 +109,8 @@ Make sure all of the files are selected and click **Import**.
 ### 3.2 Update plugin
 
 Delete the Assets/YumiMediationSDK directory, then reimport the plugin as the 3.1 section discussed.
+
+Delete the Assets/PlayServicesResolver directory, then reimport the plugin as the 3.1 section discussed.
 
 YumiMediationSDK Unity plugin has moved bridge files - Assets/Plugins/Android/unity-plugin-library.jar and Assets/Plugins/iOS/* - to Assets/YumiMediationSDK/../ . So if you imported those files before, you need delete them to avoid compilation error.
 
@@ -187,20 +195,22 @@ Android dependencies:
 
 ```xml
 <androidPackages>
-  <androidPackage spec="com.yumimobi.ads:mediation:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:applovin:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:playableads:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:baidu:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:facebook:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:gdt:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:oneway:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:vungle:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:3.6.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:iqzone:3.6.1">
+  <androidPackage spec="com.yumimobi.ads:mediation:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:playableads:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:admob:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.1.0"/>
+  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inneractive:4.1.0"/>
+  <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:iqzone:4.1.0">
       <repositories>
           <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
           <repository>https://dl.bintray.com/yumimobi/ads/</repository>
@@ -208,22 +218,20 @@ Android dependencies:
       </repositories>
   </androidPackage>
 
-  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:3.6.1" >
+  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.1.0" >
       <repositories>
           <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
       </repositories>
   </androidPackage>
-  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:3.6.1" />
-  <!--  If your app is only available in mainland China, use unity-china,else use Unity.   -->
-  <androidPackage spec="com.yumimobi.ads.mediation:unity:3.6.1" />
-  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:3.6.1" />-->
+  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:unity:4.1.0" />
   <repositories>
       <repository>https://jcenter.bintray.com/</repository>
       <repository>https://maven.google.com/</repository>
   </repositories>
 </androidPackages>
 ```
-e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:3.6.1" />`.
+e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:4.1.0" />`.
 
 **Note: Unity plugin will auto download the thirdparty network's SDK, you don't need add it by manual.**
 
@@ -954,6 +962,23 @@ dependencies {
 
 Solution-B: Export Unity project to Android Studio project, then to [Avoid the 64K limit](https://developer.android.com/studio/build/multidex#avoid).
 
+#### 7.2.6 Clicking the Android Resolver/Force Resolve option Android dependencies failed
+Clicking Assets/Play Services Resolver/Android Resolver/Force Resolve option error log：
+```
+stderr:
+Exception in thread "main" java.lang.RuntimeException: Timeout of 120000 reached waiting for exclusive access to file: /.gradle/wrapper/dists/gradle-5.1.1-bin/90y9l8txxfw1s2o6ctiqeruwn/gradle-5.1.1-bin.zip
+	at org.gradle.wrapper.ExclusiveFileAccessManager.access(ExclusiveFileAccessManager.java:61)
+	at org.gradle.wrapper.Install.createDist(Install.java:48)
+	at org.gradle.wrapper.WrapperExecutor.execute(WrapperExecutor.java:128)
+	at org.gradle.wrapper.GradleWrapperMain.main(GradleWrapperMain.java:61)
+```
+Please check if the Assets/Plugin/Android/mainTemplate.gradle file in your Unity project exists. If it does not exist, please add mainTemplate.gradle fil.
+
+Generate the mainTemplate.gradle file using the Unity tool：
+
+<div align="center"><img height="352" src="resources/mainTemplate.png"/></div>
+
+
 ### 7.3 Android 9.0 compatibility considerations
 At present, Mintegral platform the Android SDK does not support Android9.0 or above. If the app crashes above Android9.0, you can solve by the ways below.
 
@@ -962,6 +987,39 @@ At present, Mintegral platform the Android SDK does not support Android9.0 or ab
 #### 7.4 Set your AdMob app MANAGER (If you don't set, will meet a crash)
 - iOS update your info.plist 文件。[Admob document](https://developers.google.com/admob/ios/quick-start?hl=zh-cn) 
 - Android update your AndroidManifest.xml。[Admob document](https://developers.google.com/admob/android/quick-start?hl=zh-cn)
+
+### 7.5 Gdt(广点通) platform FAQ：
+#### 7.5.1 Gdt(广点通) platform Native ad con‘t show media Native Ad probleam：
+
+**How to fix**
+
+Make sure that the package: "xxx.xxx.xxx" in the Assets/Plugins/Android/AndroidManifest.xml of your Unity project is consistent with the package name "xxx.xxx.xxx" of your Unity project. E.g：</span></p>
+<img src="resources\gdt1.png" alt="gdt1">
+
+#### 7.5.2 Gdt(广点通) platform ad No Fill probleam：
+
+**How to fix**
+
+Make sure that the Gdt(广点通) platform ad required permissions added
+```
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />  
+<uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES"/>
+```
+
+### 7.6 Baidu platform FAQ：
+
+#### 7.6.1 Baidu platform ad No Fill probleam：
+
+**How to fix**
+
+Make sure that the Baidu platform ad required permissions added
+```
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+```
 
 ## 8 GDPR
 This documentation is provided for compliance with the European Union's General Data Protection Regulation (GDPR). 
