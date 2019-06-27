@@ -201,10 +201,12 @@ Android dependencies:
   <androidPackage spec="com.yumimobi.ads.mediation:playableads:4.1.0" />
   <androidPackage spec="com.yumimobi.ads.mediation:admob:4.1.0" />
   <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.1.0"/>
   <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.1.0" />
   <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.1.0" />
   <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.1.0" />
   <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inneractive:4.1.0"/>
   <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.1.0" />
   <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.1.0" />
   <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.1.0" />
@@ -222,9 +224,7 @@ Android dependencies:
       </repositories>
   </androidPackage>
   <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.1.0" />
-  <!--  If your app is only available in mainland China, use unity-china,else use Unity.   -->
   <androidPackage spec="com.yumimobi.ads.mediation:unity:4.1.0" />
-  <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:4.1.0" />-->
   <repositories>
       <repository>https://jcenter.bintray.com/</repository>
       <repository>https://maven.google.com/</repository>
