@@ -7,7 +7,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.2.1'
     }
 }
 
@@ -18,13 +18,6 @@ allprojects {
         flatDir {
             dirs 'libs'
         }
-        maven {
-//          url 'https://adsdk.yumimobi.com/Android'
-//          非 dns 链接
-            url 'http://ad-sdk.oss-cn-beijing.aliyuncs.com/Android'
-        }
-
-        maven { url 'http://47.95.29.186:8081/artifactory/gradle-dev-local' }
     }
 }
 
@@ -33,7 +26,6 @@ apply plugin: 'com.android.application'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:multidex:1.0.3'
-    implementation 'com.yumimobi.ads.mediation:iqzone:3.6.0'
 
 **DEPS**}
 
@@ -73,6 +65,6 @@ android {
             useProguard **PROGUARD_RELEASE**
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-unity.txt'**USER_PROGUARD****SIGNCONFIG**
         }
-    }**PACKAGING_OPTIONS****SPLITS**
+    }**SPLITS**
 **BUILT_APK_LOCATION**
 }**SPLITS_VERSION_CODE****SOURCE_BUILD_SETUP**

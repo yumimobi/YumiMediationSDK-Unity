@@ -3,13 +3,41 @@ namespace YumiMediationSDK.Api
 {
     public class YumiNativeAdOptions
     {
-        internal AdOptionViewPosition adChoiseViewPosition;
-        internal AdAttribution adAttribution;
-        internal TextOptions titleTextOptions;
-        internal TextOptions descTextOptions;
-        internal TextOptions callToActionTextOptions;
-        internal ScaleType iconScaleType;
-        internal ScaleType coverImageScaleType;
+        /// <summary>
+        /// Gets the ad choise view position.
+        /// </summary>
+        /// <value>The ad choise view position.</value>
+        public AdOptionViewPosition adChoiseViewPosition { get; private set; }
+        /// <summary>
+        /// Gets the ad attribution.
+        /// </summary>
+        /// <value>The ad attribution.</value>
+        public AdAttribution adAttribution { get; private set; }
+        /// <summary>
+        /// Gets the title text options.
+        /// </summary>
+        /// <value>The title text options.</value>
+        public TextOptions titleTextOptions { get; private set; }
+        /// <summary>
+        /// Gets the desc text options.
+        /// </summary>
+        /// <value>The desc text options.</value>
+        public TextOptions descTextOptions { get; private set; }
+        /// <summary>
+        /// Gets the call to action text options.
+        /// </summary>
+        /// <value>The call to action text options.</value>
+        public TextOptions callToActionTextOptions { get; private set; }
+        /// <summary>
+        /// Gets the type of the icon scale.
+        /// </summary>
+        /// <value>The type of the icon scale.</value>
+        public ScaleType iconScaleType { get; private set; }
+        /// <summary>
+        /// Gets the type of the cover image scale.
+        /// </summary>
+        /// <value>The type of the cover image scale.</value>
+        public ScaleType coverImageScaleType { get; private set; }
 
         internal YumiNativeAdOptions(NativeAdOptionsBuilder builder)
         {
@@ -61,13 +89,26 @@ namespace YumiMediationSDK.Api
         internal ScaleType iconScaleType = ScaleType.SCALE_TO_FILL;
         internal ScaleType coverImageScaleType = ScaleType.SCALE_TO_FILL;
 
-
+        /// <summary>
+        /// Sets the ad choices position
+        /// </summary>
+        /// <returns>The NativeAdOptionsBuilder instance.</returns>
+        /// <param name="position">Position.</param>
         public NativeAdOptionsBuilder setAdChoices(AdOptionViewPosition position)
         {
             adChoiseViewPosition = position;
             return this;
         }
-
+        /// <summary>
+        /// Sets the ad attribution.
+        /// </summary>
+        /// <returns>The NativeAdOptionsBuilder instance.</returns>
+        /// <param name="position">Position.</param>
+        /// <param name="text">Text.</param>
+        /// <param name="textSize">Text size.</param>
+        /// <param name="textColor">Text color.</param>
+        /// <param name="backgroundColor">Background color.</param>
+        /// <param name="hide">If set to <c>true</c> hide.</param>
         public NativeAdOptionsBuilder setAdAttribution(AdOptionViewPosition position, string text, int textSize, uint textColor, uint backgroundColor, bool hide)
         {
             adAttribution.AdOptionsPosition = position;
@@ -78,7 +119,13 @@ namespace YumiMediationSDK.Api
             adAttribution.hide = hide;
             return this;
         }
-
+        /// <summary>
+        /// Sets the title text options.
+        /// </summary>
+        /// <returns>The NativeAdOptionsBuilder instance.</returns>
+        /// <param name="textSize">Text size.</param>
+        /// <param name="textColor">Text color.</param>
+        /// <param name="backgroundColor">Background color.</param>
         public NativeAdOptionsBuilder setTitleTextOptions(int textSize, uint textColor, uint backgroundColor)
         {
             titleTextOptions.textSize = textSize;
@@ -86,7 +133,13 @@ namespace YumiMediationSDK.Api
             titleTextOptions.backgroundColor = backgroundColor;
             return this;
         }
-
+        /// <summary>
+        /// Sets the desc text options.
+        /// </summary>
+        /// <returns>The NativeAdOptionsBuilder instance.</returns>
+        /// <param name="textSize">Text size.</param>
+        /// <param name="textColor">Text color.</param>
+        /// <param name="backgroundColor">Background color.</param>
         public NativeAdOptionsBuilder setDescTextOptions(int textSize, uint textColor, uint backgroundColor)
         {
             descTextOptions.textSize = textSize;
@@ -94,7 +147,13 @@ namespace YumiMediationSDK.Api
             descTextOptions.backgroundColor = backgroundColor;
             return this;
         }
-
+        /// <summary>
+        /// Sets the call to action text options.
+        /// </summary>
+        /// <returns>The NativeAdOptionsBuilder instance.</returns>
+        /// <param name="textSize">Text size.</param>
+        /// <param name="textColor">Text color.</param>
+        /// <param name="backgroundColor">Background color.</param>
         public NativeAdOptionsBuilder setCallToActionTextOptions(int textSize, uint textColor, uint backgroundColor)
         {
             callToActionTextOptions.textSize = textSize;
@@ -102,19 +161,30 @@ namespace YumiMediationSDK.Api
             callToActionTextOptions.backgroundColor = backgroundColor;
             return this;
         }
-
+        /// <summary>
+        /// Sets the type of the icon scale.
+        /// </summary>
+        /// <returns>The NativeAdOptionsBuilder instance.</returns>
+        /// <param name="scaleType">Scale type.</param>
         public NativeAdOptionsBuilder setIconScaleType(ScaleType scaleType)
         {
             iconScaleType = scaleType;
             return this;
         }
-
+        /// <summary>
+        /// Sets the type of the cover image scale.
+        /// </summary>
+        /// <returns>The NativeAdOptionsBuilder instance.</returns>
+        /// <param name="scaleType">Scale type.</param>
         public NativeAdOptionsBuilder setCoverImageScaleType(ScaleType scaleType)
         {
             coverImageScaleType = scaleType;
             return this;
         }
-
+        /// <summary>
+        /// Build this instance.
+        /// </summary>
+        /// <returns>The YumiNativeAdOptions instance.</returns>
         public YumiNativeAdOptions Build()
         {
             return new YumiNativeAdOptions(this);
@@ -123,9 +193,21 @@ namespace YumiMediationSDK.Api
 
     public enum AdOptionViewPosition
     {
+        /// <summary>
+        /// The top left.
+        /// </summary>
         TOP_LEFT,
+        /// <summary>
+        /// The top right.
+        /// </summary>
         TOP_RIGHT,
+        /// <summary>
+        /// The bottom left.
+        /// </summary>
         BOTTOM_LEFT,
+        /// <summary>
+        /// The bottom right.
+        /// </summary>
         BOTTOM_RIGHT
     }
 
@@ -145,7 +227,7 @@ namespace YumiMediationSDK.Api
         SCALE_ASPECT_FILL
     }
 
-    struct AdAttribution
+    public struct AdAttribution
     {
         internal AdOptionViewPosition AdOptionsPosition;
         internal string text;
@@ -162,7 +244,7 @@ namespace YumiMediationSDK.Api
         internal bool hide;
     }
 
-    struct TextOptions
+    public struct TextOptions
     {
         internal int textSize;
         internal uint textColor;

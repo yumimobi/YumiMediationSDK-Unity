@@ -7,7 +7,12 @@ namespace YumiMediationSDK.Api
     public class YumiInterstitialAd
     {
         private IYumiInterstitialClient client;
-        // Creates an InterstitialAd and loads
+        /// <summary>
+        /// Creates an InterstitialAd and loads
+        /// </summary>
+        /// <param name="placementId">Placement identifier.</param>
+        /// <param name="channelId">Channel identifier.</param>
+        /// <param name="versionId">Version identifier.</param>
         public YumiInterstitialAd(string placementId, string channelId, string versionId)
         {
             Type yumiAdsClientFactory = Type.GetType(
@@ -20,28 +25,54 @@ namespace YumiMediationSDK.Api
 
             ConfigureInterstitialEvents();
         }
-        // Determines whether the InterstitialAd has loaded.
+        /// <summary>
+        /// Determines whether the InterstitialAd has loaded.
+        /// </summary>
+        /// <returns><c>true</c>, if ready was ised, <c>false</c> otherwise.</returns>
         public bool IsReady(){
             return this.client.IsInterstitialReady();
         }
-        // Displays the InterstitialAd.
+        /// <summary>
+        ///  Displays the InterstitialAd.
+        /// </summary>
         public void Show(){
             this.client.ShowInterstitial();
         }
-        // Destroys the InterstitialAd.
+        /// <summary>
+        ///  Destroys the InterstitialAd.
+        /// </summary>
         public void Destroy(){
             this.client.DestroyInterstitial();
         }
 
-        // Ad event fired when the interstitial ad has loaded.
+        /// <summary>
+        /// Occurs when the interstitial ad has been received.
+        /// </summary>
         public event EventHandler<EventArgs> OnAdLoaded;
-        // Ad event fired when the interstitial ad has failed to load.
+        /// <summary>
+        /// Occurs when the interstitial ad has failed to load.
+        /// </summary>
         public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
-        // Ad event fired when the interstitial ad is closed.
+        /// <summary>
+        /// Occurswhen the interstitial ad has failed to show.
+        /// </summary>
+        public event EventHandler<YumiAdFailedToShowEventArgs> OnAdFailedToShow;
+        /// <summary>
+        /// Occurs when the interstitial ad is opened.
+        /// </summary>
+        public event EventHandler<EventArgs> OnAdOpening;
+        /// <summary>
+        /// Occurs when the interstitial ad has started playing.
+        /// </summary>
+        public event EventHandler<EventArgs> OnAdStartPlaying;
+        /// <summary>
+        /// Occurs when the interstitial ad is closed.
+        /// </summary>
         public event EventHandler<EventArgs> OnAdClosed;
-        // Ad event fired when the interstitial ad is clicked.
+        /// <summary>
+        /// Occurs  when the interstitial ad is clicked.
+        /// </summary>
         public event EventHandler<EventArgs> OnAdClicked;
-
 
         private void ConfigureInterstitialEvents()
         {
@@ -60,7 +91,27 @@ namespace YumiMediationSDK.Api
                     this.OnAdFailedToLoad(this, args);
                 }
             };
-
+            this.client.OnAdFailedToShow += (sender, args) =>
+            {
+                if (this.OnAdFailedToShow != null)
+                {
+                    this.OnAdFailedToShow(this, args);
+                }
+            };
+            this.client.OnAdOpening += (sender, args) =>
+            {
+                if (this.OnAdOpening != null)
+                {
+                    this.OnAdOpening(this, args);
+                }
+            };
+            this.client.OnAdStartPlaying += (sender, args) =>
+            {
+                if (this.OnAdStartPlaying != null)
+                {
+                    this.OnAdStartPlaying(this, args);
+                }
+            };
             this.client.OnAdClicked += (sender, args) =>
             {
                 if (this.OnAdClicked != null)

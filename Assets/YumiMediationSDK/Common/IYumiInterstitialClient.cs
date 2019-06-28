@@ -9,6 +9,12 @@ namespace YumiMediationSDK.Common
         event EventHandler<EventArgs> OnAdLoaded;
         // Ad event fired when the interstitial ad has failed to load.
         event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
+        // Ad event fired when the interstitial ad has failed to show.
+        event EventHandler<YumiAdFailedToShowEventArgs> OnAdFailedToShow;
+        // Ad event fired when the interstitial ad is opened.
+        event EventHandler<EventArgs> OnAdOpening;
+        // Ad event fired when the interstitial ad has started playing.
+        event EventHandler<EventArgs> OnAdStartPlaying;
         // Ad event fired when the interstitial ad is closed.
         event EventHandler<EventArgs> OnAdClosed;
         // Ad event fired when the interstitial ad is clicked.

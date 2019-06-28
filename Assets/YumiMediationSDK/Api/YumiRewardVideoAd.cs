@@ -10,7 +10,10 @@ namespace YumiMediationSDK.Api
 
 
         private static readonly YumiRewardVideoAd instance = new YumiRewardVideoAd();
-
+        /// <summary>
+        /// single YumiRewardVideoAd instance.
+        /// </summary>
+        /// <value>The instance.</value>
         public static YumiRewardVideoAd Instance
         {
             get
@@ -31,36 +34,90 @@ namespace YumiMediationSDK.Api
 
             ConfigureRewardVideoEvents();
         }
-        // Initiates the ad request, should only be called once as early as possible.
+        /// <summary>
+        /// Initiates the ad request, should only be called once as early as possible.
+        /// </summary>
+        /// <param name="placementId">Placement identifier.</param>
+        /// <param name="channelId">Channel identifier.</param>
+        /// <param name="versionId">Version identifier.</param>
         public void LoadAd(string placementId, string channelId, string versionId)
         {
             this.client.LoadRewardVideoAd(placementId,channelId,versionId);
         }
 
-        // Determines whether the RewardVideo has loaded.
+        /// <summary>
+        /// Determines whether the RewardVideo has loaded.
+        /// </summary>
+        /// <returns><c>true</c>, if RewardVideo has loaded, <c>false</c> otherwise.</returns>
         public bool IsReady()
         {
             return this.client.IsRewardVideoReady();
         }
 
-        // play the RewardVideo.
+        /// <summary>
+        /// play the RewardVideo.
+        /// </summary>
         public void Play()
         {
             this.client.PlayRewardVideo();
         }
 
-       
-        // Ad event fired when the reward based video ad is opened.
+        /// <summary>
+        /// Occurs  when the reward based video ad has been received.
+        /// </summary>
+        public event EventHandler<EventArgs> OnAdLoaded;
+        /// <summary>
+        /// Occurs  when the reward based video ad has failed to load.
+        /// </summary>
+        public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
+        /// <summary>
+        /// Occurs when the reward based video ad has failed to show.
+        /// </summary>
+        public event EventHandler<YumiAdFailedToShowEventArgs> OnAdFailedToShow;
+        /// <summary>
+        /// Occurs  when the reward based video ad is opened.
+        /// </summary>
         public event EventHandler<EventArgs> OnAdOpening;
-        // Ad event fired when the reward based video ad has started playing.
+        /// <summary>
+        /// Occurs when the reward based video ad has started playing.
+        /// </summary>
         public event EventHandler<EventArgs> OnAdStartPlaying;
-        // Ad event fired when the reward based video ad has rewarded the user.
+        /// <summary>
+        /// Occurs when the reward based video ad has rewarded the user.
+        /// </summary>
         public event EventHandler<EventArgs> OnAdRewarded;
-        // Ad event fired when the reward based video ad is closed.
-        public event EventHandler<EventArgs> OnAdClosed;
+        /// <summary>
+        /// Occurs when the reward based video ad is closed.
+        /// </summary>
+        public event EventHandler<YumiAdCloseEventArgs> OnRewardVideoAdClosed;
+        /// <summary>
+        /// Occurs  when the reward based video ad is clicked.
+        /// </summary>
+        public event EventHandler<EventArgs> OnAdClicked;
 
         private void ConfigureRewardVideoEvents()
         {
+            this.client.OnAdLoaded += (sender, args) =>
+            {
+                if (this.OnAdLoaded != null)
+                {
+                    this.OnAdLoaded(this, args);
+                }
+            };
+            this.client.OnAdFailedToLoad += (sender, args) =>
+            {
+                if (this.OnAdFailedToLoad != null)
+                {
+                    this.OnAdFailedToLoad(this, args);
+                }
+            };
+            this.client.OnAdFailedToShow += (sender, args) =>
+            {
+                if (this.OnAdFailedToShow != null)
+                {
+                    this.OnAdFailedToShow(this, args);
+                }
+            };
             this.client.OnAdOpening += (sender, args) =>
             {
                 if (this.OnAdOpening != null)
@@ -68,7 +125,6 @@ namespace YumiMediationSDK.Api
                     this.OnAdOpening(this, args);
                 }
             };
-
             this.client.OnAdStartPlaying += (sender, args) =>
             {
                 if (this.OnAdStartPlaying != null)
@@ -76,7 +132,13 @@ namespace YumiMediationSDK.Api
                     this.OnAdStartPlaying(this, args);
                 }
             };
-
+            this.client.OnAdClicked += (sender, args) =>
+            {
+                if (this.OnAdClicked != null)
+                {
+                    this.OnAdClicked(this, args);
+                }
+            };
             this.client.OnAdRewarded += (sender, args) =>
             {
                 if (this.OnAdRewarded != null)
@@ -84,11 +146,11 @@ namespace YumiMediationSDK.Api
                     this.OnAdRewarded(this, args);
                 }
             };
-            this.client.OnAdClosed += (sender, args) =>
+            this.client.OnRewardVideoAdClosed += (sender, args) =>
             {
-                if (this.OnAdClosed != null)
+                if (this.OnRewardVideoAdClosed != null)
                 {
-                    this.OnAdClosed(this, args);
+                    this.OnRewardVideoAdClosed(this, args);
                 }
             };
 
@@ -102,5 +164,8 @@ namespace YumiMediationSDK.Api
             this.client.DestroyRewardVideo();
         }
 
+        [Obsolete("OnAdClosed is deprecated.", true)]
+        // Ad event fired when the reward based video ad is closed.
+        public event EventHandler<EventArgs> OnAdClosed;
     }
 }

@@ -16,9 +16,9 @@ import android.widget.TextView;
 
 import com.yumi.android.sdk.ads.formats.YumiNativeAdOptions;
 import com.yumi.android.sdk.ads.formats.YumiNativeAdView;
+import com.yumi.android.sdk.ads.publish.AdError;
 import com.yumi.android.sdk.ads.publish.NativeContent;
 import com.yumi.android.sdk.ads.publish.YumiNative;
-import com.yumi.android.sdk.ads.publish.enumbean.LayerErrorCode;
 import com.yumi.android.sdk.ads.publish.listener.IYumiNativeListener;
 
 import java.util.HashMap;
@@ -103,9 +103,9 @@ public class YumiUNativeAd {
                     }
 
                     @Override
-                    public void onLayerFailed(LayerErrorCode layerErrorCode) {
+                    public void onLayerFailed(AdError adError) {
                         if (mNativeAdListener != null) {
-                            mNativeAdListener.onLayerFailed(layerErrorCode.toString());
+                            mNativeAdListener.onLayerFailed(adError.toString());
                         }
                     }
 
@@ -156,6 +156,13 @@ public class YumiUNativeAd {
                 if (nativeContent == null) {
                     Log.d(TAG, "cannot fillViews without content.");
                     return;
+                }
+
+                if (mNativeViews.containsKey(uniqueId)) {
+                    if (mNativeViews.get(uniqueId) != null) {
+                        Log.d(TAG, "cannot fillViews uniqueId views is presence uniqueId: " + uniqueId);
+                        return;
+                    }
                 }
 
                 if (TextUtils.equals(FACEBOOK_NAME, nativeContent.getProviderName())) {
@@ -266,6 +273,7 @@ public class YumiUNativeAd {
                 mNativeViews.put(uniqueId, adPlaceHolder);
             }
         });
+
     }
 
     // https://stackoverflow.com/a/18595681/7785373
@@ -396,6 +404,7 @@ public class YumiUNativeAd {
             public void run() {
                 View adView = mNativeViews.get(uniqueId);
                 if (adView != null) {
+                    Log.d(TAG, "removeView: uniqueId ：" + uniqueId);
                     adView.setVisibility(View.GONE);
                 }
                 mNativeContents.remove(uniqueId);
@@ -406,18 +415,27 @@ public class YumiUNativeAd {
     }
 
     public void destroy() {
-        if (mNativeContents != null) {
-            mNativeContents.clear();
-        }
+        mUnityPlayerActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (mNativeContents != null) {
+                    mNativeContents.clear();
+                }
 
-        if (mNativeViews != null) {
-            mNativeViews.clear();
-        }
+                if (mNativeViews != null) {
+                    for (Map.Entry<String, View> entry : mNativeViews.entrySet()) {
+                        hideView(entry.getKey());
+                    }
+                    Log.d(TAG, "destroy: NativeViews clear ");
+                    mNativeViews.clear();
+                }
 
-        if (mNativeAd != null) {
-            mNativeAd.onDestroy();
-        }
-        mUnityPlayerActivity = null;
-        mNativeAdListener = null;
+                if (mNativeAd != null) {
+                    mNativeAd.onDestroy();
+                }
+                mUnityPlayerActivity = null;
+                mNativeAdListener = null;
+            }
+        });
     }
 }

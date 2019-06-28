@@ -24,6 +24,12 @@ namespace YumiMediationSDK.Android
         public event EventHandler<EventArgs> OnAdLoaded;
         // Ad event fired when the interstitial ad has failed to load.
         public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
+        // Ad event fired when the interstitial ad has failed to show.
+        public event EventHandler<YumiAdFailedToShowEventArgs> OnAdFailedToShow;
+        // Ad event fired when the interstitial ad is opened.
+        public event EventHandler<EventArgs> OnAdOpening;
+        // Ad event fired when the interstitial ad has started playing.
+        public event EventHandler<EventArgs> OnAdStartPlaying;
         // Ad event fired when the interstitial ad is closed.
         public event EventHandler<EventArgs> OnAdClosed;
         // Ad event fired when the interstitial ad is clicked.
@@ -92,6 +98,33 @@ namespace YumiMediationSDK.Android
             if (this.OnAdClosed != null)
             {
                 this.OnAdClosed(this, EventArgs.Empty);
+            }
+        }
+
+        public void onAdFailedToShow(string errorReason) 
+        {
+            if (this.OnAdFailedToShow != null) {
+                YumiAdFailedToShowEventArgs args = new YumiAdFailedToShowEventArgs()
+                {
+                    Message = errorReason
+                };
+                this.OnAdFailedToShow(this, args);
+            }
+        }
+
+        public void onAdOpening()
+        {
+            if (this.OnAdOpening != null)
+            {
+                this.OnAdOpening(this, EventArgs.Empty);
+            }
+        }
+
+        public void onAdStartPlaying() 
+        {
+            if (this.OnAdStartPlaying != null)
+            {
+                this.OnAdStartPlaying(this, EventArgs.Empty);
             }
         }
 

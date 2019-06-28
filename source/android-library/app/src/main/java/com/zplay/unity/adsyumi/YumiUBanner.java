@@ -1,5 +1,6 @@
 package com.zplay.unity.adsyumi;
 
+import com.yumi.android.sdk.ads.publish.AdError;
 import com.yumi.android.sdk.ads.publish.YumiBanner;
 import com.yumi.android.sdk.ads.publish.listener.IYumiBannerListener;
 import android.app.Activity;
@@ -9,8 +10,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.content.Context;
-import android.view.ViewGroup.LayoutParams;
-import com.yumi.android.sdk.ads.publish.enumbean.LayerErrorCode;
 import com.yumi.android.sdk.ads.publish.enumbean.AdSize;
 
 public class YumiUBanner {
@@ -51,23 +50,6 @@ public class YumiUBanner {
                 bannerListener = new IYumiBannerListener() {
 
                     @Override
-                    public void onBannerPreparedFailed(LayerErrorCode errorCode) {
-                        Log.d(TAG, "on banner prepared failed " + errorCode);
-                        final String errmsg = errorCode.getMsg();
-                        if (mUnityListener != null) {
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if (mUnityListener != null) {
-
-                                        mUnityListener.onAdFailedToLoad(errmsg);
-                                    }
-                                }
-                            }).start();
-                        }
-                    }
-
-                    @Override
                     public void onBannerPrepared() {
                         Log.d(TAG, "on banner prepared");
                         if (mUnityListener != null) {
@@ -77,6 +59,23 @@ public class YumiUBanner {
                                     if (mUnityListener != null) {
 
                                         mUnityListener.onAdLoaded();
+                                    }
+                                }
+                            }).start();
+                        }
+                    }
+
+                    @Override
+                    public void onBannerPreparedFailed(AdError adError) {
+                        Log.d(TAG, "on banner prepared failed " + adError);
+                        final String errmsg = adError.getMsg();
+                        if (mUnityListener != null) {
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (mUnityListener != null) {
+
+                                        mUnityListener.onAdFailedToLoad(errmsg);
                                     }
                                 }
                             }).start();
