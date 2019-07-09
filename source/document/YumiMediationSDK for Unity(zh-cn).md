@@ -38,8 +38,8 @@
             * [5.5.1 集成开屏广告](#551-集成开屏广告)
             * [5.5.2 配置开屏广告](#552-配置开屏广告)
             * [5.5.3 处理回调](#553-处理回调)
-            * [5.5.3 YumiSplashOptions](#553-yumisplashoptions)
-            * [5.5.4 显示半屏广告](#554-显示半屏广告)
+            * [5.5.4 YumiSplashOptions](#554-yumisplashoptions)
+            * [5.5.5 显示半屏广告](#555-显示半屏广告)
       * [6 调试模式](#6-调试模式)
          * [6.1 调用调试模式](#61-调用调试模式)
          * [6.2 图示](#62-图示)
@@ -784,7 +784,7 @@ void Start()
         SceneManager.LoadScene("YOUR_MAIN_SCENE");
     }
 ```
-#### 5.5.3 YumiSplashOptions
+#### 5.5.4 YumiSplashOptions
 `YumiSplashOptions` 是初始化 `YumiSplashAd` 的最后一个参数，您可在 `YumiSplashOptions` 文件中查看：
 - `adFetchTime`
 
@@ -814,7 +814,7 @@ builder.setAdOrientation(YumiSplashOrientation.YUMISPLASHORIENTATION_PORTRAIT);
 YumiSplashOptions splashOptions = new YumiSplashOptions(builder);
 ```
 
-#### 5.5.4 显示半屏广告
+#### 5.5.5 显示半屏广告
 显示半屏广告，可允许您在 bottomView 位置展示应用 logo。
 请修改开屏的初始化代码
 ```C#

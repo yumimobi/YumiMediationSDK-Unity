@@ -38,7 +38,7 @@
             * [5.5.2 Set Ad Placement](#552-set-ad-placement)
             * [5.5.3 Handle Delegate](#553-handle-delegate)
             * [5.5.4 YumiSplashOptions](#554-yumisplashoptions)
-            * [5.5.4 Show splash with bottom custom view](#554-show-splash-with-bottom-custom-view)
+            * [5.5.5 Show splash with bottom custom view](#555-show-splash-with-bottom-custom-view)
       * [6 Debug Mode](#6-debug-mode)
          * [6.1 Call Debug Mode](#61-call-debug-mode)
          * [6.2 Sample](#62-sample)
@@ -818,7 +818,7 @@ Replace `YOUR_MAIN_SCENE` with your main scene name.
   YumiSplashOptions splashOptions = new YumiSplashOptions(builder);
   ```
 
-#### 5.5.4 Show splash with bottom custom view
+#### 5.5.5 Show splash with bottom custom view
 You can set your logo view in bottomView's location.
 ```C#
 /// bottom view's height should not exceed 15% of the screen height.
