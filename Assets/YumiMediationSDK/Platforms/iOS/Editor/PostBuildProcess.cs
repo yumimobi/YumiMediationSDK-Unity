@@ -47,7 +47,6 @@ public class PostBuildProcess : MonoBehaviour
         proj.AddFrameworkToProject(target, "AVFoundation.framework", false);
         proj.AddFrameworkToProject(target, "CFNetwork.framework", false);
         proj.AddFrameworkToProject(target, "CoreGraphics.framework", false);
-        proj.AddFrameworkToProject(target, "CoreLocation.framework", false);
         proj.AddFrameworkToProject(target, "CoreMedia.framework", false);
         proj.AddFrameworkToProject(target, "CoreMotion.framework", false);
         proj.AddFrameworkToProject(target, "CoreVideo.framework", false);
@@ -60,6 +59,8 @@ public class PostBuildProcess : MonoBehaviour
         proj.AddFrameworkToProject(target, "SystemConfiguration.framework", false);
         proj.AddFrameworkToProject(target, "UIKit.framework", false);
 		proj.AddFrameworkToProject(target, "GLKit.framework", false);
+        proj.AddFrameworkToProject(target, "MessageUI.framework", false);
+        
 
         AddUsrLib(proj, target, "libxml2.dylib");
 		AddUsrLib(proj, target, "libc++.dylib");
@@ -90,13 +91,8 @@ public class PostBuildProcess : MonoBehaviour
        var atsKey = "NSAppTransportSecurity";
         PlistElementDict dictTmp = _rootDic.CreateDict(atsKey);
         dictTmp.SetBoolean("NSAllowsArbitraryLoads",true);
-
-       
-        // Calendar
-        _rootDic.SetString("NSCalendarsUsageDescription", "App shall access calendar with your permission");
-        //< !--Photos-- >
-        _rootDic.SetString("NSPhotoLibraryUsageDescription", "App shall access photos with your permission");
-
+        dictTmp.SetBoolean("NSAllowsArbitraryLoadsForMedia",true);
+        dictTmp.SetBoolean("NSAllowsArbitraryLoadsInWebContent",true);
 
         File.WriteAllText(_plistPath, _plist.WriteToString());
 
