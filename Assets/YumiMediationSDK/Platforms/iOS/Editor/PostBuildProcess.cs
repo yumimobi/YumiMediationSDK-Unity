@@ -59,10 +59,10 @@ public class PostBuildProcess : MonoBehaviour
         proj.AddFrameworkToProject(target, "SystemConfiguration.framework", false);
         proj.AddFrameworkToProject(target, "UIKit.framework", false);
 		proj.AddFrameworkToProject(target, "GLKit.framework", false);
-        proj.AddFrameworkToProject(target, "MessageUI.framework", false);
+		proj.AddFrameworkToProject(target, "MessageUI.framework", false);
         
 
-        AddUsrLib(proj, target, "libxml2.dylib");
+		AddUsrLib(proj, target, "libxml2.dylib");
 		AddUsrLib(proj, target, "libc++.dylib");
 		AddUsrLib(proj, target, "libz.1.2.5.dylib");
 		AddUsrLib(proj, target, "libsqlite3.0.dylib");
@@ -88,7 +88,7 @@ public class PostBuildProcess : MonoBehaviour
         PlistElementDict _rootDic = _plist.root;
 
         // Add value of NSAppTransportSecurity in Xcode plist
-       var atsKey = "NSAppTransportSecurity";
+        var atsKey = "NSAppTransportSecurity";
         PlistElementDict dictTmp = _rootDic.CreateDict(atsKey);
         dictTmp.SetBoolean("NSAllowsArbitraryLoads",true);
         dictTmp.SetBoolean("NSAllowsArbitraryLoadsForMedia",true);
