@@ -15,12 +15,8 @@ namespace YumiMediationSDK.Api
         /// <param name="versionId">Version identifier.</param>
         public YumiInterstitialAd(string placementId, string channelId, string versionId)
         {
-            Type yumiAdsClientFactory = Type.GetType(
-                "YumiMediationSDK.YumiAdsClientFactory,Assembly-CSharp");
-            MethodInfo method = yumiAdsClientFactory.GetMethod(
-                "BuildInterstitialClient",
-                BindingFlags.Static | BindingFlags.Public);
-            this.client = (IYumiInterstitialClient)method.Invoke(null, null);
+
+            client = YumiAdsClientFactory.BuildInterstitialClient();
             client.CreateInterstitialAd(placementId,channelId,versionId);
 
             ConfigureInterstitialEvents();

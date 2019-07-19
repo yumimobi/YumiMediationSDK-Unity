@@ -24,12 +24,8 @@ namespace YumiMediationSDK.Api
         // Creates a Singleton YumiGDPRManager.
         private YumiGDPRManager()
         {
-            Type yumiAdsClientFactory = Type.GetType(
-                "YumiMediationSDK.YumiAdsClientFactory,Assembly-CSharp");
-            MethodInfo method = yumiAdsClientFactory.GetMethod(
-                "BuildGDPRManagerClient",
-                BindingFlags.Static | BindingFlags.Public);
-            this.client = (IYumiGDPRManagerClient)method.Invoke(null, null);
+
+            client = YumiAdsClientFactory.BuildGDPRManagerClient();
             client.CreateGDPRManager();
            
         }

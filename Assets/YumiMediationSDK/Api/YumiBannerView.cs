@@ -17,12 +17,8 @@ namespace YumiMediationSDK.Api
         /// <param name="bannerOptions">Banner options.</param>
         public YumiBannerView(string placementId, string channelId, string versionId, YumiBannerViewOptions bannerOptions)
         {
-            Type yumiAdsClientFactory = Type.GetType(
-                "YumiMediationSDK.YumiAdsClientFactory,Assembly-CSharp");
-            MethodInfo method = yumiAdsClientFactory.GetMethod(
-                "BuildBannerClient",
-                BindingFlags.Static | BindingFlags.Public);
-            this.client = (IYumiBannerClient)method.Invoke(null, null);
+
+            client = YumiAdsClientFactory.BuildBannerClient();
             this.bannerOptions = bannerOptions;
             client.CreateBannerView(placementId,channelId,versionId, bannerOptions);
 
