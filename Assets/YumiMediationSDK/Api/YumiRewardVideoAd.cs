@@ -24,12 +24,8 @@ namespace YumiMediationSDK.Api
 
         // Creates a Singleton YumiRewardVideoAd.
         private YumiRewardVideoAd(){
-            Type yumiAdsClientFactory = Type.GetType(
-                "YumiMediationSDK.YumiAdsClientFactory,Assembly-CSharp");
-            MethodInfo method = yumiAdsClientFactory.GetMethod(
-                "BuildRewardVideoClient",
-                BindingFlags.Static | BindingFlags.Public);
-            this.client = (IYumiRewardVideoClient)method.Invoke(null, null);
+
+            client = YumiAdsClientFactory.BuildRewardVideoClient();
             client.CreateRewardVideoAd();
 
             ConfigureRewardVideoEvents();

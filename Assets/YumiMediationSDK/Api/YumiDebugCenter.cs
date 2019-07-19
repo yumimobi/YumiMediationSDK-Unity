@@ -12,12 +12,8 @@ namespace YumiMediationSDK.Api
         /// </summary>
         public YumiDebugCenter()
         {
-            Type yumiAdsClientFactory = Type.GetType(
-                  "YumiMediationSDK.YumiAdsClientFactory,Assembly-CSharp");
-            MethodInfo method = yumiAdsClientFactory.GetMethod(
-                "BuildDebugCenterClient",
-                BindingFlags.Static | BindingFlags.Public);
-            this.client = (IYumiDebugCenterClient)method.Invoke(null, null);
+
+            client = YumiAdsClientFactory.BuildDebugCenterClient();
         }
         /// <summary>
         /// Presents the yumi mediation debug center.

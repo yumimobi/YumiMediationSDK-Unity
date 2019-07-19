@@ -16,13 +16,9 @@ namespace YumiMediationSDK.Api
         /// <param name="splashOptions">Banner options.</param>
         public YumiSplashAd(string placementId, string channelId, string versionId, YumiSplashOptions splashOptions)
         {
-            Type yumiAdsClientFactory = Type.GetType(
-                "YumiMediationSDK.YumiAdsClientFactory,Assembly-CSharp");
-            MethodInfo method = yumiAdsClientFactory.GetMethod(
-                "BuildSplashClient",
-                BindingFlags.Static | BindingFlags.Public);
-            this.client = (IYumiSplashClient)method.Invoke(null, null);
-        
+
+            client = YumiAdsClientFactory.BuildSplashClient();
+            
             client.CreateSplashAd(placementId, channelId, versionId, splashOptions);
 
             ConfigureSPlashEvents();
