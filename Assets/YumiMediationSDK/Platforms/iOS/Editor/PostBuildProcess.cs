@@ -84,8 +84,6 @@ public class PostBuildProcess : MonoBehaviour {
         var atsKey = "NSAppTransportSecurity";
         PlistElementDict dictTmp = _rootDic.CreateDict (atsKey);
         dictTmp.SetBoolean ("NSAllowsArbitraryLoads", true);
-        dictTmp.SetBoolean ("NSAllowsArbitraryLoadsForMedia", true);
-        dictTmp.SetBoolean ("NSAllowsArbitraryLoadsInWebContent", true);
 
         File.WriteAllText (_plistPath, _plist.WriteToString ());
 
