@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YumiNative : NSObject
 
-/// A reference to the Unity banner client.
+/// A reference to the Unity native client.
 @property(nonatomic, assign) YumiTypeNativeClientRef *nativeClient;
 
 /// A YumiMediationNativeAd which contains the ad.
@@ -27,6 +27,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// The ad clicked callback into Unity.
 @property(nonatomic, assign) YumiNativeAdDidClickCallback adClickedCallback;
+
+/// The ad clicked callback into Unity.
+@property(nonatomic, assign)  YumiNativeExpressAdRenderSuccessDidCallback adRenderSuccessCallBack;
+/// The ad clicked callback into Unity.
+@property(nonatomic, assign) YumiNativeExpressAdDidRenderFailCallback adRenderFailCallBack;
+/// The ad clicked callback into Unity.
+@property(nonatomic, assign) YumiNativeExpressAdDidClickCloseButtonCallback adClickCloseButtonCallBack;
 
 
 - (instancetype)initWithNativeClientReference:(YumiTypeNativeClientRef *)nativeClientRef
@@ -56,6 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)getStarRating:(NSString *)uniqueId;
 - (NSString *)getOther:(NSString *)uniqueId;
 - (BOOL)getHasVideoContent:(NSString *)uniqueId;
+- (BOOL)getIsExpressAdView:(NSString *)uniqueId;
 
 #pragma mark: set ad view style
 - (void)setTitleTextColor:(uint)textColor textBgColor:(uint)textBgColor fontSize:(int)fontSize;
