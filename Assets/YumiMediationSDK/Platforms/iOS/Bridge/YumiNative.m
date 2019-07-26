@@ -8,7 +8,6 @@
 #import "YumiNative.h"
 #import "YumiNativeBridgeView.h"
 
-
 static NSString *yumiFBBridgeDummyUrl = @"http://www.facebook.com";
 
 @interface YumiNative()<YumiMediationNativeAdDelegate>
@@ -31,6 +30,7 @@ static NSString *yumiFBBridgeDummyUrl = @"http://www.facebook.com";
                                     versionID:(NSString *)versionID
                                     configuration:(YumiMediationNativeAdConfiguration *)configuration{
     self = [super init];
+    
     if (self) {
         _nativeClient = nativeClientRef;
         _nativeAd = [[YumiMediationNativeAd alloc] initWithPlacementID:placementID channelID:channelID versionID:versionID configuration:configuration];
@@ -63,6 +63,13 @@ static NSString *yumiFBBridgeDummyUrl = @"http://www.facebook.com";
         
         UIView *mainView = UnityGetGLView();
         [mainView addSubview:weakSelf.nativeAdView];
+        
+        if (model.isExpressAdView) {
+            [weakSelf.nativeAdView setFrame:adViewRect];
+           
+            [weakSelf.nativeAd registerViewForInteraction:weakSelf.nativeAdView clickableAssetViews:@{} withViewController:UnityGetGLViewController() nativeAd:model];
+            return ;
+        }
         
         // set frame
         [weakSelf.nativeAdView setFrame:adViewRect];
@@ -168,6 +175,11 @@ static NSString *yumiFBBridgeDummyUrl = @"http://www.facebook.com";
     return [model hasVideoContent];
 }
 
+- (BOOL)getIsExpressAdView:(NSString *)uniqueId{
+    YumiMediationNativeModel *model = [self getCurrentNativeModel:uniqueId];
+    return model.isExpressAdView;
+}
+
 - (void)printLogIfError{
     NSLog(@"YumiMobileAdsPlugin: NativeAd is nil or adCount <= 0. Ignoring ad request.");
 }
@@ -179,6 +191,18 @@ static NSString *yumiFBBridgeDummyUrl = @"http://www.facebook.com";
 - (YumiMediationNativeModel *)getCurrentNativeModel:(NSString *)uniqueId{
     return self.nativeADDataMapping[uniqueId];
 }
+
+- (NSString *)getKeyString:(YumiMediationNativeModel *)nativeModel {
+    __block NSString *uniqueId = @"";
+    [self.nativeADDataMapping enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, YumiMediationNativeModel * _Nonnull obj, BOOL * _Nonnull stop) {
+        if ([obj isEqual:nativeModel]) {
+            uniqueId = key;
+            *stop = YES;
+        }
+    }];
+    return uniqueId;
+}
+
 #pragma mark: native Ad view options
 - (void)setTitleTextColor:(uint)textColor textBgColor:(uint)textBgColor fontSize:(int)fontSize{
     [self.nativeAdView setTitleTextColor:textColor textBgColor:textBgColor fontSize:fontSize];
@@ -235,6 +259,37 @@ static NSString *yumiFBBridgeDummyUrl = @"http://www.facebook.com";
         self.adClickedCallback(self.nativeClient);
     }
 }
+///Tells the delegate that the Native express view has been successfully rendered.
+- (void)yumiMediationNativeExpressAdRenderSuccess:(YumiMediationNativeModel *)nativeModel {
+    
+    __weak __typeof__(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf.nativeAdView addSubview:nativeModel.expressAdView];
+        
+        CGSize adSize = nativeModel.expressAdView.bounds.size;
+        nativeModel.expressAdView.frame = CGRectMake((weakSelf.nativeAdView.bounds.size.width - adSize.width) * 0.5, (weakSelf.nativeAdView.bounds.size.height - adSize.height) *0.5, adSize.width, adSize.height);
+        
+        if (weakSelf.adRenderSuccessCallBack) {
+            
+            weakSelf.adRenderSuccessCallBack(weakSelf.nativeClient,[[weakSelf getKeyString:nativeModel] cStringUsingEncoding:NSUTF8StringEncoding]);
+        }
+    });
+    
+}
+///Tells the delegate that the Native express view render failed
+- (void)yumiMediationNativeExpressAd:(YumiMediationNativeModel *)nativeModel didRenderFail:(NSString *)errorMsg {
+    if (self.adRenderFailCallBack) {
+        NSString *errorMsg = [NSString stringWithFormat:@"render fail === %@",errorMsg];
+        self.adRenderFailCallBack(self.nativeClient,[[self getKeyString:nativeModel] cStringUsingEncoding:NSUTF8StringEncoding],[errorMsg cStringUsingEncoding:NSUTF8StringEncoding]);
+    }
+}
+///Tells the delegate that the Native express view has been closed
+- (void)yumiMediationNativeExpressAdDidClickCloseButton:(YumiMediationNativeModel *)nativeModel {
+    if (self.adClickCloseButtonCallBack) {
+        self.adClickCloseButtonCallBack(self.nativeClient,[[self getKeyString:nativeModel] cStringUsingEncoding:NSUTF8StringEncoding]);
+    }
+}
+
 
 #pragma mark: getter method
 - (NSMutableDictionary<NSString *,YumiMediationNativeModel *> *)nativeADDataMapping{
