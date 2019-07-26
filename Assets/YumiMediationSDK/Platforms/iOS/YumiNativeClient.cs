@@ -20,6 +20,8 @@ namespace YumiMediationSDK.iOS
 
         // options 
         private YumiNativeAdOptions adOptions;
+        // nativeData list
+        private List<YumiNativeData> nativeDataList;
 
 #region Banner callback types
 
@@ -29,8 +31,11 @@ namespace YumiMediationSDK.iOS
                 IntPtr nativeClient, string error);
 
         internal delegate void YumiNativeAdDidClickCallback(IntPtr nativeClient);
+        internal delegate void YumiNativeExpressAdDidRenderSuccessCallback(IntPtr nativeClient, string nativeDataKey);
+        internal delegate void YumiNativeExpressAdDidRenderFailCallback(IntPtr nativeClient, string nativeDataKey,string errorMsg);
+        internal delegate void YumiNativeExpressAdDidClickCloseButtonCallback(IntPtr nativeClient, string nativeDataKey);
 
-#endregion
+        #endregion
 
         // This property should be used when setting the bannerViewPtr.
         private IntPtr NativeAdPtr
@@ -55,28 +60,53 @@ namespace YumiMediationSDK.iOS
         public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
         // Ad event fired when the native ad is click.
         public event EventHandler<EventArgs> OnAdClick;
-#endregion
+        /// Ad event fired when the native  express ad has been successed
+        public event EventHandler<YumiNativeDataEventArgs> OnExpressAdRenderSuccess;
+        /// Ad event fired when the native  express ad has been failed.
+        public event EventHandler<YumiAdFailedToRenderEventArgs> OnExpressAdRenderFail;
+        // Ad event fired when the native  express ad has been click close button.
+        public event EventHandler<YumiNativeDataEventArgs> OnExpressAdClickCloseButton;
 
-#region implement IYumiNativeClient interface 
+        #endregion
+
+        #region implement IYumiNativeClient interface 
 
         // Creates a native ad
-        public void CreateNativeAd(string placementId, string channelId, string versionId, YumiNativeAdOptions option)
+        public void CreateNativeAd(string placementId, string channelId, string versionId, GameObject gameObject,YumiNativeAdOptions option)
         {
             this.nativeClientPtr = (IntPtr)GCHandle.Alloc(this);
+            this.currentGameObject = gameObject;
+            Camera camera = Camera.main;
+            int expressAdViewWidth = 0;
+            int expressAdViewHeight = 0;
+
+            if (option.expressAdViewTransform != null)
+            {
+                Rect adViewRect = getGameObjectRect(option.expressAdViewTransform as RectTransform, camera);
+                expressAdViewWidth = (int)adViewRect.width;
+                expressAdViewHeight = (int)adViewRect.height;
+            }
+           
+           
             this.NativeAdPtr = YumiExterns.InitYumiNativeAd(this.nativeClientPtr, placementId, channelId, versionId, (int)option.adChoiseViewPosition,
                                                             (int)option.adAttribution.AdOptionsPosition, option.adAttribution.text, option.adAttribution.textColor,
-                                                            option.adAttribution.backgroundColor, option.adAttribution.textSize, option.adAttribution.hide);
+                                                            option.adAttribution.backgroundColor, option.adAttribution.textSize, option.adAttribution.hide, expressAdViewWidth, expressAdViewHeight);
             adOptions = option;
             YumiExterns.SetNativeCallbacks(
                 this.NativeAdPtr,
                 NativeDidReceiveAdCallback,
                 NativeDidFailToReceiveAdWithErrorCallback,
-                NativeDidClickCallback);
+                NativeDidClickCallback,
+                NativeExpressAdDidRenderSuccessCallback,
+                NativeExpressAdDidRenderFailCallback,
+                NativeExpressAdDidClickCloseButtonCallback
+                );
         }
 
         // Begins loading the YumiMediationNativeAd with the count you wanted.
         public void LoadAd(int adCount)
         {
+            nativeDataList = null;
             YumiExterns.RequestNativeAd(this.NativeAdPtr, adCount);
         }
 
@@ -222,7 +252,8 @@ namespace YumiMediationSDK.iOS
                 callToAction = YumiExterns.YumiNativeAdBridgeGetCallToAction(this.NativeAdPtr, adUniqueId),
                 price = YumiExterns.YumiNativeAdBridgeGetPrice(this.NativeAdPtr, adUniqueId),
                 starRating = YumiExterns.YumiNativeAdBridgeGetStarRating(this.NativeAdPtr, adUniqueId),
-                other = YumiExterns.YumiNativeAdBridgeGetOther(this.NativeAdPtr, adUniqueId)
+                other = YumiExterns.YumiNativeAdBridgeGetOther(this.NativeAdPtr, adUniqueId),
+                isExpressAdView = YumiExterns.YumiNativeAdBridgeIsExpressAdView(NativeAdPtr, adUniqueId)
             };
 
             return nativeAdData;
@@ -251,7 +282,7 @@ namespace YumiMediationSDK.iOS
                         nativeList.Add(model);
                     }
                 }
-               
+                
                 YumiNativeToLoadEventArgs args = new YumiNativeToLoadEventArgs()
                 {
                    
@@ -286,6 +317,56 @@ namespace YumiMediationSDK.iOS
             }
         }
 
+        [MonoPInvokeCallback(typeof(YumiNativeExpressAdDidRenderSuccessCallback))]
+        private static void NativeExpressAdDidRenderSuccessCallback(IntPtr nativeClient, string nativeDataKey)
+        {
+            YumiNativeClient client = IntPtrToNativeClient(nativeClient);
+            if (client.OnExpressAdRenderSuccess != null)
+            {
+                YumiNativeData model = client.GetNativeAdData(nativeDataKey);
+
+                YumiNativeDataEventArgs args = new YumiNativeDataEventArgs()
+                {
+                    nativeData = model
+                };
+                client.OnExpressAdRenderSuccess(client ,args);
+            }
+            
+        }
+        [MonoPInvokeCallback(typeof(YumiNativeExpressAdDidRenderFailCallback))]
+        private static void NativeExpressAdDidRenderFailCallback(IntPtr nativeClient, string nativeDataKey, string errorMsg)
+        {
+            YumiNativeClient client = IntPtrToNativeClient(nativeClient);
+            if (client.OnExpressAdRenderFail != null)
+            {
+                YumiNativeData model = client.GetNativeAdData(nativeDataKey);
+
+                YumiAdFailedToRenderEventArgs args = new YumiAdFailedToRenderEventArgs()
+                {
+                    nativeData = model,
+                    Message = errorMsg
+
+                };
+                client.OnExpressAdRenderFail(client, args);
+            }
+
+        }
+        [MonoPInvokeCallback(typeof(YumiNativeExpressAdDidClickCloseButtonCallback))]
+        private static void NativeExpressAdDidClickCloseButtonCallback(IntPtr nativeClient, string nativeDataKey)
+        {
+            YumiNativeClient client = IntPtrToNativeClient(nativeClient);
+            if (client.OnExpressAdClickCloseButton != null)
+            {
+                YumiNativeData model = client.GetNativeAdData(nativeDataKey);
+
+                YumiNativeDataEventArgs args = new YumiNativeDataEventArgs()
+                {
+                    nativeData = model
+                };
+                client.OnExpressAdClickCloseButton(client, args);
+            }
+
+        }
 
         private static YumiNativeClient IntPtrToNativeClient(IntPtr nativeClient)
         {
