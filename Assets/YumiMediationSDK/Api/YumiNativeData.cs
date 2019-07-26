@@ -39,5 +39,9 @@ namespace YumiMediationSDK.Api
         ///  other data
         /// </summary>
         public string other;
+        /// <summary>
+        /// Indicates whether the ad is native express ad view
+        /// </summary>
+        public bool isExpressAdView;
     }
 }
