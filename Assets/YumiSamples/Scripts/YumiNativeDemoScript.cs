@@ -62,13 +62,21 @@ public class YumiNativeDemoScript : MonoBehaviour
         statusText.text = "LoadAd";
         if (nativeAd == null)
         {
-            YumiNativeAdOptions options = new NativeAdOptionsBuilder().Build();
+            // you must set native  express ad view  transform if you want to support native express ad
+            NativeAdOptionsBuilder builder = new NativeAdOptionsBuilder();
+            builder.setExpressAdViewTransform(adPanel.transform);
 
-            nativeAd = new YumiNativeAd(NativePlacementId, ChannelId, GameVersionId, options);
+            YumiNativeAdOptions options = new YumiNativeAdOptions(builder);
+            //YumiNativeAdOptions options = new NativeAdOptionsBuilder().Build(); // only native 
+
+            nativeAd = new YumiNativeAd(NativePlacementId, ChannelId, GameVersionId, gameObject,options);
 
             nativeAd.OnNativeAdLoaded += HandleNativeAdLoaded;
             nativeAd.OnAdFailedToLoad += HandleNativeAdFailedToLoad;
             nativeAd.OnAdClick += HandleNativeAdClicked;
+            nativeAd.OnExpressAdRenderSuccess += HandleNativeExpressAdRenderSuccess;
+            nativeAd.OnExpressAdRenderFail += HandleNativeExpressAdRenderFail;
+            nativeAd.OnExpressAdClickCloseButton += HandleNativeExpressAdClickCloseButton;
         }
 
         UnregisterNativeViews();
@@ -91,16 +99,39 @@ public class YumiNativeDemoScript : MonoBehaviour
 
     }
 
+    private void ShowNatveAd(YumiNativeData nativeData)
+    {
+        statusText.text = "Show native ad ";
+
+        nativeAd.ShowView(nativeData);
+    }
+
+    private void ShowNativeExpressAd(YumiNativeData nativeData)
+    {
+        statusText.text = "Show native express ad ";
+
+        nativeAd.ShowView(nativeData);
+    }
+
     public void ShowAd()
     {
-        statusText.text = "RegisterNativeViews and ShowAd";
-        RegisterNativeViews();
         if (nativeAd.IsAdInvalidated(yumiNativeData))
         {
             statusText.text = "Native Data is invalidated";
             return;
         }
-        nativeAd.ShowView(yumiNativeData);
+
+        statusText.text = "Register native views";
+        RegisterNativeViews();
+       
+        // the ad is native ad
+        if (!yumiNativeData.isExpressAdView)
+        {
+            ShowNatveAd(yumiNativeData);
+        }
+
+        // if the ad is native express view please show ad in HandleNativeExpressAdRenderSuccess
+
     }
 
     public void HideAd()
@@ -161,6 +192,27 @@ public class YumiNativeDemoScript : MonoBehaviour
     {
         statusText.text = "HandleNativeAdClicked";
         Logger.Log("HandleNativeAdClicked");
+    }
+
+    public void HandleNativeExpressAdRenderSuccess(object sender , YumiNativeDataEventArgs args)
+    {
+        statusText.text = "HandleNativeExpressAdRenderSuccess";
+
+        ShowNativeExpressAd(args.nativeData);
+
+        Logger.Log("HandleNativeExpressAdRenderSuccess");
+    }
+    public void HandleNativeExpressAdRenderFail(object sender, YumiAdFailedToRenderEventArgs args)
+    {
+        statusText.text = "HandleNativeExpressAdRenderFail" + args.Message +"data id is " + args.nativeData.uniqueId;
+        Logger.Log("HandleNativeExpressAdRenderFail" + args.Message + "data id is " + args.nativeData.uniqueId);
+    }
+    public void HandleNativeExpressAdClickCloseButton(object sender, YumiNativeDataEventArgs args)
+    {
+        statusText.text = "HandleNativeExpressAdClickCloseButton";
+        Logger.Log("HandleNativeExpressAdClickCloseButton" + args.nativeData.uniqueId);
+
+         UnregisterNativeViews();
     }
 
     #endregion
