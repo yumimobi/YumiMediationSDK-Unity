@@ -17,11 +17,12 @@ namespace YumiMediationSDK.Api
         /// <param name="channelId">Channel identifier.</param>
         /// <param name="versionId">Version identifier.</param>
         /// <param name="options">Options.</param>
-        public YumiNativeAd(string placementId, string channelId, string versionId, YumiNativeAdOptions options)
+        public YumiNativeAd(string placementId, string channelId, string versionId, GameObject gameObject ,YumiNativeAdOptions options)
         {
+           
             client = YumiAdsClientFactory.BuildNativeClient();
 
-            client.CreateNativeAd(placementId, channelId, versionId, options);
+            client.CreateNativeAd(placementId, channelId, versionId, gameObject, options);
 
             ConfigureNativeEvents();
         }
@@ -121,6 +122,19 @@ namespace YumiMediationSDK.Api
         /// Occurs when the native ad is click.
         /// </summary>
         public event EventHandler<EventArgs> OnAdClick;
+        /// <summary>
+        /// Ad event fired when the native  express ad has been successed.
+        /// </summary>
+        public event EventHandler<YumiNativeDataEventArgs> OnExpressAdRenderSuccess;
+        /// <summary>
+        /// Ad event fired when the native  express ad has been failed.
+        /// </summary>
+        public event EventHandler<YumiAdFailedToRenderEventArgs> OnExpressAdRenderFail;
+        /// <summary>
+        /// Ad event fired when the native  express ad has been click close button.
+        /// </summary>
+        public event EventHandler<YumiNativeDataEventArgs> OnExpressAdClickCloseButton;
+
         #endregion
 
         private void ConfigureNativeEvents()
@@ -146,6 +160,28 @@ namespace YumiMediationSDK.Api
                     this.OnAdClick(this, args);
                 }
             };
+            this.client.OnExpressAdRenderSuccess += (sender, args) =>
+            {
+                if (this.OnExpressAdRenderSuccess != null)
+                {
+                    this.OnExpressAdRenderSuccess(this, args);
+                }
+            };
+            this.client.OnExpressAdRenderFail += (sender, args) =>
+            {
+                if (this.OnExpressAdRenderFail != null)
+                {
+                    this.OnExpressAdRenderFail(this, args);
+                }
+            };
+            this.client.OnExpressAdClickCloseButton += (sender, args) =>
+            {
+                if (this.OnExpressAdClickCloseButton != null)
+                {
+                    this.OnExpressAdClickCloseButton(this, args);
+                }
+            };
+
         }
     }
 }
