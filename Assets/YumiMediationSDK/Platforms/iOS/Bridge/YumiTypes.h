@@ -90,6 +90,12 @@ typedef void (*YumiNativeAdDidFailToReceiveAdWithErrorCallback)(YumiTypeNativeCl
 
 /// Callback for when an  native has clicked.
 typedef void (*YumiNativeAdDidClickCallback)(YumiTypeNativeClientRef *nativeClient);
+/// Callback for when an  native has been render success.
+typedef void (*YumiNativeExpressAdRenderSuccessDidCallback)(YumiTypeNativeClientRef *nativeClient, const char *uniqueId);
+/// Callback for when an  native has been render fail.
+typedef void (*YumiNativeExpressAdDidRenderFailCallback)(YumiTypeNativeClientRef *nativeClient,const char *uniqueId,const char *errorMsg);
+/// Callback for when an  native has been click close button.
+typedef void (*YumiNativeExpressAdDidClickCloseButtonCallback)(YumiTypeNativeClientRef *nativeClient,const char *uniqueId);
 
 #pragma mark - splash ads
 /// Type representing a Unity splash client.

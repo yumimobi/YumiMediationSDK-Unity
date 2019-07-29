@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 namespace YumiMediationSDK.Api
 {
     public class YumiNativeAdOptions
@@ -38,6 +39,10 @@ namespace YumiMediationSDK.Api
         /// </summary>
         /// <value>The type of the cover image scale.</value>
         public ScaleType coverImageScaleType { get; private set; }
+        /// <summary>
+        /// Gets express ad view transform
+        /// </summary>
+        public Transform expressAdViewTransform { get; private set; }
 
         internal YumiNativeAdOptions(NativeAdOptionsBuilder builder)
         {
@@ -48,6 +53,7 @@ namespace YumiMediationSDK.Api
             callToActionTextOptions = builder.callToActionTextOptions;
             iconScaleType = builder.iconScaleType;
             coverImageScaleType = builder.coverImageScaleType;
+            expressAdViewTransform = builder.expressAdViewTransform;
         }
     }
 
@@ -88,7 +94,7 @@ namespace YumiMediationSDK.Api
 
         internal ScaleType iconScaleType = ScaleType.SCALE_TO_FILL;
         internal ScaleType coverImageScaleType = ScaleType.SCALE_TO_FILL;
-
+        internal Transform expressAdViewTransform;
         /// <summary>
         /// Sets the ad choices position
         /// </summary>
@@ -179,6 +185,13 @@ namespace YumiMediationSDK.Api
         public NativeAdOptionsBuilder setCoverImageScaleType(ScaleType scaleType)
         {
             coverImageScaleType = scaleType;
+            return this;
+        }
+
+        public NativeAdOptionsBuilder setExpressAdViewTransform(Transform adViewTransform)
+        {
+            
+            expressAdViewTransform = adViewTransform;
             return this;
         }
         /// <summary>
