@@ -4,7 +4,7 @@ namespace YumiMediationSDK.Api
     public class YumiAdFailedToRenderEventArgs : EventArgs
     {
         /// <summary>
-        /// yumi netive data
+        /// yumi native data
         /// </summary>
         public YumiNativeData nativeData { get; set; }
         /// <summary>
