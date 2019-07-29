@@ -117,7 +117,7 @@ namespace YumiMediationSDK.iOS
             this.currentGameObject = null;
         }
 
-        public void RegisterGameObjectsForInteraction(YumiNativeData yumiNaitveData, Dictionary<NativeElemetType, Transform> elements){
+        public void RegisterNativeDataForInteraction(YumiNativeData yumiNaitveData, Dictionary<NativeElemetType, Transform> elements){
             Logger.Log("RegisterGameObjectsForInteraction");
             
             Camera camera = Camera.main;

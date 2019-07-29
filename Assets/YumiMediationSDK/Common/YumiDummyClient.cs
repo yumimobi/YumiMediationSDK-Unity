@@ -162,7 +162,7 @@ namespace YumiMediationSDK.Common
             Logger.LogError("Dummy: call DestroyNativeAd");
         }
 
-        public void RegisterGameObjectsForInteraction(YumiNativeData yumiNaitveData, Dictionary<NativeElemetType, Transform> elements)
+        public void RegisterNativeDataForInteraction(YumiNativeData yumiNaitveData, Dictionary<NativeElemetType, Transform> elements)
         {
             Logger.LogError("Dummy: call RegisterGameObjectsForInteraction");
         }
