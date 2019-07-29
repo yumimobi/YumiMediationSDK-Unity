@@ -55,7 +55,7 @@ namespace YumiMediationSDK.Api
         /// </summary>
         /// <param name="data">Data.</param>
         /// <param name="elements">Elements.</param>
-        public void RegisterGameObjectsForInteraction(YumiNativeData data, Dictionary<NativeElemetType, Transform> elements)
+        public void RegisterNativeDataForInteraction(YumiNativeData data, Dictionary<NativeElemetType, Transform> elements)
         {
         
             if (elements == null)
@@ -74,7 +74,7 @@ namespace YumiMediationSDK.Api
                 return;
             }
 
-            client.RegisterGameObjectsForInteraction(data, elements);
+            client.RegisterNativeDataForInteraction(data, elements);
         }
         /// <summary>
         ///  Determines whether nativeAd data is invalidated, if invalidated please reload
@@ -186,6 +186,11 @@ namespace YumiMediationSDK.Api
                 }
             };
 
+        }
+        [Obsolete("RegisterGameObjectsForInteraction() is deprecated, please use RegisterNativeDataForInteraction() instead.", true)]
+        public void RegisterGameObjectsForInteraction(YumiNativeData data, GameObject gameObject, Dictionary<NativeElemetType, Transform> elements)
+        {
+            Debug.Log("RegisterGameObjectsForInteraction is deprecated ");
         }
     }
 }
