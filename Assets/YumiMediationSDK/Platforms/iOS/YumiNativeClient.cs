@@ -117,9 +117,9 @@ namespace YumiMediationSDK.iOS
             this.currentGameObject = null;
         }
 
-        public void RegisterGameObjectsForInteraction(YumiNativeData yumiNaitveData, GameObject gameObject, Dictionary<NativeElemetType, Transform> elements){
+        public void RegisterGameObjectsForInteraction(YumiNativeData yumiNaitveData, Dictionary<NativeElemetType, Transform> elements){
             Logger.Log("RegisterGameObjectsForInteraction");
-            this.currentGameObject = gameObject;
+            
             Camera camera = Camera.main;
             
             RectTransform panelRectTransform = elements[NativeElemetType.PANEL] as RectTransform;

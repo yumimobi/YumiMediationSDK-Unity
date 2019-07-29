@@ -63,7 +63,7 @@ namespace YumiMediationSDK.Common
         /// <param name="yumiNaitveData">Yumi naitve data.</param>
         /// <param name="gameObject">Game object.</param>
         /// <param name="elements">Elements.</param>
-        void RegisterGameObjectsForInteraction(YumiNativeData yumiNaitveData, GameObject gameObject, Dictionary<NativeElemetType, Transform> elements);
+        void RegisterGameObjectsForInteraction(YumiNativeData yumiNaitveData, Dictionary<NativeElemetType, Transform> elements);
 
         /// <summary>
         /// In case of not showing the ad immediately after the ad has been loaded, 
