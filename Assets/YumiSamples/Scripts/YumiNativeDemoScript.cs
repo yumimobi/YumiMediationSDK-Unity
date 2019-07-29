@@ -95,7 +95,7 @@ public class YumiNativeDemoScript : MonoBehaviour
         elementsDictionary.Add(NativeElemetType.COVER_IMAGE, mediaView.transform);
         elementsDictionary.Add(NativeElemetType.CALL_TO_ACTION, callToActionButton.transform);
 
-        nativeAd.RegisterGameObjectsForInteraction(yumiNativeData, gameObject, elementsDictionary);
+        nativeAd.RegisterNativeDataForInteraction(yumiNativeData, elementsDictionary);
 
     }
 
