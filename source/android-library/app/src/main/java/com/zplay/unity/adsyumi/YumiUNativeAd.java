@@ -1,14 +1,11 @@
 package com.zplay.unity.adsyumi;
 
 import android.app.Activity;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView;
@@ -19,7 +16,9 @@ import com.yumi.android.sdk.ads.formats.YumiNativeAdView;
 import com.yumi.android.sdk.ads.publish.AdError;
 import com.yumi.android.sdk.ads.publish.NativeContent;
 import com.yumi.android.sdk.ads.publish.YumiNative;
+import com.yumi.android.sdk.ads.publish.enumbean.ExpressAdSize;
 import com.yumi.android.sdk.ads.publish.listener.IYumiNativeListener;
+import com.yumi.android.sdk.ads.utils.device.WindowSizeUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +26,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 public class YumiUNativeAd {
     private static final String TAG = "YumiUNativeAd";
@@ -57,7 +57,8 @@ public class YumiUNativeAd {
                        int titleSize, String titleColor, String titleBackgroundColor,
                        int descSize, String descColor, String descBackgroundColor,
                        int ctaSize, String ctaColor, String ctaBackgroundColor,
-                       int iconScaleType, int coverImageScaleType) {
+                       int iconScaleType, int coverImageScaleType, final int expressAdViewWidth, final int expressAdViewHeight) {
+        Log.d(TAG, "expressAdViewWidth: " + expressAdViewWidth +",expressAdViewHeight: " + expressAdViewHeight);
         mAdOptions = new NativeAdOptions(
                 adChosePosition,
                 attriPosition, attriText, attriTextSize, attriTextColor, attriTextBackgroundColor,
@@ -77,7 +78,9 @@ public class YumiUNativeAd {
                         .setAdAttributionTextColor(mAdOptions.getAttriTextColor())
                         .setAdAttributionBackgroundColor(mAdOptions.getAttriTextBackgroundColor())
                         .setAdAttributionTextSize(mAdOptions.getAttriTextSize())
-                        .setHideAdAttribution(false).build();
+                        .setHideAdAttribution(false)
+                        .setExpressAdSize(new ExpressAdSize(WindowSizeUtils.px2dip(expressAdViewWidth), WindowSizeUtils.px2dip(expressAdViewHeight)))
+                        .build();
                 mNativeAd = new YumiNative(mUnityPlayerActivity, slotId, nativeAdOptions);
                 mNativeAd.setNativeEventListener(new IYumiNativeListener() {
                     @Override
@@ -115,12 +118,46 @@ public class YumiUNativeAd {
                             mNativeAdListener.onLayerClick();
                         }
                     }
+
+                    @Override
+                    public void onExpressAdRenderFail(NativeContent nativeContent, String errorMsg) {
+                          if (mNativeAdListener != null){
+                              mNativeAdListener.onExpressAdRenderFail(getUniqueId(nativeContent), errorMsg);
+                          }
+                    }
+
+                    @Override
+                    public void onExpressAdRenderSuccess(NativeContent nativeContent) {
+                        if (mNativeAdListener != null){
+                            mNativeAdListener.onExpressAdRenderSuccess(getUniqueId(nativeContent));
+                        }
+                    }
+
+                    @Override
+                    public void onExpressAdClosed(NativeContent nativeContent) {
+                        if (mNativeAdListener != null){
+                            mNativeAdListener.onExpressAdClickCloseButton(getUniqueId(nativeContent));
+                        }
+                    }
                 });
                 mNativeAd.setChannelID(channelId);
                 mNativeAd.setVersionName(versionId);
             }
         });
     }
+
+    private String getUniqueId(NativeContent nativeContent){
+
+         if(mNativeContents != null && mNativeContents.containsValue(nativeContent)){
+            for(String uniqueId :mNativeContents.keySet()){
+                if(mNativeContents.get(uniqueId).equals(nativeContent)){
+                    return uniqueId;
+                }
+            }
+         }
+         return null;
+    }
+
 
     public void loadAd(final int count) {
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
@@ -165,6 +202,28 @@ public class YumiUNativeAd {
                     }
                 }
 
+                if(nativeContent.isExpressAdView()){
+                    FrameLayout adPlaceHolder = new FrameLayout(mUnityPlayerActivity);
+                    LayoutParams adPlaceHolderLayout = new LayoutParams(containerWidth, containerHeight);
+                    adPlaceHolderLayout.leftMargin = containerX;
+                    adPlaceHolderLayout.topMargin = containerY;
+
+                    YumiNativeAdView adView = new YumiNativeAdView(mUnityPlayerActivity);
+                    LayoutParams adViewLayout = new LayoutParams(MATCH_PARENT, MATCH_PARENT);
+
+                    FrameLayout.LayoutParams videoViewLayout = new FrameLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
+                    videoViewLayout.gravity = Gravity.CENTER;
+
+                    adView.addView(nativeContent.getExpressAdView(), videoViewLayout);
+
+                    adView.setNativeAd(nativeContent);
+                    adPlaceHolder.addView(adView, adViewLayout);
+                    mUnityPlayerActivity.addContentView(adPlaceHolder, adPlaceHolderLayout);
+
+                    adPlaceHolder.setVisibility(View.GONE);
+                    mNativeViews.put(uniqueId, adPlaceHolder);
+
+                }else{
                 if (TextUtils.equals(FACEBOOK_NAME, nativeContent.getProviderName())) {
                     try {
                         nativeContent.getIcon().setUrl(FAKE_URL);
@@ -215,8 +274,15 @@ public class YumiUNativeAd {
                     LayoutParams videoLayout = new LayoutParams(imgWidth, imgHeight);
                     videoLayout.leftMargin = imgX - containerX;
                     videoLayout.topMargin = imgY - containerY;
+
+                    FrameLayout videoView = new FrameLayout(mUnityPlayerActivity);
+                    LayoutParams videoViewLayout = new LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
+                    videoViewLayout.gravity = Gravity.CENTER;
+                    videoContainer.addView(videoView, videoViewLayout);
+
                     adView.addView(videoContainer, videoLayout);
-                    adView.setMediaLayout(videoContainer);
+
+                    adView.setMediaLayout(videoView);
                 } else {
                     final ImageView imgView = new ImageView(adView.getContext());
                     LayoutParams imgLayout = new LayoutParams(imgWidth, imgHeight);
@@ -271,11 +337,6 @@ public class YumiUNativeAd {
 
                 adPlaceHolder.setVisibility(View.GONE);
                 mNativeViews.put(uniqueId, adPlaceHolder);
-            }
-        });
-
-    }
-
 
                 }
             }
@@ -344,6 +405,14 @@ public class YumiUNativeAd {
             return mNativeContents.get(uniqueId).getOther();
         } catch (NullPointerException ignore) {
             return "";
+        }
+    }
+
+    public boolean isExpressAdView(String uniqueId) {
+        try {
+            return mNativeContents.get(uniqueId).isExpressAdView();
+        } catch (NullPointerException ignore) {
+            return false;
         }
     }
 
