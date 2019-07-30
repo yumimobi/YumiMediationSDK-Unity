@@ -27,7 +27,8 @@ public class YumiUSplash {
     private YumiUSplashListener mUnityListener;
 
     private FrameLayout mSplashContainer;
-    public YumiUSplash(Activity activity, YumiUSplashListener listener){
+
+    public YumiUSplash(Activity activity, YumiUSplashListener listener) {
         this.activity = activity;
         this.mUnityListener = listener;
     }
@@ -67,7 +68,7 @@ public class YumiUSplash {
 
                     @Override
                     public void onSplashAdFailToShow(final AdError error) {
-                        Log.d(TAG, "on splash ad show fail" +  error);
+                        Log.d(TAG, "on splash ad show fail" + error);
                         removeSplashView();
                         if (mUnityListener != null) {
                             new Thread(new Runnable() {
@@ -117,49 +118,49 @@ public class YumiUSplash {
     }
 
 
-    public void loadAdAndShow(){
-       activity.runOnUiThread(new Runnable() {
-               @Override
-               public void run() {
-               Log.d(TAG, "splash loadAdAndShow");
-               if(mYumiSplash != null){
-                   Log.d(TAG, "splash loadAdAndShow start");
-                   mSplashContainer.setVisibility(ViewGroup.VISIBLE);
-                   mSplashContainer.bringToFront();
-                   mYumiSplash.loadAdAndShowInWindow();
-               }
-           }
-       });
+    public void loadAdAndShow() {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, "splash loadAdAndShow");
+                if (mYumiSplash != null) {
+                    Log.d(TAG, "splash loadAdAndShow start");
+                    mSplashContainer.setVisibility(ViewGroup.VISIBLE);
+                    mSplashContainer.bringToFront();
+                    mYumiSplash.loadAdAndShowInWindow();
+                }
+            }
+        });
     }
 
-    public void destroy(){
+    public void destroy() {
         Log.d(TAG, "splash destroy");
-        if(mYumiSplash != null){
+        if (mYumiSplash != null) {
             mYumiSplash = null;
         }
     }
 
 
-    private void createSplashContainer(Activity activity,final double adBottomViewHeight){
-        try{
-        mSplashContainer = new FrameLayout(activity);
-        Log.d(TAG, "create splashContainer");
+    private void createSplashContainer(Activity activity, final double adBottomViewHeight) {
+        try {
+            mSplashContainer = new FrameLayout(activity);
+            Log.d(TAG, "create splashContainer");
 
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            params.bottomMargin = (int)adBottomViewHeight;
-        activity.getWindow().addContentView(mSplashContainer, params);
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            params.bottomMargin = (int) adBottomViewHeight;
+            activity.getWindow().addContentView(mSplashContainer, params);
             mSplashContainer.bringToFront();
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.e(TAG, "on createSplashContainer error : " + e);
         }
     }
 
-    private void removeSplashView(){
+    private void removeSplashView() {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 Log.d(TAG, "remove splash view");
-                if(mSplashContainer !=null){
+                if (mSplashContainer != null) {
                     mSplashContainer.setVisibility(ViewGroup.GONE);
                 }
             }

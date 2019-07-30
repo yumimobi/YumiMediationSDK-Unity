@@ -58,7 +58,7 @@ public class YumiUNativeAd {
                        int descSize, String descColor, String descBackgroundColor,
                        int ctaSize, String ctaColor, String ctaBackgroundColor,
                        int iconScaleType, int coverImageScaleType, final int expressAdViewWidth, final int expressAdViewHeight) {
-        Log.d(TAG, "expressAdViewWidth: " + expressAdViewWidth +",expressAdViewHeight: " + expressAdViewHeight);
+        Log.d(TAG, "expressAdViewWidth: " + expressAdViewWidth + ",expressAdViewHeight: " + expressAdViewHeight);
         mAdOptions = new NativeAdOptions(
                 adChosePosition,
                 attriPosition, attriText, attriTextSize, attriTextColor, attriTextBackgroundColor,
@@ -121,21 +121,21 @@ public class YumiUNativeAd {
 
                     @Override
                     public void onExpressAdRenderFail(NativeContent nativeContent, String errorMsg) {
-                          if (mNativeAdListener != null){
-                              mNativeAdListener.onExpressAdRenderFail(getUniqueId(nativeContent), errorMsg);
-                          }
+                        if (mNativeAdListener != null) {
+                            mNativeAdListener.onExpressAdRenderFail(getUniqueId(nativeContent), errorMsg);
+                        }
                     }
 
                     @Override
                     public void onExpressAdRenderSuccess(NativeContent nativeContent) {
-                        if (mNativeAdListener != null){
+                        if (mNativeAdListener != null) {
                             mNativeAdListener.onExpressAdRenderSuccess(getUniqueId(nativeContent));
                         }
                     }
 
                     @Override
                     public void onExpressAdClosed(NativeContent nativeContent) {
-                        if (mNativeAdListener != null){
+                        if (mNativeAdListener != null) {
                             mNativeAdListener.onExpressAdClickCloseButton(getUniqueId(nativeContent));
                         }
                     }
@@ -146,16 +146,16 @@ public class YumiUNativeAd {
         });
     }
 
-    private String getUniqueId(NativeContent nativeContent){
+    private String getUniqueId(NativeContent nativeContent) {
 
-         if(mNativeContents != null && mNativeContents.containsValue(nativeContent)){
-            for(String uniqueId :mNativeContents.keySet()){
-                if(mNativeContents.get(uniqueId).equals(nativeContent)){
+        if (mNativeContents != null && mNativeContents.containsValue(nativeContent)) {
+            for (String uniqueId : mNativeContents.keySet()) {
+                if (mNativeContents.get(uniqueId).equals(nativeContent)) {
                     return uniqueId;
                 }
             }
-         }
-         return null;
+        }
+        return null;
     }
 
 
@@ -202,7 +202,7 @@ public class YumiUNativeAd {
                     }
                 }
 
-                if(nativeContent.isExpressAdView()){
+                if (nativeContent.isExpressAdView()) {
                     FrameLayout adPlaceHolder = new FrameLayout(mUnityPlayerActivity);
                     LayoutParams adPlaceHolderLayout = new LayoutParams(containerWidth, containerHeight);
                     adPlaceHolderLayout.leftMargin = containerX;
@@ -223,120 +223,120 @@ public class YumiUNativeAd {
                     adPlaceHolder.setVisibility(View.GONE);
                     mNativeViews.put(uniqueId, adPlaceHolder);
 
-                }else{
-                if (TextUtils.equals(FACEBOOK_NAME, nativeContent.getProviderName())) {
-                    try {
-                        nativeContent.getIcon().setUrl(FAKE_URL);
-                        nativeContent.getCoverImage().setUrl(FAKE_URL);
-                    } catch (NullPointerException ignore) {
+                } else {
+                    if (TextUtils.equals(FACEBOOK_NAME, nativeContent.getProviderName())) {
+                        try {
+                            nativeContent.getIcon().setUrl(FAKE_URL);
+                            nativeContent.getCoverImage().setUrl(FAKE_URL);
+                        } catch (NullPointerException ignore) {
+                        }
                     }
-                }
 
-                FrameLayout adPlaceHolder = new FrameLayout(mUnityPlayerActivity);
-                LayoutParams adPlaceHolderLayout = new LayoutParams(containerWidth, containerHeight);
-                adPlaceHolderLayout.leftMargin = containerX;
-                adPlaceHolderLayout.topMargin = containerY;
+                    FrameLayout adPlaceHolder = new FrameLayout(mUnityPlayerActivity);
+                    LayoutParams adPlaceHolderLayout = new LayoutParams(containerWidth, containerHeight);
+                    adPlaceHolderLayout.leftMargin = containerX;
+                    adPlaceHolderLayout.topMargin = containerY;
 
-                YumiNativeAdView adView = new YumiNativeAdView(mUnityPlayerActivity);
-                LayoutParams adViewLayout = new LayoutParams(MATCH_PARENT, MATCH_PARENT);
+                    YumiNativeAdView adView = new YumiNativeAdView(mUnityPlayerActivity);
+                    LayoutParams adViewLayout = new LayoutParams(MATCH_PARENT, MATCH_PARENT);
 
-                TextView titleView = new TextView(adView.getContext());
-                LayoutParams titleLayout = new LayoutParams(titleWidth, titleHeight);
-                titleLayout.leftMargin = titleX - containerX;
-                titleLayout.topMargin = titleY - containerY;
-                titleView.setGravity(Gravity.CENTER_VERTICAL);
-                titleView.setTextSize(mAdOptions.getTitleSize());
-                titleView.setTextColor(mAdOptions.getTitleColor());
-                titleView.setBackgroundColor(mAdOptions.getTitleBackgroundColor());
-                titleView.setEllipsize(TextUtils.TruncateAt.END);
-                titleView.setIncludeFontPadding(false);
-                if (!TextUtils.isEmpty(nativeContent.getTitle())) {
-                    titleView.setText(nativeContent.getTitle());
-                }
-                adView.addView(titleView, titleLayout);
-                adView.setTitleView(titleView);
+                    TextView titleView = new TextView(adView.getContext());
+                    LayoutParams titleLayout = new LayoutParams(titleWidth, titleHeight);
+                    titleLayout.leftMargin = titleX - containerX;
+                    titleLayout.topMargin = titleY - containerY;
+                    titleView.setGravity(Gravity.CENTER_VERTICAL);
+                    titleView.setTextSize(mAdOptions.getTitleSize());
+                    titleView.setTextColor(mAdOptions.getTitleColor());
+                    titleView.setBackgroundColor(mAdOptions.getTitleBackgroundColor());
+                    titleView.setEllipsize(TextUtils.TruncateAt.END);
+                    titleView.setIncludeFontPadding(false);
+                    if (!TextUtils.isEmpty(nativeContent.getTitle())) {
+                        titleView.setText(nativeContent.getTitle());
+                    }
+                    adView.addView(titleView, titleLayout);
+                    adView.setTitleView(titleView);
 
-                ImageView iconView = new ImageView(adView.getContext());
-                LayoutParams iconLayout = new LayoutParams(iconWidth, iconHeight);
-                iconLayout.leftMargin = iconX - containerX;
-                iconLayout.topMargin = iconY - containerY;
-                iconView.setScaleType(mAdOptions.getIconScaleType());
-                if (nativeContent.getIcon() != null) {
-                    iconView.setImageDrawable(nativeContent.getIcon().getDrawable());
-                } else {
-                    Log.d(TAG, "icon image view is null");
-                }
-                adView.addView(iconView, iconLayout);
-                adView.setIconView(iconView);
-
-                if (nativeContent.getHasVideoContent()) {
-                    FrameLayout videoContainer = new FrameLayout(mUnityPlayerActivity);
-                    LayoutParams videoLayout = new LayoutParams(imgWidth, imgHeight);
-                    videoLayout.leftMargin = imgX - containerX;
-                    videoLayout.topMargin = imgY - containerY;
-
-                    FrameLayout videoView = new FrameLayout(mUnityPlayerActivity);
-                    LayoutParams videoViewLayout = new LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
-                    videoViewLayout.gravity = Gravity.CENTER;
-                    videoContainer.addView(videoView, videoViewLayout);
-
-                    adView.addView(videoContainer, videoLayout);
-
-                    adView.setMediaLayout(videoView);
-                } else {
-                    final ImageView imgView = new ImageView(adView.getContext());
-                    LayoutParams imgLayout = new LayoutParams(imgWidth, imgHeight);
-                    imgLayout.leftMargin = imgX - containerX;
-                    imgLayout.topMargin = imgY - containerY;
-                    imgView.setScaleType(mAdOptions.getCoverImageScaleType());
-                    if (nativeContent.getCoverImage() != null) {
-                        imgView.setImageDrawable(nativeContent.getCoverImage().getDrawable());
+                    ImageView iconView = new ImageView(adView.getContext());
+                    LayoutParams iconLayout = new LayoutParams(iconWidth, iconHeight);
+                    iconLayout.leftMargin = iconX - containerX;
+                    iconLayout.topMargin = iconY - containerY;
+                    iconView.setScaleType(mAdOptions.getIconScaleType());
+                    if (nativeContent.getIcon() != null) {
+                        iconView.setImageDrawable(nativeContent.getIcon().getDrawable());
                     } else {
-                        Log.d(TAG, "cover image view is null");
+                        Log.d(TAG, "icon image view is null");
                     }
-                    adView.addView(imgView, imgLayout);
-                    adView.setCoverImageView(imgView);
-                }
+                    adView.addView(iconView, iconLayout);
+                    adView.setIconView(iconView);
 
-                TextView actionView = new TextView(adView.getContext());
-                LayoutParams actionLayout = new LayoutParams(actionWidth, actionHeight);
-                actionLayout.leftMargin = actionX - containerX;
-                actionLayout.topMargin = actionY - containerY;
-                actionView.setGravity(Gravity.CENTER);
-                actionView.setTextSize(mAdOptions.getCtaSize());
-                actionView.setTextColor(mAdOptions.getCtaColor());
-                actionView.setEllipsize(TextUtils.TruncateAt.END);
-                actionView.setBackgroundColor(mAdOptions.getCtaBackgroundColor());
-                actionView.setIncludeFontPadding(false);
-                if (TextUtils.isEmpty(nativeContent.getCallToAction())) {
-                    actionView.setVisibility(View.GONE);
-                } else {
-                    actionView.setText(nativeContent.getCallToAction());
-                }
-                adView.addView(actionView, actionLayout);
-                adView.setCallToActionView(actionView);
+                    if (nativeContent.getHasVideoContent()) {
+                        FrameLayout videoContainer = new FrameLayout(mUnityPlayerActivity);
+                        LayoutParams videoLayout = new LayoutParams(imgWidth, imgHeight);
+                        videoLayout.leftMargin = imgX - containerX;
+                        videoLayout.topMargin = imgY - containerY;
 
-                TextView descView = new TextView(adView.getContext());
-                LayoutParams descLayout = new LayoutParams(descWidth, descHeight);
-                descLayout.leftMargin = descX - containerX;
-                descLayout.topMargin = descY - containerY;
-                descView.setTextSize(mAdOptions.getDescSize());
-                descView.setTextColor(mAdOptions.getDescColor());
-                descView.setBackgroundColor(mAdOptions.getDescBackgroundColor());
-                descView.setEllipsize(TextUtils.TruncateAt.END);
-                descView.setIncludeFontPadding(false);
-                if (!TextUtils.isEmpty(nativeContent.getDesc())) {
-                    descView.setText(nativeContent.getDesc());
-                }
-                adView.addView(descView, descLayout);
-                adView.setDescView(descView);
+                        FrameLayout videoView = new FrameLayout(mUnityPlayerActivity);
+                        LayoutParams videoViewLayout = new LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
+                        videoViewLayout.gravity = Gravity.CENTER;
+                        videoContainer.addView(videoView, videoViewLayout);
 
-                adView.setNativeAd(nativeContent);
-                adPlaceHolder.addView(adView, adViewLayout);
-                mUnityPlayerActivity.addContentView(adPlaceHolder, adPlaceHolderLayout);
+                        adView.addView(videoContainer, videoLayout);
 
-                adPlaceHolder.setVisibility(View.GONE);
-                mNativeViews.put(uniqueId, adPlaceHolder);
+                        adView.setMediaLayout(videoView);
+                    } else {
+                        final ImageView imgView = new ImageView(adView.getContext());
+                        LayoutParams imgLayout = new LayoutParams(imgWidth, imgHeight);
+                        imgLayout.leftMargin = imgX - containerX;
+                        imgLayout.topMargin = imgY - containerY;
+                        imgView.setScaleType(mAdOptions.getCoverImageScaleType());
+                        if (nativeContent.getCoverImage() != null) {
+                            imgView.setImageDrawable(nativeContent.getCoverImage().getDrawable());
+                        } else {
+                            Log.d(TAG, "cover image view is null");
+                        }
+                        adView.addView(imgView, imgLayout);
+                        adView.setCoverImageView(imgView);
+                    }
+
+                    TextView actionView = new TextView(adView.getContext());
+                    LayoutParams actionLayout = new LayoutParams(actionWidth, actionHeight);
+                    actionLayout.leftMargin = actionX - containerX;
+                    actionLayout.topMargin = actionY - containerY;
+                    actionView.setGravity(Gravity.CENTER);
+                    actionView.setTextSize(mAdOptions.getCtaSize());
+                    actionView.setTextColor(mAdOptions.getCtaColor());
+                    actionView.setEllipsize(TextUtils.TruncateAt.END);
+                    actionView.setBackgroundColor(mAdOptions.getCtaBackgroundColor());
+                    actionView.setIncludeFontPadding(false);
+                    if (TextUtils.isEmpty(nativeContent.getCallToAction())) {
+                        actionView.setVisibility(View.GONE);
+                    } else {
+                        actionView.setText(nativeContent.getCallToAction());
+                    }
+                    adView.addView(actionView, actionLayout);
+                    adView.setCallToActionView(actionView);
+
+                    TextView descView = new TextView(adView.getContext());
+                    LayoutParams descLayout = new LayoutParams(descWidth, descHeight);
+                    descLayout.leftMargin = descX - containerX;
+                    descLayout.topMargin = descY - containerY;
+                    descView.setTextSize(mAdOptions.getDescSize());
+                    descView.setTextColor(mAdOptions.getDescColor());
+                    descView.setBackgroundColor(mAdOptions.getDescBackgroundColor());
+                    descView.setEllipsize(TextUtils.TruncateAt.END);
+                    descView.setIncludeFontPadding(false);
+                    if (!TextUtils.isEmpty(nativeContent.getDesc())) {
+                        descView.setText(nativeContent.getDesc());
+                    }
+                    adView.addView(descView, descLayout);
+                    adView.setDescView(descView);
+
+                    adView.setNativeAd(nativeContent);
+                    adPlaceHolder.addView(adView, adViewLayout);
+                    mUnityPlayerActivity.addContentView(adPlaceHolder, adPlaceHolderLayout);
+
+                    adPlaceHolder.setVisibility(View.GONE);
+                    mNativeViews.put(uniqueId, adPlaceHolder);
 
                 }
             }
@@ -450,7 +450,7 @@ public class YumiUNativeAd {
     }
 
     public void removeView(final String uniqueId) {
-        try{
+        try {
             mUnityPlayerActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -468,7 +468,7 @@ public class YumiUNativeAd {
                     mNativeViews.remove(uniqueId);
                 }
             });
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.d(TAG, "removeView error ：" + e);
         }
     }
@@ -478,7 +478,7 @@ public class YumiUNativeAd {
             @Override
             public void run() {
                 if (mNativeContents != null) {
-                    for(String uniqueId : mNativeContents.keySet()){
+                    for (String uniqueId : mNativeContents.keySet()) {
                         nativeContentDestroy(uniqueId);
                     }
                     mNativeContents.clear();
@@ -501,10 +501,10 @@ public class YumiUNativeAd {
         });
     }
 
-    private void nativeContentDestroy(String uniqueId){
-        if(mNativeContents != null){
+    private void nativeContentDestroy(String uniqueId) {
+        if (mNativeContents != null) {
             NativeContent nativeContent = mNativeContents.get(uniqueId);
-            if(nativeContent != null){
+            if (nativeContent != null) {
                 nativeContent.destroy();
             }
         }

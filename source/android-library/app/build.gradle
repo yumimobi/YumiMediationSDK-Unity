@@ -21,9 +21,15 @@ android {
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.yumimobi.ads:mediation:4.1.0-alpha10'
+    implementation 'com.yumimobi.ads:mediation:4.2.0-alpha2'
 }
 
 task clearJar(type: Delete) {

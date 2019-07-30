@@ -10,7 +10,7 @@ public interface YumiUNativeAdListener {
 
     void onExpressAdRenderSuccess(String uniqueIds);
 
-    void onExpressAdRenderFail(String uniqueId,String errorMsg);
+    void onExpressAdRenderFail(String uniqueId, String errorMsg);
 
     void onExpressAdClickCloseButton(String uniqueIds);
 }
