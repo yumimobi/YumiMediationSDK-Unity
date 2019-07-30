@@ -450,19 +450,25 @@ public class YumiUNativeAd {
     }
 
     public void removeView(final String uniqueId) {
-        mUnityPlayerActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                View adView = mNativeViews.get(uniqueId);
-                if (adView != null) {
-                    Log.d(TAG, "removeView: uniqueId ：" + uniqueId);
-                    adView.setVisibility(View.GONE);
+        try{
+            mUnityPlayerActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    View adView = mNativeViews.get(uniqueId);
+                    if (adView != null) {
+                        Log.d(TAG, "removeView: uniqueId ：" + uniqueId);
+                        adView.setVisibility(View.GONE);
+                        if (adView.getParent() instanceof ViewGroup) {
+                            ((ViewGroup) adView.getParent()).removeView(adView);
+                        }
+                    }
+                    mNativeContents.remove(uniqueId);
+                    mNativeViews.remove(uniqueId);
                 }
-                mNativeContents.remove(uniqueId);
-                mNativeViews.remove(uniqueId);
-            }
-        });
-
+            });
+        }catch (Exception e){
+            Log.d(TAG, "removeView error ：" + e);
+        }
     }
 
     public void destroy() {
