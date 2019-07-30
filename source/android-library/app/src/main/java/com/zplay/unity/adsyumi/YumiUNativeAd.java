@@ -35,8 +35,6 @@ public class YumiUNativeAd {
 
     private static final String FACEBOOK_NAME = "Facebook";
 
-    private static final int TEXT_SIZE_DELTA = 2;
-
     private YumiNative mNativeAd;
     private YumiUNativeAdListener mNativeAdListener;
 
@@ -450,27 +448,24 @@ public class YumiUNativeAd {
     }
 
     public void removeView(final String uniqueId) {
-        try {
-            mUnityPlayerActivity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    View adView = mNativeViews.get(uniqueId);
-                    if (adView != null) {
-                        Log.d(TAG, "removeView: uniqueId ：" + uniqueId);
-                        adView.setVisibility(View.GONE);
-                        if (adView.getParent() instanceof ViewGroup) {
-                            ((ViewGroup) adView.getParent()).removeView(adView);
-                        }
-                    }
+        mUnityPlayerActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
 
-                    nativeContentDestroy(uniqueId);
-                    mNativeContents.remove(uniqueId);
-                    mNativeViews.remove(uniqueId);
+                View adView = mNativeViews.get(uniqueId);
+                if (adView != null) {
+                    Log.d(TAG, "removeView: uniqueId ：" + uniqueId);
+                    adView.setVisibility(View.GONE);
+                    if (adView.getParent() instanceof ViewGroup) {
+                        ((ViewGroup) adView.getParent()).removeView(adView);
+                    }
                 }
-            });
-        } catch (Exception e) {
-            Log.d(TAG, "removeView error ：" + e);
-        }
+
+                nativeContentDestroy(uniqueId);
+                mNativeContents.remove(uniqueId);
+                mNativeViews.remove(uniqueId);
+            }
+        });
     }
 
     public void destroy() {
