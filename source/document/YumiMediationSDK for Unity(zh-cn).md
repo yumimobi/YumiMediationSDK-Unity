@@ -604,12 +604,21 @@ public class YumiNativeScene : MonoBehaviour
         #else
           string nativePlacementId = "unexpected_platform";
         #endif
-        YumiNativeAdOptions options = new NativeAdOptionsBuilder().Build();
-        this.nativeAd = new YumiNativeAd(nativePlacementId, channelId, gameVersionId, options);
-        // callBack
-        this.nativeAd.OnNativeAdLoaded += HandleNativeAdLoaded;
-        this.nativeAd.OnAdFailedToLoad += HandleNativeAdFailedToLoad;
-        this.nativeAd.OnAdClick += HandleNativeAdClicked;
+        // you must set native  express ad view  transform if you want to support native express ad
+        NativeAdOptionsBuilder builder = new NativeAdOptionsBuilder();
+        builder.setExpressAdViewTransform(adPanel.transform);
+
+        YumiNativeAdOptions options = new YumiNativeAdOptions(builder);
+        // YumiNativeAdOptions options = new NativeAdOptionsBuilder().Build(); // only native ad
+        nativeAd = new YumiNativeAd(NativePlacementId, ChannelId, GameVersionId, gameObject,options);
+        // call back
+        nativeAd.OnNativeAdLoaded += HandleNativeAdLoaded;
+        nativeAd.OnAdFailedToLoad += HandleNativeAdFailedToLoad;
+        nativeAd.OnAdClick += HandleNativeAdClicked;
+        /// ------only available in ExpressAdView------
+        nativeAd.OnExpressAdRenderSuccess += HandleNativeExpressAdRenderSuccess;
+        nativeAd.OnExpressAdRenderFail += HandleNativeExpressAdRenderFail;
+        nativeAd.OnExpressAdClickCloseButton += HandleNativeExpressAdClickCloseButton;
     }
     #region native call back handles
     public void HandleNativeAdLoaded(object sender, YumiNativeToLoadEventArgs args)
@@ -637,7 +646,19 @@ public class YumiNativeScene : MonoBehaviour
     {
         Logger.Log("HandleNativeAdClicked");
     }
-
+    /// ------only available in ExpressAdView------
+     public void HandleNativeExpressAdRenderSuccess(object sender , YumiNativeDataEventArgs args)
+    {
+        Logger.Log("HandleNativeExpressAdRenderSuccess");
+    }
+    public void HandleNativeExpressAdRenderFail(object sender, YumiAdFailedToRenderEventArgs args)
+    {
+        Logger.Log("HandleNativeExpressAdRenderFail" + args.Message + "data id is " + args.nativeData.uniqueId);
+    }
+    public void HandleNativeExpressAdClickCloseButton(object sender, YumiNativeDataEventArgs args)
+    {
+        Logger.Log("HandleNativeExpressAdClickCloseButton" + args.nativeData.uniqueId);
+    }
     #endregion
 }
 ```
@@ -648,17 +669,33 @@ public class YumiNativeScene : MonoBehaviour
 
 ```c#
 // AdOptionViewPosition: TOP_LEFT,TOP_RIGHT,BOTTOM_LEFT,BOTTOM_RIGHT
-internal AdOptionViewPosition adChoiseViewPosition;
+public AdOptionViewPosition adChoiseViewPosition { get; private set; }
 // AdAttribution: AdOptionsPosition、text、textColor、backgroundColor、textSize、hide
-internal AdAttribution adAttribution;
+public AdAttribution adAttribution { get; private set; }
 // TextOptions: textSize，textColor，backgroundColor
-internal TextOptions titleTextOptions;
-internal TextOptions descTextOptions;
-internal TextOptions callToActionTextOptions;
+public TextOptions titleTextOptions { get; private set; }
+public TextOptions descTextOptions { get; private set; }
+public TextOptions callToActionTextOptions { get; private set; }
 // ScaleType: SCALE_TO_FILL、SCALE_ASPECT_FIT、SCALE_ASPECT_FILL
-internal ScaleType iconScaleType;
-internal ScaleType coverImageScaleType;
+public ScaleType iconScaleType { get; private set; }
+public ScaleType coverImageScaleType { get; private set; }
+// native express ad view  transform
+public Transform expressAdViewTransform { get; private set; }
 ```
+默认创建 `YumiNativeAdOptions` 实例代码：
+```C#
+YumiNativeAdOptions options = new NativeAdOptionsBuilder().Build();
+```
+
+自定义创建 `YumiNativeAdOptions` 实例代码：
+```C#
+ NativeAdOptionsBuilder builder = new NativeAdOptionsBuilder();
+ builder.setExpressAdViewTransform(adPanel.transform);
+
+ YumiNativeAdOptions options = new YumiNativeAdOptions(builder);
+```
+**如果要支持原生模板广告必须使用 `builder.setExpressAdViewTransform(adPanel.transform);` 创建 options 对象**
+
 
 #### 5.4.3 请求 Native
 
@@ -709,7 +746,7 @@ public class YumiNativeScene : MonoBehaviour
         elementsDictionary.Add(NativeElemetType.COVER_IMAGE, mediaView.transform);
         elementsDictionary.Add(NativeElemetType.CALL_TO_ACTION, callToActionButton.transform);
         // This is a method to associate a YumiNativeData with the ad assets gameobject you will use to display the native ads.
-        this.nativeAd.RegisterGameObjectsForInteraction(yumiNativeData, gameObject, elementsDictionary);
+        nativeAd.RegisterNativeDataForInteraction(yumiNativeData, elementsDictionary);
 
     }
 }
@@ -717,6 +754,7 @@ public class YumiNativeScene : MonoBehaviour
 
 #### 5.4.6 展示 Native View
 
+1. 原生广告
 ```C#
 // Determines whether nativeAd data is invalidated, if invalidated please reload
 if (this.nativeAd.IsAdInvalidated(yumiNativeData))
@@ -724,7 +762,20 @@ if (this.nativeAd.IsAdInvalidated(yumiNativeData))
       Logger.Log("Native Data is invalidated");
       return;
   }
-  this.nativeAd.ShowView(yumiNativeData);
+// the ad is native ad
+if (!yumiNativeData.isExpressAdView)
+  {
+    this.nativeAd.ShowView(yumiNativeData);
+  }
+  
+```
+2. 原生模板广告
+```C#
+  // if the ad is native express view please show ad in HandleNativeExpressAdRenderSuccess
+  if (yumiNativeData.isExpressAdView)
+  {
+    // ...
+  }
 ```
 
 - 注意：显示广告前，您必须注册布局并检查广告是否已经无效。
