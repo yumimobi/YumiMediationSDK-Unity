@@ -462,6 +462,8 @@ public class YumiUNativeAd {
                             ((ViewGroup) adView.getParent()).removeView(adView);
                         }
                     }
+
+                    nativeContentDestroy(uniqueId);
                     mNativeContents.remove(uniqueId);
                     mNativeViews.remove(uniqueId);
                 }
@@ -476,6 +478,9 @@ public class YumiUNativeAd {
             @Override
             public void run() {
                 if (mNativeContents != null) {
+                    for(String uniqueId : mNativeContents.keySet()){
+                        nativeContentDestroy(uniqueId);
+                    }
                     mNativeContents.clear();
                 }
 
@@ -494,5 +499,14 @@ public class YumiUNativeAd {
                 mNativeAdListener = null;
             }
         });
+    }
+
+    private void nativeContentDestroy(String uniqueId){
+        if(mNativeContents != null){
+            NativeContent nativeContent = mNativeContents.get(uniqueId);
+            if(nativeContent != null){
+                nativeContent.destroy();
+            }
+        }
     }
 }
