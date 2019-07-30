@@ -210,7 +210,7 @@ public class YumiUNativeAd {
                 adView.addView(iconView, iconLayout);
                 adView.setIconView(iconView);
 
-                if (nativeContent.getHasVideoContent() && hasHardwareAcceleration(mUnityPlayerActivity)) {
+                if (nativeContent.getHasVideoContent()) {
                     FrameLayout videoContainer = new FrameLayout(mUnityPlayerActivity);
                     LayoutParams videoLayout = new LayoutParams(imgWidth, imgHeight);
                     videoLayout.leftMargin = imgX - containerX;
@@ -276,29 +276,11 @@ public class YumiUNativeAd {
 
     }
 
-    // https://stackoverflow.com/a/18595681/7785373
-    private static boolean hasHardwareAcceleration(Activity activity) {
-        // Has HW acceleration been enabled manually in the current window?
-        Window window = activity.getWindow();
-        if (window != null) {
-            if ((window.getAttributes().flags
-                    & WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED) != 0) {
-                return true;
-            }
-        }
 
-        // Has HW acceleration been enabled in the manifest?
-        try {
-            ActivityInfo info = activity.getPackageManager().getActivityInfo(
-                    activity.getComponentName(), 0);
-            if ((info.flags & ActivityInfo.FLAG_HARDWARE_ACCELERATED) != 0) {
-                return true;
+                }
             }
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.e("Chrome", "getActivityInfo(self) should not fail");
-        }
+        });
 
-        return false;
     }
 
     public String getTitle(String uniqueId) {
