@@ -3,6 +3,7 @@ package com.zplay.unity.adsyumi;
 import com.yumi.android.sdk.ads.publish.AdError;
 import com.yumi.android.sdk.ads.publish.YumiBanner;
 import com.yumi.android.sdk.ads.publish.listener.IYumiBannerListener;
+
 import android.app.Activity;
 import android.widget.FrameLayout;
 import android.graphics.Point;
@@ -10,12 +11,13 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.content.Context;
+
 import com.yumi.android.sdk.ads.publish.enumbean.AdSize;
 
 public class YumiUBanner {
 
     private final String TAG = "zplayPluginActivity";
-    private  FrameLayout zplay_view;
+    private FrameLayout zplay_view;
     private YumiBanner bannerAdView;
     private IYumiBannerListener bannerListener;
 
@@ -124,7 +126,7 @@ public class YumiUBanner {
         });
     }
 
-    private void setBannerContentView(boolean isMatchWindowWidth){
+    private void setBannerContentView(boolean isMatchWindowWidth) {
         if (null != zplay_view) {
             zplay_view.removeAllViews();
         } else {
@@ -170,17 +172,17 @@ public class YumiUBanner {
         }
     }
 
-    public void requestAd(final boolean isSmart){
+    public void requestAd(final boolean isSmart) {
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 Log.d(TAG, "Calling requestAd() on Android isSmart is " + isSmart);
-                if (bannerAdView != null){
+                if (bannerAdView != null) {
 
-                    if (zplay_view == null){
+                    if (zplay_view == null) {
                         setBannerContentView(isSmart);
                         AdSize adSize;
-                        switch (adSizeCode){
+                        switch (adSizeCode) {
                             case 0:
                                 adSize = AdSize.BANNER_SIZE_320X50;
                                 break;
@@ -205,22 +207,24 @@ public class YumiUBanner {
             }
         });
     }
-    public  void showBannerView(){
+
+    public void showBannerView() {
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if(bannerAdView != null){
+                if (bannerAdView != null) {
                     Log.d(TAG, "show banner view");
                     bannerAdView.resumeBanner();
                 }
             }
         });
     }
-    public  void  hideBanner(){
+
+    public void hideBanner() {
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (bannerAdView != null){
+                if (bannerAdView != null) {
                     Log.d(TAG, "hide banner view");
                     bannerAdView.dismissBanner();
                 }
@@ -228,18 +232,20 @@ public class YumiUBanner {
         });
 
     }
-    public void destroyBanner(){
+
+    public void destroyBanner() {
         mUnityPlayerActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (bannerAdView != null){
+                if (bannerAdView != null) {
                     Log.d(TAG, "destroy banner view");
-                    bannerAdView.onDestroy();
+                    bannerAdView.destroy();
                     bannerAdView = null;
                 }
             }
         });
     }
+
     public final static int getWindowWidth(Context context) {
         DisplayMetrics displayMetrics = context.getResources()
                 .getDisplayMetrics();
@@ -247,7 +253,8 @@ public class YumiUBanner {
         int height = displayMetrics.heightPixels;
         return width;
     }
-    private final  boolean isApproximateTablet(Context context) {
+
+    private final boolean isApproximateTablet(Context context) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
@@ -259,7 +266,7 @@ public class YumiUBanner {
         return false;
     }
 
-    private  int dip2px(Context context, float dipValue) {
+    private int dip2px(Context context, float dipValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);
     }
@@ -269,7 +276,7 @@ public class YumiUBanner {
         return (int) (pxValue / scale + 0.5f);
     }
 
-    private  boolean isPortrait(Context context) {
+    private boolean isPortrait(Context context) {
         try {
             DisplayMetrics dm = context.getResources().getDisplayMetrics();
             if (dm.widthPixels <= dm.heightPixels) {
@@ -279,6 +286,7 @@ public class YumiUBanner {
         }
         return false;
     }
+
     private boolean isTablet(Activity activity) {
         if (android.os.Build.VERSION.SDK_INT >= 17) {
             Point point = new Point();

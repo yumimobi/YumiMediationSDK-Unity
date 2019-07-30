@@ -21,14 +21,35 @@ namespace YumiMediationSDK.Android
             this.nativeAd = new AndroidJavaObject(
                 YumiUtils.NativeAdClassName, activity, this);
         }
-
+        // Ad event fired when the native ad has been received.
         public event EventHandler<YumiNativeToLoadEventArgs> OnNativeAdLoaded;
+        // Ad event fired when the native ad has failed to load.
         public event EventHandler<YumiAdFailedToLoadEventArgs> OnAdFailedToLoad;
+        // Ad event fired when the native ad is click.
         public event EventHandler<EventArgs> OnAdClick;
+        /// Ad event fired when the native  express ad has been successed
+        public event EventHandler<YumiNativeDataEventArgs> OnExpressAdRenderSuccess;
+        /// Ad event fired when the native  express ad has been failed.
+        public event EventHandler<YumiAdFailedToRenderEventArgs> OnExpressAdRenderFail;
+        // Ad event fired when the native  express ad has been click close button.
+        public event EventHandler<YumiNativeDataEventArgs> OnExpressAdClickCloseButton;
 
-        public void CreateNativeAd(string placementId, string channelId, string versionId, YumiNativeAdOptions options)
+        public void CreateNativeAd(string placementId, string channelId, string versionId, GameObject gameObject, YumiNativeAdOptions options)
         {
+            currentGameObject = gameObject;
             this.options = options;
+
+            Camera camera = Camera.main;
+            int expressAdViewWidth = 0;
+            int expressAdViewHeight = 0;
+
+            if (options.expressAdViewTransform != null)
+            {
+                Rect adViewRect = getGameObjectRect(options.expressAdViewTransform as RectTransform, camera);
+                expressAdViewWidth = (int)adViewRect.width;
+                expressAdViewHeight = (int)adViewRect.height;
+            }
+
             AdAttribution aab = options.adAttribution;
             TextOptions titleOps = options.titleTextOptions;
             TextOptions ctaOps = options.callToActionTextOptions;
@@ -46,7 +67,7 @@ namespace YumiMediationSDK.Android
                 // int ctaSize, String ctaColor, String ctaBackgroundColor,
                 ctaOps.textSize, getColorString(ctaOps.textColor), getColorString(ctaOps.backgroundColor),
                 // int iconScaleType, int coverImageScaleType
-                (int)options.iconScaleType, (int)options.coverImageScaleType);
+                (int)options.iconScaleType, (int)options.coverImageScaleType, expressAdViewWidth, expressAdViewHeight);
 
             Logger.Log("YumiUNativeAd unity: create 2");
         }
@@ -61,10 +82,9 @@ namespace YumiMediationSDK.Android
             nativeAd.Call("loadAd", adCount);
         }
 
-        public void RegisterGameObjectsForInteraction(YumiNativeData yumiNaitveData, GameObject gameObject, Dictionary<NativeElemetType, Transform> elements)
+        public void RegisterNativeDataForInteraction(YumiNativeData yumiNaitveData, Dictionary<NativeElemetType, Transform> elements)
         {
             Logger.Log("YumiNativeClient: RegisterGameObjectsForInteraction " + yumiNaitveData.uniqueId);
-            currentGameObject = gameObject;
             Camera camera = Camera.main;
             RectTransform panel = elements[NativeElemetType.PANEL] as RectTransform;
             RectTransform titile = elements[NativeElemetType.TITLE] as RectTransform;
@@ -177,12 +197,12 @@ namespace YumiMediationSDK.Android
             }
             YumiNativeToLoadEventArgs args = new YumiNativeToLoadEventArgs()
             {
-                nativeData = getNativeData(uniqueIds)
+                nativeData = getNativeDatas(uniqueIds)
             };
             OnNativeAdLoaded(this, args);
         }
 
-        private List<YumiNativeData> getNativeData(string uniqueIds)
+        private List<YumiNativeData> getNativeDatas(string uniqueIds)
         {
             List<YumiNativeData> result = new List<YumiNativeData>();
             string[] uIds = uniqueIds.Split(',');
@@ -196,6 +216,7 @@ namespace YumiMediationSDK.Android
                 string price = nativeAd.Call<string>("getPrice", uId);
                 string starRating = nativeAd.Call<string>("getStarRating", uId);
                 string other = nativeAd.Call<string>("getOther", uId);
+                bool isExpressAdView = nativeAd.Call<bool>("isExpressAdView", uId);
 
                 YumiNativeData e = new YumiNativeData
                 {
@@ -207,7 +228,8 @@ namespace YumiMediationSDK.Android
                     callToAction = callToAction,
                     price = price,
                     starRating = starRating,
-                    other = other
+                    other = other,
+                    isExpressAdView = isExpressAdView
                 };
 
                 result.Add(e);
@@ -228,6 +250,75 @@ namespace YumiMediationSDK.Android
         {
             OnAdClick(this, EventArgs.Empty);
         }
+
+        void onExpressAdRenderSuccess(string uniqueId) {
+            if (uniqueId == null)
+            {
+                return;
+            }
+            YumiNativeDataEventArgs args = new YumiNativeDataEventArgs()
+            {
+                nativeData = getNativeData(uniqueId)
+            };
+            OnExpressAdRenderSuccess(this, args);
+        }
+
+        void onExpressAdRenderFail(string uniqueId,string errorMsg)
+        {
+            if (uniqueId == null)
+            {
+                return;
+            }
+            YumiAdFailedToRenderEventArgs args = new YumiAdFailedToRenderEventArgs()
+            {
+                nativeData = getNativeData(uniqueId),
+                Message = errorMsg
+            };
+            OnExpressAdRenderFail(this, args);
+        }
+
+        void onExpressAdClickCloseButton(string uniqueId)
+        {
+            if (uniqueId == null)
+            {
+                return;
+            }
+            YumiNativeDataEventArgs args = new YumiNativeDataEventArgs()
+            {
+                nativeData = getNativeData(uniqueId)
+            };
+            OnExpressAdClickCloseButton(this, args);
+        }
+
+        private YumiNativeData getNativeData(string uniqueId)
+        {
+            string title = nativeAd.Call<string>("getTitle", uniqueId);
+            string description = nativeAd.Call<string>("getDescription", uniqueId);
+            string iconUrl = nativeAd.Call<string>("getIconURL", uniqueId);
+            string coverImageUrl = nativeAd.Call<string>("getCoverImageURL", uniqueId);
+            string callToAction = nativeAd.Call<string>("getCallToAction", uniqueId);
+            string price = nativeAd.Call<string>("getPrice", uniqueId);
+            string starRating = nativeAd.Call<string>("getStarRating", uniqueId);
+            string other = nativeAd.Call<string>("getOther", uniqueId);
+            bool isExpressAdView = nativeAd.Call<bool>("isExpressAdView", uniqueId);
+
+            YumiNativeData e = new YumiNativeData
+            {
+                uniqueId = uniqueId,
+                title = title,
+                desc = description,
+                iconURL = iconUrl,
+                coverImageURL = coverImageUrl,
+                callToAction = callToAction,
+                price = price,
+                starRating = starRating,
+                other = other,
+                isExpressAdView = isExpressAdView
+            };
+
+           return e;
+        }
+
         #endregion
     }
 }

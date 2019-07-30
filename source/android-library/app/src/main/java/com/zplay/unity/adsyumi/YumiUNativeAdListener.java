@@ -8,4 +8,9 @@ public interface YumiUNativeAdListener {
 
     void onLayerClick();
 
+    void onExpressAdRenderSuccess(String uniqueIds);
+
+    void onExpressAdRenderFail(String uniqueId, String errorMsg);
+
+    void onExpressAdClickCloseButton(String uniqueIds);
 }
