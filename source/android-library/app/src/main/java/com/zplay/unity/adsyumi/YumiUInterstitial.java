@@ -172,7 +172,7 @@ public class YumiUInterstitial {
             public void run() {
                 if (interstitial != null){
                     isReady = false;
-                    interstitial.showInterstitial(false);
+                    interstitial.showInterstitial();
                 }
             }
         });
@@ -185,7 +185,7 @@ public class YumiUInterstitial {
             @Override
             public void run() {
                 if (interstitial != null){
-                    interstitial.onDestory();
+                    interstitial.destroy();
                 }
             }
         });
