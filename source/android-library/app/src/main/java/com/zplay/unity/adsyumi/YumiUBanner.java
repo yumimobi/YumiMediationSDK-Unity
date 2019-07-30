@@ -234,7 +234,7 @@ public class YumiUBanner {
             public void run() {
                 if (bannerAdView != null){
                     Log.d(TAG, "destroy banner view");
-                    bannerAdView.onDestroy();
+                    bannerAdView.destroy();
                     bannerAdView = null;
                 }
             }

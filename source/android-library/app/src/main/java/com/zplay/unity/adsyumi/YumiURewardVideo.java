@@ -175,7 +175,7 @@ public class YumiURewardVideo {
     }
     public boolean isReady(){
         if (rewardVideo != null)
-            return rewardVideo.isMediaPrepared();
+            return rewardVideo.isReady();
         return false;
     }
     public  void playRewardVideo(){
@@ -196,7 +196,7 @@ public class YumiURewardVideo {
             public void run() {
                 Log.d(TAG, "destroy RewardVideo ");
                 if (rewardVideo != null){
-                    rewardVideo.onDestory();
+                    rewardVideo.destroy();
                 }
             }
         });
