@@ -193,44 +193,36 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ```xml
 <androidPackages>
-  <androidPackage spec="com.yumimobi.ads:mediation:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:playableads:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:admob:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.1.0"/>
-  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inneractive:4.1.0"/>
-  <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:iqzone:4.1.0">
-      <repositories>
-          <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
-          <repository>https://dl.bintray.com/yumimobi/ads/</repository>
-          <repository>https://s3.amazonaws.com/moat-sdk-builds/</repository>
-      </repositories>
-  </androidPackage>
-
-  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.1.0" >
-      <repositories>
-          <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
-      </repositories>
-  </androidPackage>
-  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:unity:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads:mediation:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:playableads:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:admob:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.2.0"/>
+  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inneractive:4.2.0"/>
+  <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:tapjoy:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:unity:4.2.0" />
   <repositories>
+      <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
+      <repository>https://dl.bintray.com/yumimobi/ads/</repository>
+      <repository>https://tapjoy.bintray.com/maven</repository>
       <repository>https://jcenter.bintray.com/</repository>
       <repository>https://maven.google.com/</repository>
   </repositories>
 </androidPackages>
 ```
 
-比如删除 `admob`，直接删除 `<androidPackage spec="com.yumimobi.ads.mediation:admob:4.1.0" />` 即可。
+比如删除 `admob`，直接删除 `<androidPackage spec="com.yumimobi.ads.mediation:admob:4.2.0" />` 即可。
 
 **注意: Unity 插件会自动引用第三方广告 SDK，您无需手动添加。**
 ## 5 选择广告形式

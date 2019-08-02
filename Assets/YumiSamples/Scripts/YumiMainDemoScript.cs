@@ -65,8 +65,8 @@ public class YumiMainDemoScript : MonoBehaviour
 
         //Yumi banner
         int btnWidth = (Screen.width - 40 * 2 - 10) / 2;
-
-        if (GUI.Button(new Rect(40, 84, btnWidth, 120), "request banner", myButtonStyle))
+        int bannerBtnWidth = (Screen.width - 40 * 2 - 10) / 3;
+        if (GUI.Button(new Rect(40, 84, bannerBtnWidth, 120), "request banner", myButtonStyle))
         {
 
             if (this.bannerView == null)
@@ -81,15 +81,24 @@ public class YumiMainDemoScript : MonoBehaviour
 
 
             this.bannerView.LoadAd();
-            this.bannerView.Show();
 
         }
         //remove banner
-        if (GUI.Button(new Rect(40 + btnWidth + 10, 84, btnWidth, 120), "hide banner", myButtonStyle))
+        if (GUI.Button(new Rect(40 + bannerBtnWidth + 10, 84, bannerBtnWidth, 120), "hide banner", myButtonStyle))
         {
             if (this.bannerView != null)
             {
                 this.bannerView.Hide();
+            }
+
+        }
+
+        //show banner
+        if (GUI.Button(new Rect(40 + bannerBtnWidth * 2 + 10, 84, bannerBtnWidth , 120), "show banner", myButtonStyle))
+        {
+            if (this.bannerView != null)
+            {
+                this.bannerView.Show();
             }
 
         }
