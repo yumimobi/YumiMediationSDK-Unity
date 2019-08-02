@@ -128,55 +128,55 @@ iOS dependencies：
 
 ```xml
     <iosPods>
-        <iosPod name="YumiMediationSDK" version="4.1.0" minTargetSdk="8.0">
+        <iosPod name="YumiMediationSDK" version="4.2.0" minTargetSdk="8.0">
             <sources>
                 <source>https://github.com/CocoaPods/Specs</source>
             </sources>
         </iosPod>
         <!-- adapters -->
-        <iosPod name="YumiMediationAdapters/AdColony" version="4.1.0">
+        <iosPod name="YumiMediationAdapters/AdColony" version="4.2.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/AdMob" version="4.1.0">
+        <iosPod name="YumiMediationAdapters/AdMob" version="4.2.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/AppLovin" version="4.1.0">
+        <iosPod name="YumiMediationAdapters/AppLovin" version="4.2.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Baidu" version="4.1.0">
+        <iosPod name="YumiMediationAdapters/Baidu" version="4.2.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Chartboost" version="4.1.0">
+        <iosPod name="YumiMediationAdapters/Chartboost" version="4.2.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Domob" version="4.1.0">
+        <iosPod name="YumiMediationAdapters/Domob" version="4.2.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Facebook" version="4.1.0">
+        <iosPod name="YumiMediationAdapters/Facebook" version="4.2.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/GDT" version="4.1.0">
+        <iosPod name="YumiMediationAdapters/GDT" version="4.2.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/InMobi" version="4.1.0">
+        <iosPod name="YumiMediationAdapters/InMobi" version="4.2.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/IronSource" version="4.1.0">
+        <iosPod name="YumiMediationAdapters/IronSource" version="4.2.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Unity" version="4.1.0">
+        <iosPod name="YumiMediationAdapters/Unity" version="4.2.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Vungle" version="4.1.0">
+        <iosPod name="YumiMediationAdapters/Vungle" version="4.2.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Mintegral" version="4.1.0">
+        <iosPod name="YumiMediationAdapters/Mintegral" version="4.2.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/OneWay" version="4.1.0">
+        <iosPod name="YumiMediationAdapters/OneWay" version="4.2.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/ZplayAds" version="4.1.0">
+        <iosPod name="YumiMediationAdapters/ZplayAds" version="4.2.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/IQzone" version="4.1.0">
+        <iosPod name="YumiMediationAdapters/TapjoySDK" version="4.2.0">
         </iosPod>
-         <iosPod name="YumiMediationAdapters/BytedanceAds" version="4.1.0">
+         <iosPod name="YumiMediationAdapters/BytedanceAds" version="4.2.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/InneractiveAdSDK" version="4.1.0">
+        <iosPod name="YumiMediationAdapters/InneractiveAdSDK" version="4.2.0">
         </iosPod>
         <!-- debugCenter -->
-        <iosPod name="YumiMediationDebugCenter-iOS" version="4.1.0">
+        <iosPod name="YumiMediationDebugCenter-iOS" version="4.2.0">
         </iosPod>
     </iosPods>
 ```
 
-e.g., Delete `AdMob`, Delete `<iosPod name="YumiMediationAdapters/AdMob" version="4.1.0"></iosPod>`  
+e.g., Delete `AdMob`, Delete `<iosPod name="YumiMediationAdapters/AdMob" version="4.2.0"></iosPod>`  
 
 Complete the above procedure, Open **xcworkspace** project.
 
@@ -195,43 +195,35 @@ Android dependencies:
 
 ```xml
 <androidPackages>
-  <androidPackage spec="com.yumimobi.ads:mediation:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:playableads:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:admob:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.1.0"/>
-  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inneractive:4.1.0"/>
-  <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:iqzone:4.1.0">
-      <repositories>
-          <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
-          <repository>https://dl.bintray.com/yumimobi/ads/</repository>
-          <repository>https://s3.amazonaws.com/moat-sdk-builds/</repository>
-      </repositories>
-  </androidPackage>
-
-  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.1.0" >
-      <repositories>
-          <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
-      </repositories>
-  </androidPackage>
-  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.1.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:unity:4.1.0" />
+  <androidPackage spec="com.yumimobi.ads:mediation:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:playableads:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:admob:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.2.0"/>
+  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inneractive:4.2.0"/>
+  <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:tapjoy:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:unity:4.2.0" />
   <repositories>
+      <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
+      <repository>https://dl.bintray.com/yumimobi/ads/</repository>
+      <repository>https://tapjoy.bintray.com/maven</repository>
       <repository>https://jcenter.bintray.com/</repository>
       <repository>https://maven.google.com/</repository>
   </repositories>
 </androidPackages>
 ```
-e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:4.1.0" />`.
+e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:4.2.0" />`.
 
 **Note: Unity plugin will auto download the thirdparty network's SDK, you don't need add it by manual.**
 
@@ -609,12 +601,21 @@ public class YumiNativeScene : MonoBehaviour
         #else
           string nativePlacementId = "unexpected_platform";
         #endif
-        YumiNativeAdOptions options = new NativeAdOptionsBuilder().Build();
-        this.nativeAd = new YumiNativeAd(nativePlacementId, channelId, gameVersionId, options);
-        // callBack
-        this.nativeAd.OnNativeAdLoaded += HandleNativeAdLoaded;
-        this.nativeAd.OnAdFailedToLoad += HandleNativeAdFailedToLoad;
-        this.nativeAd.OnAdClick += HandleNativeAdClicked;
+       // you must set native  express ad view  transform if you want to support native express ad
+        NativeAdOptionsBuilder builder = new NativeAdOptionsBuilder();
+        builder.setExpressAdViewTransform(adPanel.transform);
+
+        YumiNativeAdOptions options = new YumiNativeAdOptions(builder);
+        // YumiNativeAdOptions options = new NativeAdOptionsBuilder().Build(); // only native ad
+        nativeAd = new YumiNativeAd(NativePlacementId, ChannelId, GameVersionId, gameObject,options);
+        // call back
+        nativeAd.OnNativeAdLoaded += HandleNativeAdLoaded;
+        nativeAd.OnAdFailedToLoad += HandleNativeAdFailedToLoad;
+        nativeAd.OnAdClick += HandleNativeAdClicked;
+        /// ------only available in ExpressAdView------
+        nativeAd.OnExpressAdRenderSuccess += HandleNativeExpressAdRenderSuccess;
+        nativeAd.OnExpressAdRenderFail += HandleNativeExpressAdRenderFail;
+        nativeAd.OnExpressAdClickCloseButton += HandleNativeExpressAdClickCloseButton;
     }
     #region native call back handles
     public void HandleNativeAdLoaded(object sender, YumiNativeToLoadEventArgs args)
@@ -642,7 +643,19 @@ public class YumiNativeScene : MonoBehaviour
     {
         Logger.Log("HandleNativeAdClicked");
     }
-
+     /// ------only available in ExpressAdView------
+     public void HandleNativeExpressAdRenderSuccess(object sender , YumiNativeDataEventArgs args)
+    {
+        Logger.Log("HandleNativeExpressAdRenderSuccess");
+    }
+    public void HandleNativeExpressAdRenderFail(object sender, YumiAdFailedToRenderEventArgs args)
+    {
+        Logger.Log("HandleNativeExpressAdRenderFail" + args.Message + "data id is " + args.nativeData.uniqueId);
+    }
+    public void HandleNativeExpressAdClickCloseButton(object sender, YumiNativeDataEventArgs args)
+    {
+        Logger.Log("HandleNativeExpressAdClickCloseButton" + args.nativeData.uniqueId);
+    }
     #endregion
 }
 ```
@@ -653,17 +666,33 @@ public class YumiNativeScene : MonoBehaviour
 
 ```C#
 // AdOptionViewPosition: TOP_LEFT,TOP_RIGHT,BOTTOM_LEFT,BOTTOM_RIGHT
-internal AdOptionViewPosition adChoiseViewPosition;
+public AdOptionViewPosition adChoiseViewPosition { get; private set; }
 // AdAttribution: AdOptionsPosition、text、textColor、backgroundColor、textSize、hide
-internal AdAttribution adAttribution;
+public AdAttribution adAttribution { get; private set; }
 // TextOptions: textSize，textColor，backgroundColor
-internal TextOptions titleTextOptions;
-internal TextOptions descTextOptions;
-internal TextOptions callToActionTextOptions;
+public TextOptions titleTextOptions { get; private set; }
+public TextOptions descTextOptions { get; private set; }
+public TextOptions callToActionTextOptions { get; private set; }
 // ScaleType: SCALE_TO_FILL、SCALE_ASPECT_FIT、SCALE_ASPECT_FILL
-internal ScaleType iconScaleType;
-internal ScaleType coverImageScaleType;
+public ScaleType iconScaleType { get; private set; }
+public ScaleType coverImageScaleType { get; private set; }
+// native express ad view  transform
+public Transform expressAdViewTransform { get; private set; }
 ```
+
+The default create `YumiNativeAdOptions` instance code:
+```C#
+YumiNativeAdOptions options = new NativeAdOptionsBuilder().Build();
+```
+The custom create `YumiNativeAdOptions` instance code:
+```C#
+ NativeAdOptionsBuilder builder = new NativeAdOptionsBuilder();
+ builder.setExpressAdViewTransform(adPanel.transform);
+
+ YumiNativeAdOptions options = new YumiNativeAdOptions(builder);
+```
+**If you want to support native express ad you must use `builder.setExpressAdViewTransform(adPanel.transform);` to create options objects**
+
 
 #### 5.4.3 Request Native
 
@@ -713,15 +742,14 @@ public class YumiNativeScene : MonoBehaviour
         elementsDictionary.Add(NativeElemetType.COVER_IMAGE, mediaView.transform);
         elementsDictionary.Add(NativeElemetType.CALL_TO_ACTION, callToActionButton.transform);
         // This is a method to associate a YumiNativeData with the ad assets gameobject you will use to display the native ads.
-        this.nativeAd.RegisterGameObjectsForInteraction(yumiNativeData, gameObject, elementsDictionary);
+        nativeAd.RegisterNativeDataForInteraction(yumiNativeData, elementsDictionary);
 
     }
 }
 ```
 
 #### 5.4.6 Show Native Ad View
-
-You should check whether the ad has been invalidated before displaying it.
+1. Native ad
 
 ```C#
 // Determines whether nativeAd data is invalidated, if invalidated please reload
@@ -730,8 +758,22 @@ if (this.nativeAd.IsAdInvalidated(yumiNativeData))
       Logger.Log("Native Data is invalidated");
       return;
   }
-  this.nativeAd.ShowView(yumiNativeData);
+// the ad is native ad
+if (!yumiNativeData.isExpressAdView)
+  {
+    this.nativeAd.ShowView(yumiNativeData);
+  }
 ```
+2. Native express ad 
+```C#
+  // if the ad is native express view please show ad in HandleNativeExpressAdRenderSuccess
+  if (yumiNativeData.isExpressAdView)
+  {
+    // ...
+  }
+```
+
+**You should check whether the ad has been invalidated before displaying it.**
 
 #### 5.4.7 Hide Native Ad View
 

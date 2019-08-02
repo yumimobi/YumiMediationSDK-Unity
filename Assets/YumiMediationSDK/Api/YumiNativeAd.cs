@@ -16,12 +16,20 @@ namespace YumiMediationSDK.Api
         /// <param name="placementId">Placement identifier.</param>
         /// <param name="channelId">Channel identifier.</param>
         /// <param name="versionId">Version identifier.</param>
+        /// <param name="gameObject">game object.</param>
         /// <param name="options">Options.</param>
-        public YumiNativeAd(string placementId, string channelId, string versionId, YumiNativeAdOptions options)
+        public YumiNativeAd(string placementId, string channelId, string versionId, GameObject gameObject ,YumiNativeAdOptions options)
         {
+
+            if (gameObject == null)
+            {
+                Logger.Log("GameObject cannot be null.");
+                return;
+            }
+
             client = YumiAdsClientFactory.BuildNativeClient();
 
-            client.CreateNativeAd(placementId, channelId, versionId, options);
+            client.CreateNativeAd(placementId, channelId, versionId, gameObject, options);
 
             ConfigureNativeEvents();
         }
@@ -46,16 +54,10 @@ namespace YumiMediationSDK.Api
         /// This is a method to associate a YumiNativeData with the ad assets gameobject you will use to display the native ads.
         /// </summary>
         /// <param name="data">Data.</param>
-        /// <param name="gameObject">Game object.</param>
         /// <param name="elements">Elements.</param>
-        public void RegisterGameObjectsForInteraction(YumiNativeData data, GameObject gameObject, Dictionary<NativeElemetType, Transform> elements)
+        public void RegisterNativeDataForInteraction(YumiNativeData data, Dictionary<NativeElemetType, Transform> elements)
         {
-            if (gameObject == null)
-            {
-                Logger.Log("GameObject cannot be null.");
-                return;
-            }
-
+        
             if (elements == null)
             {
                 Logger.Log("Native Elements transform Dictionary cannot be null.");
@@ -72,7 +74,7 @@ namespace YumiMediationSDK.Api
                 return;
             }
 
-            client.RegisterGameObjectsForInteraction(data, gameObject, elements);
+            client.RegisterNativeDataForInteraction(data, elements);
         }
         /// <summary>
         ///  Determines whether nativeAd data is invalidated, if invalidated please reload
@@ -121,6 +123,22 @@ namespace YumiMediationSDK.Api
         /// Occurs when the native ad is click.
         /// </summary>
         public event EventHandler<EventArgs> OnAdClick;
+
+        /// ------only available in ExpressAdView------
+
+        /// <summary>
+        /// Ad event fired when the native  express ad has been successed.
+        /// </summary>
+        public event EventHandler<YumiNativeDataEventArgs> OnExpressAdRenderSuccess;
+        /// <summary>
+        /// Ad event fired when the native  express ad has been failed.
+        /// </summary>
+        public event EventHandler<YumiAdFailedToRenderEventArgs> OnExpressAdRenderFail;
+        /// <summary>
+        /// Ad event fired when the native  express ad has been click close button.
+        /// </summary>
+        public event EventHandler<YumiNativeDataEventArgs> OnExpressAdClickCloseButton;
+
         #endregion
 
         private void ConfigureNativeEvents()
@@ -146,6 +164,33 @@ namespace YumiMediationSDK.Api
                     this.OnAdClick(this, args);
                 }
             };
+            this.client.OnExpressAdRenderSuccess += (sender, args) =>
+            {
+                if (this.OnExpressAdRenderSuccess != null)
+                {
+                    this.OnExpressAdRenderSuccess(this, args);
+                }
+            };
+            this.client.OnExpressAdRenderFail += (sender, args) =>
+            {
+                if (this.OnExpressAdRenderFail != null)
+                {
+                    this.OnExpressAdRenderFail(this, args);
+                }
+            };
+            this.client.OnExpressAdClickCloseButton += (sender, args) =>
+            {
+                if (this.OnExpressAdClickCloseButton != null)
+                {
+                    this.OnExpressAdClickCloseButton(this, args);
+                }
+            };
+
+        }
+        [Obsolete("RegisterGameObjectsForInteraction() is deprecated, please use RegisterNativeDataForInteraction() instead.", true)]
+        public void RegisterGameObjectsForInteraction(YumiNativeData data, GameObject gameObject, Dictionary<NativeElemetType, Transform> elements)
+        {
+            Debug.Log("RegisterGameObjectsForInteraction is deprecated ");
         }
     }
 }

@@ -21,6 +21,18 @@ namespace YumiMediationSDK.Common
         /// Ad event fired when the native ad is click.
         /// </summary>
         event EventHandler<EventArgs> OnAdClick;
+        /// <summary>
+        /// Ad event fired when the native  express ad has been successed.
+        /// </summary>
+        event EventHandler<YumiNativeDataEventArgs> OnExpressAdRenderSuccess;
+        /// <summary>
+        /// Ad event fired when the native  express ad has been failed.
+        /// </summary>
+        event EventHandler<YumiAdFailedToRenderEventArgs> OnExpressAdRenderFail;
+        /// <summary>
+        /// Ad event fired when the native  express ad has been click close button.
+        /// </summary>
+        event EventHandler<YumiNativeDataEventArgs> OnExpressAdClickCloseButton;
 
         /// <summary>
         /// Creates the native ad.
@@ -28,8 +40,9 @@ namespace YumiMediationSDK.Common
         /// <param name="placementId">Placement identifier.</param>
         /// <param name="channelId">Channel identifier.</param>
         /// <param name="versionId">Version identifier.</param>
+        /// <param name="gameObject">Game object.</param>
         /// <param name="options">Options.</param>
-        void CreateNativeAd(string placementId, string channelId, string versionId, YumiNativeAdOptions options);
+        void CreateNativeAd(string placementId, string channelId, string versionId, GameObject gameObject,YumiNativeAdOptions options);
 
         /// <summary>
         /// Begins loading the YumiMediationNativeAd with the count you wanted.
@@ -49,9 +62,8 @@ namespace YumiMediationSDK.Common
         /// CallToActionButton will be used for click logging.
         /// </summary>
         /// <param name="yumiNaitveData">Yumi naitve data.</param>
-        /// <param name="gameObject">Game object.</param>
         /// <param name="elements">Elements.</param>
-        void RegisterGameObjectsForInteraction(YumiNativeData yumiNaitveData, GameObject gameObject, Dictionary<NativeElemetType, Transform> elements);
+        void RegisterNativeDataForInteraction(YumiNativeData yumiNaitveData, Dictionary<NativeElemetType, Transform> elements);
 
         /// <summary>
         /// In case of not showing the ad immediately after the ad has been loaded, 

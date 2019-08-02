@@ -8,18 +8,18 @@ import com.yumi.android.sdk.ads.publish.enumbean.YumiGDPRStatus;
 public class YumiUSettings {
     private final String TAG = "zplayPluginActivity";
     private int PERSONALIZED = 0;
-    private int NONPERSONALIZED  = 1;
+    private int NONPERSONALIZED = 1;
 
-    public YumiUSettings(){
+    public YumiUSettings() {
     }
 
-    public void setGDPRConsent(int status){
+    public void setGDPRConsent(int status) {
         Log.d(TAG, "setGDPRConsent status :" + status);
-        if(status == PERSONALIZED){
+        if (status == PERSONALIZED) {
             YumiSettings.setGDPRConsent(YumiGDPRStatus.PERSONALIZED);
-        }else if(status == NONPERSONALIZED){
+        } else if (status == NONPERSONALIZED) {
             YumiSettings.setGDPRConsent(YumiGDPRStatus.NON_PERSONALIZED);
-        }else{
+        } else {
             YumiSettings.setGDPRConsent(YumiGDPRStatus.UNKNOWN);
         }
     }

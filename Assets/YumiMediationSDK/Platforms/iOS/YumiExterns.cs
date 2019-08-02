@@ -110,7 +110,7 @@ namespace YumiMediationSDK.iOS
         #endregion
         #region native ad
         [DllImport("__Internal")]
-        internal static extern IntPtr InitYumiNativeAd(IntPtr nativeAd, string placementID, string channelID, string versionID, int preferredAdChoicesPosition, int preferredAdAttributionPosition, string preferredAdAttributionText,uint preferredAdAttributionTextColor,uint preferredAdAttributionTextBackgroundColor, int preferredAdAttributionTextFontSize, bool hideAdAttribution);
+        internal static extern IntPtr InitYumiNativeAd(IntPtr nativeAd, string placementID, string channelID, string versionID, int preferredAdChoicesPosition, int preferredAdAttributionPosition, string preferredAdAttributionText,uint preferredAdAttributionTextColor,uint preferredAdAttributionTextBackgroundColor, int preferredAdAttributionTextFontSize, bool hideAdAttribution,int expressAdViewWidth,int expressAdViewHeight);
        
         [DllImport("__Internal")]
         internal static extern void RequestNativeAd(IntPtr nativeAd, int adCount);
@@ -153,6 +153,9 @@ namespace YumiMediationSDK.iOS
         internal static extern string YumiNativeAdBridgeGetOther(IntPtr nativeA, string uniqueId);
         [DllImport("__Internal")]
         internal static extern bool   YumiNativeAdBridgeHasVideoContent(IntPtr nativeA, string uniqueId);
+        [DllImport("__Internal")]
+        internal static extern bool YumiNativeAdBridgeIsExpressAdView(IntPtr nativeA, string uniqueId);
+
         //render ad view style
         [DllImport("__Internal")]
         internal static extern void RenderingTitleText(IntPtr nativeA, uint textColor, uint textBgColor, int fontSize);
@@ -170,7 +173,10 @@ namespace YumiMediationSDK.iOS
           IntPtr nativeAd,
             YumiNativeClient.YumiNativeAdDidReceiveAdCallback adReceivedCallback,
             YumiNativeClient.YumiNativeAdDidFailToReceiveAdWithErrorCallback adFailedCallback,
-            YumiNativeClient.YumiNativeAdDidClickCallback adClickedCallback
+            YumiNativeClient.YumiNativeAdDidClickCallback adClickedCallback,
+            YumiNativeClient.YumiNativeExpressAdDidRenderSuccessCallback adRenderSuccessCallBack,
+            YumiNativeClient.YumiNativeExpressAdDidRenderFailCallback adRenderFailCallBack,
+            YumiNativeClient.YumiNativeExpressAdDidClickCloseButtonCallback adClickCloseButtonCallBack
          );
 
         #endregion

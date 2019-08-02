@@ -1,4 +1,5 @@
 package com.zplay.unity.adsyumi;
+
 import android.app.Activity;
 import android.util.Log;
 
@@ -28,11 +29,11 @@ public class YumiURewardVideo {
         this.adListener = listener;
     }
 
-    public void  create(){
+    public void create() {
         // android  not need this function ,create reward video ad at requestRewardVideoAd
     }
 
-    public void requestRewardVideoAd(final String placementId, final String channelId,final String versionId) {
+    public void requestRewardVideoAd(final String placementId, final String channelId, final String versionId) {
         Log.d(TAG, "create rewardVideo and request ad");
         if (null != rewardVideo) {
             rewardVideo.onDestory();
@@ -41,7 +42,7 @@ public class YumiURewardVideo {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                rewardVideo = new  YumiMedia(activity,placementId);
+                rewardVideo = new YumiMedia(activity, placementId);
                 rewardVideo.setChannelID(channelId);
                 rewardVideo.setVersionName(versionId);
                 rewardVideo.setMediaEventListener(new IYumiMediaListener() {
@@ -159,7 +160,7 @@ public class YumiURewardVideo {
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    if (adListener != null){
+                                    if (adListener != null) {
                                         adListener.onAdStartPlaying();
                                     }
                                 }
@@ -173,16 +174,18 @@ public class YumiURewardVideo {
             }
         });
     }
-    public boolean isReady(){
+
+    public boolean isReady() {
         if (rewardVideo != null)
-            return rewardVideo.isMediaPrepared();
+            return rewardVideo.isReady();
         return false;
     }
-    public  void playRewardVideo(){
+
+    public void playRewardVideo() {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (rewardVideo != null){
+                if (rewardVideo != null) {
                     Log.d(TAG, "play RewardVideo ");
                     rewardVideo.showMedia();
                 }
@@ -190,13 +193,14 @@ public class YumiURewardVideo {
         });
 
     }
-    public  void  destroyRewardVideo(){
+
+    public void destroyRewardVideo() {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 Log.d(TAG, "destroy RewardVideo ");
-                if (rewardVideo != null){
-                    rewardVideo.onDestory();
+                if (rewardVideo != null) {
+                    rewardVideo.destroy();
                 }
             }
         });

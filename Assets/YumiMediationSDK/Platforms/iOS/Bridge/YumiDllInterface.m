@@ -204,7 +204,7 @@ void UpdateNetworksConsentStatus(int consentStatus){
 
 #pragma  mark: native  method
 
-YumiTypeNativeAdRef InitYumiNativeAd(YumiTypeNativeClientRef *nativeClient,const char * placementID, const char * channelID, const char * versionID,int preferredAdChoicesPosition,int preferredAdAttributionPosition,const char *preferredAdAttributionText,uint preferredAdAttributionTextColor,uint preferredAdAttributionTextBackgroundColor,int preferredAdAttributionTextFontSize,BOOL hideAdAttribution){
+YumiTypeNativeAdRef InitYumiNativeAd(YumiTypeNativeClientRef *nativeClient,const char * placementID, const char * channelID, const char * versionID,int preferredAdChoicesPosition,int preferredAdAttributionPosition,const char *preferredAdAttributionText,uint preferredAdAttributionTextColor,uint preferredAdAttributionTextBackgroundColor,int preferredAdAttributionTextFontSize,BOOL hideAdAttribution,int expressAdViewWidth,int expressAdViewHeight){
     
     YumiMediationNativeAdConfiguration *adConfiguration = [[YumiMediationNativeAdConfiguration alloc] init];
     switch (preferredAdChoicesPosition) {
@@ -246,6 +246,14 @@ YumiTypeNativeAdRef InitYumiNativeAd(YumiTypeNativeClientRef *nativeClient,const
     adConfiguration.hideAdAttribution = hideAdAttribution;
     adConfiguration.preferredAdAttributionTextColor = [YumiAdBridgeTool colorWithARGB:preferredAdAttributionTextColor];
     adConfiguration.preferredAdAttributionTextBackgroundColor = [YumiAdBridgeTool colorWithARGB:preferredAdAttributionTextBackgroundColor];
+    
+    CGFloat scale = [UIScreen mainScreen].scale;
+    NSLog(@"[UIScreen mainScreen].scale = %f,",scale);
+    if ([UIScreen mainScreen].bounds.size.height == iPhonePlusHeight) {
+        scale = 2.6; // 6/7/8 plus的实际像素比是2.6。 屏幕宽高414:736  物理像素1080:1920
+    }
+    
+    adConfiguration.expressAdSize = CGSizeMake(expressAdViewWidth /scale, expressAdViewHeight / scale);
     
     YumiNative *nativeAd = [[YumiNative alloc] initWithNativeClientReference:nativeClient placementID:YumiStringFromUTF8String(placementID) channelID:YumiStringFromUTF8String(channelID) versionID:YumiStringFromUTF8String(versionID) configuration:adConfiguration];
     // save pointer
@@ -294,11 +302,17 @@ void UnregisterView(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
 void SetNativeCallbacks(YumiTypeNativeAdRef nativeAd ,
                         YumiNativeAdDidReceiveAdCallback adReceivedCallback,
                         YumiNativeAdDidFailToReceiveAdWithErrorCallback adFailCallback,
-                        YumiNativeAdDidClickCallback adClickedCallback){
+                        YumiNativeAdDidClickCallback adClickedCallback,
+                        YumiNativeExpressAdRenderSuccessDidCallback adRenderSuccessCallBack,
+                        YumiNativeExpressAdDidRenderFailCallback adRenderFailCallBack,
+                        YumiNativeExpressAdDidClickCloseButtonCallback adClickCloseButtonCallBack){
     YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
     internalNativeAd.adReceivedCallback = adReceivedCallback;
     internalNativeAd.adFailedCallback = adFailCallback;
     internalNativeAd.adClickedCallback = adClickedCallback;
+    internalNativeAd.adRenderSuccessCallBack = adRenderSuccessCallBack;
+    internalNativeAd.adRenderFailCallBack = adRenderFailCallBack;
+    internalNativeAd.adClickCloseButtonCallBack = adClickCloseButtonCallBack;
 }
 
 BOOL IsAdInvalidated(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
@@ -376,6 +390,11 @@ const char *YumiNativeAdBridgeGetOther(YumiTypeNativeAdRef nativeAd,const char *
 BOOL YumiNativeAdBridgeHasVideoContent(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
     YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
     return [internalNativeAd getHasVideoContent:YumiStringFromUTF8String(uniqueId)];
+}
+
+BOOL YumiNativeAdBridgeIsExpressAdView(YumiTypeNativeAdRef nativeAd,const char * uniqueId){
+    YumiNative *internalNativeAd = (__bridge YumiNative *)nativeAd;
+    return [internalNativeAd getIsExpressAdView:YumiStringFromUTF8String(uniqueId)];
 }
 
 #pragma mark: Splash

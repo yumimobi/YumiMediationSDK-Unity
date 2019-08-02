@@ -41,6 +41,15 @@ namespace YumiMediationSDK.Common
         // Ad event fired when the splash ad success to show 
         public event EventHandler<EventArgs> OnAdSuccessToShow;
 
+        // native express ad
+        
+        /// Ad event fired when the native  express ad has been successed
+        public event EventHandler<YumiNativeDataEventArgs> OnExpressAdRenderSuccess;
+        /// Ad event fired when the native  express ad has been failed.
+        public event EventHandler<YumiAdFailedToRenderEventArgs> OnExpressAdRenderFail;
+        // Ad event fired when the native  express ad has been click close button.
+        public event EventHandler<YumiNativeDataEventArgs> OnExpressAdClickCloseButton;
+
 #pragma warning restore 67
         // banner method
         // Creates a banner view and adds it to the view hierarchy.
@@ -128,7 +137,7 @@ namespace YumiMediationSDK.Common
         // native ad
         // Creates a native ad
 
-        public void CreateNativeAd(string placementId, string channelId, string versionId, YumiNativeAdOptions options)
+        public void CreateNativeAd(string placementId, string channelId, string versionId, GameObject gameObject, YumiNativeAdOptions options)
         {
             Logger.LogError("Dummy: call CreateNativeAd");
         }
@@ -153,7 +162,7 @@ namespace YumiMediationSDK.Common
             Logger.LogError("Dummy: call DestroyNativeAd");
         }
 
-        public void RegisterGameObjectsForInteraction(YumiNativeData yumiNaitveData, GameObject gameObject, Dictionary<NativeElemetType, Transform> elements)
+        public void RegisterNativeDataForInteraction(YumiNativeData yumiNaitveData, Dictionary<NativeElemetType, Transform> elements)
         {
             Logger.LogError("Dummy: call RegisterGameObjectsForInteraction");
         }

@@ -3,6 +3,7 @@ package com.zplay.unity.adsyumi;
 import com.yumi.android.sdk.ads.publish.AdError;
 import com.yumi.android.sdk.ads.publish.YumiInterstitial;
 import com.yumi.android.sdk.ads.publish.listener.IYumiInterstitialListener;
+
 import android.app.Activity;
 import android.util.Log;
 
@@ -32,7 +33,8 @@ public class YumiUInterstitial {
         this.adListener = listener;
         this.isReady = false;
     }
-    public void create(final String placementId, final String channelId,final String versionId){
+
+    public void create(final String placementId, final String channelId, final String versionId) {
         Log.d(TAG, "create interstitial");
         if (null != interstitial) {
             interstitial.onDestory();
@@ -165,41 +167,42 @@ public class YumiUInterstitial {
         });
     }
 
-    public void showInterstitial(){
+    public void showInterstitial() {
         Log.d(TAG, "show Interstitial");
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (interstitial != null){
+                if (interstitial != null) {
                     isReady = false;
-                    interstitial.showInterstitial(false);
+                    interstitial.showInterstitial();
                 }
             }
         });
 
     }
 
-    public  void  destroyInterstitial(){
+    public void destroyInterstitial() {
         Log.d(TAG, "destroy Interstitial ");
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (interstitial != null){
-                    interstitial.onDestory();
+                if (interstitial != null) {
+                    interstitial.destroy();
                 }
             }
         });
 
     }
+
     /**
      * Returns {@code True} if the interstitial has loaded.
      */
-    public boolean isReady(){
+    public boolean isReady() {
         Log.d(TAG, "isReady Interstitial");
-        try{
+        try {
             return interstitial.isReady();
-        }catch (Exception e){
-            return  isReady;
+        } catch (Exception e) {
+            return isReady;
         }
     }
 
