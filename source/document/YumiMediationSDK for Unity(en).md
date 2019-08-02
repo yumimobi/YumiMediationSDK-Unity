@@ -1056,7 +1056,7 @@ Make sure that the Gdt(广点通) platform ad required permissions added
  when you package the app setting targetSdkVersion >= 24 , in order for the SDK to download and install the App class ads can be support normally, you must follow the steps below for compatibility.
  
  **Step 1: Add this provider tag in the Application tag at AndroidManifest.xml**
-  ```java
+  ```xml
      <provider
         android:name="android.support.v4.content.FileProvider"
         android:authorities="${applicationId}.fileprovider"
@@ -1102,7 +1102,7 @@ Make sure that the Baidu platform ad required permissions added
  when you package the app setting targetSdkVersion >= 24 , in order for the SDK to download and install the App class ads can be support normally, you must follow the steps below for compatibility.
  
  **Step 1: Add this provider tag in the Application tag at AndroidManifest.xml**
-  ```java
+  ```xml
      <provider
             android:name="com.baidu.mobads.openad.FileProvider"
             android:authorities="${applicationId}.bd.provider"
