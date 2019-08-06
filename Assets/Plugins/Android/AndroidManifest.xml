@@ -46,6 +46,54 @@
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <!-- Baidu required: start-->
+        <provider
+        android:name="com.baidu.mobads.openad.FileProvider"
+        android:authorities="${applicationId}.bd.provider"
+        android:exported="false"
+        android:grantUriPermissions="true">
+        <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/bd_file_paths" />
+        </provider>
+        <!--Baidu end -->
+
+        <!-- Gdt required: start-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/gdt_file_path" />
+        </provider>
+        <!--Gdt end -->
+
+        <!-- Ksyun recommend: start-->
+        <provider
+            android:name="com.ksc.ad.sdk.util.KsyunFileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+        <!--Ksyun end -->
+
+        <!-- mintegral recommend: start-->
+        <provider
+            android:name="com.mintegral.msdk.base.utils.MTGFileProvider"
+            android:authorities="${applicationId}.mtgFileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/mtg_provider_paths"/>
+        </provider>
+        <!--mintegral end -->
 
         <meta-data
             android:name="unity.build-id"

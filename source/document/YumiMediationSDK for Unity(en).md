@@ -60,6 +60,10 @@
          * [7.6 Baidu platform FAQ：](#76-baidu-platform-faq)
             * [7.6.1 Baidu platform ad No Fill probleam：](#761-baidu-platform-ad-no-fill-probleam)
             * [7.6.2 targetSdkVersion &gt;= 24 compatibility considerations (Required)](#762-targetsdkversion--24-compatibility-considerations-required)
+         * [7.7 Ksyun platform FAQ：](#77-ksyun-platform-faq)
+            * [7.7.1 targetSdkVersion &gt;= 24 compatibility considerations (Required)](#771-targetsdkversion--24-compatibility-considerations-required)
+         * [7.8 Mintegral platform FAQ：](#78-mintegral-platform-faq)
+            * [7.8.1 targetSdkVersion &gt;= 24 compatibility considerations (Required)](#781-targetsdkversion--24-compatibility-considerations-required)
       * [8 GDPR](#8-gdpr)
          * [8.1 Set GDPR](#81-set-gdpr)
          * [8.2 Networks informations](#82-networks-informations)
@@ -1128,6 +1132,76 @@ Download [bd_file_paths.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(250,0,0);">
 <b>Note：</b> If you do not configure the above, it will affect the Baidu platform advertising revenue.
+</span>
+</div>
+
+### 7.7 Ksyun platform FAQ：
+
+#### 7.7.1 targetSdkVersion >= 24 compatibility considerations (Required)
+ when you package the app setting targetSdkVersion >= 24 , in order for the SDK to download and install the App class ads can be support normally, you must follow the steps below for compatibility.
+ 
+ **Step 1: Add this provider tag in the Application tag at AndroidManifest.xml**
+  ```java
+    <provider
+        android:name="com.ksc.ad.sdk.util.KsyunFileProvider"
+        android:authorities="${applicationId}.fileprovider"
+        android:exported="false"
+        android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/file_paths"/>
+    </provider>
+  ```
+<div style="background-color:rgb(228,244,253);padding:10px;">
+<span style="color:rgb(62,113,167);">
+<b>Note：</b>If your project does not support the ${applicationId} configuration, you can replace ${applicationId} with your app package name.
+</span>
+</div>
+
+**Step 2: Add the folder directory shown in the following figure in the Assets/plugin/Android directory, download the file_paths.xml file, and add the downloaded xml file to the created xml folder：**
+
+<div align="center"><img height="200" src="resources/filepath.png"/></div>
+
+Download [file_paths.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/tree/master/Assets/Plugins/Android/res/xml/file_paths.xml)
+
+<div style="background-color:rgb(228,244,253);padding:10px;">
+<span style="color:rgb(250,0,0);">
+<b>Note：</b> If you do not configure the above, it will affect the Ksyun platform advertising revenue.
+</span>
+</div>
+
+### 7.8 Mintegral platform FAQ：
+
+#### 7.8.1 targetSdkVersion >= 24 compatibility considerations (Required)
+ when you package the app setting targetSdkVersion >= 24 , in order for the SDK to download and install the App class ads can be support normally, you must follow the steps below for compatibility.
+ 
+ **Step 1: Add this provider tag in the Application tag at AndroidManifest.xml**
+  ```java
+    <provider
+        android:name="com.mintegral.msdk.base.utils.MTGFileProvider"
+        android:authorities="${applicationId}.mtgFileProvider"
+        android:exported="false"
+        android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/mtg_provider_paths"/>
+    </provider>
+  ```
+<div style="background-color:rgb(228,244,253);padding:10px;">
+<span style="color:rgb(62,113,167);">
+<b>Note：</b>If your project does not support the ${applicationId} configuration, you can replace ${applicationId} with your app package name.
+</span>
+</div>
+
+**Step 2: Add the folder directory shown in the following figure in the Assets/plugin/Android directory, download the mtg_provider_paths.xml file, and add the downloaded xml file to the created xml folder：**
+
+<div align="center"><img height="200" src="resources/filepath.png"/></div>
+
+Download [mtg_provider_paths.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/tree/master/Assets/Plugins/Android/res/xml/mtg_provider_paths.xml)
+
+<div style="background-color:rgb(228,244,253);padding:10px;">
+<span style="color:rgb(250,0,0);">
+<b>Note：</b> If you do not configure the above, it will affect the Mintegral platform advertising revenue.
 </span>
 </div>
 
