@@ -1063,15 +1063,15 @@ Make sure that the Gdt(广点通) platform ad required permissions added
  
  **Step 1: Add this provider tag in the Application tag at AndroidManifest.xml**
   ```xml
-     <provider
-        android:name="android.support.v4.content.FileProvider"
-        android:authorities="${applicationId}.fileprovider"
-        android:exported="false"
-        android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/gdt_file_path" />
-     </provider>
+  <provider
+    android:name="android.support.v4.content.FileProvider"
+    android:authorities="${applicationId}.fileprovider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/gdt_file_path" />
+  </provider>
   ```
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(62,113,167);">
@@ -1083,7 +1083,7 @@ Make sure that the Gdt(广点通) platform ad required permissions added
 
 <div align="center"><img height="200" src="resources/filepath.png"/></div>
 
-Download [gdt_file_path.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/tree/master/Assets/Plugins/Android/res/xml/gdt_file_path.xml)
+Download [gdt_file_path.xml](../../Assets/Plugins/Android/res/xml/gdt_file_path.xml)
 
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(250,0,0);">
@@ -1109,15 +1109,15 @@ Make sure that the Baidu platform ad required permissions added
  
  **Step 1: Add this provider tag in the Application tag at AndroidManifest.xml**
   ```xml
-     <provider
-            android:name="com.baidu.mobads.openad.FileProvider"
-            android:authorities="${applicationId}.bd.provider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/bd_file_paths" />
-    </provider>
+  <provider
+    android:name="com.baidu.mobads.openad.FileProvider"
+    android:authorities="${applicationId}.bd.provider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/bd_file_paths" />
+  </provider>
   ```
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(62,113,167);">
@@ -1129,7 +1129,7 @@ Make sure that the Baidu platform ad required permissions added
 
 <div align="center"><img height="200" src="resources/filepath.png"/></div>
 
-Download [bd_file_paths.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/tree/master/Assets/Plugins/Android/res/xml/bd_file_paths.xml)
+Download [bd_file_paths.xml](../../Assets/Plugins/Android/res/xml/bd_file_paths.xml)
 
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(250,0,0);">
@@ -1143,16 +1143,16 @@ Download [bd_file_paths.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/
  when you package the app setting targetSdkVersion >= 24 , in order for the SDK to download and install the App class ads can be support normally, you must follow the steps below for compatibility.
  
  **Step 1: Add this provider tag in the Application tag at AndroidManifest.xml**
-  ```java
-    <provider
-        android:name="com.ksc.ad.sdk.util.KsyunFileProvider"
-        android:authorities="${applicationId}.fileprovider"
-        android:exported="false"
-        android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/file_paths"/>
-    </provider>
+  ```xml
+  <provider
+    android:name="com.ksc.ad.sdk.util.KsyunFileProvider"
+    android:authorities="${applicationId}.fileprovider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths"/>
+  </provider>
   ```
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(62,113,167);">
@@ -1164,7 +1164,7 @@ Download [bd_file_paths.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/
 
 <div align="center"><img height="200" src="resources/filepath.png"/></div>
 
-Download [file_paths.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/tree/master/Assets/Plugins/Android/res/xml/file_paths.xml)
+Download [file_paths.xml](../../Assets/Plugins/Android/res/xml/file_paths.xml)
 
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(250,0,0);">
@@ -1178,16 +1178,16 @@ Download [file_paths.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/tre
  when you package the app setting targetSdkVersion >= 24 , in order for the SDK to download and install the App class ads can be support normally, you must follow the steps below for compatibility.
  
  **Step 1: Add this provider tag in the Application tag at AndroidManifest.xml**
-  ```java
-    <provider
-        android:name="com.mintegral.msdk.base.utils.MTGFileProvider"
-        android:authorities="${applicationId}.mtgFileProvider"
-        android:exported="false"
-        android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/mtg_provider_paths"/>
-    </provider>
+  ```xml
+  <provider
+    android:name="com.mintegral.msdk.base.utils.MTGFileProvider"
+    android:authorities="${applicationId}.mtgFileProvider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/mtg_provider_paths"/>
+  </provider>
   ```
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(62,113,167);">
@@ -1199,7 +1199,7 @@ Download [file_paths.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/tre
 
 <div align="center"><img height="200" src="resources/filepath.png"/></div>
 
-Download [mtg_provider_paths.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/tree/master/Assets/Plugins/Android/res/xml/mtg_provider_paths.xml)
+Download [mtg_provider_paths.xml](../../Assets/Plugins/Android/res/xml/mtg_provider_paths.xml)
 
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(250,0,0);">

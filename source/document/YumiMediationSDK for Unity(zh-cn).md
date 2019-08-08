@@ -1057,15 +1057,15 @@ Exception in thread "main" java.lang.RuntimeException: Timeout of 120000 reached
  
  **步骤一：在 AndroidManifest.xml 中的 Application 标签中添加 provider 标签**
   ```xml
-     <provider
-        android:name="android.support.v4.content.FileProvider"
-        android:authorities="${applicationId}.fileprovider"
-        android:exported="false"
-        android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/gdt_file_path" />
-     </provider>
+  <provider
+    android:name="android.support.v4.content.FileProvider"
+    android:authorities="${applicationId}.fileprovider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/gdt_file_path" />
+  </provider>
   ```
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(62,113,167);">
@@ -1077,7 +1077,7 @@ Exception in thread "main" java.lang.RuntimeException: Timeout of 120000 reached
 
 <div align="center"><img height="200" src="resources/filepath.png"/></div>
 
-Download [gdt_file_path.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/tree/master/Assets/Plugins/Android/res/xml/gdt_file_path.xml)
+Download [gdt_file_path.xml](../../Assets/Plugins/Android/res/xml/gdt_file_path.xml)
 
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(250,0,0);">
@@ -1103,15 +1103,15 @@ Download [gdt_file_path.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/
  
  **步骤一：在 AndroidManifest.xml 中的 Application 标签中添加 provider 标签**
   ```xml
-     <provider
-        android:name="com.baidu.mobads.openad.FileProvider"
-        android:authorities="${applicationId}.bd.provider"
-        android:exported="false"
-        android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/bd_file_paths" />
-     </provider>
+  <provider
+    android:name="com.baidu.mobads.openad.FileProvider"
+    android:authorities="${applicationId}.bd.provider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/bd_file_paths" />
+  </provider>
   ```
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(62,113,167);">
@@ -1124,7 +1124,7 @@ Download [gdt_file_path.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/
 添加文件夹的目录如下所示：
 <div align="center"><img height="200" src="resources/filepath.png"/></div>
 
-Download [bd_file_paths.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/tree/master/Assets/Plugins/Android/res/xml/bd_file_paths.xml)
+Download [bd_file_paths.xml](../../Assets/Plugins/Android/res/xml/bd_file_paths.xml)
 
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(250,0,0);">
@@ -1138,16 +1138,16 @@ Download [bd_file_paths.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/
  如果您打包 App 时的 targetSdkVersion >= 24，为了让 SDK 能够正常支持下载、安装 App 类广告，必须按照下面的步骤做兼容性处理
  
  **步骤一：在 AndroidManifest.xml 中的 Application 标签中添加 provider 标签**
-  ```java
-    <provider
-        android:name="com.ksc.ad.sdk.util.KsyunFileProvider"
-        android:authorities="${applicationId}.fileprovider"
-        android:exported="false"
-        android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/file_paths"/>
-    </provider>
+  ```xml
+  <provider
+    android:name="com.ksc.ad.sdk.util.KsyunFileProvider"
+    android:authorities="${applicationId}.fileprovider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths"/>
+  </provider>
   ```
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(62,113,167);">
@@ -1160,7 +1160,7 @@ Download [bd_file_paths.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/
 添加文件夹的目录如下所示：
 <div align="center"><img height="200" src="resources/filepath.png"/></div>
 
-Download [file_paths.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/tree/master/Assets/Plugins/Android/res/xml/file_paths.xml)
+Download [file_paths.xml](../../Assets/Plugins/Android/res/xml/file_paths.xml)
 
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(250,0,0);">
@@ -1174,16 +1174,16 @@ Download [file_paths.xml](https://github.com/yumimobi/YumiMediationSDK-Unity/tre
  如果您打包 App 时的 targetSdkVersion >= 24，为了让 SDK 能够正常支持下载、安装 App 类广告，必须按照下面的步骤做兼容性处理
  
  **步骤一：在 AndroidManifest.xml 中的 Application 标签中添加 provider 标签**
-  ```java
-    <provider
-        android:name="com.mintegral.msdk.base.utils.MTGFileProvider"
-        android:authorities="${applicationId}.mtgFileProvider"
-        android:exported="false"
-        android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/mtg_provider_paths"/>
-    </provider>
+  ```xml
+  <provider
+    android:name="com.mintegral.msdk.base.utils.MTGFileProvider"
+    android:authorities="${applicationId}.mtgFileProvider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/mtg_provider_paths"/>
+  </provider>
   ```
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(62,113,167);">
