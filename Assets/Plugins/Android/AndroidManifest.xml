@@ -94,6 +94,18 @@
                 android:resource="@xml/mtg_provider_paths"/>
         </provider>
         <!--mintegral end -->
+        
+        <!-- bytedance recommend: start-->
+        <provider
+            android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
+            android:authorities="${applicationId}.TTFileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/bytedance_file_paths" />
+        </provider>
+        <!-- bytedance end-->
 
         <meta-data
             android:name="unity.build-id"
