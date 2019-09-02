@@ -136,55 +136,55 @@ iOS dependencies：
 
 ```xml
     <iosPods>
-        <iosPod name="YumiMediationSDK" version="4.2.0" minTargetSdk="8.0">
+        <iosPod name="YumiMediationSDK" version="4.3.0" minTargetSdk="8.0">
             <sources>
                 <source>https://github.com/CocoaPods/Specs</source>
             </sources>
         </iosPod>
         <!-- adapters -->
-        <iosPod name="YumiMediationAdapters/AdColony" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/AdColony" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/AdMob" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/AdMob" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/AppLovin" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/AppLovin" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Baidu" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/Baidu" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Chartboost" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/Chartboost" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Domob" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/Domob" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Facebook" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/Facebook" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/GDT" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/GDT" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/InMobi" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/InMobi" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/IronSource" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/IronSource" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Unity" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/Unity" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Vungle" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/Vungle" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Mintegral" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/Mintegral" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/OneWay" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/OneWay" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/ZplayAds" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/ZplayAds" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/TapjoySDK" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/TapjoySDK" version="4.3.0">
         </iosPod>
-         <iosPod name="YumiMediationAdapters/BytedanceAds" version="4.2.2">
+         <iosPod name="YumiMediationAdapters/BytedanceAds" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/InneractiveAdSDK" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/InneractiveAdSDK" version="4.3.0">
         </iosPod>
         <!-- debugCenter -->
-        <iosPod name="YumiMediationDebugCenter-iOS" version="4.2.0">
+        <iosPod name="YumiMediationDebugCenter-iOS" version="4.3.0">
         </iosPod>
     </iosPods>
 ```
 
-e.g., Delete `AdMob`, Delete `<iosPod name="YumiMediationAdapters/AdMob" version="4.2.2"></iosPod>`  
+e.g., Delete `AdMob`, Delete `<iosPod name="YumiMediationAdapters/AdMob" version="4.3.0"></iosPod>`  
 
 Complete the above procedure, Open **xcworkspace** project.
 
@@ -203,25 +203,25 @@ Android dependencies:
 
 ```xml
 <androidPackages>
-  <androidPackage spec="com.yumimobi.ads:mediation:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:playableads:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:admob:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.2.0"/>
-  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inneractive:4.2.0"/>
-  <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:tapjoy:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:unity:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads:mediation:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:playableads:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:admob:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.3.0"/>
+  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inneractive:4.3.0"/>
+  <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:tapjoy:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:unity:4.3.0" />
   <repositories>
       <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
       <repository>https://dl.bintray.com/yumimobi/ads/</repository>
@@ -231,7 +231,7 @@ Android dependencies:
   </repositories>
 </androidPackages>
 ```
-e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:4.2.0" />`.
+e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:4.3.0" />`.
 
 **Note: Unity plugin will auto download the thirdparty network's SDK, you don't need add it by manual.**
 
