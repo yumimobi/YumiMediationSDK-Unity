@@ -135,55 +135,55 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ```xml
     <iosPods>
-        <iosPod name="YumiMediationSDK" version="4.2.0" minTargetSdk="8.0">
+        <iosPod name="YumiMediationSDK" version="4.3.0" minTargetSdk="8.0">
             <sources>
                 <source>https://github.com/CocoaPods/Specs</source>
             </sources>
         </iosPod>
         <!-- adapters -->
-        <iosPod name="YumiMediationAdapters/AdColony" version="4.2.1">
+        <iosPod name="YumiMediationAdapters/AdColony" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/AdMob" version="4.2.1">
+        <iosPod name="YumiMediationAdapters/AdMob" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/AppLovin" version="4.2.1">
+        <iosPod name="YumiMediationAdapters/AppLovin" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Baidu" version="4.2.1">
+        <iosPod name="YumiMediationAdapters/Baidu" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Chartboost" version="4.2.1">
+        <iosPod name="YumiMediationAdapters/Chartboost" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Domob" version="4.2.1">
+        <iosPod name="YumiMediationAdapters/Domob" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Facebook" version="4.2.1">
+        <iosPod name="YumiMediationAdapters/Facebook" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/GDT" version="4.2.1">
+        <iosPod name="YumiMediationAdapters/GDT" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/InMobi" version="4.2.1">
+        <iosPod name="YumiMediationAdapters/InMobi" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/IronSource" version="4.2.1">
+        <iosPod name="YumiMediationAdapters/IronSource" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Unity" version="4.2.1">
+        <iosPod name="YumiMediationAdapters/Unity" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Vungle" version="4.2.1">
+        <iosPod name="YumiMediationAdapters/Vungle" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Mintegral" version="4.2.1">
+        <iosPod name="YumiMediationAdapters/Mintegral" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/OneWay" version="4.2.1">
+        <iosPod name="YumiMediationAdapters/OneWay" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/ZplayAds" version="4.2.1">
+        <iosPod name="YumiMediationAdapters/ZplayAds" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/TapjoySDK" version="4.2.1">
+        <iosPod name="YumiMediationAdapters/TapjoySDK" version="4.3.0">
         </iosPod>
-         <iosPod name="YumiMediationAdapters/BytedanceAds" version="4.2.1">
+         <iosPod name="YumiMediationAdapters/BytedanceAds" version="4.3.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/InneractiveAdSDK" version="4.2.1">
+        <iosPod name="YumiMediationAdapters/InneractiveAdSDK" version="4.3.0">
         </iosPod>
         <!-- debugCenter -->
-        <iosPod name="YumiMediationDebugCenter-iOS" version="4.2.0">
+        <iosPod name="YumiMediationDebugCenter-iOS" version="4.3.0">
         </iosPod>
     </iosPods>
 ```
 
-比如删除 `AdMob` ，直接删除 ` <iosPod name="YumiMediationAdapters/AdMob" version="4.2.1"></iosPod>`  即可。
+比如删除 `AdMob` ，直接删除 ` <iosPod name="YumiMediationAdapters/AdMob" version="4.3.0"></iosPod>`  即可。
 
 构建完成，打开 **xcworkspace** 工程。
 
@@ -200,25 +200,25 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ```xml
 <androidPackages>
-  <androidPackage spec="com.yumimobi.ads:mediation:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:playableads:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:admob:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.2.0"/>
-  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inneractive:4.2.0"/>
-  <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:tapjoy:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:unity:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads:mediation:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:playableads:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:admob:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.3.0"/>
+  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inneractive:4.3.0"/>
+  <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:tapjoy:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:unity:4.3.0" />
   <repositories>
       <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
       <repository>https://dl.bintray.com/yumimobi/ads/</repository>
@@ -229,7 +229,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 </androidPackages>
 ```
 
-比如删除 `admob`，直接删除 `<androidPackage spec="com.yumimobi.ads.mediation:admob:4.2.0" />` 即可。
+比如删除 `admob`，直接删除 `<androidPackage spec="com.yumimobi.ads.mediation:admob:4.3.0" />` 即可。
 
 **注意: Unity 插件会自动引用第三方广告 SDK，您无需手动添加。**
 ## 5 选择广告形式
