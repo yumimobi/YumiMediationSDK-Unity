@@ -178,6 +178,8 @@ iOS dependencies：
         </iosPod>
         <iosPod name="YumiMediationAdapters/InneractiveAdSDK" version="4.3.0">
         </iosPod>
+        <iosPod name="YumiMediationAdapters/PubNative" version="4.3.0">
+        </iosPod>
         <!-- debugCenter -->
         <iosPod name="YumiMediationDebugCenter-iOS" version="4.3.0">
         </iosPod>
