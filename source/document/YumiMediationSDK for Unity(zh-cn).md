@@ -56,16 +56,8 @@
          * [7.5 Gdt(广点通)平台常见问题：](#75-gdt广点通平台常见问题)
             * [7.5.1 接入Gdt(广点通) 原生广告后，出现广点通原生广告视频显示不出来问题：](#751-接入gdt广点通-原生广告后出现广点通原生广告视频显示不出来问题)
             * [7.5.2 Gdt(广点通) 平台请求不到广告问题：](#752-gdt广点通-平台请求不到广告问题)
-            * [7.5.3 targetSdkVersion &gt;= 24 适配(必选)](#753-targetsdkversion--24-适配必选)
          * [7.6 Baidu 平台常见问题：](#76-baidu-平台常见问题)
             * [7.6.1 Baidu 平台请求不到广告问题：](#761-baidu-平台请求不到广告问题)
-            * [7.6.2 targetSdkVersion &gt;= 24 适配(必选)](#762-targetsdkversion--24-适配必选)
-         * [7.7 金山云 平台常见问题：](#77-金山云-平台常见问题)
-            * [7.7.1 targetSdkVersion &gt;= 24 适配(必选)](#771-targetsdkversion--24-适配必选)
-         * [7.8 Mintegral 平台常见问题：](#78-mintegral-平台常见问题)
-            * [7.8.1 targetSdkVersion &gt;= 24 适配(必选)](#781-targetsdkversion--24-适配必选)
-        * [7.9 Bytedance 平台常见问题：](#79-bytedance-平台常见问题)
-            * [7.9.1 targetSdkVersion &gt;= 24 适配(必选)](#791-targetsdkversion--24-适配必选)
       * [8 GDPR](#8-gdpr)
          * [8.1 设置 GDPR](#81-设置-gdpr)
          * [8.2  支持 GDPR 的平台](#82--支持-gdpr-的平台)
@@ -206,6 +198,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
   <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.3.0" />
   <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.3.0" />
   <androidPackage spec="com.yumimobi.ads.mediation:playableads:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:pubnative:4.3.0" />
   <androidPackage spec="com.yumimobi.ads.mediation:admob:4.3.0" />
   <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.3.0" />
   <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.3.0"/>
@@ -224,6 +217,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
   <repositories>
       <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
       <repository>https://dl.bintray.com/yumimobi/ads/</repository>
+       <repository>https://dl.bintray.com/pubnative/maven</repository>
       <repository>https://tapjoy.bintray.com/maven</repository>
       <repository>https://jcenter.bintray.com/</repository>
       <repository>https://maven.google.com/</repository>
@@ -1054,38 +1048,7 @@ Exception in thread "main" java.lang.RuntimeException: Timeout of 120000 reached
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />  
 <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES"/>
 ```
-#### 7.5.3 targetSdkVersion >= 24 适配(必选)
- 如果您打包 App 时的 targetSdkVersion >= 24，为了让 SDK 能够正常支持下载、安装 App 类广告，必须按照下面的步骤做兼容性处理
- 
- **步骤一：在 AndroidManifest.xml 中的 Application 标签中添加 provider 标签**
-  ```xml
-  <provider
-    android:name="android.support.v4.content.FileProvider"
-    android:authorities="${applicationId}.fileprovider"
-    android:exported="false"
-    android:grantUriPermissions="true">
-    <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/gdt_file_path" />
-  </provider>
-  ```
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(62,113,167);">
-<b>提示：</b>如果你的工程不支持 ${applicationId} 配置，可以将 ${applicationId} 替换为你的App包名
-</span>
-</div>
 
-**步骤二：在Assets/plugin/Android 目录下添加下图所示的文件夹目录，下载gdt_file_path.xml文件，将下载下来的xml文件添加到创建的 xml 文件夹中：**
-
-<div align="center"><img height="200" src="resources/filepath.png"/></div>
-
-Download [gdt_file_path.xml](../../Assets/Plugins/Android/res/xml/gdt_file_path.xml)
-
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(250,0,0);">
-<b>注意：</b> 如果不进行上面的配置，会影响广点通平台广告收入
-</span>
-</div>
 
 ### 7.6 Baidu 平台常见问题：
 
@@ -1100,147 +1063,6 @@ Download [gdt_file_path.xml](../../Assets/Plugins/Android/res/xml/gdt_file_path.
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 ```
 
-#### 7.6.2 targetSdkVersion >= 24 适配(必选)
- 如果您打包 App 时的 targetSdkVersion >= 24，为了让 SDK 能够正常支持下载、安装 App 类广告，必须按照下面的步骤做兼容性处理
- 
- **步骤一：在 AndroidManifest.xml 中的 Application 标签中添加 provider 标签**
-  ```xml
-  <provider
-    android:name="com.baidu.mobads.openad.FileProvider"
-    android:authorities="${applicationId}.bd.provider"
-    android:exported="false"
-    android:grantUriPermissions="true">
-    <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/bd_file_paths" />
-  </provider>
-  ```
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(62,113,167);">
-<b>提示：</b>如果你的工程不支持 ${applicationId} 配置，可以将 ${applicationId} 替换为你的App包名
-</span>
-</div>
-
-**步骤二：在Assets/plugin/Android 目录下添加下图所示的文件夹目录，下载bd_file_paths.xml文件，将下载下来的xml文件添加到创建的 xml 文件夹中：**
-
-添加文件夹的目录如下所示：
-<div align="center"><img height="200" src="resources/filepath.png"/></div>
-
-Download [bd_file_paths.xml](../../Assets/Plugins/Android/res/xml/bd_file_paths.xml)
-
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(250,0,0);">
-<b>注意：</b> 如果不进行上面的配置，会影响百度平台广告收入
-</span>
-</div>
-
-### 7.7 金山云 平台常见问题：
-
-#### 7.7.1 targetSdkVersion >= 24 适配(必选)
- 如果您打包 App 时的 targetSdkVersion >= 24，为了让 SDK 能够正常支持下载、安装 App 类广告，必须按照下面的步骤做兼容性处理
- 
- **步骤一：在 AndroidManifest.xml 中的 Application 标签中添加 provider 标签**
-  ```xml
-  <provider
-    android:name="com.ksc.ad.sdk.util.KsyunFileProvider"
-    android:authorities="${applicationId}.fileprovider"
-    android:exported="false"
-    android:grantUriPermissions="true">
-    <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/file_paths"/>
-  </provider>
-  ```
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(62,113,167);">
-<b>提示：</b>如果你的工程不支持 ${applicationId} 配置，可以将 ${applicationId} 替换为你的App包名
-</span>
-</div>
-
-**步骤二：在Assets/plugin/Android 目录下添加下图所示的文件夹目录，下载file_paths.xml文件，将下载下来的xml文件添加到创建的 xml 文件夹中：**
-
-添加文件夹的目录如下所示：
-<div align="center"><img height="200" src="resources/filepath.png"/></div>
-
-Download [file_paths.xml](../../Assets/Plugins/Android/res/xml/file_paths.xml)
-
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(250,0,0);">
-<b>注意：</b> 如果不进行上面的配置，会影响金山云平台广告收入
-</span>
-</div>
-
-### 7.8 Mintegral 平台常见问题：
-
-#### 7.8.1 targetSdkVersion >= 24 适配(必选)
- 如果您打包 App 时的 targetSdkVersion >= 24，为了让 SDK 能够正常支持下载、安装 App 类广告，必须按照下面的步骤做兼容性处理
- 
- **步骤一：在 AndroidManifest.xml 中的 Application 标签中添加 provider 标签**
-  ```xml
-  <provider
-    android:name="com.mintegral.msdk.base.utils.MTGFileProvider"
-    android:authorities="${applicationId}.mtgFileProvider"
-    android:exported="false"
-    android:grantUriPermissions="true">
-    <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/mtg_provider_paths"/>
-  </provider>
-  ```
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(62,113,167);">
-<b>提示：</b>如果你的工程不支持 ${applicationId} 配置，可以将 ${applicationId} 替换为你的App包名
-</span>
-</div>
-
-**步骤二：在Assets/plugin/Android 目录下添加下图所示的文件夹目录，下载mtg_provider_paths.xml文件，将下载下来的xml文件添加到创建的 xml 文件夹中：**
-
-添加文件夹的目录如下所示：
-<div align="center"><img height="200" src="resources/filepath.png"/></div>
-
-Download [mtg_provider_paths.xml](../../Assets/Plugins/Android/res/xml/mtg_provider_paths.xml)
-
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(250,0,0);">
-<b>注意：</b> 如果不进行上面的配置，会影响 Mintegral 平台广告收入
-</span>
-</div>
-
-### 7.9 Bytedance 平台常见问题：
-
-#### 7.9.1 targetSdkVersion >= 24 适配(必选)
- 如果您打包 App 时的 targetSdkVersion >= 24，为了让 SDK 能够正常支持下载、安装 App 类广告，必须按照下面的步骤做兼容性处理
- 
- **步骤一：在 AndroidManifest.xml 中的 Application 标签中添加 provider 标签**
-  ```xml
-  <provider
-    android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
-    android:authorities="${applicationId}.TTFileProvider"
-    android:exported="false"
-    android:grantUriPermissions="true">
-    <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/bytedance_file_paths" />
-  </provider>
-  ```
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(62,113,167);">
-<b>提示：</b>如果你的工程不支持 ${applicationId} 配置，可以将 ${applicationId} 替换为你的App包名
-</span>
-</div>
-
-**步骤二：在Assets/plugin/Android 目录下添加下图所示的文件夹目录，下载bytedance_file_paths.xml文件，将下载下来的xml文件添加到创建的 xml 文件夹中：**
-
-添加文件夹的目录如下所示：
-<div align="center"><img height="200" src="resources/filepath.png"/></div>
-
-Download [bytedance_file_paths.xml](../../Assets/Plugins/Android/res/xml/bytedance_file_paths.xml)
-
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(250,0,0);">
-<b>注意：</b> 如果不进行上面的配置，会影响 Bytedance 平台广告收入
-</span>
-</div>
 
 ## 8 GDPR
 本文件是为遵守欧洲联盟的一般数据保护条例(GDPR)而提供的。
