@@ -128,57 +128,57 @@ iOS dependencies：
 
 ```xml
     <iosPods>
-        <iosPod name="YumiMediationSDK" version="4.3.0" minTargetSdk="8.0">
+        <iosPod name="YumiMediationSDK" version="4.3.2" minTargetSdk="8.0">
             <sources>
                 <source>https://github.com/CocoaPods/Specs</source>
             </sources>
         </iosPod>
         <!-- adapters -->
-        <iosPod name="YumiMediationAdapters/AdColony" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/AdColony" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/AdMob" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/AdMob" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/AppLovin" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/AppLovin" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Baidu" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/Baidu" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Chartboost" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/Chartboost" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Domob" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/Domob" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Facebook" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/Facebook" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/GDT" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/GDT" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/InMobi" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/InMobi" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/IronSource" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/IronSource" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Unity" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/Unity" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Vungle" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/Vungle" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Mintegral" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/Mintegral" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/OneWay" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/OneWay" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/ZplayAds" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/ZplayAds" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/TapjoySDK" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/TapjoySDK" version="4.3.2">
         </iosPod>
-         <iosPod name="YumiMediationAdapters/BytedanceAds" version="4.3.0">
+         <iosPod name="YumiMediationAdapters/BytedanceAds" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/InneractiveAdSDK" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/InneractiveAdSDK" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/PubNative" version="4.3.0">
+        <iosPod name="YumiMediationAdapters/PubNative" version="4.3.2">
         </iosPod>
         <!-- debugCenter -->
-        <iosPod name="YumiMediationDebugCenter-iOS" version="4.3.0">
+        <iosPod name="YumiMediationDebugCenter-iOS" version="4.3.2">
         </iosPod>
     </iosPods>
 ```
 
-e.g., Delete `AdMob`, Delete `<iosPod name="YumiMediationAdapters/AdMob" version="4.3.0"></iosPod>`  
+e.g., Delete `AdMob`, Delete `<iosPod name="YumiMediationAdapters/AdMob" version="4.3.2"></iosPod>`  
 
 Complete the above procedure, Open **xcworkspace** project.
 
