@@ -19,6 +19,7 @@ allprojects {
             dirs 'libs'
         }
     }
+    
 }
 
 apply plugin: 'com.android.application'

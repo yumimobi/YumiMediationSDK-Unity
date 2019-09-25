@@ -22,7 +22,7 @@
     self = [super init];
     if (self) {
         _interstitialClientRef = interstitialClientRef;
-        _interstitial = [[YumiMediationInterstitial alloc] initWithPlacementID:placementID channelID:channelID versionID:versionID rootViewController:UnityGetGLViewController()];
+        _interstitial = [[YumiMediationInterstitial alloc] initWithPlacementID:placementID channelID:channelID versionID:versionID];
         _interstitial.delegate = self;
     }
     return self;
@@ -38,7 +38,7 @@
         [self printLogIfError];
         return;
     }
-    [self.interstitial present];
+    [self.interstitial presentFromRootViewController:UnityGetGLViewController()];
 }
 - (void)printLogIfError{
     NSLog(@"YumiMobileAdsPlugin: interstitial is nil. Ignoring ad request.");

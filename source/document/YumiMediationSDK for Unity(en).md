@@ -56,16 +56,8 @@
          * [7.5 Gdt(广点通) platform FAQ：](#75-gdt广点通-platform-faq)
             * [7.5.1 Gdt(广点通) platform Native ad con‘t show media Native Ad probleam：](#751-gdt广点通-platform-native-ad-cont-show-media-native-ad-probleam)
             * [7.5.2 Gdt(广点通) platform ad No Fill probleam：](#752-gdt广点通-platform-ad-no-fill-probleam)
-            * [7.5.3 targetSdkVersion &gt;= 24 compatibility considerations (Required)](#753-targetsdkversion--24-compatibility-considerations-required)
          * [7.6 Baidu platform FAQ：](#76-baidu-platform-faq)
             * [7.6.1 Baidu platform ad No Fill probleam：](#761-baidu-platform-ad-no-fill-probleam)
-            * [7.6.2 targetSdkVersion &gt;= 24 compatibility considerations (Required)](#762-targetsdkversion--24-compatibility-considerations-required)
-         * [7.7 Ksyun platform FAQ：](#77-ksyun-platform-faq)
-            * [7.7.1 targetSdkVersion &gt;= 24 compatibility considerations (Required)](#771-targetsdkversion--24-compatibility-considerations-required)
-         * [7.8 Mintegral platform FAQ：](#78-mintegral-platform-faq)
-            * [7.8.1 targetSdkVersion &gt;= 24 compatibility considerations (Required)](#781-targetsdkversion--24-compatibility-considerations-required)
-        * [7.9 Bytedance platform FAQ：](#79-bytedance-platform-faq)
-            * [7.9.1 targetSdkVersion &gt;= 24 compatibility considerations (Required)](#791-targetsdkversion--24-compatibility-considerations-required)
       * [8 GDPR](#8-gdpr)
          * [8.1 Set GDPR](#81-set-gdpr)
          * [8.2 Networks informations](#82-networks-informations)
@@ -136,55 +128,57 @@ iOS dependencies：
 
 ```xml
     <iosPods>
-        <iosPod name="YumiMediationSDK" version="4.2.0" minTargetSdk="8.0">
+        <iosPod name="YumiMediationSDK" version="4.3.2" minTargetSdk="8.0">
             <sources>
                 <source>https://github.com/CocoaPods/Specs</source>
             </sources>
         </iosPod>
         <!-- adapters -->
-        <iosPod name="YumiMediationAdapters/AdColony" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/AdColony" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/AdMob" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/AdMob" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/AppLovin" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/AppLovin" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Baidu" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/Baidu" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Chartboost" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/Chartboost" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Domob" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/Domob" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Facebook" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/Facebook" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/GDT" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/GDT" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/InMobi" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/InMobi" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/IronSource" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/IronSource" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Unity" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/Unity" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Vungle" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/Vungle" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Mintegral" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/Mintegral" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/OneWay" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/OneWay" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/ZplayAds" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/ZplayAds" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/TapjoySDK" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/TapjoySDK" version="4.3.2">
         </iosPod>
-         <iosPod name="YumiMediationAdapters/BytedanceAds" version="4.2.2">
+         <iosPod name="YumiMediationAdapters/BytedanceAds" version="4.3.2">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/InneractiveAdSDK" version="4.2.2">
+        <iosPod name="YumiMediationAdapters/InneractiveAdSDK" version="4.3.2">
+        </iosPod>
+        <iosPod name="YumiMediationAdapters/PubNative" version="4.3.2">
         </iosPod>
         <!-- debugCenter -->
-        <iosPod name="YumiMediationDebugCenter-iOS" version="4.2.0">
+        <iosPod name="YumiMediationDebugCenter-iOS" version="4.3.2">
         </iosPod>
     </iosPods>
 ```
 
-e.g., Delete `AdMob`, Delete `<iosPod name="YumiMediationAdapters/AdMob" version="4.2.2"></iosPod>`  
+e.g., Delete `AdMob`, Delete `<iosPod name="YumiMediationAdapters/AdMob" version="4.3.2"></iosPod>`  
 
 Complete the above procedure, Open **xcworkspace** project.
 
@@ -203,35 +197,37 @@ Android dependencies:
 
 ```xml
 <androidPackages>
-  <androidPackage spec="com.yumimobi.ads:mediation:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:playableads:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:admob:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.2.0"/>
-  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inneractive:4.2.0"/>
-  <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:tapjoy:4.2.0" />
-  <androidPackage spec="com.yumimobi.ads.mediation:unity:4.2.0" />
+  <androidPackage spec="com.yumimobi.ads:mediation:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:playableads:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:pubnative:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:admob:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.3.0"/>
+  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inneractive:4.3.0"/>
+  <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:tapjoy:4.3.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:unity:4.3.0" />
   <repositories>
       <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
       <repository>https://dl.bintray.com/yumimobi/ads/</repository>
+      <repository>https://dl.bintray.com/pubnative/maven</repository>
       <repository>https://tapjoy.bintray.com/maven</repository>
       <repository>https://jcenter.bintray.com/</repository>
       <repository>https://maven.google.com/</repository>
   </repositories>
 </androidPackages>
 ```
-e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:4.2.0" />`.
+e.g., Delete  `admob`, Delete `<androidPackage spec="com.yumimobi.ads.mediation:admob:4.3.0" />`.
 
 **Note: Unity plugin will auto download the thirdparty network's SDK, you don't need add it by manual.**
 
@@ -1028,7 +1024,6 @@ Generate the mainTemplate.gradle file using the Unity tool：
 
 <div align="center"><img height="352" src="resources/mainTemplate.png"/></div>
 
-
 ### 7.3 Android 9.0 compatibility considerations
 At present, Mintegral platform the Android SDK does not support Android9.0 or above. If the app crashes above Android9.0, you can solve by the ways below.
 
@@ -1058,39 +1053,6 @@ Make sure that the Gdt(广点通) platform ad required permissions added
 <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES"/>
 ```
 
-#### 7.5.3 targetSdkVersion >= 24 compatibility considerations (Required)
- when you package the app setting targetSdkVersion >= 24 , in order for the SDK to download and install the App class ads can be support normally, you must follow the steps below for compatibility.
- 
- **Step 1: Add this provider tag in the Application tag at AndroidManifest.xml**
-  ```xml
-  <provider
-    android:name="android.support.v4.content.FileProvider"
-    android:authorities="${applicationId}.fileprovider"
-    android:exported="false"
-    android:grantUriPermissions="true">
-    <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/gdt_file_path" />
-  </provider>
-  ```
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(62,113,167);">
-<b>Note：</b>If your project does not support the ${applicationId} configuration, you can replace ${applicationId} with your app package name.
-</span>
-</div>
-
-**Step 2: Add the folder directory shown in the following figure in the Assets/plugin/Android directory, download the gdt_file_path.xml file, and add the downloaded xml file to the created xml folder：**
-
-<div align="center"><img height="200" src="resources/filepath.png"/></div>
-
-Download [gdt_file_path.xml](../../Assets/Plugins/Android/res/xml/gdt_file_path.xml)
-
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(250,0,0);">
-<b>Note：</b> If you do not configure the above, it will affect the Gdt(广点通) platform advertising revenue.
-</span>
-</div>
-
 ### 7.6 Baidu platform FAQ：
 
 #### 7.6.1 Baidu platform ad No Fill probleam：
@@ -1104,148 +1066,6 @@ Make sure that the Baidu platform ad required permissions added
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 ```
 
-#### 7.6.2 targetSdkVersion >= 24 compatibility considerations (Required)
- when you package the app setting targetSdkVersion >= 24 , in order for the SDK to download and install the App class ads can be support normally, you must follow the steps below for compatibility.
- 
- **Step 1: Add this provider tag in the Application tag at AndroidManifest.xml**
-  ```xml
-  <provider
-    android:name="com.baidu.mobads.openad.FileProvider"
-    android:authorities="${applicationId}.bd.provider"
-    android:exported="false"
-    android:grantUriPermissions="true">
-    <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/bd_file_paths" />
-  </provider>
-  ```
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(62,113,167);">
-<b>Note：</b>If your project does not support the ${applicationId} configuration, you can replace ${applicationId} with your app package name.
-</span>
-</div>
-
-**Step 2: Add the folder directory shown in the following figure in the Assets/plugin/Android directory, download the bd_file_paths.xml file, and add the downloaded xml file to the created xml folder：**
-
-<div align="center"><img height="200" src="resources/filepath.png"/></div>
-
-Download [bd_file_paths.xml](../../Assets/Plugins/Android/res/xml/bd_file_paths.xml)
-
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(250,0,0);">
-<b>Note：</b> If you do not configure the above, it will affect the Baidu platform advertising revenue.
-</span>
-</div>
-
-### 7.7 Ksyun platform FAQ：
-
-#### 7.7.1 targetSdkVersion >= 24 compatibility considerations (Required)
- when you package the app setting targetSdkVersion >= 24 , in order for the SDK to download and install the App class ads can be support normally, you must follow the steps below for compatibility.
- 
- **Step 1: Add this provider tag in the Application tag at AndroidManifest.xml**
-  ```xml
-  <provider
-    android:name="com.ksc.ad.sdk.util.KsyunFileProvider"
-    android:authorities="${applicationId}.fileprovider"
-    android:exported="false"
-    android:grantUriPermissions="true">
-    <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/file_paths"/>
-  </provider>
-  ```
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(62,113,167);">
-<b>Note：</b>If your project does not support the ${applicationId} configuration, you can replace ${applicationId} with your app package name.
-</span>
-</div>
-
-**Step 2: Add the folder directory shown in the following figure in the Assets/plugin/Android directory, download the file_paths.xml file, and add the downloaded xml file to the created xml folder：**
-
-<div align="center"><img height="200" src="resources/filepath.png"/></div>
-
-Download [file_paths.xml](../../Assets/Plugins/Android/res/xml/file_paths.xml)
-
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(250,0,0);">
-<b>Note：</b> If you do not configure the above, it will affect the Ksyun platform advertising revenue.
-</span>
-</div>
-
-### 7.8 Mintegral platform FAQ：
-
-#### 7.8.1 targetSdkVersion >= 24 compatibility considerations (Required)
- when you package the app setting targetSdkVersion >= 24 , in order for the SDK to download and install the App class ads can be support normally, you must follow the steps below for compatibility.
- 
- **Step 1: Add this provider tag in the Application tag at AndroidManifest.xml**
-  ```xml
-  <provider
-    android:name="com.mintegral.msdk.base.utils.MTGFileProvider"
-    android:authorities="${applicationId}.mtgFileProvider"
-    android:exported="false"
-    android:grantUriPermissions="true">
-    <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/mtg_provider_paths"/>
-  </provider>
-  ```
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(62,113,167);">
-<b>Note：</b>If your project does not support the ${applicationId} configuration, you can replace ${applicationId} with your app package name.
-</span>
-</div>
-
-**Step 2: Add the folder directory shown in the following figure in the Assets/plugin/Android directory, download the mtg_provider_paths.xml file, and add the downloaded xml file to the created xml folder：**
-
-<div align="center"><img height="200" src="resources/filepath.png"/></div>
-
-Download [mtg_provider_paths.xml](../../Assets/Plugins/Android/res/xml/mtg_provider_paths.xml)
-
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(250,0,0);">
-<b>Note：</b> If you do not configure the above, it will affect the Mintegral platform advertising revenue.
-</span>
-</div>
-
-### 7.9 Bytedance platform FAQ：
-
-#### 7.9.1 targetSdkVersion >= 24 compatibility considerations (Required)
- when you package the app setting targetSdkVersion >= 24 , in order for the SDK to download and install the App class ads can be support normally, you must follow the steps below for compatibility.
- 
- **Step 1: Add this provider tag in the Application tag at AndroidManifest.xml**
-  ```xml
-  <provider
-    android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
-    android:authorities="${applicationId}.TTFileProvider"
-    android:exported="false"
-    android:grantUriPermissions="true">
-    <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/bytedance_file_paths" />
-  </provider>
-  ```
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(62,113,167);">
-<b>Note：</b>If your project does not support the ${applicationId} configuration, you can replace ${applicationId} with your app package name.
-</span>
-</div>
-
-**Step 2: Add the folder directory shown in the following figure in the Assets/plugin/Android directory, download the bytedance_file_paths.xml file, and add the downloaded xml file to the created xml folder：**
-
-<div align="center"><img height="200" src="resources/filepath.png"/></div>
-
-Download [bytedance_file_paths.xml](../../Assets/Plugins/Android/res/xml/bytedance_file_paths.xml)
-
-<div style="background-color:rgb(228,244,253);padding:10px;">
-<span style="color:rgb(250,0,0);">
-<b>Note：</b> If you do not configure the above, it will affect the Bytedance platform advertising revenue.
-</span>
-</div>
-
-## 8 GDPR
-This documentation is provided for compliance with the European Union's General Data Protection Regulation (GDPR). 
-If you are collecting consent from your users, you can make use of APIs discussed below to inform YumiMediationSDK and some downstream consumers of this information. 
-Get more information, please visit our official website.
 
 ### 8.1 Set GDPR
 
