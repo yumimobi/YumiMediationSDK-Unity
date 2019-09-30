@@ -127,7 +127,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ```xml
     <iosPods>
-        <iosPod name="YumiMediationSDK" version="4.3.2" minTargetSdk="8.0">
+        <iosPod name="YumiMediationSDK" version="4.3.3" minTargetSdk="8.0">
             <sources>
                 <source>https://github.com/CocoaPods/Specs</source>
             </sources>
