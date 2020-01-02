@@ -93,7 +93,7 @@
 
 Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android 和 iOS 应用上展示广告，无需编写 Java 或 Objective-C 代码。该插件提供了一个 C# 接口来请求广告。使用下面的链接下载插件的 Unity 包或在 GitHub 上查看其代码。
 
-[下载YumiMediationSDK Unity插件](https://github.com/yumimobi/YumiMediationSDK-Unity/raw/master/YumiMediationSDKPlugin.unitypackage)
+[下载YumiMediationSDK Unity插件](https://github.com/yumimobi/YumiMediationSDK-Unity/releases)
 
 [查看源码](https://github.com/yumimobi/YumiMediationSDK-Unity)
 
@@ -101,11 +101,11 @@ Yumi 聚合广告 Unity 插件使 Unity 开发人员可以轻松地在 Android �
 ### 3.1 首次导入
 在 Unity 编辑器中打开您的项目。选择**Assets> Import Package> Custom Package**，找到您下载的 YumiMediationSDKPlugin.unitypackage 文件。
 
-![img](resources/01.png)
+![img](source/document/resources/01.png)
 
 确保选中所有文件，然后单击 **Import**.
 
-![img](resources/02.png)
+![img](source/document/resources/02.png)
 
 ### 3.2 升级插件
 
@@ -189,7 +189,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 在 Unity 编辑器中，选择 **Assets> Play Services Resolver> Android Resolver>Force Resolve**。 Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用程序的 **Assets/Plugins/Android** 目录中。
 
-![img](resources/03.png)
+![img](source/document/resources/03.png)
 
 如果你想要修改 YumiMediationSDK 依赖的库，请修改 **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml**  文件，Android 依赖如下：
 
@@ -723,7 +723,7 @@ public class YumiNativeScene : MonoBehaviour
 
 以下说明这些元素如何与编辑器中的视图关联：
 
-![image](./resources/nativeAd.png)
+![image](./source/document/resources/nativeAd.png)
 
 #### 5.4.5 使用广告元数据注册布局
 
@@ -799,7 +799,7 @@ this.nativeAd.Destroy();
 ### 5.5 Splash
 #### 5.5.1 集成开屏广告
 如果您的 APP 想要集成开屏广告形式，请把 `YumiSplashScene` 加到 **Scenes In Build** 的第一位。如下图所示：
-![image](./resources/splashScene.png)
+![image](./source/document/resources/splashScene.png)
 
 **Warning:** 
 建议您将 `YumiSplashScene` 的背景图片设置为您应用的 launchImage。
@@ -904,15 +904,15 @@ public class YumiSDKDemo : MonoBehaviour
 
 以 iOS 平台为例（Android 平台逻辑相同，UI 不同）。
 
-<div align="center"><img width="200" height="352" src="resources/debug-1.png"/></div>
+<div align="center"><img width="200" height="352" src="source/document/resources/debug-1.png"/></div>
 
 *<p align="center" size=1>选择平台类型</p>*
 
-<div align="center"><img width="200" height="352" src="resources/debug-2.png"/></div>
+<div align="center"><img width="200" height="352" src="source/document/resources/debug-2.png"/></div>
 
 *<p align="center" size=1>选择单一平台进行调试<br>如果您需要的平台未在列表中，则代表此平台未添加至工程中<br>绿色平台为已添加至工程并且已配置<br>灰色平台为已添加至工程但未配置</p>*
 
-<div align="center"><img width="200" height="352" src="resources/debug-3.png"/></div>
+<div align="center"><img width="200" height="352" src="source/document/resources/debug-3.png"/></div>
 
 *<p align="center" size=1>选择广告类型，调试单一平台</p>*
 
@@ -1019,7 +1019,7 @@ Exception in thread "main" java.lang.RuntimeException: Timeout of 120000 reached
 
 使用Unity工具生成mainTemplate.gradle文件：
 
-<div align="center"><img height="352" src="resources/mainTemplate.png"/></div>
+<div align="center"><img height="352" src="source/document/resources/mainTemplate.png"/></div>
 
 ### 7.3 android 9.0 适配
 目前一些平台Android SDK暂不支持Android9.0以上操作系统，比如 Mintegral 平台，如果在Android9.0以上系统出现的崩溃，可以通过以下方法解决。
@@ -1036,7 +1036,7 @@ Exception in thread "main" java.lang.RuntimeException: Timeout of 120000 reached
 **解决方法**
 
 请确保你Unity项目的Assets/Plugins/Android/AndroidManifest.xml中的package:"xxx.xxx.xxx"名称和你Unity项目的package name "xxx.xxx.xxx"保持一致。如下图所示：
-<img src="resources\gdt1.png" alt="gdt1">
+<img src="source/document/resources\gdt1.png" alt="gdt1">
 
 #### 7.5.2 Gdt(广点通) 平台请求不到广告问题：
 
