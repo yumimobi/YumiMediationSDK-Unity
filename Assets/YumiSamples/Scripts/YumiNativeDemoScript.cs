@@ -122,7 +122,6 @@ public class YumiNativeDemoScript : MonoBehaviour
         }
 
         statusText.text = "Register native views";
-        RegisterNativeViews();
        
         // the ad is native ad
         if (!yumiNativeData.isExpressAdView)
@@ -180,6 +179,7 @@ public class YumiNativeDemoScript : MonoBehaviour
         }
         statusText.text = "HandleNativeAdLoaded";
         yumiNativeData = args.nativeData[0];
+        RegisterNativeViews();
     }
 
     public void HandleNativeAdFailedToLoad(object sender, YumiAdFailedToLoadEventArgs args)
