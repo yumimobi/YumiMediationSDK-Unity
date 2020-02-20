@@ -36,10 +36,7 @@
     <iosPods>
         <iosPod name="YumiMediationSDK" version="4.5.1" minTargetSdk="8.0">
             <sources>
-                <source>https://github.com/CocoaPods/Specs</source>
-            </sources>
-            <sources>
-                <source>https://github.com/yumimobi/Specs</source>
+                <source>https://cdn.cocoapods.org</source>
             </sources>
         </iosPod>
         <!-- adapters -->
