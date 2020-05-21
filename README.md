@@ -129,49 +129,49 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ```xml
     <iosPods>
-        <iosPod name="YumiMediationSDK" version="4.5.1" minTargetSdk="9.0">
+        <iosPod name="YumiMediationSDK" version="4.6.0" minTargetSdk="9.0">
         </iosPod>
         <!-- adapters -->
-        <iosPod name="YumiMediationAdapters/AdColony" version="4.5.1">
+        <iosPod name="YumiMediationAdapters/AdColony" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/AdMob" version="4.5.1">
+        <iosPod name="YumiMediationAdapters/AdMob" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Baidu" version="4.5.1">
+        <iosPod name="YumiMediationAdapters/Baidu" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Chartboost" version="4.5.1">
+        <iosPod name="YumiMediationAdapters/Chartboost" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Domob" version="4.5.1">
+        <iosPod name="YumiMediationAdapters/Domob" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Facebook" version="4.5.1">
+        <iosPod name="YumiMediationAdapters/Facebook" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/GDT" version="4.5.1">
+        <iosPod name="YumiMediationAdapters/GDT" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/InMobi" version="4.5.1">
+        <iosPod name="YumiMediationAdapters/InMobi" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/IronSource" version="4.5.1">
+        <iosPod name="YumiMediationAdapters/IronSource" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Unity" version="4.5.1">
+        <iosPod name="YumiMediationAdapters/Unity" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Vungle" version="4.5.1">
+        <iosPod name="YumiMediationAdapters/Vungle" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/Mintegral" version="4.5.1">
+        <iosPod name="YumiMediationAdapters/Mintegral" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/OneWay" version="4.5.1">
+        <iosPod name="YumiMediationAdapters/OneWay" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/AtmosplayAds" version="4.5.1">
+        <iosPod name="YumiMediationAdapters/AtmosplayAds" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/TapjoySDK" version="4.5.1">
+        <iosPod name="YumiMediationAdapters/TapjoySDK" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/InneractiveAdSDK" version="4.5.1">
+        <iosPod name="YumiMediationAdapters/InneractiveAdSDK" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapters/PubNative" version="4.5.1">
+        <iosPod name="YumiMediationAdapters/PubNative" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapterBytedance" version="4.5.1">
+        <iosPod name="YumiMediationAdapterBytedance" version="4.6.0">
         </iosPod>
-        <iosPod name="YumiMediationAdapterAppLovin" version="4.5.1">
+        <iosPod name="YumiMediationAdapterAppLovin" version="4.6.0">
         </iosPod>
         <!-- debugCenter -->
-        <iosPod name="YumiMediationDebugCenter-iOS" version="4.5.1">
+        <iosPod name="YumiMediationDebugCenter-iOS" version="4.6.0">
         </iosPod>
     </iosPods>
 ```
