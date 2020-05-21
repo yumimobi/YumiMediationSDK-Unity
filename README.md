@@ -79,7 +79,7 @@
      
      Xcode 10.0 或更高版本
      
-     iOS 8.0 或更高版本
+     iOS 9.0 或更高版本
 
      [CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
 
@@ -122,20 +122,19 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ### 4.1 部署 iOS 项目
 
+#### 4.1.1 添加依赖
 将 YumiMediationSDK 集成到 Unity 项目中无需其他步骤。
 
 如果你想要修改 YumiMediationSDK 依赖的库，请修改 **Assets/YumiMediationSDK/Editor/YumiMobileAdsDependencies.xml**  文件，iOS 依赖如下：
 
 ```xml
     <iosPods>
-        <iosPod name="YumiMediationSDK" version="4.5.1" minTargetSdk="8.0">
+        <iosPod name="YumiMediationSDK" version="4.5.1" minTargetSdk="9.0">
         </iosPod>
         <!-- adapters -->
         <iosPod name="YumiMediationAdapters/AdColony" version="4.5.1">
         </iosPod>
         <iosPod name="YumiMediationAdapters/AdMob" version="4.5.1">
-        </iosPod>
-        <iosPod name="YumiMediationAdapters/AppLovin" version="4.5.1">
         </iosPod>
         <iosPod name="YumiMediationAdapters/Baidu" version="4.5.1">
         </iosPod>
@@ -163,11 +162,13 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
         </iosPod>
         <iosPod name="YumiMediationAdapters/TapjoySDK" version="4.5.1">
         </iosPod>
-        <iosPod name="YumiMediationAdapterBytedance" version="4.5.1">
-        </iosPod>
         <iosPod name="YumiMediationAdapters/InneractiveAdSDK" version="4.5.1">
         </iosPod>
         <iosPod name="YumiMediationAdapters/PubNative" version="4.5.1">
+        </iosPod>
+        <iosPod name="YumiMediationAdapterBytedance" version="4.5.1">
+        </iosPod>
+        <iosPod name="YumiMediationAdapterAppLovin" version="4.5.1">
         </iosPod>
         <!-- debugCenter -->
         <iosPod name="YumiMediationDebugCenter-iOS" version="4.5.1">
@@ -181,6 +182,11 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 **注意：使用 CocoaPods 识别 iOS 依赖项。 CocoaPods 作为后期构建过程步骤运行。**
 **注意: CocoaPods 会自动引用第三方 SDK，您无需手动添加。**
+
+#### 4.1.2 添加语言设置 (仅针对 BytedanceAds)
+注意: 开发者必须在这里设置所支持的语言,否则会有语言显示的问题.  
+例如: 支持中文 添加 Chinese
+![](source/document/resources/language_setting.png)
 
 ### 4.2 部署 Android 项目
 
