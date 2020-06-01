@@ -1,28 +1,32 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <dependencies>
     <androidPackages>
-        <androidPackage spec="com.yumimobi.ads:mediation:4.5.1" />
-        <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.5.1" />
-        <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.5.1" />
-        <androidPackage spec="com.yumimobi.ads.mediation:atmosplay:4.5.1" />
-        <androidPackage spec="com.yumimobi.ads.mediation:pubnative:4.5.1" />
-        <androidPackage spec="com.yumimobi.ads.mediation:admob:4.5.1" />
-        <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.5.1" />
-        <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.5.1"/>
-        <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.5.1" />
-        <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.5.1" />
-        <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.5.1" />
-        <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.5.1" />
-        <androidPackage spec="com.yumimobi.ads.mediation:inneractive:4.5.1"/>
-        <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.5.1" />
-        <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.5.1" />
-        <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.5.1" />
-        <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.5.1" />
-        <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.5.1" />
-        <androidPackage spec="com.yumimobi.ads.mediation:tapjoy:4.5.1" />
+        <androidPackage spec="com.yumimobi.ads:mediation:4.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:atmosplay:4.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:pubnative:4.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.6.0"/>
+        <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:inneractive:4.6.0"/>
+        <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:tapjoy:4.6.0" />
         <!--  If your app is only available in mainland China, use unity-china,else use Unity.   -->
-        <androidPackage spec="com.yumimobi.ads.mediation:unity:4.5.1" />
-        <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:4.5.1" />-->
+        <androidPackage spec="com.yumimobi.ads.mediation:unity:4.6.0" />
+        <!-- <androidPackage spec="com.yumimobi.ads.mediation:unity-china:4.6.0" />-->
+
+        <!-- The latest admob，inmobi，vungle，mintegral SDK uses Jetpack libraries. please migrate project to AndroidX  -->
+        <androidPackage spec="com.yumimobi.ads.mediation:admob:4.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.6.0" />
+        <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.6.0" />
+        <!--  If your app is only available in mainland China, use mintegral-china,else use Mintegral.  -->
+        <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.6.0" />
+        <!-- <androidPackage spec="com.yumimobi.ads.mediation:mintegral-china:4.6.0" />-->
        
         <repositories>
             <repository>https://dl.bintray.com/pubnative/maven</repository>
