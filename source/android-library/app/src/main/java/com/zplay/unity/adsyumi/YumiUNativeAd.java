@@ -41,6 +41,10 @@ public class YumiUNativeAd {
     private Activity mUnityPlayerActivity;
     private Map<String, NativeContent> mNativeContents;
     private Map<String, View> mNativeViews = new HashMap<>(5);
+    //LayoutParams object that holds the current native ad, used when displaying native ads
+    private Map<String, LayoutParams> mNativeLayoutParams = new HashMap<>(5);
+    //Records whether the current native ad view is added to the phone Window interface
+    private Map<String, Boolean> mNativeHasAddContentView = new HashMap<>(5);
     private NativeAdOptions mAdOptions;
 
     public YumiUNativeAd(Activity activity, YumiUNativeAdListener listener) {
@@ -331,11 +335,12 @@ public class YumiUNativeAd {
 
                     adView.setNativeAd(nativeContent);
                     adPlaceHolder.addView(adView, adViewLayout);
-                    mUnityPlayerActivity.addContentView(adPlaceHolder, adPlaceHolderLayout);
 
                     adPlaceHolder.setVisibility(View.GONE);
-                    mNativeViews.put(uniqueId, adPlaceHolder);
 
+                    mNativeHasAddContentView.put(uniqueId, false);
+                    mNativeViews.put(uniqueId, adPlaceHolder);
+                    mNativeLayoutParams.put(uniqueId, adPlaceHolderLayout);
                 }
             }
         });
@@ -419,9 +424,16 @@ public class YumiUNativeAd {
             @Override
             public void run() {
                 View adView = mNativeViews.get(uniqueId);
-                if (adView == null) {
+                LayoutParams adViewLayoutParams = mNativeLayoutParams.get(uniqueId);
+                boolean nativeHasaddContentView = mNativeHasAddContentView.get(uniqueId);
+                if (adView == null || adViewLayoutParams == null) {
                     Log.d(TAG, "showView: cannot found the target view");
                     return;
+                }
+
+                if (!nativeHasaddContentView) {
+                    mNativeHasAddContentView.put(uniqueId, true);
+                    mUnityPlayerActivity.addContentView(adView, adViewLayoutParams);
                 }
                 adView.setVisibility(View.VISIBLE);
             }
@@ -464,6 +476,7 @@ public class YumiUNativeAd {
                 nativeContentDestroy(uniqueId);
                 mNativeContents.remove(uniqueId);
                 mNativeViews.remove(uniqueId);
+                mNativeLayoutParams.remove(uniqueId);
             }
         });
     }
@@ -485,6 +498,7 @@ public class YumiUNativeAd {
                     }
                     Log.d(TAG, "destroy: NativeViews clear ");
                     mNativeViews.clear();
+                    mNativeLayoutParams.clear();
                 }
 
                 if (mNativeAd != null) {
