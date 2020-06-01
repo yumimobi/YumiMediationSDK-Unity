@@ -1,5 +1,5 @@
  [See the English Guide](https://github.com/yumimobi/YumiMediationSDK-Unity/wiki)
-   * [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
+  * [YumiMediationSDK for Unity](#yumimediationsdk-for-unity)
       * [1 概述](#1-概述)
       * [2 下载 YumiMediationSDK Unity 插件](#2-下载-yumimediationsdk-unity-插件)
       * [3 导入 YumiMediationSDK Unity 插件](#3-导入-yumimediationsdk-unity-插件)
@@ -59,6 +59,9 @@
             * [7.5.2 Gdt(广点通) 平台请求不到广告问题：](#752-gdt广点通-平台请求不到广告问题)
          * [7.6 Baidu 平台常见问题：](#76-baidu-平台常见问题)
             * [7.6.1 Baidu 平台请求不到广告问题：](#761-baidu-平台请求不到广告问题)
+         * [7.7 将项目迁移到AndroidX：](#77-将项目迁移到androidx)
+            * [7.7.1 设置Android Resolver](#771-设置android-resolver)
+            * [7.7.2 请重新Force Resolver](#772-请重新force-resolver)
       * [8 GDPR](#8-gdpr)
          * [8.1 设置 GDPR](#81-设置-gdpr)
          * [8.2  支持 GDPR 的平台](#82--支持-gdpr-的平台)
@@ -192,26 +195,28 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 
 ```xml
 <androidPackages>
-  <androidPackage spec="com.yumimobi.ads:mediation:4.5.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.5.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.5.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:atmosplay:4.5.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:pubnative:4.5.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:admob:4.5.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.5.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.5.1"/>
-  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.5.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.5.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.5.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.5.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:inneractive:4.5.1"/>
-  <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.5.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.5.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.5.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.5.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.5.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:tapjoy:4.5.1" />
-  <androidPackage spec="com.yumimobi.ads.mediation:unity:4.5.1" />
+  <androidPackage spec="com.yumimobi.ads:mediation:4.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:adcolony:4.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:applovin:4.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:atmosplay:4.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:pubnative:4.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:baidu:4.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:bytedance:4.6.0"/>
+  <androidPackage spec="com.yumimobi.ads.mediation:chartboost:4.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:facebook:4.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:gdt:4.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inneractive:4.6.0"/>
+  <androidPackage spec="com.yumimobi.ads.mediation:oneway:4.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ironsource:4.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:ksyun:4.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:tapjoy:4.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:unity:4.6.0" />
+  <!-- The latest admob，inmobi，vungle，mintegral SDK uses Jetpack libraries. please migrate project to AndroidX, please see chapter 7.7  -->
+  <androidPackage spec="com.yumimobi.ads.mediation:admob:4.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:inmobi:4.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:vungle:4.6.0" />
+  <androidPackage spec="com.yumimobi.ads.mediation:mintegral:4.6.0" />
+
   <repositories>
       <repository>https://dl.bintray.com/yumimobi/thirdparty/</repository>
       <repository>https://dl.bintray.com/yumimobi/ads/</repository>
@@ -223,7 +228,7 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 </androidPackages>
 ```
 
-比如删除 `admob`，直接删除 `<androidPackage spec="com.yumimobi.ads.mediation:admob:4.5.1" />` 即可。
+比如删除 `admob`，直接删除 `<androidPackage spec="com.yumimobi.ads.mediation:admob:4.6.0" />` 即可。
 
 **注意: Unity 插件会自动引用第三方广告 SDK，您无需手动添加。**
 ## 5 选择广告形式
@@ -1060,6 +1065,19 @@ Exception in thread "main" java.lang.RuntimeException: Timeout of 120000 reached
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 ```
+
+### 7.7 将项目迁移到AndroidX：
+#### 7.7.1 设置Android Resolver
+由于最新的Admob，Inmobi，Vungle，Mintegral平台Ads SDK使用Jetpack库。
+
+为确保Admob，Inmobi，Vungle，Mintegral平台Ads SDK兼容，请在项目Unity导航栏中的Assets/Android Resolver/Setting中勾选User Jetifier，如下所示：
+<img src="source/document/resources\setting.png" alt="setting1">
+
+<img src="source/document/resources\setting1.png" alt="setting2">
+
+#### 7.7.2 请重新Force Resolver
+
+<img src="source/document/resources\setting2.png" alt="setting3">
 
 
 ## 8 GDPR
