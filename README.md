@@ -191,6 +191,14 @@ YumiMediationSDK Unity 插件随着 [Unity Play Services Resolver library](https
 例如: 支持中文 添加 Chinese
 ![](source/document/resources/language_setting.png)
 
+#### 4.1.3 添加您的AppLovin SDK Key 
+在您工程的info.plist文件中添加AppLovinSdkKey。
+您可从AppLovin官网获取您的sdk key。
+```App
+<key>AppLovinSdkKey</key>
+  <string>get your applovin sdk key from applovin dash board</string>
+```
+
 ### 4.2 部署 Android 项目
 
 在 Unity 编辑器中，选择 **Assets> Play Services Resolver> Android Resolver>Force Resolve**。 Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用程序的 **Assets/Plugins/Android** 目录中。
