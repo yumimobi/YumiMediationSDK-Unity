@@ -223,8 +223,10 @@ public class YumiUNativeAd {
                     mUnityPlayerActivity.addContentView(adPlaceHolder, adPlaceHolderLayout);
 
                     adPlaceHolder.setVisibility(View.GONE);
+                    mNativeHasAddContentView.put(uniqueId, true);
                     mNativeViews.put(uniqueId, adPlaceHolder);
-
+                    mNativeLayoutParams.put(uniqueId, adPlaceHolderLayout);
+                    Log.d(TAG, "expressAdView uniqueId:" + uniqueId);
                 } else {
                     if (TextUtils.equals(FACEBOOK_NAME, nativeContent.getProviderName())) {
                         try {
@@ -424,6 +426,7 @@ public class YumiUNativeAd {
             @Override
             public void run() {
                 View adView = mNativeViews.get(uniqueId);
+                Log.d(TAG, "showView uniqueId:" + uniqueId);
                 LayoutParams adViewLayoutParams = mNativeLayoutParams.get(uniqueId);
                 boolean nativeHasaddContentView = mNativeHasAddContentView.get(uniqueId);
                 if (adView == null || adViewLayoutParams == null) {
