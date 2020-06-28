@@ -106,13 +106,6 @@ public class YumiNativeDemoScript : MonoBehaviour
         nativeAd.ShowView(nativeData);
     }
 
-    private void ShowNativeExpressAd(YumiNativeData nativeData)
-    {
-        statusText.text = "Show native express ad ";
-
-        nativeAd.ShowView(nativeData);
-    }
-
     public void ShowAd()
     {
         if (nativeAd.IsAdInvalidated(yumiNativeData))
@@ -124,10 +117,7 @@ public class YumiNativeDemoScript : MonoBehaviour
         statusText.text = "Register native views";
        
         // the ad is native ad
-        if (!yumiNativeData.isExpressAdView)
-        {
-            ShowNatveAd(yumiNativeData);
-        }
+        ShowNatveAd(yumiNativeData);
 
         // if the ad is native express view please show ad in HandleNativeExpressAdRenderSuccess
 
@@ -198,7 +188,6 @@ public class YumiNativeDemoScript : MonoBehaviour
     {
         statusText.text = "HandleNativeExpressAdRenderSuccess";
 
-        ShowNativeExpressAd(args.nativeData);
 
         Logger.Log("HandleNativeExpressAdRenderSuccess");
     }
