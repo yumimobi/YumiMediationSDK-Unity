@@ -79,7 +79,7 @@
         <iosPod name="YumiMediationAdapters/PubNative" version="4.7.0">
         </iosPod>
         <!-- debugCenter -->
-        <iosPod name="YumiMediationDebugCenter-iOS" version="4.6.2">
+        <iosPod name="YumiMediationDebugCenter-iOS" version="4.7.0">
         </iosPod>
         <!-- bytedance -->
         <iosPod name="YumiMediationAdapterBytedance" version="4.7.0">
