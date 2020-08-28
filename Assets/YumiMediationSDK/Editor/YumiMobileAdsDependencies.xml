@@ -39,9 +39,9 @@
     </androidPackages>
     <iosPods>
         <iosPod name="YumiMediationSDK" version="5.0.0" minTargetSdk="9.0">
-            <sources>
+            <!-- <sources>
                 <source>https://github.com/yumimobi/Specs.git</source>
-            </sources>
+            </sources> -->
         </iosPod>
         <!-- adapters -->
         <iosPod name="YumiMediationAdapters/AdColony" version="5.0.0">
